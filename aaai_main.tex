@@ -334,22 +334,33 @@ to detect the events swiftly.
 
 \begin{figure*}[!ht]
   \centering
-  \subfloat[Marching.]{\label{fig:tsnedataset_1}\includegraphics[width=0.25\textwidth]
+  \subfloat[Marching.]{\label{fig:tsnedataset_1}\includegraphics[width=0.2\textwidth]
        {plot1-crop}} 
-  \subfloat[Fast walk backward.]{\label{fig:tsnedataset_9}\includegraphics[width=0.25\textwidth]
+  \subfloat[Fast walk backward.]{\label{fig:tsnedataset_9}\includegraphics[width=0.2\textwidth]
        {plot5-crop}}
-  \subfloat[Slow walk backward.]{\label{fig:tsnedataset_7}\includegraphics[width=0.25\textwidth]
+  \subfloat[Slow walk backward.]{\label{fig:tsnedataset_7}\includegraphics[width=0.2\textwidth]
        {plot3-crop}}
-       \\
   \subfloat[Rotate 
-counter-clockwise.]{\label{fig:tsnedataset_8}\includegraphics[width=0.25\textwidth]
+counter-clockwise.]{\label{fig:tsnedataset_8}\includegraphics[width=0.2\textwidth]
        {plot4-crop}}
-  \subfloat[Left side-way walk.]{\label{fig:tsnedataset_10}\includegraphics[width=0.25\textwidth]
+  \subfloat[Left side-way walk.]{\label{fig:tsnedataset_10}\includegraphics[width=0.2\textwidth]
        {plot6-crop}}
-  \subfloat[Fast walk forward.]{\label{fig:tsnedataset_5}\includegraphics[width=0.25\textwidth]
+       \\
+  \subfloat[Fast walk forward.]{\label{fig:tsnedataset_5}\includegraphics[width=0.2\textwidth]
        {plot2-crop}}
-  \caption{The raw and filtered roll and pitch values for normal behaviors of NAO humanoid robot.}
-  \label{fig:normalBehavior}
+  \subfloat[Fallen forward.]{\label{fig:tsnedataset_11}\includegraphics[width=0.2\textwidth]
+       {plot1_fallen-crop}}
+  \subfloat[Fallen backward.]{\label{fig:tsnedataset_12}\includegraphics[width=0.2\textwidth]
+       {plot2_fallen-crop}}
+  \subfloat[Fallen to left side.]{\label{fig:tsnedataset_13}\includegraphics[width=0.2\textwidth]
+       {plot3_fallen-crop}}
+  \subfloat[Fallen to right
+side.]{\label{fig:tsnedataset_14}\includegraphics[width=0.2\textwidth]
+       {plot4_fallen-crop}}      
+  \caption{The figures (a)-(f) show the roll and pitch angles (raw and filtered) for normal 
+behavior, while, the figures (g)-(j) show the raw and filtered roll and pitch angles for fallen 
+states of the NAO humanoid robot.}
+  \label{fig:normalFallenBehavior}
 
 \end{figure*}
 
@@ -368,7 +379,8 @@ are considered falling behaviors.
 We have used only the roll and the pitch values  to detect relevant events. In order to achieve an
 effective threshold based decision making, first we have filtered the roll, pitch, and
 yaw\footnote{Even though we have not used yaw values, we have filtered them using Kalman filter.}
-values using a Kalman filter \cite{Welch:1995:IKF:897831}. Figure \ref{fig:normalBehavior} shows
+values using a Kalman filter \cite{Welch:1995:IKF:897831}. The Figures 
+\ref{fig:normalFallenBehavior} ((a)--(f)) show
 the row and the filtered values of the row and the pitch values for marching, fast walk forward,
 slow walk backward, rotate counter-clockwise, fast walk backward, and left side-way walk. Other
 scenarios show similar plots, and we have refrained from plotting them. The threshold method
@@ -379,7 +391,8 @@ state.
 
 There are four fallen states for the robot: \begin{inparaenum}[(1)] \item fallen
 forwad; \item fallen backward; \item fallen to left side; and \item fallen to right
-side\end{inparaenum}. Figure \ref{fig:fallenBehavior} shows the roll and pitch angles (row and
+side\end{inparaenum}. The Figures \ref{fig:normalFallenBehavior} ((g)--(j)) show the roll and pitch 
+angles (row and
 filtered) for typical fallen robot. If the filtered roll value is less that 60 degrees, we can
 safely assume that the robot is fallen forward. If the filtered roll values is more than 100
 degrees we can assume that the robot is fallen backward. To detect the events fallen to the left
@@ -389,21 +402,7 @@ values is more than 50 degrees, we can assume that the robot is fallen to the ri
 these thresholds for a separate test cases, the thresholding method has detected fallen state 100\%
 accuracy. 
 
-\begin{figure*}[!ht]
-  \centering
-  \subfloat[Fallen forward.]{\label{fig:tsnedataset_11}\includegraphics[width=0.25\textwidth]
-       {plot1_fallen-crop}}
-  \subfloat[Fallen backward.]{\label{fig:tsnedataset_12}\includegraphics[width=0.25\textwidth]
-       {plot2_fallen-crop}}
-  \subfloat[Fallen to left side.]{\label{fig:tsnedataset_13}\includegraphics[width=0.25\textwidth]
-       {plot3_fallen-crop}}
-  \subfloat[Fallen to right
-side.]{\label{fig:tsnedataset_14}\includegraphics[width=0.25\textwidth]
-       {plot4_fallen-crop}}      
-  \caption{The raw and filtered roll and pitch values for fallen states of NAO humanoid robot.}
-  \label{fig:fallenBehavior}
 
-\end{figure*}
 
 The range of motion of NAO robot is comparatively limited compared to a able-bodied human.
 Therefore, we are able to obtain satisfactory results for detecting motion event from the
