@@ -21,6 +21,7 @@
 
 %needed to change table colors
 \usepackage[table]{xcolor}
+
 %%
 \frenchspacing
 \setlength{\pdfpagewidth}{8.5in}
@@ -33,25 +34,32 @@
 % The file aaai.sty is the style file for AAAI Press 
 % proceedings, working notes, and technical reports.
 %
-\title{An Activity Monitoring System for Able-Bodied Humans and NAO Humanoid Robots using Wearable 
-Sensors}
-\author{Author names \\ %Saminda Abeyruwan \and Faisal Sikder \and Dilip Sarkar\\
-University of Miami \\
-Department of Computer Science\\
-1365 Memorial Drive, Coral Gables, FL, 33146, USA\\
-%{\ttfamily \{saminda|f.sikder|sarkar\}@cs.miami.edu}
-}
+\title{Activity Monitoring and Prediction for Humans and NAO Humanoid Robots using 
+Wearable Sensors}
+% \author{Author names \\ %Saminda Abeyruwan \and Faisal Sikder \and Dilip Sarkar\\
+% University of Miami \\
+% Department of Computer Science\\
+% 1365 Memorial Drive, Coral Gables, FL, 33146, USA\\
+% %{\ttfamily \{saminda|f.sikder|sarkar\}@cs.miami.edu}
+% }
 \maketitle
 \begin{abstract}
 \begin{quote}
-CSC688 Energia is a software development platform for MSP-EXP430G2 LaunchPad, Tiva C Series
-EK-TM4C123GXL LaunchPad, and Tiva C Series TM4C129 Connected LaunchPad. Our framework is
-lightweight, flexible, and consumes minimum memory and computational resources to build
-applications and rational agents on microcontrollers that sense and actuate using add-on boards. We
-have used the framework to monitor activities such as standing, walking, and falling on able-bodied
-humans and on NAO humanoid robots using thresholding and machine learning methods. We empirically
-evaluate the outcomes and show the success of the methods on different activity scenarios. 
-\textbf{TODO: fix me for FLAIR}
+Monitoring and learning from activities such as jogging, running, falling so forth for humans and 
+humanoid biped robots provide predictions to improve the activities as well as to prevent 
+accidental or unforeseen situations. The predictions must to be delivered within the time scales of 
+the activities for gain maximum performance. In order to learn from activities and to provide 
+predictions, the two demographic groups are impel to ware external devices with sensors. In this 
+paper we provide: \begin{inparaenum}[1)] \item a generalize method to learn and predict activities 
+of the groups; and \item a modular software framework to realize learning/predictions 
+efficiently on embedded devices. \end{inparaenum} We have use on/off-line reactive and deliberative 
+methods to learn from activities and to provide predictions. Our software development platform has 
+been tested on MSP-EXP430G2, Tiva C Series EK-TM4C123GXL, and Tiva C Series TM4C129 Connected 
+LaunchPads. It is lightweight, flexible, and consumes minimum memory and computational 
+resources to develop applications and rational agents on microcontrollers that sense and actuate 
+using add-on boards. We have used our framework to learn from activities and to deliver predictions 
+on able-bodied humans and on NAO biped humanoid robots. We empirically evaluate the outcomes and 
+show the success of the methods on different activity settings. 
 \end{quote}
 \end{abstract}
 
@@ -107,6 +115,8 @@ learning methods to detect these events and provide justifications, validations,
 each method.  
 
 \textbf{TODO: fix me for FLAIR}
+
+
 
 \section{Software Architecture}
 
