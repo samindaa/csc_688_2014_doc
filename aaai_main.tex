@@ -13,12 +13,11 @@
 %%
 \usepackage{bm}
 \usepackage{paralist}
-\usepackage{minted}
+%\usepackage{minted}
 %%
 % so we don't need to specify figures subdirectory in figure code
 \graphicspath{{./figures/}}
 \usepackage{subfig}
-
 %needed to change table colors
 \usepackage[table]{xcolor}
 
@@ -85,6 +84,8 @@ and efficiently. This paper describes a software contribution that allows the de
 applications using open source principles and machine learning within
 Energia\footnote{\url{http://energia.nu/}} open-source electronics prototyping platform.
 
+
+
 The framework provides functionalities to build  rational agents that perceive its
 environment though sensors and act upon it though actuators \cite{russel2009}. The execution path
 between sensors to actuators may contain complex behaviors and modeling decisions that needs to be
@@ -127,7 +128,7 @@ currently available in CSC688 Energia.
 
 \begin{figure*}[!t]
 \centering
- \includegraphics[width=1.0\textwidth] {framework}
+ \includegraphics[width=1.0\textwidth] {figures/framework.pdf}
  \caption{An example of modules and representations available in CSC688 Energia.}
  \label{fig:framework}
 \end{figure*}
@@ -251,41 +252,43 @@ movement with quite good accuracy (approximately 90\%). Table
 walking movement. In that movement our prediction accuracy is about 89.5\%. In the actual fall
 prediction, SVM can predict fall with 90.5\% accuracy (Shown in Table
 \ref{tab:StandingToFallingDetectionsvm}).
-\begin{table}[!ht]
-\caption{Standing to seating detection with SVM.}
-	\label{tab:StandingToSeatingDetectionsvm}
-	\centering
-		\begin{tabular} {l l |c |c}
-			& & Predict& Predict \\ 
-			& & Seating & Standing \\ \hline
-			Actual& Seating & 96 & 4\\ \hline
-			Actual& Standing & 16& 84\\ \hline
-		\end{tabular}
-\end{table}
 
-\begin{table}[!ht]
-	\caption{Standing to walking detection with SVM.}
-	\label{tab:StandingToWalkingDetectionsvm}
-	\centering
-		\begin{tabular} {l l |c |c}
-			& & Predict& Predict \\ 
-			& & Walking & Standing \\ \hline
-			Actual& Walking & 93 & 07\\ \hline
-			Actual& Standing & 14& 86\\ \hline
-		\end{tabular}
-\end{table}
-
-\begin{table}[!ht]
-	\caption{Standing to falling detection with SVM.}
-	\label{tab:StandingToFallingDetectionsvm}
-	\centering
-		\begin{tabular} {l l |c |c}
-			& & Predict& Predict \\ 
-			& & Fall & Standing \\ \hline
-			Actual& Fall & 95 & 05\\ \hline
-			Actual& Standing & 14& 86\\ \hline
-		\end{tabular}
-\end{table}
+%
+%\begin{table}[!ht]
+%\caption{Standing to seating detection with SVM.}
+	%\label{tab:StandingToSeatingDetectionsvm}
+	%\centering
+		%\begin{tabular} {l l |c |c}
+			%& & Predict& Predict \\ 
+			%& & Seating & Standing \\ \hline
+			%Actual& Seating & 96 & 4\\ \hline
+			%Actual& Standing & 16& 84\\ \hline
+		%\end{tabular}
+%\end{table}
+%
+%\begin{table}[!ht]
+	%\caption{Standing to walking detection with SVM.}
+	%\label{tab:StandingToWalkingDetectionsvm}
+	%\centering
+		%\begin{tabular} {l l |c |c}
+			%& & Predict& Predict \\ 
+			%& & Walking & Standing \\ \hline
+			%Actual& Walking & 93 & 07\\ \hline
+			%Actual& Standing & 14& 86\\ \hline
+		%\end{tabular}
+%\end{table}
+%
+%\begin{table}[!ht]
+	%\caption{Standing to falling detection with SVM.}
+	%\label{tab:StandingToFallingDetectionsvm}
+	%\centering
+		%\begin{tabular} {l l |c |c}
+			%& & Predict& Predict \\ 
+			%& & Fall & Standing \\ \hline
+			%Actual& Fall & 95 & 05\\ \hline
+			%Actual& Standing & 14& 86\\ \hline
+		%\end{tabular}
+%\end{table}
 
 \subsection*{Fall Prediction within Time Frame}
 
@@ -300,17 +303,18 @@ falling event. By applying the above algorithm, our predictions are 100\% accura
 Table \ref{tab:StandingToFallingDetectionsvmframe} shows detection of fall within 100$ms$ time
 frame.
 
-\begin{table}[!ht]
-\caption{Standing to falling detection within time frame.}
-	\label{tab:StandingToFallingDetectionsvmframe}
-	\centering
-		\begin{tabular} {l l |c |c}
-			& & Predict& Predict \\ 
-			& & Fall & Standing \\ \hline
-			Actual& Fall & 100 & 0\\ \hline
-			Actual& Standing & 0& 100\\ \hline
-		\end{tabular}
-\end{table}
+%
+%\begin{table}[!ht]
+%\caption{Standing to falling detection within time frame.}
+	%\label{tab:StandingToFallingDetectionsvmframe}
+	%\centering
+		%\begin{tabular} {l l |c |c}
+			%& & Predict& Predict \\ 
+			%& & Fall & Standing \\ \hline
+			%Actual& Fall & 100 & 0\\ \hline
+			%Actual& Standing & 0& 100\\ \hline
+		%\end{tabular}
+%\end{table}
 
 \subsection{NAO Humanoid Robot}
 
@@ -326,7 +330,7 @@ We have used the USB port of the robot to communicate with the device.
 
 \begin{figure}[!ht]
 \centering
- \includegraphics[width=0.4\textwidth] {attached_device}
+ \includegraphics[width=0.4\textwidth] {attached_device.pdf}
  \caption{(a) Tiva C microcontroller with sensor bub was attached to the back of a NAO humanoid
 robot; and (b) Sensor Hub BoosterPack. The roll is around x-axis, the pitch is around y-axis, and
 the yaw is around z-axis.}
@@ -436,6 +440,13 @@ state-of-the-art open source software solution to build heterogeneous applicatio
 programmed on multiple operating systems. To our knowledge, our open source software solution is the
 first of its kind. 
 
+%% added by faisal start
+A numerous amount of research have been done in fall detection in humans and humanoid robots. 
+In SAFE (SmArt Fall dEtection) {~\cite{ojetola2011fall}} reserchers used accelerometers and gyroscopes 
+to detect fall incidence among the elderly people, they have used C4.5 decision tree to learn and classify fall and ADLs (activities of daily living). They claimed to identify four different types of falls with a precision of 81\% accuracy and recall of 92\% accuracy.
+Javier Moya et. al.{~\cite{moya2014fall}} proposed a fall detection, avoidance and damage reduction mechanism for biped humanoid robots. They tried to simulate the real world environment where humanoid robots have to walk over irregular surface, running or playing sports, collusion with other robots and according to their article the proposed framework can detect instability and do fall avoidance or at least low-damage falling mechanism is invoked. 
+%% faisal end
+
 There has been an increasing interest in detecting human motions using embedded devices. Woon-Sung
 et. al. \cite{baek2013real} proposed  a fall  detection  system  using necklace-shaped tri-axial
 accelerometer  and  gyroscope  sensors  to  classify  the  behavior  and  posture  of  the detection
@@ -448,18 +459,23 @@ using a tri-axial MEMS wearable wireless accelerometer. They have used support v
 robust classification of different events. There has been similar efforts to detect human motions
 using motion tracking, e.g., \cite{dumitrache2013fall,kumarwearable,liang2012pre}.
 
+
+
 Compared the existing methods, we have investigated the possibility of using our software solution
 to detect human motions and human-like motions from able-bodied humans and NAO humanoid robot. To
 our knowledge, we are the first to investigate the prospect of using an external embedded device to
 detect human-like motions on a NAO humanoid robot. 
 
-\section{Conclusion}
+\section{Conclusion and Future Work}
 
 In this project, we have proposed an open source software solution to write heterogeneous
 applications on TIs microcontrollers. We have used our software solution to detect motions on
 able-bodied humans and NAO humanoid robots. We have shown that our methods are capable of detecting
 motions with high accuracy. We have used machine learning methods and thresholding methods to
 detect different motions and provided justifications for the success of the applications. 
+
+\par
+Comparing the encouraging experimental results achived, our future work will be c
 
 \bibliographystyle{aaai}
 \bibliography{references}
