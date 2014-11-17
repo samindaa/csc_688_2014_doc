@@ -234,29 +234,17 @@ in validation.
 
 
 \begin{table}[!ht]
-\caption{Logistic regrassion Classification}
-	\label{tab:StandingToSeatingDetectionsvm}
+\caption{Logistic regression Classification}
+	\label{tab:human-logistic-class}
 	\centering
 		\begin{tabular} {l |c |c |c|c}
-			&TP  &	TN  &	FP &	FN \\
-			&(out of 50) & (out of 50)& & \\ \hline
-			walking	& 44	& 42	& 8	& 6 \\ \hline
-			stand to seat	& 47	& 41	& 9 & 	3	 \\ \hline 
-			stand to fall	& 47	& 44	& 6	& 3	 \\ \hline
+			&TP  &	TN  &	FP &	FN \\ \hline
+			walking	& 88\%	& 84\%	& 16\%	& 12\% \\ \hline
+			stand to seat	& 92\%	& 82\%	& 18\% & 	8\%	 \\ \hline 
+			stand to fall	& 92\%	& 88\%	& 12\%	& 8\%	 \\ \hline
 		\end{tabular}
 \end{table}
 
-%\begin{table}[!ht]
-	%\caption{Standing to seating detection.}	
-	%\label{tab:StandingToSeatingDetection}
-	%\centering
-		%\begin{tabular} {l l |c |c}
-			%& & Predict& Predict \\ 
-			%& & Seating & Standing \\ \hline
-			%Actual& Seating & 94 & 6\\ \hline
-			%Actual& Standing & 19& 81\\ \hline
-		%\end{tabular}
-%\end{table}
 
 Table \ref{tab:StandingToSeatingDetection} shows the predictions of standing to seating position
 movement for 200 data points. we can observe that we are able
@@ -265,30 +253,7 @@ to predict this movement with quite good accuracy (approximately 87.5\%). Table
 movement, our prediction accuracy is about 86\%. In the actual fall prediction logistic
 regression can predict fall with 87.5\% accuracy (Shown in Table
  \ref{tab:StandingToFallingDetection}).
-%
-%\begin{table}
-%\caption{Standing to walking detection.}
-	%\label{tab:StandingToWalkingDetection}
-%\centering
-		%\begin{tabular} {l l |c |c}
-			%& & Predict& Predict \\ 
-			%& & Walking & Standing \\ \hline
-			%Actual& Walking & 89 & 11\\ \hline
-			%Actual& Standing & 17& 83\\ \hline
-		%\end{tabular}
-%\end{table}
-%
-%\begin{table}[!ht]
-%\caption{Standing to falling detection.}
-%\label{tab:StandingToFallingDetection}
-%\centering
-		%\begin{tabular} {l l |c |c}
-			%& & Predict& Predict \\ 
-			%& & Fall & Standing \\ \hline
-			%Actual& Fall & 92 & 08\\ \hline
-			%Actual& Standing & 17& 83\\ \hline
-		%\end{tabular}
-%\end{table}
+
 
 \subsection*{Classification and Validation using Support Vector Machine}
 
@@ -310,40 +275,15 @@ prediction, SVM can predict fall with 90.5\% accuracy (Shown in Table
 
 \begin{table}[!ht]
 \caption{SVM Classification}
-	\label{tab:StandingToSeatingDetectionsvm}
+	\label{tab:human-svm-class}
 	\centering
 		\begin{tabular} {l |c |c |c|c}
-			&TP  &	TN  &	FP &	FN \\
-			&(out of 50) & (out of 50)& & \\ \hline
-			walking	& 46	& 43	& 7	& 4 \\ \hline
-			stand to seat	& 47	& 42	& 8 & 	3	 \\ \hline 
-			stand to fall	& 49	& 44	& 6	& 1	 \\ \hline
+			&TP  &	TN  &	FP &	FN \\ \hline
+			walking	& 92\%	& 86\%	& 14\%	& 8\% \\ \hline
+			stand to seat	& 94\%	& 84\%	& 16\% & 	6\%	 \\ \hline 
+			stand to fall	& 98\%	& 88\%	& 12\%	& 2\%	 \\ \hline
 		\end{tabular}
 \end{table}
-%
-%\begin{table}[!ht]
-	%\caption{Standing to walking detection with SVM.}
-	%\label{tab:StandingToWalkingDetectionsvm}
-	%\centering
-		%\begin{tabular} {l l |c |c}
-			%& & Predict& Predict \\ 
-			%& & Walking & Standing \\ \hline
-			%Actual& Walking & 93 & 07\\ \hline
-			%Actual& Standing & 14& 86\\ \hline
-		%\end{tabular}
-%\end{table}
-%
-%\begin{table}[!ht]
-	%\caption{Standing to falling detection with SVM.}
-	%\label{tab:StandingToFallingDetectionsvm}
-	%\centering
-		%\begin{tabular} {l l |c |c}
-			%& & Predict& Predict \\ 
-			%& & Fall & Standing \\ \hline
-			%Actual& Fall & 95 & 05\\ \hline
-			%Actual& Standing & 14& 86\\ \hline
-		%\end{tabular}
-%\end{table}
 
 \subsection*{Fall Prediction within Time Frame}
 
@@ -358,20 +298,10 @@ falling event. By applying the above algorithm, our predictions are 100\% accura
 Table \ref{tab:StandingToFallingDetectionsvmframe} shows detection of fall within 100$ms$ time
 frame.
  
-%
-%\begin{table}[!ht]
-%\caption{Standing to falling detection within time frame.}
-	%\label{tab:StandingToFallingDetectionsvmframe}
-	%\centering
-		%\begin{tabular} {l l |c |c}
-			%& & Predict& Predict \\ 
-			%& & Fall & Standing \\ \hline
-			%Actual& Fall & 100 & 0\\ \hline
-			%Actual& Standing & 0& 100\\ \hline
-		%\end{tabular}
-%\end{table}
 
 \subsection{NAO Humanoid Robot}
+
+
 
 We have used Tiva C microcontroller with sensor hub attached to it to conduction our experiments in
 this section. The device was first uploaded with CSC688 Energia to send information from device to
@@ -471,6 +401,40 @@ for our experiments, we operate the device avoiding those singularities.
 
 
 
+\begin{table}[!ht]
+\caption{Logistic regression Classification}
+	\label{tab:robot-logistic-class}
+	\centering
+		\begin{tabular} {l |c |c |c|c}
+			&TP  &	TN  &	FP &	FN \\ \hline
+			walking forward	& 86\%	& 84\%	& 16\%	& 14\% \\ \hline
+			walking backward	& 86\%	& 84\%	& 16\%	& 14\% \\ \hline
+			walking left	& 88\%	& 86\%	& 14\%	& 12\% \\ \hline
+			walking right	& 86\%	& 84\%	& 16\%	& 14\% \\ \hline
+			fall forward	& 94\%	& 90\%	& 10\%	& 6\%	 \\ \hline
+			fall backward	& 94\%	& 88\%	& 12\%	& 6\%	 \\ \hline
+			fall left	& 92\%	& 92\%	& 8\%	& 8\%	 \\ \hline
+			fall right	& 92\%	& 92\%	& 8\%	& 8\%	 \\ \hline
+		\end{tabular}
+\end{table}
+
+
+\begin{table}[!ht]
+\caption{SVM Classification}
+	\label{tab:robot-svm-class}
+	\centering
+		\begin{tabular} {l |c |c |c|c}
+			&TP  &	TN  &	FP &	FN \\ \hline
+			walking forward	& 90\%	& 88\%	& 12\%	& 10\% \\ \hline
+			walking backward	& 90\%	& 88\%	& 12\%	& 10\% \\ \hline
+			walking left	& 92\%	& 86\%	& 14\%	& 8\% \\ \hline
+			walking right	& 92\%	& 86\%	& 14\%	& 8\% \\ \hline
+			fall forward	& 96\%	& 90\%	& 10\%	& 4\%	 \\ \hline
+			fall backward	& 96\%	& 88\%	& 12\%	& 4\%	 \\ \hline
+			fall left	& 94\%	& 92\%	& 8\%	& 6\%	 \\ \hline
+			fall right	& 94\%	& 92\%	& 8\%	& 6\%	 \\ \hline
+		\end{tabular}
+\end{table}
 \section{Conclusion and Future Work}
 
 In this project, we have proposed an open source software solution to write heterogeneous
