@@ -245,8 +245,10 @@ in validation.
 \caption{Logistic regression Classification}
 	\label{tab:human-logistic-class}
 	\centering
-		\begin{tabular} {l |c |c |c|c}
-			&TP  &	TN  &	FP &	FN \\ \hline
+		\begin{tabular} {|l |c |c |c|c|}
+			\hline
+			{\bf Activity} & {\bf  TP}  &	{\bf TN}  &	{\bf FP} &	{\bf FN} \\ 
+			\hline
 			walking	& 88\%	& 84\%	& 16\%	& 12\% \\ \hline
 			stand to seat	& 92\%	& 82\%	& 18\% & 	8\%	 \\ \hline 
 			stand to fall	& 92\%	& 88\%	& 12\%	& 8\%	 \\ \hline
@@ -270,8 +272,10 @@ classification result.
 \caption{SVM Classification}
 	\label{tab:human-svm-class}
 	\centering
-		\begin{tabular} {l |c |c |c|c}
-			&TP  &	TN  &	FP &	FN \\ \hline
+		\begin{tabular} {|l |c |c |c|c|}
+			\hline
+			{\bf Activity} & {\bf  TP}  &	{\bf TN}  &	{\bf FP} &	{\bf FN} \\ 
+			\hline
 			walking	& 92\%	& 86\%	& 14\%	& 8\% \\ \hline
 			stand to seat	& 94\%	& 84\%	& 16\% & 	6\%	 \\ \hline 
 			stand to fall	& 98\%	& 88\%	& 12\%	& 2\%	 \\ \hline
@@ -347,6 +351,9 @@ while, all the other activities have been classified as {\em fallen state}.
 			Falling Backward	& 94\%	& 88\%	& 12\%	& 6\%	 \\ \hline
 			Falling left	& 92\%	& 92\%	& 8\%	& 8\%	 \\ \hline
 			Falling Right	& 92\%	& 92\%	& 8\%	& 8\%	 \\ \hline
+			Marching	& 88\%	& 84\%	& 16\%	& 12\%	 \\ \hline
+			Rotate CCW	& 94\%	& 90\%	& 10\%	& 6\%	 \\ \hline
+			Rotate CCW	& 94\%	& 90\%	& 10\%	& 6\%	 \\ \hline
 		\end{tabular}
 \end{table}
 
@@ -398,6 +405,9 @@ classifiers to identify different activities. FixMe:
 			Falling backward	& 96\%	& 88\%	& 12\%	& 4\%	 \\ \hline
 			Falling left	& 94\%	& 92\%	& 8\%	& 6\%	 \\ \hline
 			Falling right	& 94\%	& 92\%	& 8\%	& 6\%	 \\ \hline
+			Marching	& 90\%	& 88\%	& 12\%	& 10\%	 \\ \hline
+			Rotate CCW	& 96\%	& 90\%	& 10\%	& 4\%	 \\ \hline
+			Rotate CCW	& 96\%	& 90\%	& 10\%	& 4\%	 \\ \hline
 		\end{tabular}
 \end{table}
 
@@ -418,7 +428,7 @@ motions with high accuracy. We have used machine learning methods and thresholdi
 detect different motions and provided justifications for the success of the applications. 
 
 \par
-Comparing the encouraging experimental results achived, our future work will be c
+Comparing the encouraging experimental results achieved, our future work will be c
 
 \bibliographystyle{aaai}
 \bibliography{references}
