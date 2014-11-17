@@ -216,14 +216,22 @@ the results obtained
 
 \subsection{Able-Bodied Human}
 
-
-We have collected data for different human activities. We have put the sensors on the chest of the
+We have collected data for different human activities. We have put the sensors on the back of the
 human body and collected data from those sensors in fixed interval. For this experiment, we have
 sampled data in 50$Hz$ (or 20$ms$). We have data from several different human configurations:
 \begin{inparaenum}[(1)] \item standing; \item seating; \item walking; \item standing to seating;
 and \item standing to falling\end{inparaenum}. We have collected data based on the activities and
-each data point has twelve fields, where nine fields are from nine reading from sensors and three
-fields (yaw, pitch and roll) are derived from all those sensors reading.
+each data point has nine features, where three sensors accelerometers,gyroscope and magnetometers have three axis X, Y and Z.
+
+\par
+A falling event does not happen within a single reading from sensors, it is consists of multiple
+reading from sensors.  Its not really accurate to detect a fall or any other motion based on a
+single reading, which might mislead the whole detection procedure. To detect a motion accurately we
+have used a time frame based prediction procedure. In this procedure, we first train our SVM with
+training data. Then we try to detection motion in each sensor reading. We will predict a motion not
+based on a single reading but with all the reading within 200$ms$ time frame. If our detection
+procedure detect a true fall event more than 90\% time, we will denote that event as a true
+falling event.
 
 \subsection*{Classification using Logistic Regression}
 
@@ -246,13 +254,6 @@ in validation.
 \end{table}
 
 
-Table \ref{tab:StandingToSeatingDetection} shows the predictions of standing to seating position
-movement for 200 data points. we can observe that we are able
-to predict this movement with quite good accuracy (approximately 87.5\%). Table
- \ref{tab:StandingToWalkingDetection} shows the results for  standing to walking movement. In this
-movement, our prediction accuracy is about 86\%. In the actual fall prediction logistic
-regression can predict fall with 87.5\% accuracy (Shown in Table
- \ref{tab:StandingToFallingDetection}).
 
 
 \subsection*{Classification and Validation using Support Vector Machine}
@@ -261,14 +262,6 @@ In the second part of the data analysis, we have used support vector machine (SV
 to classify our data. To train the model, we used the same procedure as before, 80\% of
 our data were used to do the classification and rest twenty percent data were used to validate our
 classification result.
-
-Table \ref{tab:StandingToSeatingDetectionsvm} shows the prediction of standing to seating position
-movement for 200 data points. From that table we can observe that we are able to predict this
-movement with quite good accuracy (approximately 90\%). Table
-\ref{tab:StandingToWalkingDetectionsvm} shows the predictions for standing to
-walking movement. In that movement our prediction accuracy is about 89.5\%. In the actual fall
-prediction, SVM can predict fall with 90.5\% accuracy (Shown in Table
-\ref{tab:StandingToFallingDetectionsvm}).
 
 
 
@@ -284,19 +277,6 @@ prediction, SVM can predict fall with 90.5\% accuracy (Shown in Table
 			stand to fall	& 98\%	& 88\%	& 12\%	& 2\%	 \\ \hline
 		\end{tabular}
 \end{table}
-
-\subsection*{Fall Prediction within Time Frame}
-
-A falling event does not happen within a single reading from sensors, it is consists of multiple
-reading from sensors.  Its not really accurate to detect a fall or any other motion based on a
-single reading, which might mislead the whole detection procedure. To detect a motion accurately we
-have used a time frame based prediction procedure. In this procedure, we first train our SVM with
-training data. Then we try to detection motion in each sensor reading. We will predict a motion not
-based on a single reading but with all the reading within 100$ms$ time frame. If our detection
-procedure detect a true fall event more than 90\% time, we will denote that event as a true
-falling event. By applying the above algorithm, our predictions are 100\% accuracy.
-Table \ref{tab:StandingToFallingDetectionsvmframe} shows detection of fall within 100$ms$ time
-frame.
  
 
 \subsection{NAO Humanoid Robot}
