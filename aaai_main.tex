@@ -187,9 +187,24 @@ the developers.
 
 \begin{figure*}[!t]
 \centering
-\subfloat[]{\label{fig:ha}\includegraphics[width=0.33\textwidth]{plots/human_walk-crop.pdf}} 
-\subfloat[]{\label{fig:hb}\includegraphics[width=0.33\textwidth]{plots/human_stand-crop.pdf}}
-\subfloat[]{\label{fig:hc}\includegraphics[width=0.33\textwidth]{plots/human_falling-crop.pdf}} 
+\subfloat[]{\label{fig:ha}\includegraphics[width=0.32\textwidth]{plots/human_walk-crop.pdf}} 
+\subfloat[]{\label{fig:hb}\includegraphics[width=0.32\textwidth]{plots/human_stand-crop.pdf}}
+\subfloat[]{\label{fig:hc}\includegraphics[width=0.32\textwidth]{plots/human_falling-crop.pdf}}
+\\
+\subfloat[]{\label{fig:ha}\includegraphics[width=0.32\textwidth]
+{plots/robot_walk_forward-crop.pdf}}s 
+\subfloat[]{\label{fig:hb}\includegraphics[width=0.32\textwidth]
+{plots/robot_walk_backward-crop.pdf}}
+\subfloat[]{\label{fig:hc}\includegraphics[width=0.32\textwidth]
+{plots/robot_rotate_cw-crop.pdf}}
+\\
+\subfloat[]{\label{fig:ha}\includegraphics[width=0.32\textwidth]
+{plots/robot_fallen_forward-crop.pdf}} 
+\subfloat[]{\label{fig:hb}\includegraphics[width=0.32\textwidth]
+{plots/robot_fallen_backward-crop.pdf}}
+\subfloat[]{\label{fig:hc}\includegraphics[width=0.32\textwidth]
+{plots/robot_fallen_right-crop.pdf}}
+
 \caption{~}
  \label{fig:human}
 \end{figure*}
@@ -207,19 +222,11 @@ experiment, the practitioner can change the sampling rate of the sensor.  The ma
 of the sensor is 1000$Hz$. This section shows our results, validations, and conclusions.
 
 
-\subsection{Falls annotation}
-\textbf{to do need to change}
-The annotation for a single fall event is shown in \textbf{{set the figure} }. The time for a 
-complete protocol takes an average of ....... mins
-per subject, and the time annotation per fall is about 5s. From
-the figure, the area annotated as a fall is from 850s to 855s.
-This shows that from point A to point B, the subject has been
-instructed to fall and in the process of falling. Between points
-B and C the subject’s body makes an impact with the cushion
-on the floor and a high acceleration data is recorded. After a
-fall has occurred, the subject remains in a lying posture at point
-C to D. Though, point A to D was annotated as a fall, only
-point B to C shows a high acceleration signal. The following
+\subsection{Activity Annotation}
+
+The annotation for a single fall event is shown in \textbf{{set the figure} }. Here accelerometer's X, Y and Z axis is showing for a single fall event. The time for a 
+actual event takes an average of 200 milliseconds. From
+the figure, the area annotated as a fall is from 81 to 91 readings. This 20 readings take 200 milliseconds.The following
 section discusses the data processing, machine learning and
 the results obtained
 \textbf{to do need to change}
@@ -233,9 +240,8 @@ sampled data at 50$Hz$. We have samples from several different human configurati
 \begin{inparaenum}[(1)] \item walking; \item standing to seating;
 and \item standing to falling\end{inparaenum}. Since, we have used a 9-axis MEMS device, each 
 sample contains accelerometer readings in three-axis in $ms^2$, gyroscope readings in 
-three-axis $rads^2$, and magnetometer readings in three-axis {\em Tesla}. 
+three-axis in $rads^2$, and magnetometer readings in three-axis in {\em Tesla}. 
 
-\par
 A falling event does not happen within a single reading from sensors, it is consists of multiple
 reading from sensors.  Its not really accurate to detect a fall or any other motion based on a
 single reading, which might mislead the whole detection procedure. To detect a motion accurately we
