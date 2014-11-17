@@ -20,6 +20,7 @@
 \usepackage{subfig}
 %needed to change table colors
 \usepackage[table]{xcolor}
+\renewcommand{\arraystretch}{1.2} % General space between rows (1 standard)
 
 %%
 \frenchspacing
@@ -63,7 +64,7 @@ show the success of the methods on different activity settings.
 \end{abstract}
 
 \section{Introduction}
-
+\label{sec:Intro}
 The humans as well as the biped humanoid robots complete apparently simple activities that requires 
 complex computational tasks. These activities include jogging, running so forth. While performing 
 these safe activities, accidents such as falls may occur causing damage to human body or to 
@@ -216,60 +217,60 @@ the developers.
 \end{figure*}
 
 
-We have conducted experiments on detecting motions (activities) on able-bodied humans and on NAO
-humanoid robots. In order to detect motions, we have used InvenSense MPU-9150: 9-axis MEMS
+We have conducted experiments on detecting motions (activities) on 
+%able-bodied 
+humans and a humanoid robot (NAO robot). We have used InvenSense MPU-9150 
 motion tracking sensor on the sensor hub. The module {\em MPU9150Module} connects to this device
 and provides the representation {\em MPU9150Representation}. The representation contains
-3-axis accelerometer readings, 3-axis gyroscope readings, 3-axis magnetometer readings, quaternion
+3-axis accelerometer readings, 3-axis gyroscope readings, 3-axis magnetometer readings, the quaternion
 rotation axis of the device, and Euler angles roll, pitch, and yaw.  In order to calculate Euler
-angles, we have used the Direction Cosine Matrix (DCM)
-algorithm.  Depending on the
+angles, we have used the Direction Cosine Matrix (DCM) algorithm.  Depending on the
 experiment, the practitioner can change the sampling rate of the sensor.  The maximum sampling rate
-of the sensor is 1000$Hz$. This section shows our results, validations, and conclusions.
+of the sensor is 1,000$Hz$. This section shows our results, validations, and conclusions.
 
 
 \subsection{Activity Annotation}
 
-The annotation for different human and robot motion events are shown in Fig.{~\ref{fig:anotation-human-robot}}. Here accelerometer and gyroscope's X, Y and Z axis are shown for different motions. From the figure, it is observed that roughly  the time for a 
-actual event takes an average of 180-250 milliseconds. Figure{~\ref{fig:anotation-human-robot}}(a)-(c) show the activity annotation for human motion and Fig.{~\ref{fig:anotation-human-robot}}(d)-(i) show activity annotation for NAO humanoid robot.  The following
-section discusses the data processing, machine learning and
-the results obtained.
+The annotation for different human and robot motion events are shown in Fig.{~\ref{fig:anotation-human-robot}}. 
+Accelerometer and gyroscope's X, Y and Z axis are shown for different motions. We can observe that an 
+actual event takes between 180--250 ms. Figure{~\ref{fig:anotation-human-robot}}(a)-(c) shows the activity 
+annotations for human motions (walking forward, sitting down, falling down). Fig.{~\ref{fig:anotation-human-robot}}
+(d)-(i) shows activity annotations for the NAO robot. We have structured the text in a way that we discuss 
+data processing, machine learning and results for both the human and robotic experiments.
 
-
-\subsection{Able-Bodied Human}
-
+\subsection{Experiments with a Human}
+\subsubsection{Data processing:} 
 We have collected data for different human activities. We have put the sensors on the back of the
-human body and collected data from those sensors in fixed interval. For this experiment, we have
-sampled data at 50$Hz$. We have samples from several different human configurations:
-\begin{inparaenum}[(1)] \item walking; \item standing to seating;
-and \item standing to falling\end{inparaenum}. Since, we have used a 9-axis MEMS device, each 
-sample contains accelerometer readings in three-axis in $ms^{-2}$, gyroscope readings in 
+human body (cf. figure \ref{fig:fb}) and collected data from those sensors in fixed interval. 
+We have sampled data at 50$Hz$ for our experiments. We sampled from several different human configurations:
+\begin{inparaenum}[(1)] \item walking forward; \item from standing to sitting down and back to standing;
+and \item from standing to falling and back to standing\end{inparaenum}. Since we have used a 9-axis MEMS device 
+each sample contains accelerometer readings in three-axis in $ms^{-2}$, gyroscope readings in 
 three-axis in $rads^{-2}$, and magnetometer readings in three-axis in {\em Tesla}. 
 
-An activity does not happen within a single reading from sensors, it consists of multiple
-reading from sensors.  It is not really accurate to detect any activity based 
-on a single reading, which might mislead the whole prediction protocol. To accurately detect an 
-activity, we have used a time frame based prediction protocol. In this protocol, we will predict 
-an event not based on a single reading but with all the reading within 200$ms$ time frame. If our 
-detection procedure detect a true  event more than 90\% time, we will denote that event as a true 
-event. We use two classifiers in our experiments: \begin{inparaenum}[1)] \item logistic regression; 
-and \item support vector machines (SVM)\cite{Bishop:2006:PRM:1162264}. \end{inparaenum} We have used 
-standard parameter sweeping techniques to find the classifier parameters that provide 
-the best trade off between the bias and the variance, while precision, recall, and F$_1$-score have 
+An activity consists of multiple sensor readings since it is not sufficient to detect activities based 
+on a single reading. We have used a 200$ms$ time-frame-based prediction protocol, which entails that we
+predict an event with all the sensor readings within that time frame. 
+
+If our detection procedure detects an event for more than 90\% of the defined time frame, we denote that 
+event as a \textit{true} event. We use two classifiers for this detection: \begin{inparaenum}[1)] 
+\item logistic regression; and \item support vector machines (SVM)\cite{Bishop:2006:PRM:1162264}. 
+\end{inparaenum} 
+We have used standard parameter sweeping techniques to find the classifier parameters that provide 
+the best trade-off between the bias and the variance, while precision, recall, and F$_1$-scores have 
 been used to obtain the best value. As a preprocessing step, the features, except the bias, have 
 been subjected to feature standardization. We have independently set each dimension of the sample 
 to have zero-mean and unit-variance. We achieved this by first computing the mean of each dimension 
 across the dataset and subtracting this from each dimension. Then each dimension is divided by its 
 standard deviation.
 
-\subsection{Classification using Logistic Regression}
-
+\subsubsection{Machine Learning\\}
+\emph{Classification using Logistic Regression:}
 In the first part of the data analysis we have put all our collected samples together and labeled it
-with specific number to denote the position. We have used multivariate logistic regression model to
+with specific number to denote the position. We have used a multivariate logistic regression model to
 classify our samples. We have used 80\% of the samples for training, while the rest has been used
-in cross-validation. Table \ref{tab:human-logistic-class} shows the final results, where, TP, TN, 
+for the cross-validation process. Table \ref{tab:human-logistic-class} shows the final results, where, TP, TN, 
 FP, and FN stand for true positive, true negative, false positive, and false negative respectively. 
-
 
 \begin{table}[!ht]
 \caption{Logistic regression classification for human activities.}
@@ -285,18 +286,11 @@ FP, and FN stand for true positive, true negative, false positive, and false neg
 		\end{tabular}
 \end{table}
 
-
-
-
-\subsection{Classification and Validation using Support Vector Machine}
-
-In the second part of the data analysis, we have used SVM model
+\noindent\emph{Classification and Validation using Support Vector Machine:}
+In the second part of the data analysis we have used a SVM model
 to classify our samples. To train the model, we used the same protocol as before; 80\% of
-samples were used to train  the classifier and the rest of the  samples were used in 
+samples were used to train the classifier and the rest of the  samples were used for 
 cross-validation. Table \ref{tab:human-svm-class} shows the final results.
-
-
-
 
 \begin{table}[!ht]
 \caption{SVM classification for human activities.}
@@ -312,25 +306,24 @@ cross-validation. Table \ref{tab:human-svm-class} shows the final results.
 		\end{tabular}
 \end{table}
 
- In our experiments, SVM performs better than logistic regression. But due to 
-memory and computational restrictions, we have found that logistic regression classifier is a 
-better choice to run on the embedded devices. Our feature vector consists of the mean normalized 
-sensor reading and a bias term. In future, we are planing to  combine and prune features 
-to improve the classification accuracy.  
+\subsubsection{Results:}
+Our experiments reveal that the SVM classifier performs better than the logistic regression classifier. 
+However, due to memory and computational restrictions on the humanoid robot, we have found that the logistic 
+regression classifier is a better choice. We assume that the same observation can be made on most embedded 
+devices. Our feature vector consists of the mean normalized sensor reading and a bias term. We plan to 
+combine and prune features to improve the classification accuracy for future work.  
 
 
-\subsection{NAO Humanoid Robot}
-
-
-We have used the device configuration as described  in {\em introduction} 
+\subsection{Humanoid Robot NAO}
+\subsubsection{Data processing:} 
+We have used the device configuration as described in section \ref{sec:Intro}
 and it was attached to the robot as shown in Figure \ref{fig:fc}. In the first experiment, we have 
-designed a thresholding base activity  predictor. We have calculated the roll, pitch, and yaw angles 
-for this study (the roll is around x-axis, the pitch is around y-axis, and the yaw is around 
-z-axis). We have configured InvenSense MPU-9150: 9-axis MEMS motion sensor on the sensor hub to 
+designed a thresholding base activity predictor. We have calculated the roll, pitch, and yaw angles 
+for this study (the roll is around the x-axis, the pitch is around the y-axis, and the yaw is around 
+the z-axis). We also have configured the InvenSense MPU-9150 motion sensor on the sensor hub to 
 sample data at 50$Hz$. We have chosen this value to compensate delays in communications and to cope 
-with the constraints provided by the robot. In this study, we have detected only the normal 
-activities (marching, waling forward/backward, and turning clockwise/counter-clockwise)
-and falling activities (falling back, front, and sideways).
+with the constraints provided by the robot. We have focused on detecting the following motions: \textit{marching}, \textit{walking forward/backward}, \textit{turning clockwise/counter-clockwise},
+as well as \textit{falling back}, \textit{falling front}, and \textit{falling sideways}.
 
 \begin{figure*}[!ht]
   \centering
@@ -359,24 +352,24 @@ states of NAO humanoid robot.}
 
 \end{figure*}
 
-Our NAO humanoid robots have omni-directional walking engines to conducts primary  
-movements. These movements are regulated by linear velocities $\dot{x}_v$ and $\dot{y}_v$, and a 
-angular velocity $\dot{\theta}_v$ input parameters. Depending on these
-values, we can let the robot walk (forward, backward, and side-ways), and rotate (clockwise and
-counter-clockwise) with different speeds. In this study, we have considered \begin{inparaenum}[(1)]
+Our NAO robots have an omni-directional walking engine to conduct walking motions.  
+These motions are regulated by linear velocities $\dot{x}_v$ and $\dot{y}_v$, and an 
+angular velocity $\dot{\theta}_v$ as input parameters. Depending on these
+values we can let the robot walk (forward, backward, and side-ways) and rotate (clockwise and
+counter-clockwise) with different speeds. In this study we have considered \begin{inparaenum}[(1)]
 \item marching ($\dot{x}_v = 0 , \dot{y}_v = 0, \dot{\theta}_v = 0$); \item walking  
 forward/backward ($\dot{x}_v = \pm200
 , \dot{y}_v = 0, \dot{\theta}_v = 0$);  \item walking side-ways ($\dot{x}_v = 0, \dot{y}_v = 
 \pm200, \dot{\theta}_v = 0$); and  \item rotating clockwise/counter-clockwise
-($\dot{x}_v = 0 , \dot{y}_v = 0, \dot{\theta}_v = \pm 0.5$) \end{inparaenum} as {\em normal state}, 
-while, all the other activities have been classified as {\em fallen state}. We have used the  
-following protocol to collect samples. Firstly, we set the velocity parameters and use the wireless 
-radio to transmit the samples to the sample-collection device. Secondly, we activate the robot to 
-the given configuration. Finally, we have tagged the start point of the sample stream and waited 
+($\dot{x}_v = 0 , \dot{y}_v = 0, \dot{\theta}_v = \pm 0.5$) \end{inparaenum} as {\em normal states}, 
+while all the other activities are classified as {\em fallen states}. We have used the  
+following protocol to collect samples. \textit{Firstly}, we set the velocity parameters and use the wireless 
+radio to transmit the samples to the sample-collection device. \textit{Secondly}, we activate the robot to 
+the given configuration. \textit{Finally}, we have tagged the start point of the sample stream and waited 
 approximately a minute to tag the end of the sample stream. This is an episode of the normal state. 
 We have collected multiple episodes to create our learning ensemble. To collect samples for fallen 
-state, first, we have configured the robot to march. Then, we safely pushed the robot to 
-different directions to simulate the fallen state. Similarly, we tagged the sample streams to 
+states, we have configured the robot to march. Then, we safely pushed the robot to 
+different directions to inducing the fallen state. Similarly, we tagged the sample streams to 
 generate episodes.    
 
 \begin{table}[!ht]
@@ -400,7 +393,6 @@ generate episodes.
 			Rotate clockwise	& 94\%	& 90\%	& 10\%	& 6\%	 \\ \hline
 		\end{tabular}
 \end{table}
-
 
 We have used only the roll and the pitch values  to detect relevant activities. In order to achieve 
 an effective threshold based decision making, first we have filtered the roll, pitch, and
@@ -426,7 +418,7 @@ filtered pitch values is more than 50 degrees, we can assume that the robot is f
 side. With these thresholds for a separate test cases, the thresholding method has detected fallen 
 state with 100\% accuracy. 
 
-
+\subsubsection{Machine Learning:}
 Even though thresholding method successfully distinguished between normal and fallen states, it was 
 unable to detect states within normal activities, i.e., walking forward to waling backward so 
 forth. Therefore, similar to the previous experiments, we have used logistic regression and SVM 
@@ -461,6 +453,7 @@ regression classifier, though, during operation, we prefer the logistic regressi
 		\end{tabular}
 \end{table}
 
+\subsubsection{Results:} 
 The range of motion of NAO humanoid robot is comparatively constrained compared to a able-bodied 
 human. Therefore, we only conduct primary activities as described in this section. We have not 
 conducted experiments on activities such as stand to seat. When determining the results, we 
