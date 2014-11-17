@@ -20,6 +20,7 @@
 \usepackage{subfig}
 %needed to change table colors
 \usepackage[table]{xcolor}
+
 %%
 \frenchspacing
 \setlength{\pdfpagewidth}{8.5in}
@@ -32,29 +33,47 @@
 % The file aaai.sty is the style file for AAAI Press 
 % proceedings, working notes, and technical reports.
 %
-\title{An Activity Monitoring System for Able-Bodied Humans and NAO Humanoid Robots using Wearable 
-Sensors}
-\author{Author names \\ %Saminda Abeyruwan \and Faisal Sikder \and Dilip Sarkar\\
-University of Miami \\
-Department of Computer Science\\
-1365 Memorial Drive, Coral Gables, FL, 33146, USA\\
-%{\ttfamily \{saminda|f.sikder|sarkar\}@cs.miami.edu}
-}
+\title{Activity Monitoring and Prediction for Humans and NAO Humanoid Robots using 
+Wearable Sensors}
+% \author{Author names \\ %Saminda Abeyruwan \and Faisal Sikder \and Dilip Sarkar\\
+% University of Miami \\
+% Department of Computer Science\\
+% 1365 Memorial Drive, Coral Gables, FL, 33146, USA\\
+% %{\ttfamily \{saminda|f.sikder|sarkar\}@cs.miami.edu}
+% }
 \maketitle
 \begin{abstract}
 \begin{quote}
-CSC688 Energia is a software development platform for MSP-EXP430G2 LaunchPad, Tiva C Series
-EK-TM4C123GXL LaunchPad, and Tiva C Series TM4C129 Connected LaunchPad. Our framework is
-lightweight, flexible, and consumes minimum memory and computational resources to build
-applications and rational agents on microcontrollers that sense and actuate using add-on boards. We
-have used the framework to monitor activities such as standing, walking, and falling on able-bodied
-humans and on NAO humanoid robots using thresholding and machine learning methods. We empirically
-evaluate the outcomes and show the success of the methods on different activity scenarios. 
-\textbf{TODO: fix me for FLAIR}
+Monitoring and learning from activities such as jogging, running, falling so forth for humans and 
+humanoid biped robots provide predictions to improve the activities as well as to prevent 
+accidental or unforeseen situations. The predictions must be delivered within the time scales of 
+the activities for gain maximum performance. In order to learn from activities and to provide 
+predictions, the two demographic groups are impel to ware external devices with sensors. This 
+paper provides: \begin{inparaenum}[1)] \item a generalize method to learn and predict activities 
+of the groups; and \item a modular software framework to realize learning/predictions 
+efficiently on embedded devices. \end{inparaenum} We have use on/off-line reactive and deliberative 
+methods to learn from activities and to provide predictions. Our software development platform has 
+been tested on MSP-EXP430G2, Tiva C Series EK-TM4C123GXL, and Tiva C Series TM4C129 Connected 
+LaunchPads. It is lightweight, flexible, and consumes minimum memory and computational 
+resources to develop applications and rational agents on microcontrollers that sense and actuate 
+using add-on boards. We have used our framework to learn from activities and to deliver predictions 
+on able-bodied humans and on NAO biped humanoid robots. We empirically evaluate the outcomes and 
+show the success of the methods on different activity settings. 
 \end{quote}
 \end{abstract}
 
 \section{Introduction}
+
+The humans as well as the biped humanoid robots complete tasks with complex activities. These 
+activities include jogging, running, falling so forth. Some of these activities are 
+considered safe, while, other activities such as falling abruptly would cause damage to human body 
+or to the structural components of a humanoid robot \cite{li2009accurate}. There has been an 
+increasing demand in domains such as rescue to use autonomous or teleoperated humanoid robots to 
+complete high-risk tasks otherwise would have been lethal to a human subject. Therefore, we 
+hypotheses environments where humans and humanoid robots would collaboratively work to complete 
+tasks. We also hypotheses that learned prediction of activities in both parties can be 
+generalizable. This paper is an step towards that direction to use wearable devices with sensor to 
+learn, predict, and generalize across the two demographic groups.
 
 Texas Instruments (TIs) microcontrollers and add-on boards such as MSP430{\texttrademark}
 LaunchPad\footnote{\url{http://www.ti.com/tool/msp-exp430g2}},
@@ -105,6 +124,51 @@ detection using InvenSense MPU-9150: 9-axis MEMS motion tracking sensor. We have
 experiments on able-bodied humans and on NAO humanoid robots to detect motions such as standing,
 walking, and abruptly falling back and front. We have used threshold based methods and machine
 learning methods to detect these events and provide justifications, validations, and conclusions of
+
+\section{Related Work}
+
+The microcontrollers and embedded devices provide a flexible platform to build may real world
+applications. In order to build these applications, a practitioner would require  flexible and
+reliable software solutions. A practitioner also may require to use more than one functionality
+provided by the devices to build applications. Energia and TIs software solutions provide
+facilities to build applications to a certain degree, but, they lack methods or systems to integrate
+multiple devices simultaneously without much user burden. In the project, we have provided a
+state-of-the-art open source software solution to build heterogeneous applications on many devices,
+programmed on multiple operating systems. To our knowledge, our open source software solution is the
+first of its kind. 
+
+%% added by faisal start
+A numerous amount of research have been done in fall detection in humans and humanoid robots. 
+In SAFE (SmArt Fall dEtection) {~\cite{ojetola2011fall}} reserchers used accelerometers and 
+gyroscopes 
+to detect fall incidence among the elderly people, they have used C4.5 decision tree to learn and 
+classify fall and ADLs (activities of daily living). They claimed to identify four different types 
+of falls with a precision of 81\% accuracy and recall of 92\% accuracy.
+Javier Moya et. al.{~\cite{moya2014fall}} proposed a fall detection, avoidance and damage reduction 
+mechanism for biped humanoid robots. They tried to simulate the real world environment where 
+humanoid robots have to walk over irregular surface, running or playing sports, collusion with other 
+robots and according to their article the proposed framework can detect instability and do fall 
+avoidance or at least low-damage falling mechanism is invoked. 
+%% faisal end
+
+There has been an increasing interest in detecting human motions using embedded devices. Woon-Sung
+et. al. \cite{baek2013real} proposed  a fall  detection  system  using necklace-shaped tri-axial
+accelerometer  and  gyroscope  sensors  to  classify  the  behavior  and  posture  of  the detection
+ subject. They claim that their  approach  can  successfully  distinguish between  ADL and  fall, 
+with  sensitivities  greater  than  80 \%  and specificities  of  100\%. Ying-Wen et. al.
+\cite{bai2013recognition} proposed an activity monitoring system based on smart phone sensor
+reading and they claim that they can identify human activity with high degree of accuracy. Leno et.
+al. \cite{leone2013supervised} prosed a system to detect event that cause trauma, and disabilities
+using a tri-axial MEMS wearable wireless accelerometer. They have used support vector machine for
+robust classification of different events. There has been similar efforts to detect human motions
+using motion tracking, e.g., \cite{dumitrache2013fall,kumarwearable,liang2012pre}.
+
+
+
+Compared the existing methods, we have investigated the possibility of using our software solution
+to detect human motions and human-like motions from able-bodied humans and NAO humanoid robot. To
+our knowledge, we are the first to investigate the prospect of using an external embedded device to
+detect human-like motions on a NAO humanoid robot. 
 each method.  
 
 \textbf{TODO: fix me for FLAIR}
@@ -455,43 +519,7 @@ gyroscope, and magnetometer instead of Euler angles. Even though Euler angles ha
 for our experiments, we operate the device avoiding those singularities.  
 
 
-\section{Related Work}
 
-The microcontrollers and embedded devices provide a flexible platform to build may real world
-applications. In order to build these applications, a practitioner would require  flexible and
-reliable software solutions. A practitioner also may require to use more than one functionality
-provided by the devices to build applications. Energia and TIs software solutions provide
-facilities to build applications to a certain degree, but, they lack methods or systems to integrate
-multiple devices simultaneously without much user burden. In the project, we have provided a
-state-of-the-art open source software solution to build heterogeneous applications on many devices,
-programmed on multiple operating systems. To our knowledge, our open source software solution is the
-first of its kind. 
-
-%% added by faisal start
-A numerous amount of research have been done in fall detection in humans and humanoid robots. 
-In SAFE (SmArt Fall dEtection) {~\cite{ojetola2011fall}} reserchers used accelerometers and gyroscopes 
-to detect fall incidence among the elderly people, they have used C4.5 decision tree to learn and classify fall and ADLs (activities of daily living). They claimed to identify four different types of falls with a precision of 81\% accuracy and recall of 92\% accuracy.
-Javier Moya et. al.{~\cite{moya2014fall}} proposed a fall detection, avoidance and damage reduction mechanism for biped humanoid robots. They tried to simulate the real world environment where humanoid robots have to walk over irregular surface, running or playing sports, collusion with other robots and according to their article the proposed framework can detect instability and do fall avoidance or at least low-damage falling mechanism is invoked. 
-%% faisal end
-
-There has been an increasing interest in detecting human motions using embedded devices. Woon-Sung
-et. al. \cite{baek2013real} proposed  a fall  detection  system  using necklace-shaped tri-axial
-accelerometer  and  gyroscope  sensors  to  classify  the  behavior  and  posture  of  the detection
- subject. They claim that their  approach  can  successfully  distinguish between  ADL and  fall, 
-with  sensitivities  greater  than  80 \%  and specificities  of  100\%. Ying-Wen et. al.
-\cite{bai2013recognition} proposed an activity monitoring system based on smart phone sensor
-reading and they claim that they can identify human activity with high degree of accuracy. Leno et.
-al. \cite{leone2013supervised} prosed a system to detect event that cause trauma, and disabilities
-using a tri-axial MEMS wearable wireless accelerometer. They have used support vector machine for
-robust classification of different events. There has been similar efforts to detect human motions
-using motion tracking, e.g., \cite{dumitrache2013fall,kumarwearable,liang2012pre}.
-
-
-
-Compared the existing methods, we have investigated the possibility of using our software solution
-to detect human motions and human-like motions from able-bodied humans and NAO humanoid robot. To
-our knowledge, we are the first to investigate the prospect of using an external embedded device to
-detect human-like motions on a NAO humanoid robot. 
 
 \section{Conclusion and Future Work}
 
