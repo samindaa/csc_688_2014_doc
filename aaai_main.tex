@@ -433,41 +433,38 @@ generate episodes.
 		\end{tabular}
 \end{table}
 
-We have used only the roll and the pitch values  to detect relevant activities. In order to achieve 
-an effective threshold based decision making, first we have filtered the roll, pitch, and
+We have used the roll and pitch values to detect relevant activities. In order to achieve 
+an effective threshold-based decision making we have filtered the roll, pitch, and
 yaw values using a Kalman filter \cite{Welch:1995:IKF:897831}. Figures 
 \ref{fig:normalFallenBehavior} ((a)--(d)) show
 the raw and the filtered values of the raw and the pitch values for marching, walk backward,
 rotating clockwise, and left side-way walk. The other activities show similar plots (we have 
 refrained from plotting them due to space constraints). The thresholding method
 suggests that, if the filtered roll values are within the range $[90\pm15]$ (degrees) and the
-filtered pitch values are within the rage $[0\pm15]$ (degrees), then with 100\% accuracy, NAO 
-humanoid robot will is in a normal state. Otherwise, we can safely assume that the robot is in 
+filtered pitch values are within the rage $[0\pm15]$ (degrees), then with 100\% accuracy, the NAO 
+ robot will be in a normal state. Otherwise, we can safely assume that the robot is in 
 a fallen state.   
 
 We have defined four fallen states for the robot: \begin{inparaenum}[(1)] \item falling
-forward; \item falling backward; \item falling to left side; and \item falling to right
+forward; \item falling backward; \item falling to the left side; and \item falling to the right
 side\end{inparaenum}. Figures \ref{fig:normalFallenBehavior} ((e)--(h)) show the roll and pitch 
-angles (raw and filtered) for typical fallen robot. If the filtered roll value is less that 60 
+angles (raw and filtered) for a typical fallen robot. If the filtered roll value is less that 60 
 degrees, we can safely assume that the robot is falling forward. If the filtered roll values is 
-more than 100 degrees we can assume that the robot is falling backward. To detect the events 
+more than 100$^{\circ}$ we can assume that the robot is falling backward. To detect the events 
 falling to the left and right, we have used the filtered pitch values. If the filtered pitch value 
-is less than -50 degrees, we can assume that the robot is falling to the left side, while if the 
-filtered pitch values is more than 50 degrees, we can assume that the robot is falling to the right 
+is less than -50$^{\circ}$, we can assume that the robot is falling to the left side, while if the 
+filtered pitch values is more than 50$^{\circ}$, we can assume that the robot is falling to the right 
 side. With these thresholds for a separate test cases, the thresholding method has detected fallen 
 state with 100\% accuracy. 
 
 \subsubsection{Machine Learning:}
-Even though thresholding method successfully distinguished between normal and fallen states, it was 
-unable to detect states within normal activities, i.e., walking forward to waling backward so 
-forth. Therefore, similar to the previous experiments, we have used logistic regression and SVM 
+Even though the thresholding method successfully distinguished between normal and fallen states, we were 
+unable to detect states within normal activities, i.e., walking forward to walking backward etc.. 
+Therefore, similar to the previous experiments, we have used logistic regression and SVM 
 classifiers to identify different activities. We have followed the same protocols as mentioned in 
 the previous section to generate features, learning, and prediction. Table 
-\ref{tab:robot-logistic-class} shows the results for the logistic regression classifier, while, 
-Table \ref{tab:robot-svm-class} shows the results for the SVM classification. We conclude that the 
-classification methods are able to predict activities within normal states as well as fallen 
-states. Similar to previous section, the SVM classifier performs better that the logistic 
-regression classifier, though, during operation, we prefer the logistic regression classifier.   
+\ref{tab:robot-logistic-class} shows the results for the logistic regression classifier while 
+Table \ref{tab:robot-svm-class} shows the results for the SVM classifier.    
 
 
 \begin{table}[!ht]
@@ -493,19 +490,20 @@ regression classifier, though, during operation, we prefer the logistic regressi
 \end{table}
 
 \subsubsection{Results:} 
-The range of motion of NAO humanoid robot is comparatively constrained compared to a able-bodied 
-human. Therefore, we only conduct primary activities as described in this section. We have not 
-conducted experiments on activities such as stand to seat. When determining the results, we 
+We conclude that the classification methods are able to predict activities within normal states 
+as well as fallen states. Similar to the previous experiments with a human, the SVM classifier performs 
+better that the logistic regression classifier, though, during operation, we prefer the logistic regression classifier. The range of motion of the NAO robot is comparatively constrained compared to a 
+human. Therefore, we can only conduct primary activities as described in this section. We have not 
+conducted experiments on activities such as \textit{standing to sitting down}. When determining the results, we 
 have sampled the motion device data at the rate 50$Hz$. During operation, if the 
-thresholding method is used, we can use the same thresholds with higher sampling rate. The second 
+thresholding method is used, we can use the same thresholds with higher sampling rates. The second 
 method requires learning for different sampling rates.
-
 
 
 \section{Conclusion and Future Work}
 
 We have proposed framework to write heterogeneous applications on TIs microcontrollers. We have used 
-our framework to detect and predict activities on able-bodied humans and NAO humanoid robots. We 
+our framework to detect and predict activities on humans and a NAO robot. We 
 have shown that our methods are capable of detecting events with high accuracy. We have used 
 machine learning methods and thresholding methods to detect different events and provided 
 justifications for the success of the applications. Comparing the encouraging experimental results 
