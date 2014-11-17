@@ -289,15 +289,14 @@ classification result.
 
 
 We have used the device configuration as described  in the subsection {\em Able-Bodied Human} 
-and it was attached to the robot as shown in Figure \ref{fig:fc}. We have also followed the same 
-data collection protocol. In the first experiment, we have designed a thresholding base activity 
-predictor. We have calculated the roll, pitch, and yaw angles for this study (the roll is around 
-x-axis, the pitch is around y-axis, and the yaw is around z-axis). We have configured InvenSense 
-MPU-9150: 9-axis MEMS motion sensor on the sensor hub to sample data
-at 50$Hz$. We have chosen this value to compensate delays in communications and to cope with the
-constraints provided by the robot. In this study, we have detected only the normal 
+and it was attached to the robot as shown in Figure \ref{fig:fc}. In the first experiment, we have 
+designed a thresholding base activity  predictor. We have calculated the roll, pitch, and yaw angles 
+for this study (the roll is around x-axis, the pitch is around y-axis, and the yaw is around 
+z-axis). We have configured InvenSense MPU-9150: 9-axis MEMS motion sensor on the sensor hub to 
+sample data at 50$Hz$. We have chosen this value to compensate delays in communications and to cope 
+with the constraints provided by the robot. In this study, we have detected only the normal 
 activities (marching, waling forward/backward, and turning clockwise/counter-clockwise)
-and falling activities (falling back, front, and sideways). 
+and falling activities (falling back, front, and sideways).
 
 \begin{figure*}[!ht]
   \centering
@@ -336,7 +335,15 @@ forward/backward ($\dot{x}_v = \pm200
 , \dot{y}_v = 0, \dot{\theta}_v = 0$);  \item walking side-ways ($\dot{x}_v = 0, \dot{y}_v = 
 \pm200, \dot{\theta}_v = 0$); and  \item rotating clockwise/counter-clockwise
 ($\dot{x}_v = 0 , \dot{y}_v = 0, \dot{\theta}_v = \pm 0.5$) \end{inparaenum} as {\em normal state}, 
-while, all the other activities have been classified as {\em fallen state}. 
+while, all the other activities have been classified as {\em fallen state}. We have used the  
+following protocol to collect samples. Firstly, we set the velocity parameters and use the wireless 
+radio to transmit the samples to the sample-collection device. Secondly, we activate the robot to 
+the given configuration. Finally, we have tagged the start point of the sample stream and waited 
+approximately a minute to tag the end of the sample stream. This is an episode of the normal state. 
+We have collected multiple episodes to create our learning ensemble. To collect samples for fallen 
+state, first, we have configured the robot to march. Then, we safely pushed the robot to 
+different directions to simulate the fallen state. Similarly, we tagged the sample streams to 
+generate episodes.    
 
 \begin{table}[!ht]
 \caption{Logistic regression Classification}
