@@ -154,7 +154,7 @@ justifications the success of the success of the methods.
 
 \begin{figure*}[!t]
 \centering
-\subfloat[]{\label{fig:fa}\includegraphics[width=0.55\textwidth]{figures/graph_structure_def-crop}} 
+\subfloat[]{\label{fig:fa}\includegraphics[width=0.57\textwidth]{figures/graph_structure_def-crop}} 
 \subfloat[]{\label{fig:fb}\includegraphics[width=0.21\textwidth]{figures/human_figure}}
 \subfloat[]{\label{fig:fc}\includegraphics[width=0.185\textwidth]{figures/robot_figure}} 
 \caption{(a) The modules and representations used in the experiments;  (b) the wireless radio was 
@@ -363,7 +363,7 @@ filtered pitch values are within the rage $[0\pm15]$ (degrees), then with 100\% 
 humanoid robot will is in a normal state. Otherwise, we can safely assume that the robot is in 
 a fallen state.   
 
-There are four fallen states for the robot: \begin{inparaenum}[(1)] \item falling
+We have defined four fallen states for the robot: \begin{inparaenum}[(1)] \item falling
 forward; \item falling backward; \item falling to left side; and \item falling to right
 side\end{inparaenum}. Figures \ref{fig:normalFallenBehavior} ((e)--(h)) show the roll and pitch 
 angles (raw and filtered) for typical fallen robot. If the filtered roll value is less that 60 
@@ -373,20 +373,7 @@ falling to the left and right, we have used the filtered pitch values. If the fi
 is less than -50 degrees, we can assume that the robot is falling to the left side, while if the 
 filtered pitch values is more than 50 degrees, we can assume that the robot is falling to the right 
 side. With these thresholds for a separate test cases, the thresholding method has detected fallen 
-state 100\% accuracy. 
-
-FixMe:
-
-The range of motion of NAO robot is comparatively limited compared to a able-bodied human.
-Therefore, we are able to obtain satisfactory results for detecting motion event from the
-thresholding method. In future, we are planning to detect specific events such as walking forward
-(fast/slow), and rotating separately. When determining the results, we have sampled the motion
-device data at the rate 50$Hz$. During operation, using the same thresholds, we can sample the
-motion device at higher rates. In future, we are also planning to learn online from accelerometer,
-gyroscope, and magnetometer instead of Euler angles. Even though Euler angles have singularities,
-for our experiments, we operate the device avoiding those singularities.  
-
-
+state with 100\% accuracy. 
 
 \begin{table}[!ht]
 \caption{Logistic regression Classification}
@@ -405,6 +392,11 @@ for our experiments, we operate the device avoiding those singularities.
 		\end{tabular}
 \end{table}
 
+Even though thresholding method successfully distinguished between normal and fallen states, it was 
+unable to detect states within normal activities, i.e., walking forward to waling backward so 
+forth. Therefore, similar to the previous experiments, we have used logistic regression and SVM 
+classifiers to identify different activities. FixMe:
+
 
 \begin{table}[!ht]
 \caption{SVM Classification}
@@ -422,6 +414,15 @@ for our experiments, we operate the device avoiding those singularities.
 			fall right	& 94\%	& 92\%	& 8\%	& 6\%	 \\ \hline
 		\end{tabular}
 \end{table}
+
+The range of motion of NAO humanoid robot is comparatively constrained compared to a able-bodied 
+human. Therefore, we only conduct primary activities as described in this section. We have not 
+conducted experiments on activities such as stand to seat. When determining the results, we 
+have sampled the motion device data at the rate 50$Hz$. During operation, if using the 
+thresholding method, we can use the same thresholds, with higher sampling rate. The second method 
+requires learning for different sampling rates. 
+
+
 \section{Conclusion and Future Work}
 
 In this project, we have proposed an open source software solution to write heterogeneous
