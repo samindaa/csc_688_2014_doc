@@ -185,6 +185,16 @@ the developers.
 
 \section{Approach and Evaluation}
 
+\begin{figure*}[!t]
+\centering
+\subfloat[]{\label{fig:ha}\includegraphics[width=0.33\textwidth]{plots/human_walk-crop.pdf}} 
+\subfloat[]{\label{fig:hb}\includegraphics[width=0.33\textwidth]{plots/human_stand-crop.pdf}}
+\subfloat[]{\label{fig:hc}\includegraphics[width=0.33\textwidth]{plots/human_falling-crop.pdf}} 
+\caption{~}
+ \label{fig:human}
+\end{figure*}
+
+
 We have conducted experiments on detecting motions (activities) on able-bodied humans and on NAO
 humanoid robots. In order to detect motions, we have used InvenSense MPU-9150: 9-axis MEMS
 motion tracking sensor on the sensor hub. The module {\em MPU9150Module} connects to this device
@@ -421,14 +431,6 @@ requires learning for different sampling rates.
 
 
 
-\begin{figure*}[!t]
-\centering
-\subfloat[]{\label{fig:fa}\includegraphics[width=0.57\textwidth]{figures/graph_structure_def-crop}} 
-\subfloat[]{\label{fig:fb}\includegraphics[width=0.21\textwidth]{figures/human_figure}}
-\subfloat[]{\label{fig:fc}\includegraphics[width=0.185\textwidth]{figures/robot_figure}} 
-\caption{~}
- \label{fig:framework}
-\end{figure*}
 
 
 \section{Conclusion and Future Work}
