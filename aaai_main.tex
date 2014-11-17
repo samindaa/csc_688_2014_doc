@@ -229,10 +229,11 @@ the results obtained
 
 We have collected data for different human activities. We have put the sensors on the back of the
 human body and collected data from those sensors in fixed interval. For this experiment, we have
-sampled data in 50$Hz$ (or 20$ms$). We have data from several different human configurations:
-\begin{inparaenum}[(1)] \item standing; \item seating; \item walking; \item standing to seating;
-and \item standing to falling\end{inparaenum}. We have collected data based on the activities and
-each data point has nine features, where three sensors accelerometers,gyroscope and magnetometers have three axis X, Y and Z.
+sampled data at 50$Hz$. We have samples from several different human configurations:
+\begin{inparaenum}[(1)] \item walking; \item standing to seating;
+and \item standing to falling\end{inparaenum}. Since, we have used a 9-axis MEMS device, each 
+sample contains accelerometer readings in three-axis in $ms^2$, gyroscope readings in 
+three-axis $rads^2$, and magnetometer readings in three-axis {\em Tesla}. 
 
 \par
 A falling event does not happen within a single reading from sensors, it is consists of multiple
