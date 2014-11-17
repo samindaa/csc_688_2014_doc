@@ -209,15 +209,20 @@ software package has been excluded.} uses a
 notion of 
 {\em modules} and {\em representations} to perform
 computations. The modules implement functions, while the representations exchange information from
-one module to another. Figure \ref{fig:fa} shows the modules and representations related to our 
-experiments. The boxes represent modules, while the ellipses represent the representations. As an
-example, the module {\em MPU9150Module} contains logic to read/write from MPU-9150 Nine-Axis
-(Gyro+Accelerometer+Compass) MEMS MotionTracking device on the sensor hub booster
-pack. The representation {\em MPU9150Representation} contains all the values that the module
-{\em MPU9150Module} would like to share with other modules. In this graph, {\em LearningModule}
-requests values from {\em MPU9150Representation} to implement the learning function. A module can 
-provide multiple representations. The blue arraws shows the provided representations, and the black 
-arraws show the requested representations. The developers only require to write 
+one module to another. They are connected using directed arcs to form a directed graph. The blue 
+arraws shows the provided representations, 
+and the black arraws show the requested representations. The Figure 
+\ref{fig:fa} shows the modules and representations related to our 
+experiments, where the boxes represent the computational modules, while the rounded-boxes represent 
+the input to a module or an output from a module. For brevity, in the rest of the paper 
+computational modules to modules. As an example, the module {\em MPU9150Module} contains logic to 
+read/write from MPU-9150 Nine-Axis (Gyro+Accelerometer+Compass) MEMS MotionTracking device on the 
+sensor hub booster pack. The representation {\em MPU9150Representation} contains all the values that 
+the module {\em MPU9150Module} would like to share with other modules. In this graph, {\em 
+LearningModule} requests values from {\em MPU9150Representation} to implement the learning function. 
+A module can provide multiple representations.  
+
+The developers only require to write 
 modules and representations, while the framework will compute the topologically sorted graph out of 
 the nodes. This will be computed once, and the nodes in the queue will be executed one after the 
 other. If there were to be cycles in the graph, the framework will detect them and indicate them to 
