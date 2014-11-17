@@ -169,7 +169,25 @@ algorithm\footnote{\url{http://www.ti.com/lit/an/slaa518a/slaa518a.pdf}}.  Depen
 experiment, the practitioner can change the sampling rate of the sensor.  The maximum sampling rate
 of the sensor is 1000$Hz$. This section shows our results, validations, and conclusions.
 
+
+\subsection{Falls annotation}
+\textbf{to do need to change}
+The annotation for a single fall event is shown in \textbf{{set the figure} }. The time for a complete protocol takes an average of ....... mins
+per subject, and the time annotation per fall is about 5s. From
+the figure, the area annotated as a fall is from 850s to 855s.
+This shows that from point A to point B, the subject has been
+instructed to fall and in the process of falling. Between points
+B and C the subject’s body makes an impact with the cushion
+on the floor and a high acceleration data is recorded. After a
+fall has occurred, the subject remains in a lying posture at point
+C to D. Though, point A to D was annotated as a fall, only
+point B to C shows a high acceleration signal. The following
+section discusses the data processing, machine learning and
+the results obtained
+\textbf{to do need to change}
+
 \subsection{Able-Bodied Human}
+
 
 We have collected data for different human activities. We have put the sensors on the chest of the
 human body and collected data from those sensors in fixed interval. For this experiment, we have
@@ -186,17 +204,31 @@ with specific number to denote the position. We have used multivariate logistic 
 classify our data. We have used 80\% of the data for training, while the rest has been used
 in validation.
 
+
 \begin{table}[!ht]
-	\caption{Standing to seating detection.}	
-	\label{tab:StandingToSeatingDetection}
+\caption{Logistic regrassion Classification}
+	\label{tab:StandingToSeatingDetectionsvm}
 	\centering
-		\begin{tabular} {l l |c |c}
-			& & Predict& Predict \\ 
-			& & Seating & Standing \\ \hline
-			Actual& Seating & 94 & 6\\ \hline
-			Actual& Standing & 19& 81\\ \hline
+		\begin{tabular} {l |c |c |c|c}
+			&TP  &	TN  &	FP &	FN \\
+			&(out of 50) & (out of 50)& & \\ \hline
+			walking	& 44	& 42	& 8	& 6 \\ \hline
+			stand to seat	& 47	& 41	& 9 & 	3	 \\ \hline 
+			stand to fall	& 47	& 44	& 6	& 3	 \\ \hline
 		\end{tabular}
 \end{table}
+
+%\begin{table}[!ht]
+	%\caption{Standing to seating detection.}	
+	%\label{tab:StandingToSeatingDetection}
+	%\centering
+		%\begin{tabular} {l l |c |c}
+			%& & Predict& Predict \\ 
+			%& & Seating & Standing \\ \hline
+			%Actual& Seating & 94 & 6\\ \hline
+			%Actual& Standing & 19& 81\\ \hline
+		%\end{tabular}
+%\end{table}
 
 Table \ref{tab:StandingToSeatingDetection} shows the predictions of standing to seating position
 movement for 200 data points. we can observe that we are able
@@ -205,30 +237,30 @@ to predict this movement with quite good accuracy (approximately 87.5\%). Table
 movement, our prediction accuracy is about 86\%. In the actual fall prediction logistic
 regression can predict fall with 87.5\% accuracy (Shown in Table
  \ref{tab:StandingToFallingDetection}).
-
-\begin{table}
-\caption{Standing to walking detection.}
-	\label{tab:StandingToWalkingDetection}
-\centering
-		\begin{tabular} {l l |c |c}
-			& & Predict& Predict \\ 
-			& & Walking & Standing \\ \hline
-			Actual& Walking & 89 & 11\\ \hline
-			Actual& Standing & 17& 83\\ \hline
-		\end{tabular}
-\end{table}
-
-\begin{table}[!ht]
-\caption{Standing to falling detection.}
-\label{tab:StandingToFallingDetection}
-\centering
-		\begin{tabular} {l l |c |c}
-			& & Predict& Predict \\ 
-			& & Fall & Standing \\ \hline
-			Actual& Fall & 92 & 08\\ \hline
-			Actual& Standing & 17& 83\\ \hline
-		\end{tabular}
-\end{table}
+%
+%\begin{table}
+%\caption{Standing to walking detection.}
+	%\label{tab:StandingToWalkingDetection}
+%\centering
+		%\begin{tabular} {l l |c |c}
+			%& & Predict& Predict \\ 
+			%& & Walking & Standing \\ \hline
+			%Actual& Walking & 89 & 11\\ \hline
+			%Actual& Standing & 17& 83\\ \hline
+		%\end{tabular}
+%\end{table}
+%
+%\begin{table}[!ht]
+%\caption{Standing to falling detection.}
+%\label{tab:StandingToFallingDetection}
+%\centering
+		%\begin{tabular} {l l |c |c}
+			%& & Predict& Predict \\ 
+			%& & Fall & Standing \\ \hline
+			%Actual& Fall & 92 & 08\\ \hline
+			%Actual& Standing & 17& 83\\ \hline
+		%\end{tabular}
+%\end{table}
 
 \subsection*{Classification and Validation using Support Vector Machine}
 
@@ -245,18 +277,21 @@ walking movement. In that movement our prediction accuracy is about 89.5\%. In t
 prediction, SVM can predict fall with 90.5\% accuracy (Shown in Table
 \ref{tab:StandingToFallingDetectionsvm}).
 
-%
-%\begin{table}[!ht]
-%\caption{Standing to seating detection with SVM.}
-	%\label{tab:StandingToSeatingDetectionsvm}
-	%\centering
-		%\begin{tabular} {l l |c |c}
-			%& & Predict& Predict \\ 
-			%& & Seating & Standing \\ \hline
-			%Actual& Seating & 96 & 4\\ \hline
-			%Actual& Standing & 16& 84\\ \hline
-		%\end{tabular}
-%\end{table}
+
+
+
+\begin{table}[!ht]
+\caption{SVM Classification}
+	\label{tab:StandingToSeatingDetectionsvm}
+	\centering
+		\begin{tabular} {l |c |c |c|c}
+			&TP  &	TN  &	FP &	FN \\
+			&(out of 50) & (out of 50)& & \\ \hline
+			walking	& 46	& 43	& 7	& 4 \\ \hline
+			stand to seat	& 47	& 42	& 8 & 	3	 \\ \hline 
+			stand to fall	& 49	& 44	& 6	& 1	 \\ \hline
+		\end{tabular}
+\end{table}
 %
 %\begin{table}[!ht]
 	%\caption{Standing to walking detection with SVM.}
@@ -294,7 +329,7 @@ procedure detect a true fall event more than 90\% time, we will denote that even
 falling event. By applying the above algorithm, our predictions are 100\% accuracy.
 Table \ref{tab:StandingToFallingDetectionsvmframe} shows detection of fall within 100$ms$ time
 frame.
-
+ 
 %
 %\begin{table}[!ht]
 %\caption{Standing to falling detection within time frame.}
