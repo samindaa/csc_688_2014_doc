@@ -80,9 +80,9 @@ learn, predict, and generalize across the two demographic groups.
 \subfloat[]{\label{fig:fa}\includegraphics[width=0.57\textwidth]{figures/graph_structure_def-crop}} 
 \subfloat[]{\label{fig:fb}\includegraphics[width=0.21\textwidth]{figures/human_figure}}
 \subfloat[]{\label{fig:fc}\includegraphics[width=0.185\textwidth]{figures/robot_figure}} 
-\caption{(a) The modules and representations used in the experiments;  (b) the wireless radio was 
-attached to a Sensor Hub BoosterPack on a Tiva C LaunchPad microcontroller that was connected to a 
-Fuel Tank BoosterPack, which was then attached to the back of a human subject; and (c) the same 
+\caption{(a) The modules and representations used in the experiments;  (b) the wireless transmitter 
+was attached to a Sensor Hub BoosterPack on a Tiva C LaunchPad microcontroller that was connected to 
+a Fuel Tank BoosterPack, which was then attached to the back of a human subject; and (c) the same 
 device configuration was used on the back of a NAO humanoid robot.}
  \label{fig:framework}
 \end{figure*}
@@ -134,32 +134,36 @@ Texas Instruments (TIs) microcontrollers\footnote{\url{https://www.ti.com/}} and
 as MSP430{\texttrademark}LaunchPad, Tiva{\texttrademark} C Series TM4C123G
 LaunchPad (a low-cost evaluation platform for ARM Cortex-M4F-based microcontrollers), Tiva C Series 
 TM4C129 Connected LaunchPad (a new development platform from Texas Instruments
-based on the powerful TM4C129), and Sensor Hub BoosterPack (an add-on board designed to
-fit Tiva C Series TM4C123G LaunchPad along with all of TI’s MCU LaunchPads) provide ultimate 
-solutions for a wide rage of low power and portable applications. Therefore, a modular and flexible 
-software framework allow practitioners to use the functionalities provides by these systems 
-effectively and efficiently. The framework provides functionalities to build  rational agents that 
-perceive its environment though sensors and act upon it though actuators \cite{russel2009}. The 
-execution path between sensors to actuators may contain complex behaviors and modeling decisions 
-that needs to be handled carefully. Hence, the framework takes these consideration into account and 
-provides a topologically sorted graph based on the decision points provided by practitioners. Our
-framework consists for four parts. It consists of modules and representations that execute on
-\begin{inparaenum}[(1)]\item microcontrollers (incremental); \item offline (batch mode); \item NAO
-robots; and \item real-time visualizations\end{inparaenum}. Our framework is lightweight, flexible, 
-and consumes minimum memory and computational resources as possible. We have tested our framework on 
-multiple microcontrollers and on a sensor hub as stated above. We have written and distributed 
-software solutions to access devices on the sensor hub such as \begin{inparaenum}[(1)] \item 
-InvenSense MPU-9150: 9-axis MEMS motion tracking (3-axis gyro 3-axis accelerometer, and 3-axis 
-compass); \item Bosch Sensortec BMP180 pressure sensor; \item Sensirion SHT21 humidity and ambient 
-temperature sensor; \item Intersil ISL29023 ambient and infrared light sensor; and \item TIs TMP006 
-non-contact infrared temperature sensor\end{inparaenum}.
+based on the powerful TM4C129), Sensor Hub BoosterPack, and CC2533 wireless transmitter and 
+receiver (an add-on board designed to fit Tiva C Series TM4C123G LaunchPad along with all of TI’s 
+MCU LaunchPads) provide ultimate solutions for a wide rage of low power and portable applications. 
+Therefore, a modular and flexible software framework allow practitioners to use the functionalities 
+provides by these systems effectively and efficiently. The framework provides functionalities to 
+build  rational agents that perceive its environment though sensors and act upon it though actuators 
+\cite{russel2009}. The execution path between sensors to actuators may contain complex behaviors and 
+modeling decisions that needs to be handled carefully. Hence, the framework takes these 
+consideration into account and provides a topologically sorted graph based on the decision points 
+provided by practitioners. Our framework consists for four parts. It consists of modules and 
+representations that execute on \begin{inparaenum}[(1)]\item microcontrollers (incremental); \item 
+offline (batch mode); \item NAO robots; and \item real-time visualizations\end{inparaenum}. Our 
+framework is lightweight, flexible, and consumes minimum memory and computational resources as 
+possible. We have tested our framework on multiple microcontrollers and on a sensor hub as stated 
+above. We have written and distributed  software solutions to access devices on the sensor hub such 
+as \begin{inparaenum}[(1)] \item InvenSense MPU-9150: nine-axis MEMS motion tracking (thee-axis 
+gyro, thee-axis accelerometer, and thee-axis magnetometer); \item Bosch Sensortec BMP180 pressure 
+sensor; \item Sensirion SHT21 humidity and ambient temperature sensor; \item Intersil ISL29023 
+ambient and infrared light sensor; and \item TIs TMP006 non-contact infrared temperature 
+sensor\end{inparaenum}.
 
-We have used our framework to experiment on the problem of activity
-detection using InvenSense MPU-9150: 9-axis MEMS motion tracking sensor. We have conducted our
-experiments on able-bodied humans and on NAO humanoid robots to detect activities such as standing,
-walking, and abruptly falling back and front. We have used reactive (e.g., threshold based) 
-and deliberative (e.g., machine learning) methods to detect these events and provide empirical  
-justifications the success of the success of the methods. 
+We have used our framework to experiment on the problem of activity detection using InvenSense 
+MPU-9150: 9-axis MEMS motion tracking sensor. We have conducted our experiments on able-bodied 
+humans and on NAO humanoid robots to detect activities such as standing, walking, and abruptly 
+falling back and front. We have used the same device configuration as show in Figures \ref{fig:fb}, 
+and \ref{fig:fc}. The wireless transmitter was attached to a Sensor Hub BoosterPack on a Tiva C 
+LaunchPad microcontroller that was connected to a Fuel Tank BoosterPack, which was then attached to 
+the back of a human subject or a NAO humanoid robot. We have used reactive (e.g., threshold based) 
+and deliberative (e.g., machine learning) methods to detect and predict activities. We have 
+provided  evaluations and empirical results to  justify the success of our methods. 
 
 
 \section{Framework}
@@ -239,28 +243,36 @@ human body and collected data from those sensors in fixed interval. For this exp
 sampled data at 50$Hz$. We have samples from several different human configurations:
 \begin{inparaenum}[(1)] \item walking; \item standing to seating;
 and \item standing to falling\end{inparaenum}. Since, we have used a 9-axis MEMS device, each 
-sample contains accelerometer readings in three-axis in $ms^2$, gyroscope readings in 
-three-axis in $rads^2$, and magnetometer readings in three-axis in {\em Tesla}. 
+sample contains accelerometer readings in three-axis in $ms^{-2}$, gyroscope readings in 
+three-axis in $rads^{-2}$, and magnetometer readings in three-axis in {\em Tesla}. 
 
-A falling event does not happen within a single reading from sensors, it is consists of multiple
-reading from sensors.  Its not really accurate to detect a fall or any other motion based on a
-single reading, which might mislead the whole detection procedure. To detect a motion accurately we
-have used a time frame based prediction procedure. In this procedure, we first train our SVM with
-training data. Then we try to detection motion in each sensor reading. We will predict a motion not
-based on a single reading but with all the reading within 200$ms$ time frame. If our detection
-procedure detect a true fall event more than 90\% time, we will denote that event as a true
-falling event.
+An activity does not happen within a single reading from sensors, it consists of multiple
+reading from sensors.  It is not really accurate to detect any activity based 
+on a single reading, which might mislead the whole prediction protocol. To accurately detect an 
+activity, we have used a time frame based prediction protocol. In this protocol, we will predict 
+an event not based on a single reading but with all the reading within 200$ms$ time frame. If our 
+detection procedure detect a true  event more than 90\% time, we will denote that event as a true 
+event. We use two classifiers in our experiments: \begin{inparaenum}[1)] \item logistic regression; 
+and \item support vector machines (SVM)\cite{Bishop:2006:PRM:1162264}. \end{inparaenum} We have used 
+standard parameter sweeping techniques to find the classifier parameters that provide 
+the best trade off between the bias and the variance, while precision, recall, and F$_1$-score have 
+been used to obtain the best value. As a preprocessing step, the features, except the bias, have 
+been subjected to feature standardization. We have independently set each dimension of the sample 
+to have zero-mean and unit-variance. We achieved this by first computing the mean of each dimension 
+across the dataset and subtracting this from each dimension. Then each dimension is divided by its 
+standard deviation.
 
 \subsection{Classification using Logistic Regression}
 
-In the first part of the data analysis we have put all our collected data together and labeled it
+In the first part of the data analysis we have put all our collected samples together and labeled it
 with specific number to denote the position. We have used multivariate logistic regression model to
-classify our data. We have used 80\% of the data for training, while the rest has been used
-in validation.
+classify our samples. We have used 80\% of the samples for training, while the rest has been used
+in cross-validation. Table \ref{tab:human-logistic-class} shows the final results, where, TP, TN, 
+FP, and FN stand for true positive, true negative, false positive, and false negative respectively. 
 
 
 \begin{table}[!ht]
-\caption{Logistic regression Classification}
+\caption{Logistic regression classification for human activities.}
 	\label{tab:human-logistic-class}
 	\centering
 		\begin{tabular} {|l |c |c |c|c|}
@@ -278,16 +290,16 @@ in validation.
 
 \subsection{Classification and Validation using Support Vector Machine}
 
-In the second part of the data analysis, we have used support vector machine (SVM) model
-to classify our data. To train the model, we used the same procedure as before, 80\% of
-our data were used to do the classification and rest twenty percent data were used to validate our
-classification result.
+In the second part of the data analysis, we have used SVM model
+to classify our samples. To train the model, we used the same protocol as before; 80\% of
+samples were used to train  the classifier and the rest of the  samples were used in 
+cross-validation. Table \ref{tab:human-svm-class} shows the final results.
 
 
 
 
 \begin{table}[!ht]
-\caption{SVM Classification}
+\caption{SVM classification for human activities.}
 	\label{tab:human-svm-class}
 	\centering
 		\begin{tabular} {|l |c |c |c|c|}
@@ -300,10 +312,17 @@ classification result.
 		\end{tabular}
 \end{table}
 
+ In our experiments, SVM performs better than logistic regression. But due to 
+memory and computational restrictions, we have found that logistic regression classifier is a 
+better choice to run on the embedded devices. Our feature vector consists of the mean normalized 
+sensor reading and a bias term. In future, we are planing to  combine and prune features 
+to improve the classification accuracy.  
+
+
 \subsection{NAO Humanoid Robot}
 
 
-We have used the device configuration as described  in the subsection {\em Able-Bodied Human} 
+We have used the device configuration as described  in {\em introduction} 
 and it was attached to the robot as shown in Figure \ref{fig:fc}. In the first experiment, we have 
 designed a thresholding base activity  predictor. We have calculated the roll, pitch, and yaw angles 
 for this study (the roll is around x-axis, the pitch is around y-axis, and the yaw is around 
@@ -361,7 +380,7 @@ different directions to simulate the fallen state. Similarly, we tagged the samp
 generate episodes.    
 
 \begin{table}[!ht]
-\caption{Logistic regression Classification}
+\caption{Logistic regression classification for robot activities.}
 	\label{tab:robot-logistic-class}
 	\centering
 		\begin{tabular} {| l | c | c | c| c|}
@@ -377,8 +396,8 @@ generate episodes.
 			Falling left	& 92\%	& 92\%	& 8\%	& 8\%	 \\ \hline
 			Falling Right	& 92\%	& 92\%	& 8\%	& 8\%	 \\ \hline
 			Marching	& 88\%	& 84\%	& 16\%	& 12\%	 \\ \hline
-			Rotate CCW	& 94\%	& 90\%	& 10\%	& 6\%	 \\ \hline
-			Rotate CW	& 94\%	& 90\%	& 10\%	& 6\%	 \\ \hline
+			Rotate counter-clockwise	& 94\%	& 90\%	& 10\%	& 6\%	 \\ \hline
+			Rotate clockwise	& 94\%	& 90\%	& 10\%	& 6\%	 \\ \hline
 		\end{tabular}
 \end{table}
 
@@ -411,11 +430,17 @@ state with 100\% accuracy.
 Even though thresholding method successfully distinguished between normal and fallen states, it was 
 unable to detect states within normal activities, i.e., walking forward to waling backward so 
 forth. Therefore, similar to the previous experiments, we have used logistic regression and SVM 
-classifiers to identify different activities. FixMe:
+classifiers to identify different activities. We have followed the same protocols as mentioned in 
+the previous section to generate features, learning, and prediction. Table 
+\ref{tab:robot-logistic-class} shows the results for the logistic regression classifier, while, 
+Table \ref{tab:robot-svm-class} shows the results for the SVM classification. We conclude that the 
+classification methods are able to predict activities within normal states as well as fallen 
+states. Similar to previous section, the SVM classifier performs better that the logistic 
+regression classifier, though, during operation, we prefer the logistic regression classifier.   
 
 
 \begin{table}[!ht]
-\caption{SVM Classification}
+\caption{SVM classification for robot activities.}
 	\label{tab:robot-svm-class}
 	\centering
 		\begin{tabular} {| l | c | c | c | c | }
@@ -431,32 +456,29 @@ classifiers to identify different activities. FixMe:
 			Falling left	& 94\%	& 92\%	& 8\%	& 6\%	 \\ \hline
 			Falling right	& 94\%	& 92\%	& 8\%	& 6\%	 \\ \hline
 			Marching	& 90\%	& 88\%	& 12\%	& 10\%	 \\ \hline
-			Rotate CCW	& 96\%	& 90\%	& 10\%	& 4\%	 \\ \hline
-			Rotate CW	& 96\%	& 90\%	& 10\%	& 4\%	 \\ \hline
+			Rotate counter-clockwise	& 96\%	& 90\%	& 10\%	& 4\%	 \\ \hline
+			Rotate clockwise	& 96\%	& 90\%	& 10\%	& 4\%	 \\ \hline
 		\end{tabular}
 \end{table}
 
 The range of motion of NAO humanoid robot is comparatively constrained compared to a able-bodied 
 human. Therefore, we only conduct primary activities as described in this section. We have not 
 conducted experiments on activities such as stand to seat. When determining the results, we 
-have sampled the motion device data at the rate 50$Hz$. During operation, if using the 
-thresholding method, we can use the same thresholds, with higher sampling rate. The second method 
-requires learning for different sampling rates. 
-
-
+have sampled the motion device data at the rate 50$Hz$. During operation, if the 
+thresholding method is used, we can use the same thresholds with higher sampling rate. The second 
+method requires learning for different sampling rates.
 
 
 
 \section{Conclusion and Future Work}
 
-In this project, we have proposed an open source software solution to write heterogeneous
-applications on TIs microcontrollers. We have used our software solution to detect motions on
-able-bodied humans and NAO humanoid robots. We have shown that our methods are capable of detecting
-motions with high accuracy. We have used machine learning methods and thresholding methods to
-detect different motions and provided justifications for the success of the applications. 
-
-\par
-Comparing the encouraging experimental results achieved, our future work will be c
+We have proposed framework to write heterogeneous applications on TIs microcontrollers. We have used 
+our framework to detect and predict activities on able-bodied humans and NAO humanoid robots. We 
+have shown that our methods are capable of detecting events with high accuracy. We have used 
+machine learning methods and thresholding methods to detect different events and provided 
+justifications for the success of the applications. Comparing the encouraging experimental results 
+achieved, our future work will be to use multiple devices to create a sensor network to detect 
+complex and minute activities with higher sampling rates.  
 
 \bibliographystyle{aaai}
 \bibliography{references}
