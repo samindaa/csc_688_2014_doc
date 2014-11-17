@@ -331,6 +331,25 @@ forward/backward ($\dot{x}_v = \pm200
 ($\dot{x}_v = 0 , \dot{y}_v = 0, \dot{\theta}_v = \pm 0.5$) \end{inparaenum} as {\em normal state}, 
 while, all the other activities have been classified as {\em fallen state}. 
 
+\begin{table}[!ht]
+\caption{Logistic regression Classification}
+	\label{tab:robot-logistic-class}
+	\centering
+		\begin{tabular} {| l | c | c | c| c|}
+		\hline
+			{\bf Activity} & {\bf  TP}  &	{\bf TN}  &	{\bf FP} &	{\bf FN} \\ 
+\hline
+			Walking forward	& 86\%	& 84\%	& 16\%	& 14\% \\ \hline
+			Walking backward	& 86\%	& 84\%	& 16\%	& 14\% \\ \hline
+			Walking left 	& 88\%	& 86\%	& 14\%	& 12\% \\ \hline
+			Walking right 	& 86\%	& 84\%	& 16\%	& 14\% \\ \hline
+			Falling forward	& 94\%	& 90\%	& 10\%	& 6\%	 \\ \hline
+			Falling Backward	& 94\%	& 88\%	& 12\%	& 6\%	 \\ \hline
+			Falling left	& 92\%	& 92\%	& 8\%	& 8\%	 \\ \hline
+			Falling Right	& 92\%	& 92\%	& 8\%	& 8\%	 \\ \hline
+		\end{tabular}
+\end{table}
+
 
 We have used only the roll and the pitch values  to detect relevant activities. In order to achieve 
 an effective threshold based decision making, first we have filtered the roll, pitch, and
@@ -356,22 +375,6 @@ filtered pitch values is more than 50 degrees, we can assume that the robot is f
 side. With these thresholds for a separate test cases, the thresholding method has detected fallen 
 state with 100\% accuracy. 
 
-\begin{table}[!ht]
-\caption{Logistic regression Classification}
-	\label{tab:robot-logistic-class}
-	\centering
-		\begin{tabular} {l |c |c |c|c}
-			&TP  &	TN  &	FP &	FN \\ \hline
-			walking forward	& 86\%	& 84\%	& 16\%	& 14\% \\ \hline
-			walking backward	& 86\%	& 84\%	& 16\%	& 14\% \\ \hline
-			walking left	& 88\%	& 86\%	& 14\%	& 12\% \\ \hline
-			walking right	& 86\%	& 84\%	& 16\%	& 14\% \\ \hline
-			fall forward	& 94\%	& 90\%	& 10\%	& 6\%	 \\ \hline
-			fall backward	& 94\%	& 88\%	& 12\%	& 6\%	 \\ \hline
-			fall left	& 92\%	& 92\%	& 8\%	& 8\%	 \\ \hline
-			fall right	& 92\%	& 92\%	& 8\%	& 8\%	 \\ \hline
-		\end{tabular}
-\end{table}
 
 Even though thresholding method successfully distinguished between normal and fallen states, it was 
 unable to detect states within normal activities, i.e., walking forward to waling backward so 
@@ -383,16 +386,18 @@ classifiers to identify different activities. FixMe:
 \caption{SVM Classification}
 	\label{tab:robot-svm-class}
 	\centering
-		\begin{tabular} {l |c |c |c|c}
-			&TP  &	TN  &	FP &	FN \\ \hline
-			walking forward	& 90\%	& 88\%	& 12\%	& 10\% \\ \hline
-			walking backward	& 90\%	& 88\%	& 12\%	& 10\% \\ \hline
-			walking left	& 92\%	& 86\%	& 14\%	& 8\% \\ \hline
-			walking right	& 92\%	& 86\%	& 14\%	& 8\% \\ \hline
-			fall forward	& 96\%	& 90\%	& 10\%	& 4\%	 \\ \hline
-			fall backward	& 96\%	& 88\%	& 12\%	& 4\%	 \\ \hline
-			fall left	& 94\%	& 92\%	& 8\%	& 6\%	 \\ \hline
-			fall right	& 94\%	& 92\%	& 8\%	& 6\%	 \\ \hline
+		\begin{tabular} {| l | c | c | c | c | }
+		\hline
+			{\bf Activity} & {\bf  TP}  &	{\bf TN}  &	{\bf FP} &	{\bf FN} \\ 
+\hline
+			Walking forward	& 90\%	& 88\%	& 12\%	& 10\% \\ \hline
+			Walking backward	& 90\%	& 88\%	& 12\%	& 10\% \\ \hline
+			Walking left	& 92\%	& 86\%	& 14\%	& 8\% \\ \hline
+			Walking right	& 92\%	& 86\%	& 14\%	& 8\% \\ \hline
+			Falling forward	& 96\%	& 90\%	& 10\%	& 4\%	 \\ \hline
+			Falling backward	& 96\%	& 88\%	& 12\%	& 4\%	 \\ \hline
+			Falling left	& 94\%	& 92\%	& 8\%	& 6\%	 \\ \hline
+			Falling right	& 94\%	& 92\%	& 8\%	& 6\%	 \\ \hline
 		\end{tabular}
 \end{table}
 
