@@ -208,18 +208,10 @@ of the sensor is 1000$Hz$. This section shows our results, validations, and conc
 
 
 \subsection{Falls annotation}
-\textbf{to do need to change}
-The annotation for a single fall event is shown in \textbf{{set the figure} }. The time for a 
-complete protocol takes an average of ....... mins
-per subject, and the time annotation per fall is about 5s. From
-the figure, the area annotated as a fall is from 850s to 855s.
-This shows that from point A to point B, the subject has been
-instructed to fall and in the process of falling. Between points
-B and C the subject’s body makes an impact with the cushion
-on the floor and a high acceleration data is recorded. After a
-fall has occurred, the subject remains in a lying posture at point
-C to D. Though, point A to D was annotated as a fall, only
-point B to C shows a high acceleration signal. The following
+
+The annotation for a single fall event is shown in \textbf{{set the figure} }. Here accelerometer's X, Y and Z axis is showing for a single fall event. The time for a 
+actual event takes an average of 200 milliseconds. From
+the figure, the area annotated as a fall is from 81 to 91 readings. This 20 readings take 200 milliseconds.The following
 section discusses the data processing, machine learning and
 the results obtained
 \textbf{to do need to change}
@@ -232,7 +224,7 @@ human body and collected data from those sensors in fixed interval. For this exp
 sampled data in 50$Hz$ (or 20$ms$). We have data from several different human configurations:
 \begin{inparaenum}[(1)] \item standing; \item seating; \item walking; \item standing to seating;
 and \item standing to falling\end{inparaenum}. We have collected data based on the activities and
-each data point has nine features, where three sensors accelerometers,gyroscope and magnetometers have three axis X, Y and Z.
+each data point has nine features, where three sensors accelerometer,gyroscope and magnetometers have three axis X, Y and Z.
 
 \par
 A falling event does not happen within a single reading from sensors, it is consists of multiple
