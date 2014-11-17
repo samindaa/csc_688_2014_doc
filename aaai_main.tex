@@ -239,28 +239,36 @@ human body and collected data from those sensors in fixed interval. For this exp
 sampled data at 50$Hz$. We have samples from several different human configurations:
 \begin{inparaenum}[(1)] \item walking; \item standing to seating;
 and \item standing to falling\end{inparaenum}. Since, we have used a 9-axis MEMS device, each 
-sample contains accelerometer readings in three-axis in $ms^2$, gyroscope readings in 
-three-axis in $rads^2$, and magnetometer readings in three-axis in {\em Tesla}. 
+sample contains accelerometer readings in three-axis in $ms^{-2}$, gyroscope readings in 
+three-axis in $rads^{-2}$, and magnetometer readings in three-axis in {\em Tesla}. 
 
-A falling event does not happen within a single reading from sensors, it is consists of multiple
-reading from sensors.  Its not really accurate to detect a fall or any other motion based on a
-single reading, which might mislead the whole detection procedure. To detect a motion accurately we
-have used a time frame based prediction procedure. In this procedure, we first train our SVM with
-training data. Then we try to detection motion in each sensor reading. We will predict a motion not
-based on a single reading but with all the reading within 200$ms$ time frame. If our detection
-procedure detect a true fall event more than 90\% time, we will denote that event as a true
-falling event.
+An activity does not happen within a single reading from sensors, it consists of multiple
+reading from sensors.  It is not really accurate to detect any activity based 
+on a single reading, which might mislead the whole prediction protocol. To accurately detect an 
+activity, we have used a time frame based prediction protocol. In this protocol, we will predict 
+an event not based on a single reading but with all the reading within 200$ms$ time frame. If our 
+detection procedure detect a true  event more than 90\% time, we will denote that event as a true 
+event. We use two classifiers in our experiments: \begin{inparaenum}[1)] \item logistic regression; 
+and \item support vector machines (SVM)\cite{Bishop:2006:PRM:1162264}. \end{inparaenum} We have used 
+standard parameter sweeping techniques to find the classifier parameters that provide 
+the best trade off between the bias and the variance, while precision, recall, and F$_1$-score have 
+been used to obtain the best value. As a preprocessing step, the features, except the bias, have 
+been subjected to feature standardization. We have independently set each dimension of the sample 
+to have zero-mean and unit-variance. We achieved this by first computing the mean of each dimension 
+across the dataset and subtracting this from each dimension. Then each dimension is divided by its 
+standard deviation.
 
 \subsection{Classification using Logistic Regression}
 
-In the first part of the data analysis we have put all our collected data together and labeled it
+In the first part of the data analysis we have put all our collected samples together and labeled it
 with specific number to denote the position. We have used multivariate logistic regression model to
-classify our data. We have used 80\% of the data for training, while the rest has been used
-in validation.
+classify our samples. We have used 80\% of the samples for training, while the rest has been used
+in cross-validation. Table \ref{tab:human-logistic-class} shows the final results, where, TP, TN, 
+FP, and FN stand for true positive, true negative, false positive, and false negative respectively. 
 
 
 \begin{table}[!ht]
-\caption{Logistic regression Classification}
+\caption{Logistic regression classification for human activities.}
 	\label{tab:human-logistic-class}
 	\centering
 		\begin{tabular} {|l |c |c |c|c|}
@@ -278,16 +286,16 @@ in validation.
 
 \subsection{Classification and Validation using Support Vector Machine}
 
-In the second part of the data analysis, we have used support vector machine (SVM) model
-to classify our data. To train the model, we used the same procedure as before, 80\% of
-our data were used to do the classification and rest twenty percent data were used to validate our
-classification result.
+In the second part of the data analysis, we have used SVM model
+to classify our samples. To train the model, we used the same protocol as before; 80\% of
+samples were used to train  the classifier and the rest of the  samples were used in 
+cross-validation. Table \ref{tab:human-svm-class} shows the final results.
 
 
 
 
 \begin{table}[!ht]
-\caption{SVM Classification}
+\caption{SVM Classification for human activities.}
 	\label{tab:human-svm-class}
 	\centering
 		\begin{tabular} {|l |c |c |c|c|}
@@ -299,6 +307,13 @@ classification result.
 			Stand to fall	& 98\%	& 88\%	& 12\%	& 2\%	 \\ \hline
 		\end{tabular}
 \end{table}
+
+ In our experiments, SVM performs better than logistic regression. But due to 
+memory and computational restrictions, we have found that logistic regression classifier is a 
+better choice to run on the embedded devices. Our feature vector consists of the mean normalized 
+sensor reading and a bias term. In future, we are planing to  combine and prune features 
+to improve the classification accuracy.  
+
 
 \subsection{NAO Humanoid Robot}
 
@@ -377,8 +392,8 @@ generate episodes.
 			Falling left	& 92\%	& 92\%	& 8\%	& 8\%	 \\ \hline
 			Falling Right	& 92\%	& 92\%	& 8\%	& 8\%	 \\ \hline
 			Marching	& 88\%	& 84\%	& 16\%	& 12\%	 \\ \hline
-			Rotate CCW	& 94\%	& 90\%	& 10\%	& 6\%	 \\ \hline
-			Rotate CW	& 94\%	& 90\%	& 10\%	& 6\%	 \\ \hline
+			Rotate counter-clockwise	& 94\%	& 90\%	& 10\%	& 6\%	 \\ \hline
+			Rotate clockwise	& 94\%	& 90\%	& 10\%	& 6\%	 \\ \hline
 		\end{tabular}
 \end{table}
 
@@ -431,8 +446,8 @@ classifiers to identify different activities. FixMe:
 			Falling left	& 94\%	& 92\%	& 8\%	& 6\%	 \\ \hline
 			Falling right	& 94\%	& 92\%	& 8\%	& 6\%	 \\ \hline
 			Marching	& 90\%	& 88\%	& 12\%	& 10\%	 \\ \hline
-			Rotate CCW	& 96\%	& 90\%	& 10\%	& 4\%	 \\ \hline
-			Rotate CW	& 96\%	& 90\%	& 10\%	& 4\%	 \\ \hline
+			Rotate counter-clockwise	& 96\%	& 90\%	& 10\%	& 4\%	 \\ \hline
+			Rotate clockwise	& 96\%	& 90\%	& 10\%	& 4\%	 \\ \hline
 		\end{tabular}
 \end{table}
 
