@@ -75,12 +75,23 @@ tasks. We also hypotheses that learned prediction of activities in both groups c
 generalizable. This paper is a step towards that direction to use wearable devices with sensor to 
 learn, predict, and generalize across the two demographic groups.
 
+\begin{figure*}[!t]
+\centering
+\subfloat[]{\label{fig:fa}\includegraphics[width=0.57\textwidth]{figures/graph_structure_def-crop}} 
+\subfloat[]{\label{fig:fb}\includegraphics[width=0.21\textwidth]{figures/human_figure}}
+\subfloat[]{\label{fig:fc}\includegraphics[width=0.185\textwidth]{figures/robot_figure}} 
+\caption{(a) The modules and representations used in the experiments;  (b) the wireless radio was 
+attached to a Sensor Hub BoosterPack on a Tiva C LaunchPad microcontroller that was connected to a 
+Fuel Tank BoosterPack, which was then attached to the back of a human subject; and (c) the same 
+device configuration was used on the back of a NAO humanoid robot.}
+ \label{fig:framework}
+\end{figure*}
 
 
 %% added by faisal start
 The existing activity detection methods focus on special cases of fall detection in humans and 
 humanoid robots. These methods are primarily used in isolation.  
-In SAFE (SmArt Fall dEtection) {~\cite{ojetola2011fall}} reserchers used accelerometers and 
+In SAFE (SmArt Fall dEtection) {~\cite{ojetola2011fall}} researchers used accelerometers and 
 gyroscopes 
 to detect fall incidence among the elderly people, they have used C4.5 decision tree to learn and 
 classify fall and ADLs (activities of daily living). They claimed to identify four different types 
@@ -150,21 +161,11 @@ walking, and abruptly falling back and front. We have used reactive (e.g., thres
 and deliberative (e.g., machine learning) methods to detect these events and provide empirical  
 justifications the success of the success of the methods. 
 
+
 \section{Framework}
 
-\begin{figure*}[!t]
-\centering
-\subfloat[]{\label{fig:fa}\includegraphics[width=0.57\textwidth]{figures/graph_structure_def-crop}} 
-\subfloat[]{\label{fig:fb}\includegraphics[width=0.21\textwidth]{figures/human_figure}}
-\subfloat[]{\label{fig:fc}\includegraphics[width=0.185\textwidth]{figures/robot_figure}} 
-\caption{(a) The modules and representations used in the experiments;  (b) the wireless radio was 
-attached to a Sensor Hub BoosterPack on a Tiva C LaunchPad microcontroller that was connected to a 
-Fuel Tank BoosterPack, which was then attached to the back of a human subject; and (c) the same 
-device configuration was used on the back of a NAO humanoid robot.}
- \label{fig:framework}
-\end{figure*}
-
-Our development framework\footnote{We anonymize the library link.} uses a notion of 
+Our development framework\footnote{The library link has been anonymized.} uses a 
+notion of 
 {\em modules} and {\em representations} to perform
 computations. The modules implement functions, while the representations exchange information from
 one module to another. Figure \ref{fig:fa} shows the modules and representations related to our 
@@ -245,11 +246,13 @@ in validation.
 \caption{Logistic regression Classification}
 	\label{tab:human-logistic-class}
 	\centering
-		\begin{tabular} {l |c |c |c|c}
-			&TP  &	TN  &	FP &	FN \\ \hline
-			walking	& 88\%	& 84\%	& 16\%	& 12\% \\ \hline
-			stand to seat	& 92\%	& 82\%	& 18\% & 	8\%	 \\ \hline 
-			stand to fall	& 92\%	& 88\%	& 12\%	& 8\%	 \\ \hline
+		\begin{tabular} {| l | c | c | c | c |}
+		\hline
+			{\bf Activity} & {\bf  TP}  &	{\bf TN}  &	{\bf FP} &	{\bf FN} \\ 
+\hline
+			Walking	& 88\%	& 84\%	& 16\%	& 12\% \\ \hline
+			Stand to seat	& 92\%	& 82\%	& 18\% & 	8\%	 \\ \hline 
+			Stand to fall	& 92\%	& 88\%	& 12\%	& 8\%	 \\ \hline
 		\end{tabular}
 \end{table}
 
@@ -270,11 +273,13 @@ classification result.
 \caption{SVM Classification}
 	\label{tab:human-svm-class}
 	\centering
-		\begin{tabular} {l |c |c |c|c}
-			&TP  &	TN  &	FP &	FN \\ \hline
-			walking	& 92\%	& 86\%	& 14\%	& 8\% \\ \hline
-			stand to seat	& 94\%	& 84\%	& 16\% & 	6\%	 \\ \hline 
-			stand to fall	& 98\%	& 88\%	& 12\%	& 2\%	 \\ \hline
+		\begin{tabular} {| l | c | c | c| c |}
+		\hline
+			{\bf Activity} & {\bf  TP}  &	{\bf TN}  &	{\bf FP} &	{\bf FN} \\ 
+\hline
+			Walking	& 92\%	& 86\%	& 14\%	& 8\% \\ \hline
+			Stand to seat	& 94\%	& 84\%	& 16\% & 	6\%	 \\ \hline 
+			Stand to fall	& 98\%	& 88\%	& 12\%	& 2\%	 \\ \hline
 		\end{tabular}
 \end{table}
 
