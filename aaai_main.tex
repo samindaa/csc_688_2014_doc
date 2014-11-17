@@ -64,20 +64,22 @@ show the success of the methods on different activity settings.
 
 \section{Introduction}
 
-The humans as well as the biped humanoid robots complete tasks with complex activities. These 
-activities include jogging, running, falling so forth. Some of these activities are 
-considered safe, while, others such as falling abruptly would cause damage to human body 
-or to the structural components of a humanoid robot \cite{li2009accurate}. There has been an 
+The humans as well as the biped humanoid robots complete apparently simple activities that requires 
+complex computational tasks. These activities include jogging, running so forth. While performing 
+these safe activities, accidents such as falls may occur causing damage to human body or to 
+structural components of a humanoid robot \cite{li2009accurate}. There has been an 
 increasing demand in domains such as rescue to use autonomous or teleoperated humanoid robots to 
 complete high-risk tasks otherwise would have been lethal to a human subject. Therefore, we 
-hypotheses environments where humans and humanoid robots collaboratively work to complete 
-tasks. We also hypotheses that learned prediction of activities in both groups can be 
-generalizable. This paper is a step towards that direction to use wearable devices with sensors to 
+envision environments where humans and humanoid robots collaboratively work to complete 
+tasks. Since both humans and biped humanoid robots have similar movements and are susceptible to 
+similar accidents we believe same set of learning algorithms are suitable for both groups. In this 
+paper we report a generalize approach for learning and predictions for fall of both groups.  This 
+paper is a step towards that direction to use wearable devices with sensors to 
 learn, predict, and generalize across the two demographic groups.
 
 \begin{figure*}[!t]
 \centering
-\subfloat[]{\label{fig:fa}\includegraphics[width=0.57\textwidth]{figures/graph_structure_def-crop}} 
+\subfloat[]{\label{fig:fa}\includegraphics[width=0.6\textwidth]{figures/graph_structure_def-crop2}}
 \subfloat[]{\label{fig:fb}\includegraphics[width=0.21\textwidth]{figures/human_figure}}
 \subfloat[]{\label{fig:fc}\includegraphics[width=0.185\textwidth]{figures/robot_figure}} 
 \caption{(a) The modules and representations used in the experiments;  (b) the wireless transmitter 
@@ -87,8 +89,21 @@ device configuration was used on the back of a NAO humanoid robot.}
  \label{fig:framework}
 \end{figure*}
 
+Compared to the existing solutions, we have provided a generalizable methods to detect human  and 
+human-like activities from able-bodied humans and NAO humanoid robots. To the best of our 
+knowledge, we are the 
+first to investigate the prospect of using an external embedded device to detect human-like motions 
+on a NAO. The microcontrollers and embedded devices provide a flexible platform to 
+build may real world applications. In order to build these applications, a practitioner would 
+require  flexible and reliable software solutions. A practitioner also may require to use more than 
+one functionality provided by the devices to build applications. Existing software solutions 
+provide facilities to build applications to a certain degree, but, they lack methods or systems to 
+integrate multiple devices simultaneously without much user burden. We have developed  
+a state-of-the-art open source software solution to build heterogeneous applications on many 
+devices, which can be programmed on multiple operating systems. 
 
-%% added by faisal start
+\subsection{Related Work}
+
 The existing activity detection methods focus on special cases of fall detection in humans and 
 humanoid robots. These methods are primarily used in isolation.  
 In SAFE (SmArt Fall dEtection) {~\cite{ojetola2011fall}} researchers used accelerometers and 
@@ -117,26 +132,13 @@ robust classification of different events. There has been similar efforts to det
 using motion tracking, e.g., \cite{dumitrache2013fall,kumarwearable,liang2012pre}.
 
 
-Compared to the existing solutions, we have provided a generalizable methods to detect human  and 
-human-like activities from able-bodied humans and NAO humanoid robots. To our knowledge, we are the 
-first to investigate the prospect of using an external embedded device to detect human-like motions 
-on a NAO. The microcontrollers and embedded devices provide a flexible platform to 
-build may real world applications. In order to build these applications, a practitioner would 
-require  flexible and reliable software solutions. A practitioner also may require to use more than 
-one functionality provided by the devices to build applications. Existing software solutions 
-provide facilities to build applications to a certain degree, but, they lack methods or systems to 
-integrate multiple devices simultaneously without much user burden. We have developed  
-a state-of-the-art open source software solution to build heterogeneous applications on many 
-devices, which can be programmed on multiple operating systems. 
-
-
-Texas Instruments (TIs) microcontrollers\footnote{\url{https://www.ti.com/}} and add-on boards such 
+Texas Instruments (TIs) microcontrollers\footnote{\url{https://www.ti.com/}}  boards such 
 as MSP430{\texttrademark}LaunchPad, Tiva{\texttrademark} C Series TM4C123G
-LaunchPad (a low-cost evaluation platform for ARM Cortex-M4F-based microcontrollers), Tiva C Series 
-TM4C129 Connected LaunchPad (a new development platform from Texas Instruments
-based on the powerful TM4C129), Sensor Hub BoosterPack, and CC2533 wireless transmitter and 
-receiver (an add-on board designed to fit Tiva C Series TM4C123G LaunchPad along with all of TI’s 
-MCU LaunchPads) provide ultimate solutions for a wide rage of low power and portable applications. 
+LaunchPad, Tiva C Series 
+TM4C129 Connected LaunchPad, and add-on booster packs such as Sensor Hub BoosterPack and CC2533 
+wireless transmitter and 
+receiver  provide flexible platform for developing solutions for a wide rage of low power 
+and portable applications. 
 Therefore, a modular and flexible software framework allow practitioners to use the functionalities 
 provides by these systems effectively and efficiently. The framework provides functionalities to 
 build  rational agents that perceive its environment though sensors and act upon it though actuators 
