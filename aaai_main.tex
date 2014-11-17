@@ -155,8 +155,8 @@ justifications the success of the success of the methods.
 \begin{figure*}[!t]
 \centering
 \subfloat[]{\label{fig:fa}\includegraphics[width=0.55\textwidth]{figures/graph_structure_def-crop}} 
-\subfloat[]{\label{fig:b}\includegraphics[width=0.21\textwidth]{figures/human_figure}}
-\subfloat[]{\label{fig:b}\includegraphics[width=0.185\textwidth]{figures/robot_figure}} 
+\subfloat[]{\label{fig:fb}\includegraphics[width=0.21\textwidth]{figures/human_figure}}
+\subfloat[]{\label{fig:fc}\includegraphics[width=0.185\textwidth]{figures/robot_figure}} 
 \caption{(a) The modules and representations used in the experiments;  (b) the wireless radio was 
 attached to a Sensor Hub BoosterPack on a Tiva C LaunchPad microcontroller that was connected to a 
 Fuel Tank BoosterPack, which was then attached to the back of a human subject; and (c) the same 
@@ -164,23 +164,22 @@ device configuration was used on the back of a NAO humanoid robot.}
  \label{fig:framework}
 \end{figure*}
 
-The software development framework\footnote{We anonymize the link the library.} uses a notion of 
-``modules'' and ``representations'' to perform
+Our development framework\footnote{We anonymize the library link.} uses a notion of 
+{\em modules} and {\em representations} to perform
 computations. The modules implement functions, while the representations exchange information from
-one module to another. Figure \ref{fig:fa} shows an example of modules and representations. 
-The boxes represent modules, while the ellipses represent the representations. As an
+one module to another. Figure \ref{fig:fa} shows the modules and representations related to our 
+experiments. The boxes represent modules, while the ellipses represent the representations. As an
 example, the module {\em MPU9150Module} contains logic to read/write from MPU-9150 Nine-Axis
 (Gyro+Accelerometer+Compass) MEMS MotionTracking device on the sensor hub booster
 pack. The representation {\em MPU9150Representation} contains all the values that the module
 {\em MPU9150Module} would like to share with other modules. In this graph, {\em LearningModule}
 requests values from {\em MPU9150Representation} to implement the learning function. A module can 
-provide multiple representations. The blue arrows shows the provided representations, the black 
-arrows show the requested representations, and the red arrows show the used representations.
-The end uses of the software only requires to write modules and representations, while the 
-framework 
-will compute the topologically sorted graph out of the nodes. This will be computed once, and the
-nodes in the queue will be executed one after the other. If there were to be cycles in the graph,
-the framework will detect them and indicate them to the users.
+provide multiple representations. The blue arraws shows the provided representations, and the black 
+arraws show the requested representations. The developers only require to write 
+modules and representations, while the framework will compute the topologically sorted graph out of 
+the nodes. This will be computed once, and the nodes in the queue will be executed one after the 
+other. If there were to be cycles in the graph, the framework will detect them and indicate them to 
+the developers.
 
 
 \section{Approach and Evaluation}
@@ -214,8 +213,7 @@ section discusses the data processing, machine learning and
 the results obtained
 \textbf{to do need to change}
 
-\subsection{Able-Bodied Human}
-
+\subsection{Able-Bodied Human} \label{ableBodiedHuman}
 
 We have collected data for different human activities. We have put the sensors on the chest of the
 human body and collected data from those sensors in fixed interval. For this experiment, we have
@@ -225,7 +223,7 @@ and \item standing to falling\end{inparaenum}. We have collected data based on t
 each data point has twelve fields, where nine fields are from nine reading from sensors and three
 fields (yaw, pitch and roll) are derived from all those sensors reading.
 
-\subsection*{Classification using Logistic Regression}
+\subsection{Classification using Logistic Regression}
 
 In the first part of the data analysis we have put all our collected data together and labeled it
 with specific number to denote the position. We have used multivariate logistic regression model to
@@ -290,7 +288,7 @@ regression can predict fall with 87.5\% accuracy (Shown in Table
 		%\end{tabular}
 %\end{table}
 
-\subsection*{Classification and Validation using Support Vector Machine}
+\subsection{Classification and Validation using Support Vector Machine}
 
 In the second part of the data analysis, we have used support vector machine (SVM) model
 to classify our data. To train the model, we used the same procedure as before, 80\% of
@@ -345,7 +343,7 @@ prediction, SVM can predict fall with 90.5\% accuracy (Shown in Table
 		%\end{tabular}
 %\end{table}
 
-\subsection*{Fall Prediction within Time Frame}
+\subsection{Fall Prediction within Time Frame}
 
 A falling event does not happen within a single reading from sensors, it is consists of multiple
 reading from sensors.  Its not really accurate to detect a fall or any other motion based on a
@@ -373,25 +371,16 @@ frame.
 
 \subsection{NAO Humanoid Robot}
 
-We have used Tiva C microcontroller with sensor hub attached to it to conduction our experiments in
-this section. The device was first uploaded with CSC688 Energia to send information from device to
-NAO though the serial port. The calculations were conducted on the device, while the outcomes were
-serialized to the file system of NAO. We have integrated NAO software and CSC688 Energia to send and
-received data from the device and the robot. Figure \ref{fig:attached_device}(a) shows the location
-in which the device was attached. Figure \ref{fig:attached_device}(b) shows the Sensor Hub
-BoosterPack. The roll is around x-axis, the pitch is around y-axis, and the yaw is around z-axis. 
-We have used the USB port of the robot to communicate with the device.  
-
-
-
-We have configured InvenSense MPU-9150: 9-axis MEMS motion sensor on the sensor hub to sample data
+We have used the device configuration as described  in the subsection {\em Able-Bodied Human} 
+and it was attached to the robot as shown in Figure \ref{fig:fc}. We have also followed the same 
+data collection protocol. In the first experiment, we have designed a thresholding base activity 
+predictor. We have calculated the roll, pitch, and yaw angles for this study (the roll is around 
+x-axis, the pitch is around y-axis, and the yaw is around z-axis). We have configured InvenSense 
+MPU-9150: 9-axis MEMS motion sensor on the sensor hub to sample data
 at 50$Hz$. We have chosen this value to compensate delays in communications and to cope with the
-constraints provided by the robot. We have used a threshold based method to detect the motions of
-the robot. Specially, we have detected only the normal behaviors such as standing, walking, turning,
-and falling behaviors such as falling back and front. Therefore, we have treated standing, walking
-and turning as one event, while the falling as another event, which amounts to three events. Once
-the thresholds were found from the data, we have increased the sampling rate of the device to 500 Hz
-to detect the events swiftly.  
+constraints provided by the robot. In this study, we have detected only the normal 
+activities (marching, waling forward/backward, and turning clockwise/counter-clockwise)
+and falling activities (falling back, front, and sideways). 
 
 \begin{figure*}[!ht]
   \centering
@@ -413,52 +402,51 @@ to detect the events swiftly.
   \subfloat[Falling to right
 side.]{\label{fig:tsnedataset_14}\includegraphics[width=0.25\textwidth]
        {plot4_fallen-crop}}      
-  \caption{The figures (a)-(d) show the roll and pitch angles (raw and filtered) for normal 
-behavior, while, the figures (e)-(h) show the raw and filtered roll and pitch angles for fallen 
-states of the NAO humanoid robot.}
+  \caption{Figures (a)-(d) show the roll and pitch angles (raw and filtered) for normal 
+behavior. Figures (e)-(h) show the raw and filtered roll and pitch angles for fallen 
+states of NAO humanoid robot.}
   \label{fig:normalFallenBehavior}
 
 \end{figure*}
 
-Our NAO robots run {\em Robocanes} binary, which has been primarily written for soccer
-playing. The walking engine of {\em Robocanes} conducts primary movements. These movements are
-regulated by linear speeds, $x_v$ and $y_v$, and a rotational speed $\theta_v$. Depending on these
+Our NAO humanoid robots have omni-directional walking engines to conducts primary  
+movements. These movements are regulated by linear velocities $\dot{x}_v$ and $\dot{y}_v$, and a 
+angular velocity $\dot{\theta}_v$ input parameters. Depending on these
 values, we can let the robot walk (forward, backward, and side-ways), and rotate (clockwise and
-counter-clockwise) with different speeds. Therefore, we have considered \begin{inparaenum}[(1)]
-\item marching ($x_v = 0 , y_v = 0, \theta_v = 0$); \item fast walk forward/backward ($x_v = \pm200
-, y v = 0, \theta_v = 0$); \item \item slow walk forward/backward ($x_v = \pm30 , y_v = 0, \theta_v
-= 0$); \item side-way movements ($x_v = 0, y_v = \pm200, \theta_v = 0$); and  \item rotate
-($x_v = 0 , y_v = 0, \theta_v = \pm 0.5$) \end{inparaenum} as normal behaviors. All other motions
-are considered falling behaviors. 
+counter-clockwise) with different speeds. In this study, we have considered \begin{inparaenum}[(1)]
+\item marching ($\dot{x}_v = 0 , \dot{y}_v = 0, \dot{\theta}_v = 0$); \item walking  
+forward/backward ($\dot{x}_v = \pm200
+, \dot{y}_v = 0, \dot{\theta}_v = 0$);  \item walking side-ways ($\dot{x}_v = 0, \dot{y}_v = 
+\pm200, \dot{\theta}_v = 0$); and  \item rotating clockwise/counter-clockwise
+($\dot{x}_v = 0 , \dot{y}_v = 0, \dot{\theta}_v = \pm 0.5$) \end{inparaenum} as {\em normal state}, 
+while, all the other activities have been classified as {\em fallen state}. 
 
 
-We have used only the roll and the pitch values  to detect relevant events. In order to achieve an
-effective threshold based decision making, first we have filtered the roll, pitch, and
-yaw\footnote{Even though we have not used yaw values, we have filtered them using Kalman filter.}
-values using a Kalman filter \cite{Welch:1995:IKF:897831}. The Figures 
-\ref{fig:normalFallenBehavior} ((a)--(f)) show
-the row and the filtered values of the row and the pitch values for marching, fast walk forward,
-slow walk backward, rotate counter-clockwise, fast walk backward, and left side-way walk. Other
-scenarios show similar plots, and we have refrained from plotting them. The threshold method
+We have used only the roll and the pitch values  to detect relevant activities. In order to achieve 
+an effective threshold based decision making, first we have filtered the roll, pitch, and
+yaw values using a Kalman filter \cite{Welch:1995:IKF:897831}. Figures 
+\ref{fig:normalFallenBehavior} ((a)--(d)) show
+the raw and the filtered values of the raw and the pitch values for marching, walk backward,
+rotating clockwise, and left side-way walk. The other activities show similar plots (we have 
+refrained from plotting them due to space constraints). The thresholding method
 suggests that, if the filtered roll values are within the range $[90\pm15]$ (degrees) and the
-filtered pitch values are within the rage $[0\pm15]$ (degrees), then 100\% accuracy the NAO humanoid
-robot will show the normal behaviors. Otherwise, we can safely assume that the robot is in a fallen
-state.   
+filtered pitch values are within the rage $[0\pm15]$ (degrees), then with 100\% accuracy, NAO 
+humanoid robot will is in a normal state. Otherwise, we can safely assume that the robot is in 
+a fallen state.   
 
-There are four fallen states for the robot: \begin{inparaenum}[(1)] \item fallen
-forwad; \item fallen backward; \item fallen to left side; and \item fallen to right
-side\end{inparaenum}. The Figures \ref{fig:normalFallenBehavior} ((g)--(j)) show the roll and pitch 
-angles (row and
-filtered) for typical fallen robot. If the filtered roll value is less that 60 degrees, we can
-safely assume that the robot is fallen forward. If the filtered roll values is more than 100
-degrees we can assume that the robot is fallen backward. To detect the events fallen to the left
-and right, we have used the filtered pitch values. If the filtered pitch value is less than -50
-degrees, we can assume that the robot is fallen to the left side, while if the filtered pitch
-values is more than 50 degrees, we can assume that the robot is fallen to the right side. With
-these thresholds for a separate test cases, the thresholding method has detected fallen state 100\%
-accuracy. 
+There are four fallen states for the robot: \begin{inparaenum}[(1)] \item falling
+forward; \item falling backward; \item falling to left side; and \item falling to right
+side\end{inparaenum}. Figures \ref{fig:normalFallenBehavior} ((e)--(h)) show the roll and pitch 
+angles (raw and filtered) for typical fallen robot. If the filtered roll value is less that 60 
+degrees, we can safely assume that the robot is falling forward. If the filtered roll values is 
+more than 100 degrees we can assume that the robot is falling backward. To detect the events 
+falling to the left and right, we have used the filtered pitch values. If the filtered pitch value 
+is less than -50 degrees, we can assume that the robot is falling to the left side, while if the 
+filtered pitch values is more than 50 degrees, we can assume that the robot is falling to the right 
+side. With these thresholds for a separate test cases, the thresholding method has detected fallen 
+state 100\% accuracy. 
 
-
+FixMe:
 
 The range of motion of NAO robot is comparatively limited compared to a able-bodied human.
 Therefore, we are able to obtain satisfactory results for detecting motion event from the
