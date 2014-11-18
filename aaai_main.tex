@@ -196,7 +196,7 @@ framework is lightweight, flexible, and consumes minimum memory and computationa
 possible. We have tested our framework on multiple microcontrollers and on boosterpacks as stated 
 above. We have written and distributed  software solutions to access devices on the boosterpacks 
 such 
-as \begin{inparaenum}[(1)] \item InvenSense MPU-9150: nine-axis MEMS motion tracking (thee-axis 
+as \begin{inparaenum}[(1)] \item InvenSense MPU-9150: 9-axis MEMS motion tracking (thee-axis 
 gyro, thee-axis accelerometer, and thee-axis magnetometer); \item Bosch Sensortec BMP180 pressure 
 sensor; \item Sensirion SHT21 humidity and ambient temperature sensor; \item Intersil ISL29023 
 ambient and infrared light sensor; and \item TIs TMP006 non-contact infrared temperature 
@@ -220,7 +220,7 @@ The Figure \ref{fig:fa} shows the modules and representations related to our
 experiments, where the boxes represent the computational modules, while the rounded-boxes represent 
 the input to a module or an output from a module. For brevity, in the rest of the paper 
 computational modules to modules. As an example, the module {\em MPU9150Module} contains logic to 
-read/write from MPU-9150 Nine-Axis (Gyro+Accelerometer+Compass) MEMS MotionTracking device on the 
+read/write from MPU-9150 9-Axis (Gyro+Accelerometer+Compass) MEMS MotionTracking device on the 
 sensor hub booster pack. The representation {\em MPU9150Representation} contains all the values that 
 the module {\em MPU9150Module} would like to share with other modules. In this graph, {\em 
 LearningModule} requests values from {\em MPU9150Representation} to implement the learning function. 
@@ -235,18 +235,18 @@ LearningModule} requests values from {\em MPU9150Representation} to implement th
 \subfloat[Human stand to seat.]{\label{fig:hb}\includegraphics[width=0.32\textwidth]{plots/human_stand-crop.pdf}}
 \subfloat[Human stand to fall.]{\label{fig:hc}\includegraphics[width=0.32\textwidth]{plots/human_falling-crop.pdf}}
 \\
-\subfloat[Robot walk forward.]{\label{fig:ha}\includegraphics[width=0.32\textwidth]
+\subfloat[Robot walk forward.]{\label{fig:ra}\includegraphics[width=0.32\textwidth]
 {plots/robot_walk_forward-crop.pdf}}
-\subfloat[Robot walk backward.]{\label{fig:hb}\includegraphics[width=0.32\textwidth]
+\subfloat[Robot walk backward.]{\label{fig:rb}\includegraphics[width=0.32\textwidth]
 {plots/robot_walk_backward-crop.pdf}}
-\subfloat[Robot rotate clockwise.]{\label{fig:hc}\includegraphics[width=0.32\textwidth]
+\subfloat[Robot rotate clockwise.]{\label{fig:rc}\includegraphics[width=0.32\textwidth]
 {plots/robot_rotate_cw-crop.pdf}}
 \\
-\subfloat[Robot fallen forward.]{\label{fig:ha}\includegraphics[width=0.32\textwidth]
+\subfloat[Robot fallen forward.]{\label{fig:rd}\includegraphics[width=0.32\textwidth]
 {plots/robot_fallen_forward-crop.pdf}} 
-\subfloat[Robot fallen backward.]{\label{fig:hb}\includegraphics[width=0.32\textwidth]
+\subfloat[Robot fallen backward.]{\label{fig:re}\includegraphics[width=0.32\textwidth]
 {plots/robot_fallen_backward-crop.pdf}}
-\subfloat[Robot fallen right.]{\label{fig:hc}\includegraphics[width=0.32\textwidth]
+\subfloat[Robot fallen right.]{\label{fig:rf}\includegraphics[width=0.32\textwidth]
 {plots/robot_fallen_right-crop.pdf}}
 
 \caption{Figures (a)-(c) shows 3-axis accelerometer and 3-axis gyroscope graph for human motions. Figures (d)-(f) shows 3-axis accelerometer and 3-axis gyroscope graph for robot's walk motion. Figures (g)-(i) shows 3-axis accelerometer and 3-axis gyroscope graph for robot's fallen motion}
@@ -256,7 +256,7 @@ LearningModule} requests values from {\em MPU9150Representation} to implement th
 
 We have conducted our experiments on detecting motions (activities) on 
 %able-bodied 
-humans and humanoid robots (NAO robots). We have used InvenSense MPU-9150 
+humans and humanoid robots (NAO robots). We have used a InvenSense MPU-9150 
 motion tracking sensor on the Sensor Hub BoosterPack. 
 % 
 % The module {\em MPU9150Module} connects to 
@@ -283,20 +283,24 @@ data processing, machine learning and results for both the human and robotic exp
 
 \subsubsection{Learning Algorithms:}
 
-We have tested our hypotheses using  {\em regularized logistic regression} (MLR) and {\em support 
+We have tested our hypotheses using  {\em regularized logistic regression} (LLR) and {\em support 
 vector machine} (SVM) algorithms. Our training set contains 80\% of collected samples, while, the 
 reset has been used for cross-validation. We have used standard parameter sweeping techniques to 
 find the classifier parameters that provide the optimal trade-off between the bias and the 
 variance, while precision, recall, and F$_1$-scores have been used to obtain the optimal value. 
 
-We  have configured the motion sensor to sample at  $20ms$ (50$Hz$) sampling rate. In order to 
+We  have configured the motion sensor to sample at every  $20ms$, which is equivalent to 50$Hz$ 
+sampling rate. In order to 
 identify activities: \begin{inparaenum}[1)] \item we have used a window size of $400ms$ (20 
 samples); and \item we have allowed 10 samples ($200ms$) to overlap between windows. 
 \end{inparaenum} The selection of the window size is based on the observation that a fall event 
 takes between $200-300ms$. Thus, a window size of $400ms$ will include both fall event and 
 non-fall event data for classification. For each window, we have calculated the running average of 
-all nine-axis values. This has produced nine values per window, which has been used as features. We 
-also added a bias term to provide additional capacity for the learning algorithms. 
+all 9-axis values. This has produced nine values per window, which has been used as features. We 
+also added a bias term to provide additional capacity for the learning algorithms. The  
+accelerometer readings are in 3-axis in meter per square second ($m/s^2$), gyroscope readings are 
+in 3-axis in radian per square second ($rads/s^2$), and the magnetometer readings are in 3-axis in 
+Tesla ($T$). 
 
 As a preprocessing step, the features, except the bias, have been subjected to feature 
 standardization. We have independently set each dimension of the sample  to have zero-mean and 
@@ -306,32 +310,17 @@ subtracting this from each dimension. Then each dimension is divided by its stan
 
 \subsection{Experiments with a Human}
 \subsubsection{Data processing:} 
-We have collected data for different human activities. We have put the sensors on the back of the
-human body (cf. figure \ref{fig:fb}) and collected data from those sensors in fixed interval. 
-We have sampled data at 50$Hz$ for our experiments. We sampled from several different human configurations:
-\begin{inparaenum}[(1)] \item walking forward; \item from standing to sitting down and back to standing;
-and \item from standing to falling and back to standing\end{inparaenum}. Since we have used a 9-axis MEMS device 
-each sample contains accelerometer readings in three-axis in $ms^{-2}$, gyroscope readings in 
-three-axis in $rads^{-2}$, and magnetometer readings in three-axis in {\em Tesla}. 
+We have attached the sensors on the mid-back of the human body as shown in Figure \ref{fig:fb} for  
+collecting our datasets. We have collected data for several different  activities. For the studies 
+reported here we have used the following datasets:
+\begin{inparaenum}[(1)] \item walking forward; \item from standing to sitting down 
+and back to standing; and \item from standing to falling and back to standing. \end{inparaenum} 
+Example plots for \begin{inparaenum}[1)] \item walking forward; \item from standing to sitting 
+down 
+and back to standing; and \item from standing to falling and back to standing \end{inparaenum} 
+ are shown in Figures \ref{fig:ha}, \ref{fig:hb}, and \ref{fig:hc} respectively. 
 
-An activity consists of multiple sensor readings since it is not sufficient to detect activities based 
-on a single reading. We have used a 200$ms$ time-frame-based prediction protocol, which entails that we
-predict an event with all the sensor readings within that time frame. 
-
-If our detection procedure detects an event for more than 90\% of the defined time frame, we denote that 
-event as a \textit{true} event. We use two classifiers for this detection: \begin{inparaenum}[1)] 
-\item logistic regression; and \item support vector machines (SVM)\cite{Bishop:2006:PRM:1162264}. 
-\end{inparaenum} 
-
-\subsubsection{Machine Learning\\}
-\emph{Classification using Logistic Regression:}
-In the first part of the data analysis we have put all our collected samples together and labeled it
-with specific number to denote the position. We have used a multivariate logistic regression model to
-classify our samples. We have used 80\% of the samples for training, while the rest has been used
-for the cross-validation process. Table \ref{tab:human-logistic-class} shows the final results, where, TP, TN, 
-FP, and FN stand for true positive, true negative, false positive, and false negative respectively. 
-
-\begin{table}[!ht]
+ \begin{table}[!ht]
 \caption{Logistic regression classification for human activities.}
 	\label{tab:human-logistic-class}
 	\centering
@@ -345,11 +334,13 @@ FP, and FN stand for true positive, true negative, false positive, and false neg
 		\end{tabular}
 \end{table}
 
-\noindent\emph{Classification and Validation using Support Vector Machine:}
-In the second part of the data analysis we have used a SVM model
-to classify our samples. To train the model, we used the same protocol as before; 80\% of
-samples were used to train the classifier and the rest of the  samples were used for 
-cross-validation. Table \ref{tab:human-svm-class} shows the final results.
+
+\subsubsection{Results:} Table \ref{tab:human-logistic-class} shows the final results for 
+LLR classification, where, true positive, true negative, false positive, and false negative are 
+abbreviated with TP, TN, FP, and FN respectively. For walking on an average, the accuracy is 91\%, 
+similarly, for stand to seat and stand to fall the accuracies are 94\% and 95\% on an 
+average, respectively. We also observed that detection of the walking activity is less than other 
+activities that we experimented with.  
 
 \begin{table}[!ht]
 \caption{SVM classification for human activities.}
@@ -365,15 +356,19 @@ cross-validation. Table \ref{tab:human-svm-class} shows the final results.
 		\end{tabular}
 \end{table}
 
-\subsubsection{Results:}
-Our experiments reveal that the SVM classifier performs better than the logistic regression classifier. 
-However, due to memory and computational restrictions on the humanoid robot, we have found that the logistic 
-regression classifier is a better choice. We assume that the same observation can be made on most embedded 
-devices. Our feature vector consists of the mean normalized sensor reading and a bias term. We plan to 
-combine and prune features to improve the classification accuracy for future work.  
+
+The results for SVM classifier is summarized in Table \ref{tab:human-svm-class}. On an average, 
+accuracy for each type of activity is higher than LLR classifier with on an average 95\% for 
+walking, 94\% for stand to seat, and 96\% for stand to fall. As a consequence, SVM classifier has 
+less false positives and false negative compared to LLR.  Our experiments reveal that the SVM 
+classifier performs better than the logistic regression classifier. However, due to memory and 
+computational restrictions on the embedded devices, we have found that the logistic 
+regression classifier is a better choice.  Our feature vector consists of the mean normalized sensor 
+reading and a bias term. We plan to combine and prune features to improve the classification 
+accuracy for future work.  
 
 
-\subsection{Humanoid Robot NAO}
+\subsection{Experiments with a NAO Robot}
 \subsubsection{Data processing:} 
 We have used the device configuration as described in section \ref{sec:Intro}
 and it was attached to the robot as shown in Figure \ref{fig:fc}. In the first experiment, we have 
