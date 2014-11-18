@@ -46,7 +46,8 @@ Wearable Sensors}
 \maketitle
 \begin{abstract}
 \begin{quote}
-While humans and biped humanoid robots perform normal activities such as jogging, running so on, an 
+While humans and biped humanoid robots perform normal activities such as jogging, running and so 
+on, an 
 abnormal event such as a fall may occur. These events may causing damage to a human body or to 
 the structural components of a humanoid robot. For humans, immediate identification of a fall will 
 allow fast responses, while for a robot early prediction can be used to take corrective measures to 
@@ -116,7 +117,7 @@ Javier Moya et. al.{~\cite{moya2014fall}} proposed a fall detection, avoidance a
 mechanism for biped humanoid robots. They tried to simulate the real world environment where 
 humanoid robots have to walk over irregular surface, running or playing sports, collusion with 
 other 
-robots and according to their article the proposed framework can detect instability and do fall 
+robots. Their proposed framework can detect instability and do fall 
 avoidance or at least low-damage falling mechanism is invoked. 
 %% faisal end
 
@@ -218,8 +219,9 @@ the users.
 
 The Figure \ref{fig:fa} shows the modules and representations related to our 
 experiments, where the boxes represent the computational modules, while the rounded-boxes represent 
-the input to a module or an output from a module. For brevity, in the rest of the paper 
-computational modules to modules. As an example, the module {\em MPU9150Module} contains logic to 
+the input to a module or an output from a module. For brevity, in the rest of the paper, the  
+{\em computational modules} are refereed as  {\em modules}. As an example, the module {\em 
+MPU9150Module} contains logic to 
 read/write from MPU-9150 9-Axis (Gyro+Accelerometer+Compass) MEMS MotionTracking device on the 
 sensor hub booster pack. The representation {\em MPU9150Representation} contains all the values that 
 the module {\em MPU9150Module} would like to share with other modules. In this graph, {\em 
@@ -266,7 +268,8 @@ We have used 3-axis accelerometer readings, 3-axis gyroscope readings, 3-axis ma
 the quaternion rotation axis of the device, and Euler angles roll, pitch, and yaw.  In order to 
 calculate Euler angles, we have used the Direction Cosine Matrix (DCM) algorithm. We have configured 
 one device as a remote sensing device, and the other device is configured to receive data from the 
-sensing device. This section shows our results, validations, and conclusions.
+sensing device. The rest of the  section reports our data collection, data processing, learning, 
+and prediction results.
 
 
 \subsection{Activity Annotation}
@@ -281,7 +284,7 @@ Figure {~\ref{fig:anotation-human-robot}}
 (d)-(i) shows activity annotations for the NAO robot. We have structured the text in a way that we discuss 
 data processing, machine learning and results for both the human and robotic experiments.
 
-\subsubsection{Learning Algorithms:}
+\subsection{Learning Algorithms}
 
 We have tested our hypotheses using  {\em regularized logistic regression} (LLR) and {\em support 
 vector machine} (SVM) algorithms. Our training set contains 80\% of collected samples, while, the 
@@ -309,7 +312,7 @@ subtracting this from each dimension. Then each dimension is divided by its stan
  
 
 \subsection{Experiments with a Human}
-\subsubsection{Data processing:} 
+
 We have attached the sensors on the mid-back of the human body as shown in Figure \ref{fig:fb} for  
 collecting our datasets. We have collected data for several different  activities. For the studies 
 reported here we have used the following datasets:
@@ -369,15 +372,7 @@ accuracy for future work.
 
 
 \subsection{Experiments with a NAO Robot}
-\subsubsection{Data processing:} 
-We have used the device configuration as described in section \ref{sec:Intro}
-and it was attached to the robot as shown in Figure \ref{fig:fc}. In the first experiment, we have 
-designed a thresholding base activity predictor. We have calculated the roll, pitch, and yaw angles 
-for this study (the roll is around the x-axis, the pitch is around the y-axis, and the yaw is around 
-the z-axis). We also have configured the InvenSense MPU-9150 motion sensor on the sensor hub to 
-sample data at 50$Hz$. We have chosen this value to compensate delays in communications and to cope 
-with the constraints provided by the robot. We have focused on detecting the following motions: \textit{marching}, \textit{walking forward/backward}, \textit{turning clockwise/counter-clockwise},
-as well as \textit{falling back}, \textit{falling front}, and \textit{falling sideways}.
+ 
 
 \begin{figure*}[!ht]
   \centering
@@ -406,25 +401,18 @@ states of NAO humanoid robot.}
 
 \end{figure*}
 
-Our NAO robots have an omni-directional walking engine to conduct walking motions.  
-These motions are regulated by linear velocities $\dot{x}_v$ and $\dot{y}_v$, and an 
+
+Our NAO robots have an omni-directional walking engine.  
+Walking motions are regulated by linear velocities $\dot{x}_v$ and $\dot{y}_v$, and an 
 angular velocity $\dot{\theta}_v$ as input parameters. Depending on these
 values we can let the robot walk (forward, backward, and side-ways) and rotate (clockwise and
-counter-clockwise) with different speeds. In this study we have considered \begin{inparaenum}[(1)]
+counter-clockwise) with different speeds. In this study, we have considered \begin{inparaenum}[(1)]
 \item marching ($\dot{x}_v = 0 , \dot{y}_v = 0, \dot{\theta}_v = 0$); \item walking  
 forward/backward ($\dot{x}_v = \pm200
 , \dot{y}_v = 0, \dot{\theta}_v = 0$);  \item walking side-ways ($\dot{x}_v = 0, \dot{y}_v = 
 \pm200, \dot{\theta}_v = 0$); and  \item rotating clockwise/counter-clockwise
 ($\dot{x}_v = 0 , \dot{y}_v = 0, \dot{\theta}_v = \pm 0.5$) \end{inparaenum} as {\em normal states}, 
-while all the other activities are classified as {\em fallen states}. We have used the  
-following protocol to collect samples. \textit{Firstly}, we set the velocity parameters and use the wireless 
-radio to transmit the samples to the sample-collection device. \textit{Secondly}, we activate the robot to 
-the given configuration. \textit{Finally}, we have tagged the start point of the sample stream and waited 
-approximately a minute to tag the end of the sample stream. This is an episode of the normal state. 
-We have collected multiple episodes to create our learning ensemble. To collect samples for fallen 
-states, we have configured the robot to march. Then, we safely pushed the robot to 
-different directions to inducing the fallen state. Similarly, we tagged the sample streams to 
-generate episodes.    
+while all the other activities are classified as {\em fallen states}. 
 
 \begin{table}[!ht]
 \caption{Logistic regression classification for robot activities.}
@@ -448,39 +436,18 @@ generate episodes.
 		\end{tabular}
 \end{table}
 
-We have used the roll and pitch values to detect relevant activities. In order to achieve 
-an effective threshold-based decision making we have filtered the roll, pitch, and
-yaw values using a Kalman filter \cite{Welch:1995:IKF:897831}. Figures 
-\ref{fig:normalFallenBehavior} ((a)--(d)) show
-the raw and the filtered values of the raw and the pitch values for marching, walk backward,
-rotating clockwise, and left side-way walk. The other activities show similar plots (we have 
-refrained from plotting them due to space constraints). The thresholding method
-suggests that, if the filtered roll values are within the range $[90\pm15]$ (degrees) and the
-filtered pitch values are within the rage $[0\pm15]$ (degrees), then with 100\% accuracy, the NAO 
- robot will be in a normal state. Otherwise, we can safely assume that the robot is in 
-a fallen state.   
 
-We have defined four fallen states for the robot: \begin{inparaenum}[(1)] \item falling
-forward; \item falling backward; \item falling to the left side; and \item falling to the right
-side\end{inparaenum}. Figures \ref{fig:normalFallenBehavior} ((e)--(h)) show the roll and pitch 
-angles (raw and filtered) for a typical fallen robot. If the filtered roll value is less that 60 
-degrees, we can safely assume that the robot is falling forward. If the filtered roll values is 
-more than 100$^{\circ}$ we can assume that the robot is falling backward. To detect the events 
-falling to the left and right, we have used the filtered pitch values. If the filtered pitch value 
-is less than -50$^{\circ}$, we can assume that the robot is falling to the left side, while if the 
-filtered pitch values is more than 50$^{\circ}$, we can assume that the robot is falling to the right 
-side. With these thresholds for a separate test cases, the thresholding method has detected fallen 
-state with 100\% accuracy. 
 
-\subsubsection{Machine Learning:}
-Even though the thresholding method successfully distinguished between normal and fallen states, we were 
-unable to detect states within normal activities, i.e., walking forward to walking backward etc.. 
-Therefore, similar to the previous experiments, we have used logistic regression and SVM 
-classifiers to identify different activities. We have followed the same protocols as mentioned in 
-the previous section to generate features, learning, and prediction. Table 
-\ref{tab:robot-logistic-class} shows the results for the logistic regression classifier while 
-Table \ref{tab:robot-svm-class} shows the results for the SVM classifier.    
-
+We have attached the sensors on the back of the NAO humanoid robot as shown in Figure \ref{fig:fc} 
+and used the following protocol to collect the datasets. First, we set the velocity 
+parameters and activate the walking engine of the robot. Then, we collect the motion data 
+transmitted by the wireless device attached at the back of the robot. Finally, we marked the start 
+point of the sample stream and collect data approximately for a minute and marked the end of the 
+sample stream. This is an episode of a normal  or a fallen state. We repeat the about described 
+protocol for collecting multiple episodes to obtain our learning ensemble. To collect samples for 
+fallen states, we have configured the walking engine to marching activity. Then, we safely pushed 
+the robot to different directions to inducing the fallen state. Similarly, we marked the sample 
+streams to generate several episodes for the learning ensemble.    
 
 \begin{table}[!ht]
 \caption{SVM classification for robot activities.}
@@ -504,26 +471,91 @@ Table \ref{tab:robot-svm-class} shows the results for the SVM classifier.
 		\end{tabular}
 \end{table}
 
-\subsubsection{Results:} 
-We conclude that the classification methods are able to predict activities within normal states 
-as well as fallen states. Similar to the previous experiments with a human, the SVM classifier performs 
-better that the logistic regression classifier, though, during operation, we prefer the logistic regression classifier. The range of motion of the NAO robot is comparatively constrained compared to a 
-human. Therefore, we can only conduct primary activities as described in this section. We have not 
-conducted experiments on activities such as \textit{standing to sitting down}. When determining the results, we 
-have sampled the motion device data at the rate 50$Hz$. During operation, if the 
-thresholding method is used, we can use the same thresholds with higher sampling rates. The second 
-method requires learning for different sampling rates.
+
+\subsubsection{Results:}
+
+The results for LLR and SVM classifiers are summarized in Tables \ref{tab:robot-logistic-class} and 
+\ref{tab:robot-svm-class}. The results are similar to identification of human activities, for 
+conserving space, we omit detail discussion of the results. It is worthwhile to note that the SVM 
+ identified events more accurately than LLR as observed for human activities.  
+
+% Even though the thresholding method successfully distinguished between normal and fallen states, 
+%we 
+% were 
+% unable to detect states within normal activities, i.e., walking forward to walking backward etc.. 
+% Therefore, similar to the previous experiments, we have used logistic regression and SVM 
+% classifiers to identify different activities. We have followed the same protocols as mentioned in 
+% the previous section to generate features, learning, and prediction. Table 
+% \ref{tab:robot-logistic-class} shows the results for the logistic regression classifier while 
+% Table \ref{tab:robot-svm-class} shows the results for the SVM classifier.    
+
+
+
+% We conclude that the classification methods are able to predict activities within normal states 
+% as well as fallen states. Similar to the previous experiments with a human, the SVM classifier 
+% performs 
+% better that the logistic regression classifier, though, during operation, we prefer the logistic 
+% regression classifier. The range of motion of the NAO robot is comparatively constrained compared to 
+% a 
+% human. Therefore, we can only conduct primary activities as described in this section. We have not 
+% conducted experiments on activities such as \textit{standing to sitting down}. When determining the 
+% results, we 
+% have sampled the motion device data at the rate 50$Hz$. During operation, if the 
+% thresholding method is used, we can use the same thresholds with higher sampling rates. The second 
+% method requires learning for different sampling rates.
+
+Even though the above learning methods provide accurate results, there are microcontrollers with 
+very limited computational and memory capacities. In such devices, it is better to use less memory 
+expensive methods such as Kalman filtering, which is reported in the next section.
+
+\subsubsection{Kalman Filtering:}
+
+We have designed a thresholding base activity predictor in these experiments. Using the the same 
+datasets, we have calculated the roll, pitch, and yaw angles  using the DCM algorithm. In order to 
+achieve an effective threshold-based decision making, we have filtered the roll, pitch, and
+yaw values using a Kalman filter \cite{Welch:1995:IKF:897831}. Figures 
+\ref{fig:normalFallenBehavior} ((a)--(d)) show
+the raw and the filtered values of the raw and the pitch values for marching, walk backward,
+rotating clockwise, and left side-way walk. The other activities show similar plots (we have 
+refrained from plotting them due to space constraints). 
+
+The thresholding method suggests that, if the filtered roll values are within the range $[90\pm15]$ 
+(degrees) and the filtered pitch values are within the rage $[0\pm15]$ (degrees), then with 100\% 
+accuracy, the NAO  robot will be in a normal state. Otherwise, we can safely assume that the robot 
+is in a fallen state. Figures \ref{fig:normalFallenBehavior} ((e)--(h)) show the roll and pitch 
+angles (raw and filtered) for a typical fallen robot. If the filtered roll value is less that 60 
+degrees, we can safely assume that the robot is falling forward. If the filtered roll values is 
+more than 100$^{\circ}$ we can assume that the robot is falling backward. To detect the events 
+falling to the left and right, we have used the filtered pitch values. If the filtered pitch value 
+is less than -50$^{\circ}$, we can assume that the robot is falling to the left side, while if the 
+filtered pitch values is more than 50$^{\circ}$, we can assume that the robot is falling to the right 
+side. With these thresholds for a separate test cases, the thresholding method has detected fallen 
+state with 100\% accuracy. 
+
+Even though the thresholding method successfully distinguished between normal and fallen 
+activities, it was unable to detect states within the normal activities, i.e., walking forward 
+to walking backward so on. This one of the limitation of using thresholding methods, which has 
+been overcome by the learning methods. 
 
 
 \section{Conclusion and Future Work}
 
-We have proposed framework to write heterogeneous applications on TIs microcontrollers. We have used 
-our framework to detect and predict activities on humans and a NAO robot. We 
-have shown that our methods are capable of detecting events with high accuracy. We have used 
-machine learning methods and thresholding methods to detect different events and provided 
-justifications for the success of the applications. Comparing the encouraging experimental results 
-achieved, our future work will be to use multiple devices to create a sensor network to detect 
-complex and minute activities with higher sampling rates.  
+It is known that while humans and biped humanoid robots perform normal activities such as jogging, 
+running and so on, an abnormal event such as a fall may occur. 
+% These events may cause injury
+% to a human body or to the structural components of a humanoid robot. In order to avoid 
+% damages to biped humanoid robots, machine learning can be used to predict potential falls before 
+% such events occur. Using the prediction information, corrective measures can be engaged to avoid 
+% many fall activities. Similarly, for humans, after  a fall activity is identified, rescue services 
+% can be called upon. 
+We have reported a wireless sensing device that were assembled using 
+off-the-shelf hardware components. Using two devices, we have created a sensor network for 
+collecting motion data from humans and biped humanoid robots. The sensing devices were connected to 
+the back of the subjects and the data collecting device was connected to a laptop which archived 
+the data. We have used machine two machine learning algorithms and a thresholding methods to 
+identify both normal and abnormal activities within 91\%--100\% accuracy. Comparing the encouraging 
+experimental results we achieved, our future work will be to use multiple sensing devices to create 
+a sensor network to detect complex activities with higher sampling rates.  
 
 \bibliographystyle{aaai}
 \bibliography{references}
