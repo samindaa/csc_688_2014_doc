@@ -31,17 +31,18 @@
 /Author (Put All Your Authors Here, Separated by Commas)}
 \setcounter{secnumdepth}{0}  
  \begin{document}
+ \begin{sloppy}
 % The file aaai.sty is the style file for AAAI Press 
 % proceedings, working notes, and technical reports.
 %
 \title{Activity Monitoring and Prediction for Humans and NAO Humanoid Robots using 
 Wearable Sensors}
-% \author{Author names \\ %Saminda Abeyruwan \and Faisal Sikder \and Dilip Sarkar\\
+\author{17$^{th}$ Nov 2014 \\ %Saminda Abeyruwan \and Faisal Sikder \and Dilip Sarkar\\
 % University of Miami \\
 % Department of Computer Science\\
 % 1365 Memorial Drive, Coral Gables, FL, 33146, USA\\
 % %{\ttfamily \{saminda|f.sikder|sarkar\}@cs.miami.edu}
-% }
+}
 \maketitle
 \begin{abstract}
 \begin{quote}
@@ -210,9 +211,14 @@ notion of
 {\em modules} and {\em representations} to perform
 computations. The modules implement functions, while the representations exchange information from
 one module to another. They are connected using directed arcs to form a directed graph. The blue 
-arraws shows the provided representations, 
-and the black arraws show the requested representations. The Figure 
-\ref{fig:fa} shows the modules and representations related to our 
+arrows shows the provided representations, 
+and the black arrows show the requested representations. A module can provide multiple 
+representations. The framework will compute the topologically sorted graph out of 
+the nodes. This will be computed once, and the nodes in the queue will be executed one after the 
+other. If there were to be cycles in the graph, the framework will detect them and indicate them to 
+the users. 
+
+The Figure \ref{fig:fa} shows the modules and representations related to our 
 experiments, where the boxes represent the computational modules, while the rounded-boxes represent 
 the input to a module or an output from a module. For brevity, in the rest of the paper 
 computational modules to modules. As an example, the module {\em MPU9150Module} contains logic to 
@@ -220,16 +226,10 @@ read/write from MPU-9150 Nine-Axis (Gyro+Accelerometer+Compass) MEMS MotionTrack
 sensor hub booster pack. The representation {\em MPU9150Representation} contains all the values that 
 the module {\em MPU9150Module} would like to share with other modules. In this graph, {\em 
 LearningModule} requests values from {\em MPU9150Representation} to implement the learning function. 
-A module can provide multiple representations.  
-
-The developers only require to write 
-modules and representations, while the framework will compute the topologically sorted graph out of 
-the nodes. This will be computed once, and the nodes in the queue will be executed one after the 
-other. If there were to be cycles in the graph, the framework will detect them and indicate them to 
-the developers.
+  
 
 
-\section{Approach and Evaluation}
+\section{Experiment Setup and Empirical Evaluations}
 
 \begin{figure*}[!t]
 \centering
@@ -256,26 +256,55 @@ the developers.
 \end{figure*}
 
 
-We have conducted experiments on detecting motions (activities) on 
+We have conducted our experiments on detecting motions (activities) on 
 %able-bodied 
-humans and a humanoid robot (NAO robot). We have used InvenSense MPU-9150 
-motion tracking sensor on the sensor hub. The module {\em MPU9150Module} connects to this device
-and provides the representation {\em MPU9150Representation}. The representation contains
-3-axis accelerometer readings, 3-axis gyroscope readings, 3-axis magnetometer readings, the quaternion
-rotation axis of the device, and Euler angles roll, pitch, and yaw.  In order to calculate Euler
-angles, we have used the Direction Cosine Matrix (DCM) algorithm.  Depending on the
-experiment, the practitioner can change the sampling rate of the sensor.  The maximum sampling rate
-of the sensor is 1,000$Hz$. This section shows our results, validations, and conclusions.
+humans and humanoid robots (NAO robots). We have used InvenSense MPU-9150 
+motion tracking sensor on the Sensor Hub BoosterPack. 
+% 
+% The module {\em MPU9150Module} connects to 
+% this device and provides the representation {\em MPU9150Representation}. 
+% 
+We have used 3-axis accelerometer readings, 3-axis gyroscope readings, 3-axis magnetometer readings, 
+the quaternion rotation axis of the device, and Euler angles roll, pitch, and yaw.  In order to 
+calculate Euler angles, we have used the Direction Cosine Matrix (DCM) algorithm. We have configured 
+one device as a remote sensing device, and the other device is configured to receive data from the 
+sensing device. This section shows our results, validations, and conclusions.
 
 
 \subsection{Activity Annotation}
 
-The annotation for different human and robot motion events are shown in Fig.{~\ref{fig:anotation-human-robot}}. 
-Accelerometer and gyroscope's X, Y and Z axis are shown for different motions. We can observe that an 
+The annotation for different human and robot motion activities are shown in 
+Figure {~\ref{fig:anotation-human-robot}}. 
+Accelerometer and gyroscope's $x$, $y$ and $z$ axis are shown for different motions. We can observe 
+that an 
 actual event takes between 180--250 ms. Figure{~\ref{fig:anotation-human-robot}}(a)-(c) shows the activity 
-annotations for human motions (walking forward, sitting down, falling down). Fig.{~\ref{fig:anotation-human-robot}}
+annotations for human motions (walking forward, sitting down, falling down). 
+Figure {~\ref{fig:anotation-human-robot}}
 (d)-(i) shows activity annotations for the NAO robot. We have structured the text in a way that we discuss 
 data processing, machine learning and results for both the human and robotic experiments.
+
+\subsubsection{Learning Algorithms:}
+
+We have tested our hypotheses using  {\em regularized logistic regression} (MLR) and {\em support 
+vector machine} (SVM) algorithms. Our training set contains 80\% of collected samples, while, the 
+reset has been used for cross-validation. We have used standard parameter sweeping techniques to 
+find the classifier parameters that provide the optimal trade-off between the bias and the 
+variance, while precision, recall, and F$_1$-scores have been used to obtain the optimal value. 
+
+We  have configured the motion sensor to sample at  $20ms$ (50$Hz$) sampling rate. In order to 
+identify activities: \begin{inparaenum}[1)] \item we have used a window size of $400ms$ (20 
+samples); and \item we have allowed 10 samples ($200ms$) to overlap between windows. 
+\end{inparaenum} The selection of the window size is based on the observation that a fall event 
+takes between $200-300ms$. Thus, a window size of $400ms$ will include both fall event and 
+non-fall event data for classification. For each window, we have calculated the running average of 
+all nine-axis values. This has produced nine values per window, which has been used as features. We 
+also added a bias term to provide additional capacity for the learning algorithms. 
+
+As a preprocessing step, the features, except the bias, have been subjected to feature 
+standardization. We have independently set each dimension of the sample  to have zero-mean and 
+unit-variance. We achieved this by first computing the mean of each dimension across the dataset and 
+subtracting this from each dimension. Then each dimension is divided by its standard deviation.
+ 
 
 \subsection{Experiments with a Human}
 \subsubsection{Data processing:} 
@@ -295,13 +324,6 @@ If our detection procedure detects an event for more than 90\% of the defined ti
 event as a \textit{true} event. We use two classifiers for this detection: \begin{inparaenum}[1)] 
 \item logistic regression; and \item support vector machines (SVM)\cite{Bishop:2006:PRM:1162264}. 
 \end{inparaenum} 
-We have used standard parameter sweeping techniques to find the classifier parameters that provide 
-the best trade-off between the bias and the variance, while precision, recall, and F$_1$-scores have 
-been used to obtain the best value. As a preprocessing step, the features, except the bias, have 
-been subjected to feature standardization. We have independently set each dimension of the sample 
-to have zero-mean and unit-variance. We achieved this by first computing the mean of each dimension 
-across the dataset and subtracting this from each dimension. Then each dimension is divided by its 
-standard deviation.
 
 \subsubsection{Machine Learning\\}
 \emph{Classification using Logistic Regression:}
@@ -513,5 +535,5 @@ complex and minute activities with higher sampling rates.
 \bibliographystyle{aaai}
 \bibliography{references}
 
-
+\end{sloppy}
 \end{document}
