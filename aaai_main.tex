@@ -169,19 +169,12 @@ We have developed a set of software tools to create a framework that allow us to
 prediction. \end{inparaenum} This framework is general enough for other practitioners to use the
 available functionalities for creating WSNs, collecting data, learning, and prediction.
 
-
-
-%FIXMe latter 
-We have used our framework to experiment on the problem of activity detection using InvenSense 
-MPU-9150: 9-axis MEMS motion tracking sensor. We have conducted our experiments on able-bodied 
-humans and on NAO humanoid robots to detect activities such as standing, walking, and abruptly 
-falling back and front. We have used the same device configuration as show in Figures \ref{fig:fb}, 
-and \ref{fig:fc}. The wireless transmitter was attached to a Sensor Hub BoosterPack on a Tiva C 
-LaunchPad microcontroller that was connected to a Fuel Tank BoosterPack, which was then attached to 
-the back of a human subject or a NAO humanoid robot. We have used reactive (e.g., threshold based) 
-and deliberative (e.g., machine learning) methods to detect and predict activities. We have 
-provided  evaluations and empirical results to  justify the success of our methods. 
-
+The rest of the paper is organized as follows. First, we describe the software development 
+framework we have proposed and implemented. In the next section, we describe experimental setup as 
+well as empirical evaluations for humans and NAO humanoid robots. We have utilized two machine 
+learning algorithms and a thresholding based method to learn and identify normal and 
+abnormal activities. Then we also have presented our observations and discussion. Finally, the 
+paper is concluded with a summary and future work.  
 
 \section{Framework}
 
@@ -541,14 +534,14 @@ been overcome by the learning methods.
 \section{Conclusion and Future Work}
 
 It is known that while humans and biped humanoid robots perform normal activities such as jogging, 
-running and so on, an abnormal event such as a fall may occur. 
-% These events may cause injury
-% to a human body or to the structural components of a humanoid robot. In order to avoid 
-% damages to biped humanoid robots, machine learning can be used to predict potential falls before 
-% such events occur. Using the prediction information, corrective measures can be engaged to avoid 
-% many fall activities. Similarly, for humans, after  a fall activity is identified, rescue services 
-% can be called upon. 
-We have reported a wireless sensing device that were assembled using 
+running and so on, an abnormal event such as a fall may occur. These events may cause injuries 
+ to the humans or robots. 
+%  In order to avoid 
+%  damages to biped humanoid robots, machine learning can be used to predict potential falls before 
+%  such events occur. 
+  Using the prediction information, corrective measures can be engaged to avoid 
+ many fall activities. Similarly, for humans, after  a fall activity is identified, rescue services 
+ can be called upon. We have reported a wireless sensing device that were assembled using 
 off-the-shelf hardware components. Using two devices, we have created a sensor network for 
 collecting motion data from humans and biped humanoid robots. The sensing devices were connected to 
 the back of the subjects and the data collecting device was connected to a laptop which archived 
