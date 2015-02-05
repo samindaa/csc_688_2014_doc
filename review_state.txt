@@ -175,5 +175,17 @@ Introduction and review: Saminda
 -- Data collection must be clearly mention before the activity; and data preprocessing and learning algorithms: Faisal 
 
 
+-- Experimental setpup and data collection : one section
+
+-- Emperical evaluations before 
+
+-- About Kalman filter: 
+	-- Where does it come from.
+
+Journal at the end of this month:
+
+
+
+
 
 
