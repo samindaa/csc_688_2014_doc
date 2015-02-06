@@ -48,12 +48,11 @@ Department of Computer Science\\
 \begin{abstract}
 \begin{quote}
 While humans and biped humanoid robots perform normal activities such as jogging, running and so 
-on, an 
-abnormal event such as a fall may occur. These events may causing damage to a human body or to 
-the structural components of a humanoid robot. For humans, immediate identification of a fall will 
-allow fast responses, while for a robot early prediction can be used to take corrective measures to 
-prevent a fall. There are inexpensive wireless sensing devices which can be  attached to humans or 
-robots for collecting motion data. This paper unifies: \begin{inparaenum}[1)] \item 
+on, an abnormal event such as a fall may occur. These events may causing damage to a human body or 
+to the structural components of a humanoid robot. For humans, immediate identification of a fall 
+will allow fast responses, while for a robot early prediction can be used to take corrective 
+measures to prevent a fall. There are inexpensive wireless sensing devices which can be  attached 
+to humans or robots for collecting motion data. This paper unifies: \begin{inparaenum}[1)] \item 
 methods to learn and predict different activities for humans and robots; and \item software 
 tools to realize these functions  on embedded devices. \end{inparaenum} Our contributions include: 
 \begin{inparaenum}[1)] \item detection of falls for both humans and robots within a unified 
@@ -154,16 +153,14 @@ experiments, but, one can use microcontrollers and sensor boards from other sour
 
 \subsection{Our Approach and Contributions}
 
-TI microcontrollers  boards such 
-as MSP430{\texttrademark}LaunchPad, Tiva{\texttrademark} C Series TM4C123G
-LaunchPad, Tiva C Series 
-TM4C129 Connected LaunchPad, and add-on booster packs such as Sensor Hub BoosterPack and CC2533 
-wireless transmitter and 
-receiver  provide flexible platform for developing solutions for a wide rage of low power 
-and portable applications. For our experiments, we have assembled a device with Tiva C Series 
-TM4C123G microcontroller board, and three boosterpacks. The boosterpacks are for sensing 9-axis 
-motion, battery power, and wireless networking. We have used two of the assembled devices to create 
-a wireless sensor network (WSN) to collect motion data from  humans and NAO humanoid robots.   
+TI microcontrollers  boards such as MSP430{\texttrademark}LaunchPad, Tiva{\texttrademark} C Series 
+TM4C123G LaunchPad, Tiva C Series TM4C129 Connected LaunchPad, and add-on booster packs such as 
+Sensor Hub BoosterPack and CC2533  wireless transmitter and receiver  provide flexible platform for 
+developing solutions for a wide rage of low power and portable applications. For our experiments, 
+we have assembled a device with Tiva C Series TM4C123G microcontroller board, and three 
+boosterpacks. The boosterpacks are for sensing 9-axis motion, battery power, and wireless 
+networking. We have used two of the assembled devices to create a wireless sensor network (WSN) to 
+collect motion data from  humans and NAO humanoid robots.   
 
 We have developed a set of software tools to create a framework that allow us to: 
 \begin{inparaenum}[1)] \item setup the WSN; \item collect data; \item learning; and \item 
@@ -179,30 +176,27 @@ paper is concluded with a summary and future work.
 
 \section{Framework}
 
-The framework provides functionalities to 
-build  rational agents that perceive its environment though sensors and act upon it though 
-actuators. The execution path between sensors to actuators may contain complex behaviors and 
-modeling decisions that needs to be handled carefully. Hence, the framework takes these 
-consideration into account and provides a topologically sorted graph based on the decision points 
-provided by practitioners. Our framework consists for four parts: \begin{inparaenum}[(1)]\item 
-processes microcontrollers; \item processes offline processing; \item access functionalities for  
-robots; and \item real-time visualizations\end{inparaenum}. The 
-framework is lightweight, flexible, and consumes minimum memory and computational resources as 
-possible. We have tested our framework on multiple microcontrollers and on boosterpacks as stated 
-above. We have written and distributed  software solutions to access devices on the boosterpacks 
-such 
-as \begin{inparaenum}[(1)] \item InvenSense MPU-9150: 9-axis MEMS motion tracking (thee-axis 
-gyro, thee-axis accelerometer, and thee-axis magnetometer); \item Bosch Sensortec BMP180 pressure 
-sensor; \item Sensirion SHT21 humidity and ambient temperature sensor; \item Intersil ISL29023 
-ambient and infrared light sensor; and \item TIs TMP006 non-contact infrared temperature 
-sensor\end{inparaenum}.
+The framework provides functionalities to build embedded applications or rational agents on 
+microcontrollers that sense and actuate using add-on boards. The execution path between sensors to 
+actuators may contain complex behaviors and modeling decisions that needs to be handled carefully. 
+Hence, the framework takes these consideration into account and provides a topologically sorted 
+graph based on the decision points provided by practitioners. The framework includes: 
+\begin{inparaenum}[(1)]\item the modules that execute on the microcontrollers; \item the processes 
+that run offline; \item the methods to access functionalities for physical robots; and \item a 
+real-time visualization system\end{inparaenum}. The framework is lightweight, flexible, and 
+consumes minimum memory and computational resources. We have tested our framework on multiple 
+microcontrollers and on boosterpacks as stated above. We have written and distributed  software 
+solutions to access devices on the boosterpacks such as \begin{inparaenum}[(1)] \item InvenSense 
+MPU-9150: 9-axis MEMS motion tracking (thee-axis gyro, thee-axis accelerometer, and thee-axis 
+magnetometer); \item Bosch Sensortec BMP180 pressure sensor;\item Sensirion SHT21 humidity and 
+ambient temperature sensor; \item Intersil ISL29023 ambient and infrared light sensor; and \item 
+TIs TMP006 non-contact infrared temperature sensor.\end{inparaenum}
 
 
-Our development framework\footnote{To maintain the anonymity, link to the {\em open source} 
-software package has been excluded.} uses a 
-notion of 
-{\em modules} and {\em representations} to perform
-computations. The modules implement functions, while the representations exchange information from
+Our development framework\footnote{\url{http://mcu.saminda.org}} 
+uses a notion of {\em modules} and {\em representations} to 
+perform computations. The modules implement functions, while the representations exchange 
+information from
 one module to another. They are connected using directed arcs to form a directed graph. The blue 
 arrows shows the provided representations, 
 and the black arrows show the requested representations. A module can provide multiple 
@@ -215,11 +209,12 @@ The Figure \ref{fig:fa} shows the modules and representations related to our
 experiments, where the boxes represent the computational modules, while the rounded-boxes represent 
 the input to a module or an output from a module. For brevity, in the rest of the paper, the  
 {\em computational modules} are refereed as  {\em modules}. As an example, the module {\em 
-MPU9150Module} contains logic to 
-read/write from MPU-9150 9-Axis (Gyro+Accelerometer+Compass) MEMS MotionTracking device on the 
-sensor hub booster pack. The representation {\em MPU9150Representation} contains all the values that 
-the module {\em MPU9150Module} would like to share with other modules. In this graph, {\em 
-LearningModule} requests values from {\em MPU9150Representation} to implement the learning function. 
+9-Axis-Motion Module} contains logic to read from or write to MPU-9150 9-Axis 
+(Gyro+Accelerometer+Compass) MEMS MotionTracking device on the sensor hub booster pack. The 
+representation {\em 9-Axis-Motion Representation} contains all the values that 
+this module shares with other modules in the framework. In this graph, {\em 
+Learning Module} requests values from {\em 9-Axis-Motion Representation} to implement the learning 
+function. 
   
 
 
