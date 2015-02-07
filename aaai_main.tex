@@ -176,29 +176,28 @@ paper is concluded with a summary and future work.
 
 \section{Framework}
 
-The framework provides functionalities to build embedded applications or rational agents on 
-microcontrollers that sense and actuate using add-on boards. The execution path between sensors to 
-actuators may contain complex behaviors and modeling decisions that needs to be handled carefully. 
-Hence, the framework takes these consideration into account and provides a topologically sorted 
-graph based on the decision points provided by practitioners. The framework includes: 
-\begin{inparaenum}[(1)]\item the modules that execute on the microcontrollers; \item the processes 
-that run offline; \item the methods to access functionalities for physical robots; and \item a 
-real-time visualization system\end{inparaenum}. The framework is lightweight, flexible, and 
-consumes minimum memory and computational resources. We have tested our framework on multiple 
+The framework provides generic functionalities to develop embedded applications or rational agents 
+on microcontrollers that sense and actuate using add-on boards. The execution paths between sensors 
+to actuators could contain complex behavior manipulations and modeling decisions that needs to be 
+developed efficiently. Hence, the framework takes these consideration into account and provides a 
+topologically sorted graph, based on the decision points provided by practitioners. The framework 
+includes: \begin{inparaenum}[1)] \item tools to develop modules and representations that execute on 
+the microcontrollers or off-line; \item the methods to access functionalities for physical robots; 
+and \item a real-time visualization system\end{inparaenum}. Our framework is lightweight, flexible, 
+and consumes minimum memory and computational resources. We have tested our framework on multiple 
 microcontrollers and on boosterpacks as stated above. We have written and distributed  software 
-solutions to access devices on the boosterpacks such as \begin{inparaenum}[(1)] \item InvenSense 
+solutions to access devices on the boosterpacks such as: \begin{inparaenum}[(1)] \item InvenSense 
 MPU-9150: 9-axis MEMS motion tracking (thee-axis gyro, thee-axis accelerometer, and thee-axis 
-magnetometer); \item Bosch Sensortec BMP180 pressure sensor;\item Sensirion SHT21 humidity and 
+magnetometer); \item Bosch Sensortec BMP180 pressure sensor; \item Sensirion SHT21 humidity and 
 ambient temperature sensor; \item Intersil ISL29023 ambient and infrared light sensor; and \item 
 TIs TMP006 non-contact infrared temperature sensor.\end{inparaenum}
 
 
-Our development framework\footnote{\url{http://mcu.saminda.org}} 
-uses a notion of {\em modules} and {\em representations} to 
+Our development framework\footnote{\url{http://muenergia.saminda.org}} ($\mu$Energia, pronounced as 
+``micro--Eneriga'') uses a notion of {\em modules} and {\em representations} to 
 perform computations. The modules implement functions, while the representations exchange 
-information from
-one module to another. They are connected using directed arcs to form a directed graph. The blue 
-arrows shows the provided representations, 
+information from one module to another. They are connected using directed arcs to form a directed 
+graph. In Figure \ref{fig:fa}, the blue arrows shows the provided representations, 
 and the black arrows show the requested representations. A module can provide multiple 
 representations. The framework will compute the topologically sorted graph out of 
 the nodes. This will be computed once, and the nodes in the queue will be executed one after the 
