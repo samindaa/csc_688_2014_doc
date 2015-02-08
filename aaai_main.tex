@@ -193,16 +193,17 @@ ambient temperature sensor; \item Intersil ISL29023 ambient and infrared light s
 TIs TMP006 non-contact infrared temperature sensor.\end{inparaenum}
 
 
-Our development framework\footnote{\url{http://muenergia.saminda.org}} ($\mu$Energia, pronounced as 
-``micro--Eneriga'') uses a notion of {\em modules} and {\em representations} to 
-perform computations. The modules implement functions, while the representations exchange 
-information from one module to another. They are connected using directed arcs to form a directed 
-graph. In Figure \ref{fig:fa}, the blue arrows shows the provided representations, 
-and the black arrows show the requested representations. A module can provide multiple 
-representations. The framework will compute the topologically sorted graph out of 
-the nodes. This will be computed once, and the nodes in the queue will be executed one after the 
-other. If there were to be cycles in the graph, the framework will detect them and indicate them to 
-the users. 
+Our development framework, $\mu$Energia\footnote{
+\url{http://muenergia.saminda.org}. $\mu$Energia is pronounced as ``micro--Energia''. }, uses a 
+notion 
+of  {\em modules} and {\em representations} to perform computations. The modules implement 
+functions, while the representations exchange information from one module to another. They are 
+connected using directed arcs to form a directed graph. In Figure \ref{fig:fa}, the blue arrows 
+shows the provided representations, and the black arrows show the requested representations. A 
+module can provide multiple representations. The framework will compute the topologically sorted 
+graph out of the nodes. This will be computed once, and the nodes in the queue will be executed one 
+after the other. If there were to be cycles in the graph, the framework will detect them and 
+indicate them to the users. 
 
 The Figure \ref{fig:fa} shows the modules and representations related to our 
 experiments, where the boxes represent the computational modules, while the rounded-boxes represent 
