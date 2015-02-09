@@ -47,10 +47,10 @@ Department of Computer Science\\
 \maketitle
 \begin{abstract}
 \begin{quote}
-While humans and biped humanoid robots perform normal activities such as jogging, running and so 
-on, an abnormal event such as a fall may occur. These events may causing damage to a human body or 
-to the structural components of a humanoid robot. For humans, immediate identification of a fall 
-will allow fast responses, while for a robot early prediction can be used to take corrective 
+While humans or biped humanoid robots perform normal activities such as jogging, running and so 
+on, an abnormal event such as a fall may occur. These events may cause damage to the human body or 
+to the structural components of the humanoid robot. For humans, immediate identification of a fall 
+will allow fast responses, while for a robot, early prediction can be used to take corrective 
 measures to prevent a fall. There are inexpensive wireless sensing devices which can be  attached 
 to humans or robots for collecting motion data. This paper unifies: \begin{inparaenum}[1)] \item 
 methods to learn and predict different activities for humans and robots; and \item software 
@@ -58,86 +58,110 @@ tools to realize these functions  on embedded devices. \end{inparaenum} Our cont
 \begin{inparaenum}[1)] \item detection of falls for both humans and robots within a unified 
 framework; and \item  a  novel software development environment for embedded systems. 
 \end{inparaenum} Our empirical evaluations demonstrate that with high accuracy different types of  
-fall-events can be predicted using the same learning algorithms for humans and biped humanoid 
-robots. 
+fall-events are predicted using the same learning algorithms for humans and biped humanoid robots. 
 \end{quote}
 \end{abstract}
 
 \section{Introduction}
 \label{sec:Intro}
 The humans as well as the biped humanoid robots complete apparently simple activities that requires 
-complex computational tasks. These activities include jogging, running so forth. While performing 
-these safe activities, accidents such as falls may occur causing damage to human body or to 
-structural components of a humanoid robot \cite{li2009accurate}. There has been an 
-increasing demand in domains such as rescue to use autonomous or teleoperated humanoid robots to 
-complete high-risk tasks otherwise would have been lethal to a human subject. Therefore, we 
-envision environments where humans and humanoid robots collaboratively work to complete 
-tasks. 
+complex computational tasks such as jogging, running and so on. While performing these safe 
+activities, accidents such as falls may occur causing damage to the human body or to the structural 
+components of the humanoid robot \cite{li2009accurate}. There has been an increasing demand in 
+domains such as rescue to use autonomous or teleoperated humanoid robots to complete high-risk 
+tasks, otherwise would have been lethal to a human subject. Therefore, we envision environments 
+where humans and humanoid robots collaboratively work to complete tasks. 
 
-Since both humans and biped humanoid robots have similar movements and are susceptible to 
+Since both humans and biped humanoid robots have almost identical movements and are susceptible to 
 similar accidents, we believe that the same set of learning algorithms are suitable for both 
-groups. In this paper,  to validate our believes, we develop a generalize approach for learning 
-and predictions for activities of both groups.  We have attached wearable sensing devices for 
-collecting motion data and have used software tools to interpret the sensor data for distinguishing 
+groups. In this paper,  to validate our hypotheses, we develop a generalize approach for learning 
+and predicting activities of both groups.  We have attached wearable sensing devices to collect 
+motion data and have used software tools to interpret the sensor data to distinguish 
 between normal and abnormal activities. The sensing devices are assembled using off-the-shelf 
 hardware component boards and the generalize software tools are developed by ourselves to 
-collect data for learning and to identify activities. The software tools provide a modular 
+collect data for learning and predicting activities. The software tools provide a modular 
 functionalities to use for collecting  data from any sensing devices, and to learn and predict 
 on/off-line. While attempts for identifying human motions have already been investigated, to the 
 best of our knowledge, we are the first to investigate the prospect of using external embedded 
-devices to identify activities on a NAO. Before we report our contribution, we provide a brief 
-review of work related to identification of human activity.  
-
-
-\begin{figure*}[!t]
-\centering
-\subfloat[]{\label{fig:fa}\includegraphics[width=0.6\textwidth]{figures/graph_structure_def-crop3}}
-\subfloat[]{\label{fig:fb}\includegraphics[width=0.21\textwidth]{figures/human_figure}}
-\subfloat[]{\label{fig:fc}\includegraphics[width=0.185\textwidth]{figures/robot_figure}} 
-\caption{(a) The modules and representations used in the experiments;  (b) the wireless transmitter 
-was attached to a Sensor Hub BoosterPack on a Tiva C LaunchPad microcontroller that was connected to 
-a Fuel Tank BoosterPack, which was then attached to the back of a human subject; and (c) the same 
-device configuration was used on the back of a NAO humanoid robot.}
- \label{fig:framework}
-\end{figure*}
+devices to identify activities on a NAO humanoid robot. Before we report our contributions, we 
+provide a brief review of work related to identification of human activity.  
 
 
 \subsection{Related Work}
 
-Before we report our contribution, we provide a brief review of work related to identification of 
-human activity. 
-The existing activity detection methods focus on special cases of fall detection in humans and 
-humanoid robots. These methods are primarily used in isolation.  
-In SAFE (SmArt Fall dEtection) {~\cite{ojetola2011fall}} researchers used accelerometers and 
-gyroscopes 
-to detect fall incidence among the elderly people, they have used C4.5 decision tree to learn and 
-classify fall and ADLs (activities of daily living). They claimed to identify four different types 
-of falls with a precision of 81\% accuracy and recall of 92\% accuracy.
-Javier Moya et. al.{~\cite{moya2014fall}} proposed a fall detection, avoidance and damage reduction 
-mechanism for biped humanoid robots. They tried to simulate the real world environment where 
-humanoid robots have to walk over irregular surface, running or playing sports, collusion with 
-other 
-robots. Their proposed framework can detect instability and do fall 
-avoidance or at least low-damage falling mechanism is invoked. 
-%% faisal end
+The modern activity detection methods can be broadly categorized in to two groups based on: 
+\begin{inparaenum}[1)] \item inexpensive wearable embedded devices; and \item smart-phones. 
+\end{inparaenum} Wearable embedded devices with add-on sensors provide options to develop effective 
+activity recognition methods for humans and biped humanoid robots alike. The existing activity 
+detection methods focus on special cases of fall detection in humans and humanoid robots. These 
+methods were primarily used in isolation.  {~\cite{ojetola2011fall}} reported method using 
+accelerometers and gyroscopes to detect fall incidence among the elderly people. The work reported 
+detecting four falling events: forward, backward, right, and left.  They used a decision tree to 
+learn and classify falls and activities of daily living (ADL). The method identified fall events 
+with precision of 81\%  and recall of 92\%. 
 
-There has been an increasing interest in detecting human motions using embedded devices. Woon-Sung
-et. al. \cite{baek2013real} proposed  a fall  detection  system  using necklace-shaped tri-axial
+\cite{baek2013real} proposed  a fall  detection  system  using necklace-shaped tri-axial
 accelerometer  and  gyroscope  sensors  to  classify  the  behavior  and  posture  of  the detection
- subject. They claim that their  approach  can  successfully  distinguish between  ADL and  fall, 
-with  sensitivities  greater  than  80 \%  and specificities  of  100\%. Ying-Wen et. al.
-\cite{bai2013recognition} proposed an activity monitoring system based on smart phone sensor
-reading and they claim that they can identify human activity with high degree of accuracy. Leno et.
-al. \cite{leone2013supervised} prosed a system to detect event that cause trauma, and disabilities
-using a tri-axial MEMS wearable wireless accelerometer. They have used support vector machine for
-robust classification of different events. There has been similar efforts to detect human motions
-using motion tracking, e.g., \cite{dumitrache2013fall,kumarwearable,liang2012pre}. The 
-microcontrollers and embedded devices provide a flexible platform to build may 
-real world applications. 
+ subject. Their method distinguished between  ADL and  fall, with  sensitivities  greater  than 
+ 80\%  and specificities  of  100\%. They experimented with ADLs such as: standing, sitting in the 
+ chair or floor, laying, walking, running, going upstairs/downstairs, and bending, while, 
+ falling forward, backward, leftward, rightward, and fall on the stairs were treated as abnormal 
+ events. 
+ 
+\cite{leone2013supervised} prosed a system to detect event that cause trauma, and disabilities
+using a tri-axial MEMS wearable wireless accelerometer. They used support vector machine (SVM) for
+robust classification of different events. \cite{Bao04activityrecognition} reported of using five 
+small biaxial wire-free accelerometers attached  on the left bicep, right wrist, left quadriceps, 
+right ankle, and right hip to recognize 20 activities starting from  walking  to  riding elevator  
+to  strength  training to bicycling. They reported using decision table, instance-based learning, 
+decision tree, and na\"{i}ve Bayes classifiers, where, decision tree showed the best performance 
+with 84\% accuracy.  Similar efforts have been reported to detect human motions using motion 
+tracking, e.g., \cite{dumitrache2013fall,kumarwearable,liang2012pre}. 
 
-We have used Texas Instruments (TIs)\footnote{\url{https://www.ti.com/}} 
- microcontrollers and boosterpacks for our 
-experiments, but, one can use microcontrollers and sensor boards from other sources.  
+
+{~\cite{moya2014fall}} proposed a fall detection, avoidance, and damage 
+reduction mechanism for biped humanoid robots. They tried to simulate the real world environment 
+where humanoid robots have to walk over irregular surface, running or playing sports, collusion 
+with other robots. Their framework detected instability and did fall avoidance or at 
+least low-damage falling mechanism was invoked. Therefore, embedded devices  with add-on sensors 
+provide a flexible platform to build may real world applications. 
+
+
+There is an increasing popularity in using smart-phones to detect activities in health care domain. 
+Using only the accelerometer readings from a smart-phone, \cite{bai2013recognition} analyzed five 
+actions of human walking, running, standing up, sitting down, and jumping. They compared the 
+acceleration characteristics of these actions with three different fall accelerations to infer the 
+direction of the fall. Their method recognize the fall activity, only when a predefined set of 
+conditions were met. But the method did not provide any prediction or indication value, that a fall 
+may occur in future. 
+
+\cite{steidl2012fall} reported that the sensors of the smart-phones from different manufactures 
+record values significantly incompatible ranges for identical tasks. Therefore, they trained a SVM 
+classifier based on the features extracted from raw accelerometer readings and the directional 
+changes of the constraining force exerted on an accelerometer to detect fall events. They compared 
+these events to non-fall activities such as walking, running, jumping, and some actives which 
+resembles falls such as sitting down on a chair. Their method detected fall events 84.8\% average 
+accuracy across different smart-phones. 
+
+\cite{DernbachDKTC12} explored methods to detect simple and complex activities using inertial 
+sensors (accelerometer and gyroscope) of an Android smart-phone. The simple activities included: 
+biking, climbing stairs, driving, running, sitting, standing, walking, and state of the phone not 
+on the person. The complex activities were: cleaning, cooking, medication, sweeping, washing hands, 
+and watering plants. Six different classifiers, multi-layer  perceptron (MLP), na\"{i}ve  Bayes,  
+Bayesian  network,  decision  table,  best-first tree, and  K-star,  were trained on using the same 
+feature extractor. For simple activities, 93\% accuracy using MLP were reported, while, 50\% 
+success was achieved for complex activities.     
+
+
+Similar to exiting methods, we have defined different normal and abnormal activities for humans and 
+NAO humanoid robots. In order to validate our hypotheses that the learning and predicting methods 
+unifies across the two groups, firstly, we have restricted the activities that can be performed 
+on a NAO robot. Therefore, in our experiments, the human performed activities that are similar to 
+robot, such as, walk or falling forward/backward so forth. Secondly, we have extended the human 
+activities to a more complex events.  We have used Texas Instruments 
+(TIs)\footnote{\url{https://www.ti.com/}}  microcontrollers and boosterpacks for our experiments, 
+but, one can use microcontrollers and 
+ sensor boards from other sources.  
 
 
 %  The microcontrollers and embedded devices provide a flexible platform to build may 
@@ -150,6 +174,18 @@ experiments, but, one can use microcontrollers and sensor boards from other sour
 % open 
 % source software solution to build heterogeneous applications on many devices, which can be 
 % programmed on multiple operating systems. 
+
+\begin{figure*}[!t]
+\centering
+\subfloat[]{\label{fig:fa}\includegraphics[width=0.6\textwidth]{figures/graph_structure_def-crop3}}
+\subfloat[]{\label{fig:fb}\includegraphics[width=0.21\textwidth]{figures/human_figure}}
+\subfloat[]{\label{fig:fc}\includegraphics[width=0.185\textwidth]{figures/robot_figure}} 
+\caption{(a) The modules and representations used in the experiments;  (b) the wireless transmitter 
+was attached to a Sensor Hub BoosterPack on a Tiva C LaunchPad microcontroller that was connected 
+to a Fuel Tank BoosterPack, which was then attached to the back of a human subject; and (c) the 
+same device configuration was used on the back of a NAO humanoid robot.}
+ \label{fig:framework}
+\end{figure*}
 
 \subsection{Our Approach and Contributions}
 
