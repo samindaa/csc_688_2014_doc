@@ -116,7 +116,9 @@ right ankle, and right hip to recognize 20 activities starting from  walking  to
 to  strength  training to bicycling. They reported using decision table, instance-based learning, 
 decision tree, and na\"{i}ve Bayes classifiers, where, decision tree showed the best performance 
 with 84\% accuracy.  Similar efforts have been reported to detect human motions using motion 
-tracking, e.g., \cite{dumitrache2013fall,kumarwearable,liang2012pre}. 
+tracking, e.g., 
+\cite{dumitrache2013fall,kumarwearable,krishnan2014activity,gao2014evaluation,alvarez2015evaluating}.
+ 
 
 
 {~\cite{moya2014fall}} proposed a fall detection, avoidance, and damage 
@@ -212,8 +214,8 @@ paper is concluded with a summary and future work.
 
 \section{Framework}
 
-The framework provides generic functionalities to develop embedded applications or rational agents 
-on microcontrollers that sense and actuate using add-on boards. The execution paths between sensors 
+The framework provides generic functionalities to develop applications or rational agents 
+on embedded devices that sense and actuate using add-on boards. The execution paths between sensors 
 to actuators could contain complex behavior manipulations and modeling decisions that needs to be 
 developed efficiently. Hence, the framework takes these consideration into account and provides a 
 topologically sorted graph, based on the decision points provided by practitioners. The framework 
@@ -236,8 +238,8 @@ of  {\em modules} and {\em representations} to perform computations. The modules
 functions, while the representations exchange information from one module to another. They are 
 connected using directed arcs to form a directed graph. In Figure \ref{fig:fa}, the blue arrows 
 shows the provided representations, and the black arrows show the requested representations. A 
-module can provide multiple representations. The framework will compute the topologically sorted 
-graph out of the nodes. This will be computed once, and the nodes in the queue will be executed one 
+module can provide multiple representations. The framework computes the topologically sorted 
+graph out of the nodes. This is computed once, and the nodes in the queue will be executed one 
 after the other. If there were to be cycles in the graph, the framework will detect them and 
 indicate them to the users. 
 
@@ -254,32 +256,38 @@ function.
   
 
 
-\section{Experiment Setup and Empirical Evaluations}
+%\section{Experiment Setup and Empirical Evaluations}
+\section{Experiment Setup}
 
 \begin{figure*}[!t]
 \centering
-\subfloat[Human walking forward.]{\label{fig:ha}\includegraphics[width=0.32\textwidth]{plots/human_walk-crop.pdf}} 
-\subfloat[Human stand to seat.]{\label{fig:hb}\includegraphics[width=0.32\textwidth]{plots/human_stand-crop.pdf}}
-\subfloat[Human stand to fall.]{\label{fig:hc}\includegraphics[width=0.32\textwidth]{plots/human_falling-crop.pdf}}
-\\
-\subfloat[Robot walk forward.]{\label{fig:ra}\includegraphics[width=0.32\textwidth]
-{plots/robot_walk_forward-crop.pdf}}
-\subfloat[Robot walk backward.]{\label{fig:rb}\includegraphics[width=0.32\textwidth]
-{plots/robot_walk_backward-crop.pdf}}
-\subfloat[Robot rotate clockwise.]{\label{fig:rc}\includegraphics[width=0.32\textwidth]
-{plots/robot_rotate_cw-crop.pdf}}
-\\
-\subfloat[Robot fallen forward.]{\label{fig:rd}\includegraphics[width=0.32\textwidth]
+\subfloat[Human walking 
+forward.]{\label{fig:ha}\includegraphics[width=0.25\textwidth]{plots/human_walk-crop.pdf}} 
+\subfloat[Human stand to 
+seat.]{\label{fig:hb}\includegraphics[width=0.25\textwidth]{plots/human_stand-crop.pdf}}
+%\subfloat[Human stand to 
+%fall.]{\label{fig:hc}\includegraphics[width=0.32\textwidth]{plots/human_falling-crop.pdf}}
+%\\
+%\subfloat[Robot walk forward.]{\label{fig:ra}\includegraphics[width=0.32\textwidth]
+%{plots/robot_walk_forward-crop.pdf}}
+%\subfloat[Robot walk backward.]{\label{fig:rb}\includegraphics[width=0.32\textwidth]
+%{plots/robot_walk_backward-crop.pdf}}
+%\subfloat[Robot rotate clockwise.]{\label{fig:rc}\includegraphics[width=0.32\textwidth]
+%{plots/robot_rotate_cw-crop.pdf}}
+%\\
+\subfloat[Robot fallen forward.]{\label{fig:rd}\includegraphics[width=0.25\textwidth]
 {plots/robot_fallen_forward-crop.pdf}} 
-\subfloat[Robot fallen backward.]{\label{fig:re}\includegraphics[width=0.32\textwidth]
+\subfloat[Robot fallen backward.]{\label{fig:re}\includegraphics[width=0.25\textwidth]
 {plots/robot_fallen_backward-crop.pdf}}
-\subfloat[Robot fallen right.]{\label{fig:rf}\includegraphics[width=0.32\textwidth]
-{plots/robot_fallen_right-crop.pdf}}
+%\subfloat[Robot fallen right.]{\label{fig:rf}\includegraphics[width=0.32\textwidth]
+%{plots/robot_fallen_right-crop.pdf}}
 
-\caption{Figures (a)-(c) shows 3-axis accelerometer and 3-axis gyroscope graph for human motions. Figures (d)-(f) shows 3-axis accelerometer and 3-axis gyroscope graph for robot's walk motion. Figures (g)-(i) shows 3-axis accelerometer and 3-axis gyroscope graph for robot's fallen motion}
+\caption{Figures (a)-(b) shows 3-axis accelerometer and 3-axis gyroscope graph for human motions 
+walking forward and stand to seat. Figures (c)-(d) shows 3-axis accelerometer and 3-axis gyroscope 
+graph for robot's fallen forward and backward motions.}
  \label{fig:anotation-human-robot} 
 \end{figure*}
-
+% Figures (d)-(f) shows 3-axis accelerometer and 3-axis gyroscope graph for robot's walk motion. 
 
 We have conducted our experiments on detecting motions (activities) on 
 %able-bodied 
@@ -303,19 +311,25 @@ The annotation for different human and robot motion activities are shown in
 Figure {~\ref{fig:anotation-human-robot}}. 
 Accelerometer and gyroscope's $x$, $y$ and $z$ axis are shown for different motions. We can observe 
 that an 
-actual event takes between 180--250 ms. Figure{~\ref{fig:anotation-human-robot}}(a)-(c) shows the activity 
-annotations for human motions (walking forward, sitting down, falling down). 
+actual event takes between 180--250 ms. Figure{~\ref{fig:anotation-human-robot}} (a)-(b) shows the 
+activity annotations for human motions (walking forward and sitting down). 
 Figure {~\ref{fig:anotation-human-robot}}
-(d)-(i) shows activity annotations for the NAO robot. We have structured the text in a way that we discuss 
-data processing, machine learning and results for both the human and robotic experiments.
+(c)-(d) shows activity annotations for the NAO robot. The following section provides the evaluation 
+matrices of our experiments. 
 
-\subsection{Learning Algorithms}
 
-We have tested our hypotheses using  {\em regularized logistic regression} (LLR) and {\em support 
-vector machine} (SVM) algorithms. Our training set contains 80\% of collected samples, while, the 
-reset has been used for cross-validation. We have used standard parameter sweeping techniques to 
-find the classifier parameters that provide the optimal trade-off between the bias and the 
-variance, while precision, recall, and F$_1$-scores have been used to obtain the optimal value. 
+\section{Evaluation}
+%\subsection{Learning Algorithms}
+We have structured this section in a way that we discuss feature extraction, data processing, 
+machine learning, and experimental results for both the human and robotic experiments. We have 
+tested our hypotheses using  {\em Regularized Logistic Regression} (LLR) and {\em Support 
+Vector Machine} (SVM) algorithms. We have used a randomly generated 80\%--20\% partition for 
+training and cross-validation on our learning dataset. We have used an independent test set to 
+report our results. We have used standard parameter sweeping techniques to find the classifier 
+parameters that provide the optimal trade-off between the bias and the variance, while precision, 
+recall, and F$_1$-scores have been used to obtain the optimal value. 
+
+\subsection{Feature Extraction}
 
 We  have configured the motion sensor to sample at every  $20ms$, which is equivalent to 50$Hz$ 
 sampling rate. In order to 
@@ -343,10 +357,8 @@ collecting our datasets. We have collected data for several different  activitie
 reported here we have used the following datasets:
 \begin{inparaenum}[(1)] \item walking forward; \item from standing to sitting down 
 and back to standing; and \item from standing to falling and back to standing. \end{inparaenum} 
-Example plots for \begin{inparaenum}[1)] \item walking forward; \item from standing to sitting 
-down 
-and back to standing; and \item from standing to falling and back to standing \end{inparaenum} 
- are shown in Figures \ref{fig:ha}, \ref{fig:hb}, and \ref{fig:hc} respectively. 
+Example plots for \begin{inparaenum}[1)] \item walking forward; and \item from standing to sitting 
+down  \end{inparaenum}  are shown in Figures \ref{fig:ha} and \ref{fig:hb} respectively. 
 
  \begin{table}[!ht]
 \caption{Logistic regression classification for human activities.}
@@ -405,23 +417,23 @@ accuracy for future work.
        {plot1-crop}} 
   \subfloat[Walking backward.]{\label{fig:tsnedataset_9}\includegraphics[width=0.25\textwidth]
        {plot5-crop}}
-  \subfloat[Rotating clockwise.]{\label{fig:tsnedataset_7}\includegraphics[width=0.25\textwidth]
-       {plot2-crop}}
-  \subfloat[Left side-way walk.]{\label{fig:tsnedataset_10}\includegraphics[width=0.25\textwidth]
-       {plot6-crop}}
-       \\
+%  \subfloat[Rotating clockwise.]{\label{fig:tsnedataset_7}\includegraphics[width=0.25\textwidth]
+%       {plot2-crop}}
+%  \subfloat[Left side-way walk.]{\label{fig:tsnedataset_10}\includegraphics[width=0.25\textwidth]
+%       {plot6-crop}}
+%       \\
   \subfloat[Falling forward.]{\label{fig:tsnedataset_11}\includegraphics[width=0.25\textwidth]
        {plot1_fallen-crop}}
   \subfloat[Falling backward.]{\label{fig:tsnedataset_12}\includegraphics[width=0.25\textwidth]
        {plot2_fallen-crop}}
-  \subfloat[Falling to left side.]{\label{fig:tsnedataset_13}\includegraphics[width=0.25\textwidth]
-       {plot3_fallen-crop}}
-  \subfloat[Falling to right
-side.]{\label{fig:tsnedataset_14}\includegraphics[width=0.25\textwidth]
-       {plot4_fallen-crop}}      
-  \caption{Figures (a)-(d) show the roll and pitch angles (raw and filtered) for normal 
-behavior. Figures (e)-(h) show the raw and filtered roll and pitch angles for fallen 
-states of NAO humanoid robot.}
+%  \subfloat[Falling to left side.]{\label{fig:tsnedataset_13}\includegraphics[width=0.25\textwidth]
+%       {plot3_fallen-crop}}
+%  \subfloat[Falling to right
+%side.]{\label{fig:tsnedataset_14}\includegraphics[width=0.25\textwidth]
+%       {plot4_fallen-crop}}      
+  \caption{Figures (a)-(b) show the roll and pitch angles (raw and filtered) for normal 
+behaviors marching in place and walking backward. Figures (c)-(f) show the raw and filtered roll 
+and pitch angles for fallen forward and backwards states of NAO humanoid robot.}
   \label{fig:normalFallenBehavior}
 
 \end{figure*}
@@ -539,15 +551,14 @@ We have designed a thresholding base activity predictor in these experiments. Us
 datasets, we have calculated the roll, pitch, and yaw angles  using the DCM algorithm. In order to 
 achieve an effective threshold-based decision making, we have filtered the roll, pitch, and
 yaw values using a Kalman filter \cite{Welch:1995:IKF:897831}. Figures 
-\ref{fig:normalFallenBehavior} ((a)--(d)) show
-the raw and the filtered values of the raw and the pitch values for marching, walk backward,
-rotating clockwise, and left side-way walk. The other activities show similar plots (we have 
+\ref{fig:normalFallenBehavior} ((a)--(b)) show the raw and the filtered values of the raw and the 
+pitch values for marching and walk backward. The other activities show similar plots (we have 
 refrained from plotting them due to space constraints). 
 
 The thresholding method suggests that, if the filtered roll values are within the range $[90\pm15]$ 
 (degrees) and the filtered pitch values are within the rage $[0\pm15]$ (degrees), then with 100\% 
 accuracy, the NAO  robot will be in a normal state. Otherwise, we can safely assume that the robot 
-is in a fallen state. Figures \ref{fig:normalFallenBehavior} ((e)--(h)) show the roll and pitch 
+is in a fallen state. Figures \ref{fig:normalFallenBehavior} ((c)--(d)) show the roll and pitch 
 angles (raw and filtered) for a typical fallen robot. If the filtered roll value is less that 60 
 degrees, we can safely assume that the robot is falling forward. If the filtered roll values is 
 more than 100$^{\circ}$ we can assume that the robot is falling backward. To detect the events 
@@ -560,7 +571,9 @@ state with 100\% accuracy.
 Even though the thresholding method successfully distinguished between normal and fallen 
 activities, it was unable to detect states within the normal activities, i.e., walking forward 
 to walking backward so on. This one of the limitation of using thresholding methods, which has 
-been overcome by the learning methods. 
+been overcome by the learning methods.  We use Kalman filter in this experiments because of its 
+efficacy and the choice of the filter is entirely arbitrary depending on the computational 
+resources of the microcontroller.  
 
 
 \section{Conclusion and Future Work}
@@ -573,11 +586,11 @@ running and so on, an abnormal event such as a fall may occur. These events may 
 %  such events occur. 
   Using the prediction information, corrective measures can be engaged to avoid 
  many fall activities. Similarly, for humans, after  a fall activity is identified, rescue services 
- can be called upon. We have reported a wireless sensing device that were assembled using 
+ can be called upon. We have reported a wireless sensing device that have assembled using 
 off-the-shelf hardware components. Using two devices, we have created a sensor network for 
 collecting motion data from humans and biped humanoid robots. The sensing devices were connected to 
 the back of the subjects and the data collecting device was connected to a laptop which archived 
-the data. We have used machine two machine learning algorithms and a thresholding methods to 
+the data. We have used two machine learning algorithms and a thresholding methods to 
 identify both normal and abnormal activities within 91\%--100\% accuracy. Comparing the encouraging 
 experimental results we achieved, our future work will be to use multiple sensing devices to create 
 a sensor network to detect complex activities with higher sampling rates.  
