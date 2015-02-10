@@ -4,7 +4,8 @@
 # This shell script produces the latex source-package of a paper
 # as required by AAAI, in preparation for printed proceedings.
 # Copyright (C) 2009 Christian Fritz "fritz at cs dot toronto dot
-# edu"
+# edu" For the latest version of this script go to: 
+# https://gist.github.com/chfritz/5447483
 # ----------------------------------------------------------------------
 # This program is free software: you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as

@@ -17,7 +17,7 @@
 %\usepackage{minted}
 %%
 % so we don't need to specify figures subdirectory in figure code
-\graphicspath{{./figures/}}
+%\graphicspath{{./figures/}}
 \usepackage{subfig}
 %needed to change table colors
 \usepackage[table]{xcolor}
@@ -28,8 +28,9 @@
 \setlength{\pdfpagewidth}{8.5in}
 \setlength{\pdfpageheight}{11in}
 \pdfinfo{
-/Title (Insert Your Title Here)
-/Author (Put All Your Authors Here, Separated by Commas)}
+/Title (Activity Monitoring and Prediction for Humans and NAO Humanoid Robots using 
+Wearable Sensors)
+/Author (Saminda Abeyruwan, Faisal Sikder, Ubbo Visser, Dilip Sarkar)}
 \setcounter{secnumdepth}{0}  
  \begin{document}
  \begin{sloppy}
@@ -206,11 +207,11 @@ prediction. \end{inparaenum} This framework is general enough for other practiti
 available functionalities for creating WSNs, collecting data, learning, and prediction.
 
 The rest of the paper is organized as follows. First, we describe the software development 
-framework we have proposed and implemented. In the next section, we describe experimental setup as 
-well as empirical evaluations for humans and NAO humanoid robots. We have utilized two machine 
-learning algorithms and a thresholding based method to learn and identify normal and 
-abnormal activities. Then we also have presented our observations and discussion. Finally, the 
-paper is concluded with a summary and future work.  
+framework that we have proposed and implemented. In the next section, we describe the experimental 
+setup. In the penultimate section, we present evaluation results for humans and NAO humanoid 
+robots. We have utilized two machine learning algorithms and a thresholding based method to learn 
+and identify normal and abnormal activities. Then we also have presented our observations and 
+discussion. Finally, the paper is concluded with a summary and future work.  
 
 \section{Framework}
 
@@ -318,7 +319,7 @@ Figure {~\ref{fig:anotation-human-robot}}
 matrices of our experiments. 
 
 
-\section{Evaluation}
+\section{Evaluation Results}
 %\subsection{Learning Algorithms}
 We have structured this section in a way that we discuss feature extraction, data processing, 
 machine learning, and experimental results for both the human and robotic experiments. We have 
@@ -414,18 +415,18 @@ accuracy for future work.
 \begin{figure*}[!ht]
   \centering
   \subfloat[Marching in place.]{\label{fig:tsnedataset_1}\includegraphics[width=0.25\textwidth]
-       {plot1-crop}} 
+       {figures/plot1-crop}} 
   \subfloat[Walking backward.]{\label{fig:tsnedataset_9}\includegraphics[width=0.25\textwidth]
-       {plot5-crop}}
+       {figures/plot5-crop}}
 %  \subfloat[Rotating clockwise.]{\label{fig:tsnedataset_7}\includegraphics[width=0.25\textwidth]
 %       {plot2-crop}}
 %  \subfloat[Left side-way walk.]{\label{fig:tsnedataset_10}\includegraphics[width=0.25\textwidth]
 %       {plot6-crop}}
 %       \\
   \subfloat[Falling forward.]{\label{fig:tsnedataset_11}\includegraphics[width=0.25\textwidth]
-       {plot1_fallen-crop}}
+       {figures/plot1_fallen-crop}}
   \subfloat[Falling backward.]{\label{fig:tsnedataset_12}\includegraphics[width=0.25\textwidth]
-       {plot2_fallen-crop}}
+       {figures/plot2_fallen-crop}}
 %  \subfloat[Falling to left side.]{\label{fig:tsnedataset_13}\includegraphics[width=0.25\textwidth]
 %       {plot3_fallen-crop}}
 %  \subfloat[Falling to right
@@ -576,7 +577,7 @@ efficacy and the choice of the filter is entirely arbitrary depending on the com
 resources of the microcontroller.  
 
 
-\section{Conclusion and Future Work}
+\section{Conclusions and Future Work}
 
 It is known that while humans and biped humanoid robots perform normal activities such as jogging, 
 running and so on, an abnormal event such as a fall may occur. These events may cause injuries 
