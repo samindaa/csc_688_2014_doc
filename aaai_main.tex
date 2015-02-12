@@ -453,25 +453,29 @@ forward/backward ($\dot{x}_v = \pm200
 while all the other activities are classified as {\em fallen states}. 
 
 \begin{table}[!ht]
-\caption{Logistic regression classification for robot activities.}
+\caption{Logistic regression  and SVM classification for robot activities.}
 	\label{tab:robot-logistic-class}
 	\centering
-		\begin{tabular} {| l | c | c | c| c|}
-		\hline
-			{\bf Activity} & {\bf  TP}  &	{\bf TN}  &	{\bf FP} &	{\bf FN} \\ 
+	\scalebox{0.65}{
+	\begin{tabular} {| l | c | c | c| c|| c| c| c| c|}
+	\hline
+		& \multicolumn{4}{c||}{Logistic regression} & \multicolumn{4}{c|}{SVM classification} \\ 
 \hline
-			Walking forward	& 91\%	& 90\%	& 10\%	& 9\% \\ \hline
-			Walking backward	& 90\%	& 90\%	& 10\%	& 10\% \\ \hline
-			Walking left 	& 92\%	& 90\%	& 10\%	& 8\% \\ \hline
-			Walking right 	& 89\%	& 90\%	& 10\%	& 11\% \\ \hline
-			Falling forward	& 94\%	& 93\%	& 7\%	& 6\%	 \\ \hline
-			Falling Backward	& 94\%	& 93\%	& 7\%	& 6\%	 \\ \hline
-			Falling left	& 95\%	& 93\%	& 7\%	& 5\%	 \\ \hline
-			Falling Right	& 94\%	& 93\%	& 7\%	& 6\%	 \\ \hline
-			Marching	& 91\%	& 89\%	& 11\%	& 9\%	 \\ \hline
-			Rotate counter-clockwise	& 97\%	& 92\%	& 8\%	& 3\%	 \\ \hline
-			Rotate clockwise	& 98\%	& 92\%	& 8\%	& 2\%	 \\ \hline
+			{\bf Activity} & {\bf  TP}  &	{\bf TN}  &	{\bf FP} &	{\bf FN}& {\bf  TP}  &	{\bf TN}  &	{\bf FP} &	{\bf FN} \\ 
+\hline
+			Walking forward	& 91\%	& 90\%	& 10\%	& 9\% & 93\%	& 91\%	& 9\%	& 7 \% \\ \hline
+			Walking backward	& 90\%	& 90\%	& 10\%	& 10\% & 93\%	& 91\%	& 9\%	& 7\% \\ \hline
+			Walking left 	& 92\%	& 90\%	& 10\%	& 8\%  & 94\%	& 90\%	& 10\%	& 6\% \\ \hline
+			Walking right 	& 89\%	& 90\%	& 10\%	& 11\% & 90\%	& 91\%	& 9\%	& 10\% \\ \hline
+			Falling forward	& 94\%	& 93\%	& 7\%	& 6\%	& 98\%	& 93\%	& 7\%	& 2\% \\ \hline
+			Falling Backward	& 94\%	& 93\%	& 7\%	& 6\%	 & 98\%	& 93\%	& 7\%	& 2\% \\ \hline
+			Falling left	& 95\%	& 93\%	& 7\%	& 5\%	& 99\%	& 94\%	& 6\%	& 1\% \\ \hline
+			Falling Right	& 94\%	& 93\%	& 7\%	& 6\%	& 98\%	& 93\%	& 7\%	& 2\%	 \\ \hline
+			Marching	& 91\%	& 89\%	& 11\%	& 9\%	& 90\%	& 91\%	& 11\%	& 10\%	 \\ \hline
+			Rotate counter-clockwise	& 97\%	& 92\%	& 8\%	& 3\%	& 97\%	& 93\%	& 7\%	& 3\%	 \\ \hline
+			Rotate clockwise	& 98\%	& 92\%	& 8\%	& 2\%	& 96\%	& 93\%	& 7\%	& 4\%	 \\ \hline
 		\end{tabular}
+		}
 \end{table}
 
 
@@ -486,28 +490,28 @@ protocol for collecting multiple episodes to obtain our learning ensemble. To co
 fallen states, we have configured the walking engine to marching activity. Then, we safely pushed 
 the robot to different directions to inducing the fallen state. Similarly, we marked the sample 
 streams to generate several episodes for the learning ensemble.    
-
-\begin{table}[!ht]
-\caption{SVM classification for robot activities.}
-	\label{tab:robot-svm-class}
-	\centering
-		\begin{tabular} {| l | c | c | c | c | }
-		\hline
-			{\bf Activity} & {\bf  TP}  &	{\bf TN}  &	{\bf FP} &	{\bf FN} \\ 
-\hline
-			Walking forward	& 93\%	& 91\%	& 9\%	& 7\% \\ \hline
-			Walking backward	& 93\%	& 91\%	& 9\%	& 7\% \\ \hline
-			Walking left	& 94\%	& 90\%	& 10\%	& 6\% \\ \hline
-			Walking right	& 90\%	& 91\%	& 9\%	& 10\% \\ \hline
-			Falling forward	& 98\%	& 93\%	& 7\%	& 2\%	 \\ \hline
-			Falling backward	& 98\%	& 93\%	& 7\%	& 2\%	 \\ \hline
-			Falling left	& 99\%	& 94\%	& 6\%	& 1\%	 \\ \hline
-			Falling right	& 98\%	& 93\%	& 7\%	& 2\%	 \\ \hline
-			Marching	& 90\%	& 91\%	& 11\%	& 10\%	 \\ \hline
-			Rotate counter-clockwise	& 97\%	& 93\%	& 7\%	& 3\%	 \\ \hline
-			Rotate clockwise	& 96\%	& 93\%	& 7\%	& 4\%	 \\ \hline
-		\end{tabular}
-\end{table}
+%
+%\begin{table}[!ht]
+%\caption{SVM classification for robot activities.}
+	%\label{tab:robot-svm-class}
+	%\centering
+		%\begin{tabular} {| l | c | c | c | c | }
+		%\hline
+			%{\bf Activity} & {\bf  TP}  &	{\bf TN}  &	{\bf FP} &	{\bf FN} \\ 
+%\hline
+			%Walking forward	& 93\%	& 91\%	& 9\%	& 7\% \\ \hline
+			%Walking backward	& 93\%	& 91\%	& 9\%	& 7\% \\ \hline
+			%Walking left	& 94\%	& 90\%	& 10\%	& 6\% \\ \hline
+			%Walking right	& 90\%	& 91\%	& 9\%	& 10\% \\ \hline
+			%Falling forward	& 98\%	& 93\%	& 7\%	& 2\%	 \\ \hline
+			%Falling backward	& 98\%	& 93\%	& 7\%	& 2\%	 \\ \hline
+			%Falling left	& 99\%	& 94\%	& 6\%	& 1\%	 \\ \hline
+			%Falling right	& 98\%	& 93\%	& 7\%	& 2\%	 \\ \hline
+			%Marching	& 90\%	& 91\%	& 11\%	& 10\%	 \\ \hline
+			%Rotate counter-clockwise	& 97\%	& 93\%	& 7\%	& 3\%	 \\ \hline
+			%Rotate clockwise	& 96\%	& 93\%	& 7\%	& 4\%	 \\ \hline
+		%\end{tabular}
+%\end{table}
 
 
 \subsubsection{Results:}
