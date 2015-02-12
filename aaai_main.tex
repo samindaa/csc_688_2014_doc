@@ -552,14 +552,14 @@ We have designed a thresholding base activity predictor in these experiments. Us
 datasets, we have calculated the roll, pitch, and yaw angles  using the DCM algorithm. In order to 
 achieve an effective threshold-based decision making, we have filtered the roll, pitch, and
 yaw values using a Kalman filter \cite{Welch:1995:IKF:897831}. Figures 
-\ref{fig:normalFallenBehavior} ((a)--(b)) show the raw and the filtered values of the raw and the 
+\ref{fig:normalFallenBehavior} (a--b) show the raw and the filtered values of the raw and the 
 pitch values for marching and walk backward. The other activities show similar plots (we have 
 refrained from plotting them due to space constraints). 
 
 The thresholding method suggests that, if the filtered roll values are within the range $[90\pm15]$ 
 (degrees) and the filtered pitch values are within the rage $[0\pm15]$ (degrees), then with 100\% 
 accuracy, the NAO  robot will be in a normal state. Otherwise, we can safely assume that the robot 
-is in a fallen state. Figures \ref{fig:normalFallenBehavior} ((c)--(d)) show the roll and pitch 
+is in a fallen state. Figures \ref{fig:normalFallenBehavior} (c--d) show the roll and pitch 
 angles (raw and filtered) for a typical fallen robot. If the filtered roll value is less that 60 
 degrees, we can safely assume that the robot is falling forward. If the filtered roll values is 
 more than 100$^{\circ}$ we can assume that the robot is falling backward. To detect the events 
@@ -579,19 +579,20 @@ resources of the microcontroller.
 
 \section{Conclusions and Future Work}
 
-It is known that while humans and biped humanoid robots perform normal activities such as jogging, 
-running and so on, an abnormal event such as a fall may occur. These events may cause injuries 
- to the humans or robots. 
+%It is known that while humans and biped humanoid robots perform normal activities such as jogging, 
+%running and so on, an abnormal event such as a fall may occur. These events may cause injuries 
+ %to the humans or robots. 
 %  In order to avoid 
 %  damages to biped humanoid robots, machine learning can be used to predict potential falls before 
 %  such events occur. 
-  Using the prediction information, corrective measures can be engaged to avoid 
- many fall activities. Similarly, for humans, after  a fall activity is identified, rescue services 
+Falling events could cause damage to both humans and robots.  Using prediction information, 
+corrective measures can be engaged to avoid 
+ many fall events. Similarly, for humans, after  a fall is identified, rescue services 
  can be called upon. We have reported a wireless sensing device that have assembled using 
 off-the-shelf hardware components. Using two devices, we have created a sensor network for 
 collecting motion data from humans and biped humanoid robots. The sensing devices were connected to 
 the back of the subjects and the data collecting device was connected to a laptop which archived 
-the data. We have used two machine learning algorithms and a thresholding methods to 
+the data. We have used two machine learning algorithms and thresholding methods to 
 identify both normal and abnormal activities within 91\%--100\% accuracy. Comparing the encouraging 
 experimental results we achieved, our future work will be to use multiple sensing devices to create 
 a sensor network to detect complex activities with higher sampling rates.  
