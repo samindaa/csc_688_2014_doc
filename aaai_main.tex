@@ -364,44 +364,59 @@ down  \end{inparaenum}  are shown in Figures \ref{fig:ha} and \ref{fig:hb} respe
 \caption{Logistic regression classification for human activities.}
 	\label{tab:human-logistic-class}
 	\centering
-		\begin{tabular} {|l |c |c |c|c|}
-			\hline
+		\begin{tabular} {| l | c | c | c| c|}
+		\hline
 			{\bf Activity} & {\bf  TP}  &	{\bf TN}  &	{\bf FP} &	{\bf FN} \\ 
-			\hline
-			Walking	& 92\%	& 90\%	& 10\%	& 8\% \\ \hline
-			Stand to seat	& 96\%	& 92\%	& 8\% & 	4\%	 \\ \hline 
-			Stand to fall	& 96\%	& 94\%	& 6\%	& 4\%	 \\ \hline
+\hline
+			Walking forward	& 91\%	& 90\%	& 10\%	& 9\% \\ \hline
+			Walking backward	& 82\%	& 86\%	& 14\%	& 18\% \\ \hline
+			Walking left 	& 86\%	& 86\%	& 14\%	& 14\% \\ \hline
+			Walking right 	& 86\%	& 86\%	& 14\%	& 14\% \\ \hline
+			Falling forward	& 94\%	& 93\%	& 7\%	& 6\%	 \\ \hline
+			Falling Backward	& 84\%	& 88\%	& 12\%	& 16\%	 \\ \hline
+			Falling left	& 92\%	& 91\%	& 9\%	& 8\%	 \\ \hline
+			Falling Right	& 92\%	& 91\%	& 9\%	& 8\%	 \\ \hline
+			Marching	& 91\%	& 90\%	& 10\%	& 9\%	 \\ \hline
+			Rotate counter-clockwise	& 91\%	& 89\%	& 11\%	& 9\%	 \\ \hline
+			Rotate clockwise	& 92\%	& 89\%	& 11\%	& 8\%	 \\ \hline
 		\end{tabular}
 \end{table}
 
 
 \subsubsection{Results:} Table \ref{tab:human-logistic-class} shows the final results for 
 LLR classification, where, true positive, true negative, false positive, and false negative are 
-abbreviated with TP, TN, FP, and FN respectively. For walking on an average, the accuracy is 91\%, 
-similarly, for stand to seat and stand to fall the accuracies are 94\% and 95\% on an 
-average, respectively. We also observed that detection of the walking activity is less than other 
+abbreviated with TP, TN, FP, and FN respectively. For walking forward on an average, the accuracy is 91\%, 
+similarly, for falling forward and marching the accuracies are 94\% and 91\% on an 
+average, respectively. We found comparatively low accuracy in walking backward and falling backward. Rotation has accuracy on an average more than 90\%. We also observed that detection of the walking activity is less than other 
 activities that we experimented with.  
 
 \begin{table}[!ht]
 \caption{SVM classification for human activities.}
 	\label{tab:human-svm-class}
 	\centering
-		\begin{tabular} {|l |c |c |c|c|}
-			\hline
+		
+		\begin{tabular} {| l | c | c | c| c|}
+		\hline
 			{\bf Activity} & {\bf  TP}  &	{\bf TN}  &	{\bf FP} &	{\bf FN} \\ 
-			\hline
-			Walking	& 96\%	& 94\%	& 6\%	& 4\% \\ \hline
-			Stand to seat	& 96\%	& 92\%	& 8\% & 	4\%	 \\ \hline 
-			Stand to fall	& 98\%	& 94\%	& 2\%	& 2\%	 \\ \hline
+\hline
+			Walking forward	& 96\%	& 93\%	& 7\%	& 4\% \\ \hline
+			Walking backward	& 81\%	& 84\%	& 16\%	& 19\% \\ \hline
+			Walking left 	& 89\%	& 90\%	& 10\%	& 11\% \\ \hline
+			Walking right 	& 89\%	& 90\%	& 10\%	& 11\% \\ \hline
+			Falling forward	& 96\%	& 93\%	& 7\%	& 4\%	 \\ \hline
+			Falling Backward	& 84\%	& 87\%	& 13\%	& 16\%	 \\ \hline
+			Falling left	& 93\%	& 93\%	& 7\%	& 7\%	 \\ \hline
+			Falling Right	& 92\%	& 93\%	& 7\%	& 8\%	 \\ \hline
+			Marching	& 95\%	& 93\%	& 7\%	& 5\%	 \\ \hline
+			Rotate counter-clockwise	& 93\%	& 91\%	& 9\%	& 7\%	 \\ \hline
+			Rotate clockwise	& 94\%	& 91\%	& 9\%	& 6\%	 \\ \hline
 		\end{tabular}
 \end{table}
 
 
 The results for SVM classifier is summarized in Table \ref{tab:human-svm-class}. On an average, 
-accuracy for each type of activity is higher than LLR classifier with on an average 95\% for 
-walking, 94\% for stand to seat, and 96\% for stand to fall. As a consequence, SVM classifier has 
-less false positives and false negative compared to LLR.  Our experiments reveal that the SVM 
-classifier performs better than the logistic regression classifier. However, due to memory and 
+accuracy for each type of activity is higher than LLR classifier with on an average 96\% for 
+walking, 95\% for marching, and 96\% for falling forward. Both type of rotations have little higher accuracy over LLR. As a consequence, SVM classifier has less false positives and false negative compared to LLR.  Our experiments reveal that the SVM classifier performs better than the logistic regression classifier. However, due to memory and 
 computational restrictions on the embedded devices, we have found that the logistic 
 regression classifier is a better choice.  Our feature vector consists of the mean normalized sensor 
 reading and a bias term. We plan to combine and prune features to improve the classification 
