@@ -75,7 +75,7 @@ where humans and humanoid robots collaboratively work to complete tasks.
 
 Since both humans and biped humanoid robots have almost identical movements and are susceptible to 
 similar accidents, we believe that the same set of learning algorithms are suitable for both 
-groups. In this paper,  to validate our hypotheses, we develop a generalize approach for learning 
+groups. To validate our hypotheses, we develop a generalize approach for learning 
 and predicting activities of both groups.  We have attached wearable sensing devices to collect 
 motion data and have used software tools to interpret the sensor data to distinguish 
 between normal and abnormal activities. The sensing devices are assembled using off-the-shelf 
@@ -84,8 +84,10 @@ collect data for learning and predicting activities. The software tools provide 
 functionalities to use for collecting  data from any sensing devices, and to learn and predict 
 on/off-line. While attempts for identifying human motions have already been investigated, to the 
 best of our knowledge, we are the first to investigate the prospect of using external embedded 
-devices to identify activities on a NAO humanoid robot. Before we report our contributions, we 
-provide a brief review of work related to identification of human activity.  
+devices to identify activities on a NAO humanoid robot. 
+
+%Before we report our contributions, we provide a brief review of work related to identification of 
+%human activity.  
 
 
 \subsection{Related Work}
@@ -257,7 +259,7 @@ function.
 
 
 %\section{Experiment Setup and Empirical Evaluations}
-\section{Experiment Setup}
+\section{Experimental Setup}
 
 \begin{figure*}[!t]
 \centering
@@ -305,9 +307,8 @@ sensing device. The rest of the  section reports our data collection, data proce
 and prediction results.
 
 
-\subsection{Activity Annotation}
-
-The annotation for different human and robot motion activities are shown in 
+\subsubsection{Activity Annotation:} The annotation for different human and robot motion activities 
+are shown in 
 Figure {~\ref{fig:anotation-human-robot}}. 
 Accelerometer and gyroscope's $x$, $y$ and $z$ axis are shown for different motions. We can observe 
 that an 
