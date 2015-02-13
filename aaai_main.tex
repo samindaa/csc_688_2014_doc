@@ -404,21 +404,7 @@ similarly, for falling forward and marching the accuracies are 94\% and 91\% on 
 average, respectively. We found comparatively low accuracy in walking backward and falling backward. Rotation has accuracy on an average more than 90\%. We also observed that detection of the walking activity is less than other 
 activities that we experimented with.  
 
-
-
-The results for SVM classifier is summarized in Table \ref{tab:human-svm-class}. On an average, 
-accuracy for each type of activity is higher than LLR classifier with on an average 96\% for 
-walking, 95\% for marching, and 96\% for falling forward. Both type of rotations have little higher accuracy over LLR. As a consequence, SVM classifier has less false positives and false negative compared to LLR.  Our experiments reveal that the SVM classifier performs better than the logistic regression classifier. However, due to memory and 
-computational restrictions on the embedded devices, we have found that the logistic 
-regression classifier is a better choice.  Our feature vector consists of the mean normalized sensor 
-reading and a bias term. We plan to combine and prune features to improve the classification 
-accuracy for future work.  
-
-
-\subsection{Experiments with a NAO Robot}
- 
-
-\begin{figure*}[!ht]
+\begin{figure*}[!t]
   \centering
   \subfloat[Marching in place.]{\label{fig:tsnedataset_1}\includegraphics[width=0.25\textwidth]
        {figures/plot1-crop}} 
@@ -444,6 +430,18 @@ and pitch angles for fallen forward and backwards states of NAO humanoid robot.}
   \label{fig:normalFallenBehavior}
 
 \end{figure*}
+
+The results for SVM classifier is summarized in Table \ref{tab:human-svm-class}. On an average, 
+accuracy for each type of activity is higher than LLR classifier with on an average 96\% for 
+walking, 95\% for marching, and 96\% for falling forward. Both type of rotations have little higher accuracy over LLR. As a consequence, SVM classifier has less false positives and false negative compared to LLR.  Our experiments reveal that the SVM classifier performs better than the logistic regression classifier. However, due to memory and 
+computational restrictions on the embedded devices, we have found that the logistic 
+regression classifier is a better choice.  Our feature vector consists of the mean normalized sensor 
+reading and a bias term. We plan to combine and prune features to improve the classification 
+accuracy for future work.  
+
+
+\subsection{Experiments with a NAO Robot}
+
 
 
 Our NAO robots have an omni-directional walking engine.  
@@ -522,8 +520,7 @@ streams to generate several episodes for the learning ensemble.
 
 \subsubsection{Results:}
 
-The results for LLR and SVM classifiers are summarized in Tables \ref{tab:robot-logistic-class} and 
-\ref{tab:robot-svm-class}. The results are similar to identification of human activities, for 
+The results for LLR and SVM classifiers are summarized in Table \ref{tab:robot-logistic-class}. The results are similar to identification of human activities, for 
 conserving space, we omit detail discussion of the results. It is worthwhile to note that the SVM 
  identified events more accurately than LLR as observed for human activities.  
 
