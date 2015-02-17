@@ -65,10 +65,10 @@ fall-events are predicted using the same learning algorithms for humans and bipe
 
 \section{Introduction}
 \label{sec:Intro}
-The humans as well as the biped humanoid robots complete apparently simple activities that requires 
-complex computational tasks such as jogging, running and so on. While performing these safe 
+The humans as well as the biped humanoid robots complete apparently simple activities --- such as, jogging, and running etc. --- that requires 
+complex computational tasks. While performing these routine 
 activities, accidents such as falls may occur causing damage to the human body or to the structural 
-components of the humanoid robot \cite{li2009accurate}. There has been an increasing demand in 
+components of the humanoid robot \cite{li2009accurate}. In the near future human-robot will cooperatively work together for solving problems that are difficult for both groups.  For instance, there has been an increasing demand in 
 domains such as rescue to use autonomous or teleoperated humanoid robots to complete high-risk 
 tasks, otherwise would have been lethal to a human subject. Therefore, we envision environments 
 where humans and humanoid robots collaboratively work to complete tasks. 
@@ -78,9 +78,9 @@ similar accidents, we believe that the same set of learning algorithms are suita
 groups. To validate our hypotheses, we develop a generalize approach for learning 
 and predicting activities of both groups.  We have attached wearable sensing devices to collect 
 motion data and have used software tools to interpret the sensor data to distinguish 
-between normal and abnormal activities. The sensing devices are assembled using off-the-shelf 
-hardware component boards and the generalize software tools are developed by ourselves to 
-collect data for learning and predicting activities. The software tools provide a modular 
+between regular activities and fall events. The sensing devices are assembled using $(i)$ off-the-shelf 
+hardware component boards and $(ii)$  a set of generalized software tools that we have developed. The software tools 
+collect data  from the sensors, which we used for learning to distinguish between routine activities and fall events as well as predicting activities. The software tools provide a modular 
 functionalities to use for collecting  data from any sensing devices, and to learn and predict 
 on/off-line. While attempts for identifying human motions have already been investigated, to the 
 best of our knowledge, we are the first to investigate the prospect of using external embedded 
@@ -199,26 +199,27 @@ same device configuration was used on the back of a NAO humanoid robot.}
 
 \subsection{Our Approach and Contributions}
 
-TI microcontroller  boards such as MSP430{\texttrademark}LaunchPad, Tiva{\texttrademark} C Series 
-TM4C123G LaunchPad, Tiva C Series TM4C129 Connected LaunchPad, and add-on booster packs such as 
-Sensor Hub BoosterPack and CC2533  wireless transmitter and receiver  provide flexible platform for 
-developing solutions for a wide rage of low power and portable applications. For our experiments, 
-we have assembled a device with Tiva C Series TM4C123G microcontroller board, and three 
-boosterpacks. The boosterpacks are for sensing 9-axis motion, battery power, and wireless 
-networking. We have used two of the assembled devices to create a wireless sensor network (WSN) to 
-collect motion data from  humans and NAO humanoid robots.   
+Many off-the-shelf hardware boards, such as, TI microcontroller boards (MSP430{\texttrademark}LaunchPad, Tiva{\texttrademark} C Series 
+TM4C123G LaunchPad, Tiva C Series TM4C129 Connected LaunchPad) and add-on  BoosterPacks   with sensors as well as  wireless transmitter and receiver  provide flexible platform for 
+developing smart-devices for a wide rage of low power and portable applications. For our experiments, 
+we have assembled a wireless sensing-device with a Tiva C Series TM4C123G microcontroller board, and three 
+boosterpacks --- a
+Sensor Hub BoosterPack  for sensing 9-axis motion,  a CC2533  BoosterPack for wireless 
+networking, and a Fuel-Tank BoosterPack for power. We also assembled a wireless data collection device with a Tiva C Series TM4C123G microcontroller board, and a  CC2533  BoosterPack. These two devices were networked to create a wireless sensor network (WSN) for 
+collecting motion data from  humans and NAO humanoid robots.   
 
-We have developed a set of software tools to create a framework that allow us to: 
-\begin{inparaenum}[1)] \item setup the WSN; \item collect data; \item learning; and \item 
-prediction. \end{inparaenum} This framework is general enough for other practitioners to use the
+We have developed a set of software tools to create a framework that allow us
+\begin{inparaenum}[1)] \item  to setup the WSN, \item to collect data, \item to learn from sample examples, and \item 
+to monitor and predict events. \end{inparaenum} This framework is general enough for other practitioners to use the
 available functionalities for creating WSNs, collecting data, learning, and prediction.
 
 The rest of the paper is organized as follows. First, we describe the software development 
-framework that we have proposed and implemented. In the next section, we describe the experimental 
+framework that we have proposed and implemented. In the next section, we briefly describe the experimental 
 setup. In the penultimate section, we present evaluation results for humans and NAO humanoid 
 robots. We have utilized two machine learning algorithms and a thresholding based method to learn 
 and identify normal and abnormal activities. Then we also have presented our observations and 
 discussion. Finally, the paper is concluded with a summary and future work.  
+
 
 \section{Framework}
 
@@ -228,7 +229,7 @@ to actuators could contain complex behavior manipulations and modeling decisions
 developed efficiently. Hence, the framework takes these consideration into account and provides a 
 topologically sorted graph, based on the decision points provided by practitioners. The framework 
 includes: \begin{inparaenum}[1)] \item tools to develop modules and representations that execute on 
-the microcontrollers or off-line; \item the methods to access functionalities for physical robots; 
+the microcontrollers or off-line, \item the methods to access functionalities for physical robots, 
 and \item a real-time visualization system\end{inparaenum}. Our framework is lightweight, flexible, 
 and consumes minimum memory and computational resources. We have tested our framework on multiple 
 microcontrollers and on boosterpacks as stated above. We have written and distributed  software 

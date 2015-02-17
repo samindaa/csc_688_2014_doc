@@ -1,0 +1,9 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: aaai_main.aux
+The style file: aaai.bst
+Database file #1: references.bib
+A bad cross reference---entry "DernbachDKTC12"
+refers to entry "conf/intenv/2012", which doesn't exist
+Warning--I didn't find a database entry for "conf/intenv/2012"
+Warning--empty booktitle in Bao04activityrecognition
+Warning--empty institution in Welch:1995:IKF:897831
+(There was 1 error message)
