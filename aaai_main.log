@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.3.1)  17 FEB 2015 17:29
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.3.1)  17 FEB 2015 17:37
 entering extended mode
 **aaai_main.tex
 (C:\mss\Faisal\FLAIRS28\csc_688_2014_doc\aaai_main.tex
@@ -268,10 +268,10 @@ File: figures/robot_figure.pdf Graphic file (type pdf)
 <use figures/robot_figure.pdf>
 Package pdftex.def Info: figures/robot_figure.pdf used on input line 192.
 (pdftex.def)             Requested size: 93.58841pt x 165.17007pt.
+
+Underfull \vbox (badness 1424) has occurred while \output is active []
+
  [2]
-Underfull \vbox (badness 2401) has occurred while \output is active []
-
-
 <plots/human_walk-crop.pdf, id=18, 356.33125pt x 283.0575pt>
 File: plots/human_walk-crop.pdf Graphic file (type pdf)
  <use plots/human_walk-crop.pdf>
@@ -301,44 +301,43 @@ doc/figures/human_figure.pdf> <C:/mss/Faisal/FLAIRS28/csc_688_2014_doc/figures/r
 
 pdfTeX warning: pdflatex.exe (file C:/mss/Faisal/FLAIRS28/csc_688_2014_doc/figures/robot_figure.pdf): PDF inclusion: mul
 tiple pdfs with page group included in a single page
->] <figures/plot1-crop.pdf, id=274, 361.35pt x 283.0575pt>
+>] [4 <C:/mss/Faisal/FLAIRS28/csc_688_2014_doc/plots/human_walk-crop.pdf> <C:/mss/Faisal/FLAIRS28/csc_688_2014_doc/plots
+/human_stand-crop.pdf> <C:/mss/Faisal/FLAIRS28/csc_688_2014_doc/plots/robot_fallen_forward-crop.pdf> <C:/mss/Faisal/FLAI
+RS28/csc_688_2014_doc/plots/robot_fallen_backward-crop.pdf>] <figures/plot1-crop.pdf, id=346, 361.35pt x 283.0575pt>
 File: figures/plot1-crop.pdf Graphic file (type pdf)
- <use figures/plot1-crop.pdf>
+
+<use figures/plot1-crop.pdf>
 Package pdftex.def Info: figures/plot1-crop.pdf used on input line 409.
 (pdftex.def)             Requested size: 126.47249pt x 99.06728pt.
-
-<figures/plot5-crop.pdf, id=275, 361.35pt x 283.0575pt>
+ <figures/plot5-crop.pdf, id=347, 361.35pt x 283.0575pt>
 File: figures/plot5-crop.pdf Graphic file (type pdf)
  <use figures/plot5-crop.pdf>
 Package pdftex.def Info: figures/plot5-crop.pdf used on input line 411.
 (pdftex.def)             Requested size: 126.47249pt x 99.06728pt.
 
-<figures/plot1_fallen-crop.pdf, id=276, 361.35pt x 283.0575pt>
+<figures/plot1_fallen-crop.pdf, id=348, 361.35pt x 283.0575pt>
 File: figures/plot1_fallen-crop.pdf Graphic file (type pdf)
  <use figures/plot1_fallen-crop.pdf>
 Package pdftex.def Info: figures/plot1_fallen-crop.pdf used on input line 418.
 (pdftex.def)             Requested size: 126.47249pt x 99.06728pt.
 
-<figures/plot2_fallen-crop.pdf, id=277, 361.35pt x 283.0575pt>
+<figures/plot2_fallen-crop.pdf, id=349, 361.35pt x 283.0575pt>
 File: figures/plot2_fallen-crop.pdf Graphic file (type pdf)
  <use figures/plot2_fallen-crop.pdf>
 Package pdftex.def Info: figures/plot2_fallen-crop.pdf used on input line 420.
 (pdftex.def)             Requested size: 126.47249pt x 99.06728pt.
 
 
-LaTeX Warning: Reference `tab:human-svm-class' on page 4 undefined on input line 433.
+LaTeX Warning: Reference `tab:human-svm-class' on page 5 undefined on input line 433.
 
-[4 <C:/mss/Faisal/FLAIRS28/csc_688_2014_doc/plots/human_walk-crop.pdf> <C:/mss/Faisal/FLAIRS28/csc_688_2014_doc/plots/hu
-man_stand-crop.pdf> <C:/mss/Faisal/FLAIRS28/csc_688_2014_doc/plots/robot_fallen_forward-crop.pdf> <C:/mss/Faisal/FLAIRS2
-8/csc_688_2014_doc/plots/robot_fallen_backward-crop.pdf>] [5 <C:/mss/Faisal/FLAIRS28/csc_688_2014_doc/figures/plot1-crop
-.pdf> <C:/mss/Faisal/FLAIRS28/csc_688_2014_doc/figures/plot5-crop.pdf> <C:/mss/Faisal/FLAIRS28/csc_688_2014_doc/figures/
-plot1_fallen-crop.pdf> <C:/mss/Faisal/FLAIRS28/csc_688_2014_doc/figures/plot2_fallen-crop.pdf>]
-(C:\mss\Faisal\FLAIRS28\csc_688_2014_doc\aaai_main.bbl
+[5] (C:\mss\Faisal\FLAIRS28\csc_688_2014_doc\aaai_main.bbl
 Underfull \hbox (badness 1484) in paragraph at lines 97--102
 []\OT1/ptm/m/n/10 Moya, J.; Ruiz-del So-lar, J.; Or-chard, M.; and Parra-
  []
 
-) [6] (C:\mss\Faisal\FLAIRS28\csc_688_2014_doc\aaai_main.aux)
+) [6 <C:/mss/Faisal/FLAIRS28/csc_688_2014_doc/figures/plot1-crop.pdf> <C:/mss/Faisal/FLAIRS28/csc_688_2014_doc/figures/p
+lot5-crop.pdf> <C:/mss/Faisal/FLAIRS28/csc_688_2014_doc/figures/plot1_fallen-crop.pdf> <C:/mss/Faisal/FLAIRS28/csc_688_2
+014_doc/figures/plot2_fallen-crop.pdf>] (C:\mss\Faisal\FLAIRS28\csc_688_2014_doc\aaai_main.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -346,7 +345,7 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  3592 strings out of 493921
  54210 string characters out of 3144886
- 127862 words of memory out of 3000000
+ 128862 words of memory out of 3000000
  6817 multiletter control sequences out of 15000+200000
  24408 words of font info for 54 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
@@ -359,7 +358,7 @@ ic/amsfonts/cm/cmmi10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/
 b><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/u
 rw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2
 .9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on aaai_main.pdf (6 pages, 10819189 bytes).
+Output written on aaai_main.pdf (6 pages, 10819194 bytes).
 PDF statistics:
  417 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
