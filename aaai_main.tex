@@ -338,12 +338,12 @@ sampling rate. In order to
 identify activities: \begin{inparaenum}[1)] \item we have used a window size of $400ms$ (20 
 samples); and \item we have allowed 10 samples ($200ms$) to overlap between windows. 
 \end{inparaenum} The selection of the window size is based on the observation that transition from routine  activities to a fall event 
-takes between $180-200ms$. Thus, a window size of $400ms$ will include both fall event and 
+takes between $180-250ms$. Thus, a window size of $400ms$ will include both fall event and 
 non-fall event data for classification. For each window, we have calculated the running average of 
 all 9-axis values. This has produced nine values per window, which has been used as features. We 
 also added a bias term to provide additional capacity for the learning algorithms. The  
-accelerometer readings are in 3-axis in meter per square second ($m/s^2$), gyroscope readings are 
-in 3-axis in radian per square second ($rads/s^2$), and the magnetometer readings are in 3-axis in 
+accelerometer readings are in  meter per square second ($m/s^2$), gyroscope readings are 
+in 3-axis in radian per square second ($rads/s^2$), and the magnetometer readings are  in 
 Tesla ($T$). 
 
 As a preprocessing step, the features, except the bias, have been subjected to feature 
