@@ -337,8 +337,8 @@ We  have configured the motion sensor to sample at every  $20ms$, which is equiv
 sampling rate. In order to 
 identify activities: \begin{inparaenum}[1)] \item we have used a window size of $400ms$ (20 
 samples); and \item we have allowed 10 samples ($200ms$) to overlap between windows. 
-\end{inparaenum} The selection of the window size is based on the observation that a fall event 
-takes between $200-300ms$. Thus, a window size of $400ms$ will include both fall event and 
+\end{inparaenum} The selection of the window size is based on the observation that transition from routine  activities to a fall event 
+takes between $180-200ms$. Thus, a window size of $400ms$ will include both fall event and 
 non-fall event data for classification. For each window, we have calculated the running average of 
 all 9-axis values. This has produced nine values per window, which has been used as features. We 
 also added a bias term to provide additional capacity for the learning algorithms. The  
