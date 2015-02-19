@@ -296,19 +296,15 @@ graph for robot's fallen forward and backward motions.}
 \end{figure*}
 % Figures (d)-(f) shows 3-axis accelerometer and 3-axis gyroscope graph for robot's walk motion. 
 
-We have conducted our experiments on detecting motions (activities) on 
+We have conducted our experiments on detecting six regular movement activities and six fall events on 
 %able-bodied 
-humans and humanoid robots (NAO robots). We have used a InvenSense MPU-9150 
-motion tracking sensor on the Sensor Hub BoosterPack. 
-% 
-% The module {\em MPU9150Module} connects to 
-% this device and provides the representation {\em MPU9150Representation}. 
-% 
-We have used 3-axis accelerometer readings, 3-axis gyroscope readings, 3-axis magnetometer readings, 
-the quaternion rotation axis of the device, and Euler angles roll, pitch, and yaw.  In order to 
-calculate Euler angles, we have used the Direction Cosine Matrix (DCM) algorithm. We have configured 
-one device as a remote sensing device, and the other device is configured to receive data from the 
-sensing device. The rest of the  section reports our data collection, data processing, learning, 
+humans. The list of these activities and fall events are shown in Table~\ref{tab:human-logistic-class}. For humanoid robots (NAO robots) we evaluated all these activities and fall events, except stand-to-sit activity. 
+ A wireless 9-axis  motion sensing device was attached to the back of the subjects as shown in Fig.~\ref{fig:framework}, and a wireless data collecting device was connected to a computer. These two devices formed a WSN. While each subject was performing each of the prescribed activities, and fall events data was logged in the computer for leaning and performance evaluation.
+\par
+The motion data included 3-axis accelerometer readings, 3-axis gyroscope readings, and 3-axis magnetometer readings. These datasets were used to calculate
+the quaternion rotation axis of the device, and Euler angles roll, pitch, and yaw. We have used the Direction Cosine Matrix (DCM) algorithm for calculating Euler angles. 
+\par
+The rest of the  section reports our data collection, data processing, learning, 
 and prediction results.
 
 
