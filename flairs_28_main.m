@@ -2,7 +2,7 @@
 
 clear all; close all; clc;
 
-%dataset_name = 'data20141113-9-24-21walk.txt'
+%dataset_name = 'data20141113-9-24-21walk.txt';
 %dataset_name = 'data20141113-9-25-53seat-stand.txt';
 %dataset_name = 'data20141113-9-29-3fall.txt';
 
@@ -11,8 +11,8 @@ clear all; close all; clc;
 %dataset_name = 'rotation-robot.txt';
 
 %dataset_name = 'fall-forward-robot.txt';
-%dataset_name = 'fall-backward-robot.txt';
-dataset_name = 'fall-side-robot.txt';
+dataset_name = 'fall-backward-robot.txt';
+%dataset_name = 'fall-side-robot.txt';
 
 dataset = load(dataset_name);
 size(dataset)
@@ -26,9 +26,9 @@ for i = 1 : 6
 end
 I = legend('$\dot{x}$', '$\dot{y}$', '$\dot{z}$', ... 
     '$\dot{\theta}_x$', '$\dot{\theta}_y$', ... 
-    '$\dot{\theta}_z$', 'Location', 'best');
-xlabel('Sampling');
+    '$\dot{\theta}_z$', 'Location', 'northeast');
+xlabel('Sample Number');
 ylabel('Units');
-axis([0, 600, -15, 22]);
+axis([0, 600, -15, 20]);
 hold off;
 set(I,'interpreter','latex');
