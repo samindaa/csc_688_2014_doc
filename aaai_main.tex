@@ -75,13 +75,13 @@ where humans and humanoid robots collaboratively work to complete tasks.
 
 Since both humans and biped humanoid robots have almost identical movements and are susceptible to 
 similar accidents, we believe that the same set of learning algorithms are suitable for both 
-groups. To validate our hypotheses, we develop a generalize approach for learning 
+groups. To validate our hypotheses, we develop a generalized approach for learning 
 and predicting activities of both groups.  We have attached wearable sensing devices to collect 
 motion data and have used software tools to interpret the sensor data to distinguish 
 between regular activities and fall events. The sensing devices are assembled using $(i)$ off-the-shelf 
 hardware component boards and $(ii)$  a set of generalized software tools that we have developed. The software tools 
 collect data  from the sensors, which we used for learning to distinguish between routine activities and fall events as well as predicting activities. The software tools provide a modular 
-functionalities to use for collecting  data from any sensing devices, and to learn and predict 
+functionality to use for collecting  data from any sensing devices, and to learn and predict 
 on/off-line. While attempts for identifying human motions have already been investigated, to the 
 best of our knowledge, we are the first to investigate the prospect of using external embedded 
 devices to identify activities on a NAO humanoid robot. 
@@ -126,8 +126,8 @@ tracking, e.g.,
 
 {~\cite{moya2014fall}} proposed a fall detection, avoidance, and damage 
 reduction mechanism for biped humanoid robots. They tried to simulate the real world environment 
-where humanoid robots have to walk over irregular surface, running or playing sports, collusion 
-with other robots. Their framework detected instability and did fall avoidance or at 
+where humanoid robots have to walk over irregular surface, running or playing sports, collision 
+with other robots. Their framework detected instability and performed fall avoidance or at 
 least low-damage falling mechanism was invoked. Therefore, embedded devices  with add-on sensors 
 provide a flexible platform to build may real world applications. 
 
@@ -374,7 +374,7 @@ down  \end{inparaenum}  are shown in Figures \ref{fig:ha} and \ref{fig:hb} respe
 	\scalebox{0.65}{
 		\begin{tabular} {| l | c | c | c| c|| c| c| c| c|}
 		\hline
-		 & \multicolumn{4}{c||}{Logistic regression} & \multicolumn{4}{c|}{SVM classification} \\ 
+		 & \multicolumn{4}{c||}{\bf Logistic regression} & \multicolumn{4}{c|}{\bf SVM classification} \\ 
 \hline
 			{\bf Activity} & {\bf  TP}  &	{\bf TN}  &	{\bf FP} &	{\bf FN}& {\bf  TP}  &	{\bf TN}  &	{\bf FP} &	{\bf FN} \\ 
 \hline
@@ -462,7 +462,7 @@ while all the other activities are classified as {\em fallen states}.
 	\scalebox{0.65}{
 	\begin{tabular} {| l | c | c | c| c|| c| c| c| c|}
 	\hline
-		& \multicolumn{4}{c||}{Logistic regression} & \multicolumn{4}{c|}{SVM classification} \\ 
+		& \multicolumn{4}{c||}{\bf Logistic regression} & \multicolumn{4}{c|}{\bf SVM classification} \\ 
 \hline
 			{\bf Activity} & {\bf  TP}  &	{\bf TN}  &	{\bf FP} &	{\bf FN}& {\bf  TP}  &	{\bf TN}  &	{\bf FP} &	{\bf FN} \\ 
 \hline
@@ -488,7 +488,7 @@ and used the following protocol to collect the datasets. First, we set the veloc
 parameters and activate the walking engine of the robot. Then, we collect the motion data 
 transmitted by the wireless device attached at the back of the robot. Finally, we marked the start 
 point of the sample stream and collect data approximately for a minute and marked the end of the 
-sample stream. This is an episode of a normal  or a fallen state. We repeat the about described 
+sample stream. This is an episode of a normal  or a fallen state. We repeat the described 
 protocol for collecting multiple episodes to obtain our learning ensemble. To collect samples for 
 fallen states, we have configured the walking engine to marching activity. Then, we safely pushed 
 the robot to different directions to inducing the fallen state. Similarly, we marked the sample 
@@ -554,11 +554,11 @@ expensive methods such as Kalman filtering, which is reported in the next sectio
 
 \subsubsection{Kalman Filtering:}
 
-We have designed a thresholding base activity predictor in these experiments. Using the the same 
+We have designed a thresholding base activity predictor in these experiments. Using the same 
 datasets, we have calculated the roll, pitch, and yaw angles  using the DCM algorithm. In order to 
 achieve an effective threshold-based decision making, we have filtered the roll, pitch, and
 yaw values using a Kalman filter \cite{Welch:1995:IKF:897831}. Figures 
-\ref{fig:normalFallenBehavior} (a--b) show the raw and the filtered values of the raw and the 
+\ref{fig:normalFallenBehavior} (a--b) show the raw and the filtered values of the roll and the 
 pitch values for marching and walk backward. The other activities show similar plots (we have 
 refrained from plotting them due to space constraints). 
 
