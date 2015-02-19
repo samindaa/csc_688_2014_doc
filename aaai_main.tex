@@ -523,8 +523,8 @@ streams to generate several episodes for the learning ensemble.
 
 \subsubsection{Results:}
 
-The results for LLR and SVM classifiers are summarized in Table \ref{tab:robot-logistic-class}. The results are similar to identification of human activities, for 
-conserving space, we omit detail discussion of the results. It is worthwhile to note that the SVM 
+The results for LLR and SVM classifiers are summarized in Table \ref{tab:robot-logistic-class}. The results are similar to that of human activities and fall events, and for 
+conserving space we omit detail discussion of the results. It is worthwhile to note that the SVM 
  identified events more accurately than LLR as observed for human activities.  
 
 % Even though the thresholding method successfully distinguished between normal and fallen states, 
@@ -563,8 +563,7 @@ datasets, we have calculated the roll, pitch, and yaw angles  using the DCM algo
 achieve an effective threshold-based decision making, we have filtered the roll, pitch, and
 yaw values using a Kalman filter \cite{Welch:1995:IKF:897831}. Figures 
 \ref{fig:normalFallenBehavior} (a--b) show the raw and the filtered values of the roll and the 
-pitch values for marching and walk backward. The other activities show similar plots (we have 
-refrained from plotting them due to space constraints). 
+pitch values for marching and walk backward. The other activities show similar plots.
 
 The thresholding method suggests that, if the filtered roll values are within the range $[90\pm15]$ 
 (degrees) and the filtered pitch values are within the rage $[0\pm15]$ (degrees), then with 100\% 
