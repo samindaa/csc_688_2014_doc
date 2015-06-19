@@ -1,11 +1,12 @@
 \def\year{2015}
 
 %File: formatting-instruction.tex
-\documentclass[letterpaper]{article}
-\usepackage{aaai}
-\usepackage{times}
-\usepackage{helvet}
-\usepackage{courier}
+\documentclass{IEEETran}
+%\documentclass[letterpaper]{article}
+%usepackage{aaai}
+%\usepackage{times}
+%\usepackage{helvet}
+%\usepackage{courier}
 %%
 \usepackage{graphicx}
 \usepackage{url}
@@ -25,30 +26,30 @@
 
 
 %%
-\frenchspacing
-\setlength{\pdfpagewidth}{8.5in}
-\setlength{\pdfpageheight}{11in}
-\pdfinfo{
-/Title (Activity Monitoring and Prediction for Humans and NAO Humanoid Robots using 
-Wearable Sensors)
-/Author (Saminda Abeyruwan, Faisal Sikder, Ubbo Visser, Dilip Sarkar)}
-\setcounter{secnumdepth}{0}  
+%\frenchspacing
+%\setlength{\pdfpagewidth}{8.5in}
+%\setlength{\pdfpageheight}{11in}
+%\pdfinfo{
+%\title (Activity Monitoring and Prediction for Humans and NAO Humanoid Robots using Wearable Sensors)
+%Author (Saminda Abeyruwan, Faisal Sikder, Ubbo Visser, Dilip Sarkar)}
+%\setcounter{secnumdepth}{0}  
+\title{Semi-Automatic Extraction of  Training Examples from Sensor Readings for Activity Monitoring and Prediction for Humans and NAO Humanoid Robots}
+%\title{Activity Monitoring and Prediction for Humans and NAO Humanoid Robots using 
+%Wearable Sensors}
+\author{Saminda Abeyruwan \and Faisal Sikder \and Ubbo Visser \and Dilip Sarkar
+\thanks{
+ University of Miami,
+Department of Computer Science,
+ 1365 Memorial Drive, Coral Gables, FL, 33146, USA
+{ emails:\{saminda,faisalsikder,visser,sarkar\}@cs.miami.edu}
+} }
  \begin{document}
- \begin{sloppy}
+ %\begin{sloppy}
 % The file aaai.sty is the style file for AAAI Press 
 % proceedings, working notes, and technical reports.
 %
-\title{Activity Monitoring and Prediction for Humans and NAO Humanoid Robots using 
-Wearable Sensors}
-\author{Saminda Abeyruwan \and Faisal Sikder \and Ubbo Visser \and Dilip Sarkar\\
- University of Miami \\
-Department of Computer Science\\
- 1365 Memorial Drive, Coral Gables, FL, 33146, USA\\
-{\ttfamily \{saminda|faisalsikder|visser|sarkar\}@cs.miami.edu}
-}
 \maketitle
 \begin{abstract}
-\begin{quote}
 While humans or biped humanoid robots perform activities such as jogging and running, an accident 
 event such as a fall may occur. This might cause damage to the human body or 
 to the structural components of the robot. For humans, immediate identification of a fall 
@@ -61,7 +62,7 @@ tools to realize these functions  on embedded devices. \end{inparaenum} Our cont
 framework; and \item  a  novel software development environment for embedded systems. 
 \end{inparaenum} Our empirical evaluations demonstrate that with high accuracy different types of  
 fall-events are predicted using the same learning algorithms for humans and biped humanoid robots. 
-\end{quote}
+
 \end{abstract}
 
 \section{Introduction}
@@ -208,7 +209,7 @@ networking, and a Fuel-Tank BoosterPack for power. We also assembled a wireless 
 collecting motion data from  humans and NAO humanoid robots. The data collection device is connected to a computer with a USB cable for logging sensed data.   
 
 We have developed a set of software tools to create a framework that allow us
-\begin{inparaenum}[1)] \item  to setup the WSN, \item to collect data, \item to learn from sample examples, and \item 
+\begin{inparaenum}[1)] \item  to setup the WSN, \item to collect data, \item to extract training examples from sensor readings,\item to learn from sample examples, and \item 
 to monitor and predict events. \end{inparaenum} This framework is general enough for other practitioners to use the
 available functionalities for creating WSNs, collecting data, learning, and prediction.
 
@@ -263,6 +264,8 @@ Learning Module} requests values from {\em 9-Axis-Motion Representation} to impl
 function. 
   
 
+\section{Semi-Automatic Extraction of  Training Vectors}
+\label{sec:SemiAutomaticExtractionOfTrainingVectors}
 
 %\section{Experiment Setup and Empirical Evaluations}
 \section{Experimental Setup}
@@ -607,8 +610,8 @@ identify both normal and abnormal activities within 91\%--100\% accuracy. Compar
 experimental results we achieved, our future work will be to use multiple sensing devices to create 
 a sensor network to detect complex activities with higher sampling rates.  
 
-\bibliographystyle{aaai}
+\bibliographystyle{plain}
 \bibliography{references}
 
-\end{sloppy}
+%\end{sloppy}
 \end{document}
