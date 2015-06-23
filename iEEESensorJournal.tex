@@ -1,7 +1,7 @@
 \def\year{2015}
 
 %File: formatting-instruction.tex
-\documentclass{IEEETran}
+\documentclass{IEEEtran}
 %\documentclass[letterpaper]{article}
 %usepackage{aaai}
 %\usepackage{times}
@@ -93,6 +93,7 @@ devices to identify activities on a NAO humanoid robot.
 
 
 \subsection{Related Work}
+\label{subSec:relatedWork}
 
 The modern activity detection methods can be broadly categorized in to two groups based on: 
 \begin{inparaenum}[1)] \item inexpensive wearable embedded devices; and \item smart-phones. 
@@ -222,6 +223,7 @@ discussion. Finally, the paper is concluded with a summary and future work.
 
 
 \section{Framework}
+\label{sec:framework}
 
 The framework provides generic functionalities to develop applications or rational agents 
 on embedded devices that sense and actuate using add-on boards. The execution paths between sensors 
@@ -266,6 +268,66 @@ function.
 
 \section{Semi-Automatic Extraction of  Training Example}
 \label{sec:SemiAutomaticExtractionOfTrainingVectors}
+
+We have setup the framework as described in Section \ref{sec:framework} and enabled the 
+motion tracking device to sample at $20$ ms, which is equivalent to 50$Hz$ 
+sampling rate. The motion tracking device outputs nine values. The  
+accelerometer readings are in  meter per square second ($m/s^2$), gyroscope readings are 
+in 3-axis in radian per square second ($rads/s^2$), and the magnetometer readings are  in 
+Tesla ($T$). For our experiments, we have excluded the magnetometer readings. Therefore, 
+our input vectors are in $\mathbb{R}^6$, which consist of accelerometer and gyroscope 
+values.
+
+
+As a preprocessing step, in order to filter the noise in the input vectors, we have 
+created a moving window that contains 20 consecutive samples, which amounts to 400$ms$, 
+and obtain the 
+average value. We have moved the window 200$ms$, which amounts to 10 samples, and 
+repeated the process. Therefore, we have allowed 10 samples to overlap between windows. 
+We have used the preprocessed stream as the input to our automatic training example 
+extraction method.
+
+The activity annotation is an arduous and cumbersome process. As we have mentioned in 
+Section \ref{subSec:relatedWork}, the previous methods favor manual activity annotation, 
+which has been the single most time consuming part of the training example gathering 
+process. We present a semi-automatic activity annotation methodology based on 
+clustering, which has 
+significantly alleviated the time to generate samples. 
+
+Our method is relatively simple and easy to implement in practice. We have used the 
+samples from the preprocessing stage, and subjected them to k-means algorithm 
+\cite{Bishop06a}. We have empirically found that the minimum cost separation is 
+achievable when we have two clusters. This intuitively supports the fall event datasets 
+as well. For 
+example, if we consider the falling forward event, there is a window in which the fall 
+triggers and the subject falls to the ground. Therefore, the signature of this process 
+differs from the states before the process starts (e.g., standing) and the states after 
+(e.g., laying on the floor). Therefore, each fall dataset, there exists a duration in 
+which the fall triggered and continued.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.48\textwidth]{figures/example_annotation-crop.pdf} 
+\caption{Semi-automatic annotation of falling forward dataset.}
+ \label{fig:automatic_annotation} 
+\end{figure}
+
+Figure \ref{fig:automatic_annotation} shows our semi-automatic annotation of falling 
+forward dataset. The subject in this experiment exercises a fall froward. After a 
+fall, the subject immediately gets up and repeats the process. The green ``+'' segments 
+show the annotated fall events, while the black ``x'' segments show the non-fall 
+events. We have observed that there is a clear separation of the events with two 
+clusters. Each segment has betweens 15 to 20 consecutive data points, which amounts to 
+3000$ms$ to 4000$ms$ fall event after the triggering the event. The fall event triggers 
+at the end of the non-fall segment and at the beginning of the fall segment.
+
+Since we are 
+interested in the signature of the fall event, we have annotated all the samples belongs 
+to ``a'' cluster as the fall data. The k-means clustering finds a 
+local minimum in general. The cluster assignments may also vary depending on the 
+initialization. Therefore, when we have obtained the data belongs to two clusters, we 
+only have to manually provide the semantics of the cluster centroid. 
+
 
 %\section{Experiment Setup and Empirical Evaluations}
 \section{Experimental Setup}
