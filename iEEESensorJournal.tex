@@ -49,6 +49,7 @@ Department of Computer Science,
 % proceedings, working notes, and technical reports.
 %
 \maketitle
+
 \begin{abstract}
 While humans or biped humanoid robots perform activities such as jogging and running, an accident 
 event such as a fall may occur. This might cause damage to the human body or 
@@ -64,6 +65,8 @@ framework; and \item  a  novel software development environment for embedded sys
 fall-events are predicted using the same learning algorithms for humans and biped humanoid robots. 
 
 \end{abstract}
+
+\tableofcontents
 
 \section{Introduction}
 \label{sec:Intro}
@@ -222,8 +225,15 @@ and identify normal and abnormal activities. Then we also have presented our obs
 discussion. Finally, the paper is concluded with a summary and future work.  
 
 
-\section{Framework}
+\section{Framework for Data Collection and Processing}
 \label{sec:framework}
+
+TODO: write an introduction paragraph for the section. For convince of reference for 
+Framework for Data Collection and Processing will be denoted by  FDCP. 
+
+\subsection{Ordering of Sensor Data Collection and Processing}
+
+TODO: write what is meant by ``ordering''
 
 The framework provides generic functionalities to develop applications or rational agents 
 on embedded devices that sense and actuate using add-on boards. The execution paths between sensors 
@@ -254,6 +264,8 @@ graph out of the nodes. This is computed once, and the nodes in the queue will b
 after the other. If there were to be cycles in the graph, the framework will detect them and 
 indicate them to the users. 
 
+\subsection{Utilization of FDCP to 9-Axis Motion Sensor}
+
 The Figure \ref{fig:fa} shows the modules and representations related to our 
 experiments, where the boxes represent the computational modules, while the rounded-boxes represent 
 the input to a module or an output from a module. For brevity, in the rest of the paper, the  
@@ -264,10 +276,15 @@ representation {\em 9-Axis-Motion Representation} contains all the values that
 this module shares with other modules in the framework. In this graph, {\em 
 Learning Module} requests values from {\em 9-Axis-Motion Representation} to implement the learning 
 function. 
-  
 
 \section{Semi-Automatic Extraction of  Training Example}
 \label{sec:SemiAutomaticExtractionOfTrainingVectors}
+
+TODO: we need an introductory paragraph describing a set of activities $A = \{A_1, A_2, 
+\dots, A_n\}$. Show unfiltered data sample for couple for fall and non-fall time series. 
+
+
+\subsection{Preprocessing of the Time Series Data}
 
 We have setup the framework as described in Section \ref{sec:framework} and enabled the 
 motion tracking device to sample at $20$ ms, which is equivalent to 50$Hz$ 
@@ -278,7 +295,6 @@ Tesla ($T$). For our experiments, we have excluded the magnetometer readings. Th
 our input vectors are in $\mathbb{R}^6$, which consist of accelerometer and gyroscope 
 values.
 
-
 As a preprocessing step, in order to filter the noise in the input vectors, we have 
 created a moving window that contains 20 consecutive samples, which amounts to 400$ms$, 
 and obtain the 
@@ -286,6 +302,20 @@ average value. We have moved the window 200$ms$, which amounts to 10 samples, an
 repeated the process. Therefore, we have allowed 10 samples to overlap between windows. 
 We have used the preprocessed stream as the input to our automatic training example 
 extraction method.
+
+
+\subsection{Semi-Automatic Training Example Extraction}
+
+TODO: first paragraph => why we need SATEE. Because of the difficulty of generating 
+training data. Then, description of the algorithm, with the figure (training data only). 
+
+\subsubsection{K-Mean Clustering}
+
+TODO
+
+\subsubsection{Gaussian Mixtures}
+
+TODO
 
 The activity annotation is an arduous and cumbersome process. As we have mentioned in 
 Section \ref{subSec:relatedWork}, the previous methods favor manual activity annotation, 
@@ -328,39 +358,64 @@ local minimum in general. The cluster assignments may also vary depending on the
 initialization. Therefore, when we have obtained the data belongs to two clusters, we 
 only have to manually provide the semantics of the cluster centroid. 
 
+\section{Offline Learning and Predicting Algorithms}
 
-%\section{Experiment Setup and Empirical Evaluations}
-\section{Experimental Setup}
+TODO: About the algorithms we have used (SoftMax, ANN, and SVM).
 
-\begin{figure*}[!t]
-\centering
-\subfloat[Human walking 
-forward.]{\label{fig:ha}\includegraphics[width=0.25\textwidth]{plots/human_walk2-crop.pdf}} 
-\subfloat[Human stand to 
-seat.]{\label{fig:hb}\includegraphics[width=0.25\textwidth]{plots/human_stand2-crop.pdf}}
+Trained the models using using offline models. This is offline learning figure. 
+
+\section{Online Activity Monitoring and Identification}
+
+TODO:
+
+\subsection{Monitoring of Event}
+
+TODO: description of the figure2.
+
+\subsection{Identification of Events}
+
+TODO: two layer identification. 
+
+\section{Experiment Design and Data Collections}
+
+%\begin{figure*}[!t]
+%\centering
+%\subfloat[Human walking 
+%forward.]{\label{fig:ha}\includegraphics[width=0.25\textwidth]{plots/human_walk2-crop.pdf}}
+% 
 %\subfloat[Human stand to 
-%fall.]{\label{fig:hc}\includegraphics[width=0.32\textwidth]{plots/human_falling-crop.pdf}}
-%\\
-%\subfloat[Robot walk forward.]{\label{fig:ra}\includegraphics[width=0.32\textwidth]
-%{plots/robot_walk_forward-crop.pdf}}
-%\subfloat[Robot walk backward.]{\label{fig:rb}\includegraphics[width=0.32\textwidth]
-%{plots/robot_walk_backward-crop.pdf}}
-%\subfloat[Robot rotate clockwise.]{\label{fig:rc}\includegraphics[width=0.32\textwidth]
-%{plots/robot_rotate_cw-crop.pdf}}
-%\\
-\subfloat[Robot fallen forward.]{\label{fig:rd}\includegraphics[width=0.25\textwidth]
-{plots/robot_fallen_forward2-crop.pdf}} 
-\subfloat[Robot fallen backward.]{\label{fig:re}\includegraphics[width=0.25\textwidth]
-{plots/robot_fallen_backward2-crop.pdf}}
-%\subfloat[Robot fallen right.]{\label{fig:rf}\includegraphics[width=0.32\textwidth]
-%{plots/robot_fallen_right-crop.pdf}}
+%seat.]{\label{fig:hb}\includegraphics[width=0.25\textwidth]{plots/human_stand2-crop.pdf}}
+%%\subfloat[Human stand to 
+%%fall.]{\label{fig:hc}\includegraphics[width=0.32\textwidth]{plots/human_falling-crop.pdf}}
+%%\\
+%%\subfloat[Robot walk forward.]{\label{fig:ra}\includegraphics[width=0.32\textwidth]
+%%{plots/robot_walk_forward-crop.pdf}}
+%%\subfloat[Robot walk backward.]{\label{fig:rb}\includegraphics[width=0.32\textwidth]
+%%{plots/robot_walk_backward-crop.pdf}}
+%%\subfloat[Robot rotate clockwise.]{\label{fig:rc}\includegraphics[width=0.32\textwidth]
+%%{plots/robot_rotate_cw-crop.pdf}}
+%%\\
+%\subfloat[Robot fallen forward.]{\label{fig:rd}\includegraphics[width=0.25\textwidth]
+%{plots/robot_fallen_forward2-crop.pdf}} 
+%\subfloat[Robot fallen backward.]{\label{fig:re}\includegraphics[width=0.25\textwidth]
+%{plots/robot_fallen_backward2-crop.pdf}}
+%%\subfloat[Robot fallen right.]{\label{fig:rf}\includegraphics[width=0.32\textwidth]
+%%{plots/robot_fallen_right-crop.pdf}}
+%
+%\caption{Figures (a--b) shows 3-axis accelerometer and 3-axis gyroscope graph for human 
+%motions 
+%walking forward and stand to seat. Figures (c--d) shows 3-axis accelerometer and 3-axis 
+%gyroscope 
+%graph for robot's fallen forward and backward motions.}
+% \label{fig:anotation-human-robot} 
+%\end{figure*}
+%% Figures (d)-(f) shows 3-axis accelerometer and 3-axis gyroscope graph for robot's walk 
+%%motion. 
 
-\caption{Figures (a--b) shows 3-axis accelerometer and 3-axis gyroscope graph for human motions 
-walking forward and stand to seat. Figures (c--d) shows 3-axis accelerometer and 3-axis gyroscope 
-graph for robot's fallen forward and backward motions.}
- \label{fig:anotation-human-robot} 
-\end{figure*}
-% Figures (d)-(f) shows 3-axis accelerometer and 3-axis gyroscope graph for robot's walk motion. 
+TODO: put the numbers into the description provided in the previous sections. 
+
+\subsection{Results}
+
 
 We have conducted our experiments on detecting eight regular movement activities and four fall events on 
 %able-bodied 
@@ -374,48 +429,68 @@ The rest of the  section reports our data collection, data processing, learning,
 and prediction results.
 
 
-\subsubsection{Activity Annotation:} The annotation for different human and robot motion activities 
-are shown in 
-Figure {~\ref{fig:anotation-human-robot}}. 
-Accelerometer and gyroscope's $x$, $y$ and $z$ axis are shown for different motions. We can observe 
-that transition from a routine motion activity to a fall event 
-takes between 180 to 250 ms. Figure{~\ref{fig:anotation-human-robot}} (a--b) shows the 
-activity annotations for human motions (walking forward and sitting down). 
-Figure {~\ref{fig:anotation-human-robot}}
-(c--d) shows activity annotations for the NAO robot. The following section provides the evaluation 
-matrices of our experiments. 
+%\subsubsection{Activity Annotation:} The annotation for different human and robot motion 
+%activities 
+%are shown in 
+%Figure {~\ref{fig:anotation-human-robot}}. 
+%Accelerometer and gyroscope's $x$, $y$ and $z$ axis are shown for different motions. We 
+%can observe 
+%that transition from a routine motion activity to a fall event 
+%takes between 180 to 250 ms. Figure{~\ref{fig:anotation-human-robot}} (a--b) shows the 
+%activity annotations for human motions (walking forward and sitting down). 
+%Figure {~\ref{fig:anotation-human-robot}}
+%(c--d) shows activity annotations for the NAO robot. The following section provides the 
+%evaluation 
+%matrices of our experiments. 
 
 
-\section{Evaluation Results}
-%\subsection{Learning Algorithms}
-We have structured this section in a way that we discuss feature extraction, data processing, 
-machine learning, and experimental results for both the human and robotic experiments. We have 
-tested our hypotheses using  {\em Regularized Logistic Regression} (LLR) and {\em Support 
-Vector Machine} (SVM) algorithms. We have used a randomly generated 80\%--20\% partition for 
-training and cross-validation on our learning dataset. We have used an independent test set to 
-report our results. We have used standard parameter sweeping techniques to find the classifier 
-parameters that provide the optimal trade-off between the bias and the variance, while precision, 
-recall, and F$_1$-scores have been used to obtain the optimal value. 
-
-\subsection{Feature Extraction}
-
-We  have configured the motion sensor to sample at every  $20ms$, which is equivalent to 50$Hz$ 
-sampling rate. In order to 
-identify activities: \begin{inparaenum}[1)] \item we have used a window size of $400ms$ (20 
-samples); and \item we have allowed 10 samples ($200ms$) to overlap between windows. 
-\end{inparaenum} The selection of the window size is based on the observation that transition from routine  activities to a fall event 
-takes between $180-250ms$. Thus, a window size of $400ms$ will include both fall event and 
-non-fall event data for classification. For each window, we have calculated the running average of 
-all 9-axis values. This has produced nine values per window, which has been used as features. We 
-also added a bias term to provide additional capacity for the learning algorithms. The  
-accelerometer readings are in  meter per square second ($m/s^2$), gyroscope readings are 
-in 3-axis in radian per square second ($rads/s^2$), and the magnetometer readings are  in 
-Tesla ($T$). 
-
-As a preprocessing step, the features, except the bias, have been subjected to feature 
-standardization. We have independently set each dimension of the sample  to have zero-mean and 
-unit-variance. We achieved this by first computing the mean of each dimension across the dataset and 
-subtracting this from each dimension. Then each dimension is divided by its standard deviation.
+%\section{Evaluation Results}
+%%\subsection{Learning Algorithms}
+%We have structured this section in a way that we discuss feature extraction, data 
+%processing, 
+%machine learning, and experimental results for both the human and robotic experiments. 
+%We have 
+%tested our hypotheses using  {\em Regularized Logistic Regression} (LLR) and {\em 
+%Support 
+%Vector Machine} (SVM) algorithms. We have used a randomly generated 80\%--20\% partition 
+%for 
+%training and cross-validation on our learning dataset. We have used an independent test 
+%set to 
+%report our results. We have used standard parameter sweeping techniques to find the 
+%classifier 
+%parameters that provide the optimal trade-off between the bias and the variance, while 
+%precision, 
+%recall, and F$_1$-scores have been used to obtain the optimal value. 
+%
+%\subsection{Feature Extraction}
+%
+%We  have configured the motion sensor to sample at every  $20ms$, which is equivalent to 
+%50$Hz$ 
+%sampling rate. In order to 
+%identify activities: \begin{inparaenum}[1)] \item we have used a window size of $400ms$ 
+%(20 
+%samples); and \item we have allowed 10 samples ($200ms$) to overlap between windows. 
+%\end{inparaenum} The selection of the window size is based on the observation that 
+%transition from routine  activities to a fall event 
+%takes between $180-250ms$. Thus, a window size of $400ms$ will include both fall event 
+%and 
+%non-fall event data for classification. For each window, we have calculated the running 
+%average of 
+%all 9-axis values. This has produced nine values per window, which has been used as 
+%features. We 
+%also added a bias term to provide additional capacity for the learning algorithms. The  
+%accelerometer readings are in  meter per square second ($m/s^2$), gyroscope readings are 
+%in 3-axis in radian per square second ($rads/s^2$), and the magnetometer readings are  
+%in 
+%Tesla ($T$). 
+%
+%As a preprocessing step, the features, except the bias, have been subjected to feature 
+%standardization. We have independently set each dimension of the sample  to have 
+%zero-mean and 
+%unit-variance. We achieved this by first computing the mean of each dimension across the 
+%dataset and 
+%subtracting this from each dimension. Then each dimension is divided by its standard 
+%deviation.
  
 
 \subsection{Experiments with a Human}
