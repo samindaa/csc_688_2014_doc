@@ -33,10 +33,11 @@
 %\title (Activity Monitoring and Prediction for Humans and NAO Humanoid Robots using Wearable Sensors)
 %Author (Saminda Abeyruwan, Faisal Sikder, Ubbo Visser, Dilip Sarkar)}
 %\setcounter{secnumdepth}{0}  
-\title{Semi-Automatic Extraction of  Training Examples from Sensor Readings for Activity Monitoring and Prediction for Humans and NAO Humanoid Robots}
+%\title{Semi-Automatic Extraction of  Training Examples from Sensor Readings for Activity Monitoring and Prediction for Humans and NAO Humanoid Robots}
+\title{Semi-Automatic Extraction of  Training Examples from Sensor Readings for Activity Monitoring and Prediction for Humans and Humanoid Robots}
 %\title{Activity Monitoring and Prediction for Humans and NAO Humanoid Robots using 
 %Wearable Sensors}
-\author{{Saminda Abeyruwan}, {Faisal Sikder},  {Dilip Sarkar}, and {Ubbo Visser}
+\author{{Saminda Abeyruwan}, {Dilip Sarkar}, {Faisal Sikder},   and {Ubbo Visser}
 \thanks{
  University of Miami,
 Department of Computer Science,
@@ -70,16 +71,31 @@ fall-events are predicted using the same learning algorithms for humans and bipe
 
 \section{Introduction}
 \label{sec:Intro}
-The humans as well as the biped humanoid robots complete apparently simple activities --- such as, jogging, and running etc. --- that requires 
-complex computational tasks. While performing these routine 
+%Justification for activity monitoring
+Fall is a major cause of injury to the elderly population \cite{Rubenstein2006}. 
+Each year about 30-60\% of the elderly population have one or more falls, and  about 10-20\% of these falls results in injury \cite{Rubenstein2006}. 
+As reported in CDC website \cite{CDC2014July},
+``In 2010, falls among older adults cost the U.S. health care system \$30 billion in direct medical costs, when adjusted for inflation.'' By 2020 it is expected to reach \$67.7 billion. 
+
+\par 
+Availability of inexpensive miniature \emph{microelectromechanical system} (MEMS) sensors  has motivated researchers  to study their potential for assessing fall-risk  (see \cite{shanyReview2012}, \cite{howcroftReview2013}, and the references therein) as well as monitoring \emph{activities of daily livings} (ADLs) \cite{alvarezActivityAndFallRecognotion2015,BaoActivityrecognition2004,DernbachActivityAndFallDetectionPhone2012,krishnanActivityRecognition2014,kumarActivitAndFallDetection2013} and fall events \cite{baekFallDetection2013,baiFallDetectionPhone2013,DernbachActivityAndFallDetectionPhone2012,dumitracheFallDetection2013,kumarActivitAndFallDetection2013,leoneFallDetection2013,liangFallDetection2012,liFallDetection2009,moyaFallAndDamageDetection2015,ojetolaFallDetection2011,ShenFallDetectionPhone2015,steidlFallDetection2012,DoukasFallDetection2011,ErdoganFallDetection2014,JianFallDetection2015}. These studies have used  accelerometers,  or gyroscopes, or magnetometers, or  a combination of them to collect motion datasets at  25 Hz to 200 Hz.  
+\par
+Earlier studies demonstrated feasibility of various miniature wired or wireless devices, and recent studies have focused on extracting knowledge from motion sensor data.  Results from past studies have proven  that hardware for MEMS sensor based \emph{intelligent} devices to ($i$) assess fall-risks, ($ii$) monitor ADLs, and ($iii$) identify falls have reached maturity and can be assembled from off-the-shelf hardware.  Remaining major challenges are in automation of development of firmware and software for making these devices \emph{intelligent}.
+\par
+
+
+%However, the challenges: How to gather \textbf{\emph{sufficient }} motion datasets and how to \emph{\textbf{automate }} extraction of required information form the datasets  for assessment of fall-risks.
+
+The humans as well as the biped humanoid robots performs similar activities --- such as, jogging, and running etc. While performing these routine 
 activities, accidents such as falls may occur causing damage to the human body or to the structural 
-components of the humanoid robot \cite{li2009accurate}. In the near future human-robot will cooperatively work together for solving problems that are difficult for both groups.  For instance, there has been an increasing demand in 
+components of the humanoid robot \cite{moyaFallAndDamageDetection2015}. 
+In the near future human-robot will cooperatively work together for solving problems that are difficult for both groups.  For instance, there has been an increasing demand in 
 domains such as rescue to use autonomous or teleoperated humanoid robots to complete high-risk 
 tasks, otherwise would have been lethal to a human subject. Therefore, we envision environments 
 where humans and humanoid robots collaboratively work to complete tasks. 
-
+\par
 Since both humans and biped humanoid robots have almost identical movements and are susceptible to 
-similar accidents, we believe that the same set of learning algorithms are suitable for both 
+similar accidents, we believe that the same devices are suitable for monitoring activities and fall events of both 
 groups. To validate our hypotheses, we develop a generalized approach for learning 
 and predicting activities of both groups.  We have attached wearable sensing devices to collect 
 motion data and have used software tools to interpret the sensor data to distinguish 
@@ -91,8 +107,11 @@ on/off-line. While attempts for identifying human motions have already been inve
 best of our knowledge, we are the first to investigate the prospect of using external embedded 
 devices to identify activities on a NAO humanoid robot. 
 
-%Before we report our contributions, we provide a brief review of work related to identification of 
-%human activity.  
+\par
+In this work, we concentrate on extracting training datasets and test datasets from time-series collected from the device. For each type of activity to be monitored we collect nine time-series using a 9-axis MEMS sensor.  
+
+Before we report our contributions, we provide a brief review of work related to identification of 
+human activity.  
 
 
 \subsection{Related Work}
@@ -103,34 +122,32 @@ The modern activity detection methods can be broadly categorized in to two group
 \end{inparaenum} Wearable embedded devices with add-on sensors provide options to develop effective 
 activity recognition methods for humans and biped humanoid robots alike. The existing activity 
 detection methods focus on special cases of fall detection in humans and humanoid robots. These 
-methods were primarily used in isolation.  {~\cite{ojetola2011fall}} reported method using 
-accelerometers and gyroscopes to detect fall incidence among the elderly people. The work reported 
-detecting four falling events: forward, backward, right, and left.  They used a decision tree to 
+methods were primarily used in isolation.  Using readings from accelerometer and gyroscope a methods for detecting four fall events --- forward, backward, right, and left - was reported in \cite{ojetolaFallDetection2011}.  Reported method utilized  a decision tree to 
 learn and classify falls and activities of daily living (ADL). The method identified fall events 
 with precision of 81\%  and recall of 92\%. 
 
-\cite{baek2013real} proposed  a fall  detection  system  using necklace-shaped tri-axial
-accelerometer  and  gyroscope  sensors  to  classify  the  behavior  and  posture  of  the detection
- subject. Their method distinguished between  ADL and  fall, with  sensitivities  greater  than 
+Detection method reported in\cite{baekFallDetection2013}, used necklace-shaped tri-axial
+accelerometer  and  gyroscope  sensors  for classifying  the  behavior  and  posture  of  human
+ subjects. Their method distinguished between  ADLs and  falls, with  sensitivities  greater  than 
  80\%  and specificities  of  100\%. They experimented with ADLs such as: standing, sitting in the 
  chair or floor, laying, walking, running, going upstairs/downstairs, and bending, while, 
  falling forward, backward, leftward, rightward, and fall on the stairs were treated as abnormal 
  events. 
  
-\cite{leone2013supervised} prosed a system to detect event that cause trauma, and disabilities
+\cite{leoneFallDetection2013} prosed a system to detect event that cause trauma, and disabilities
 using a tri-axial MEMS wearable wireless accelerometer. They used support vector machine (SVM) for
-robust classification of different events. \cite{Bao04activityrecognition} reported of using five 
+robust classification of different events. \cite{BaoActivityrecognition2004} reported of using five 
 small biaxial wire-free accelerometers attached  on the left bicep, right wrist, left quadriceps, 
 right ankle, and right hip to recognize 20 activities starting from  walking  to  riding elevator  
 to  strength  training to bicycling. They reported using decision table, instance-based learning, 
 decision tree, and na\"{i}ve Bayes classifiers, where, decision tree showed the best performance 
 with 84\% accuracy.  Similar efforts have been reported to detect human motions using motion 
 tracking, e.g., 
-\cite{dumitrache2013fall,kumarwearable,krishnan2014activity,gao2014evaluation,alvarez2015evaluating}.
+\cite{dumitracheFallDetection2013,kumarActivitAndFallDetection2013,krishnanActivityRecognition2014,gaoActivityRecognition2014,alvarezActivityAndFallRecognotion2015}.
  
 
 
-{~\cite{moya2014fall}} proposed a fall detection, avoidance, and damage 
+{~\cite{moyaFallAndDamageDetection2015}} proposed a fall detection, avoidance, and damage 
 reduction mechanism for biped humanoid robots. They tried to simulate the real world environment 
 where humanoid robots have to walk over irregular surface, running or playing sports, collision 
 with other robots. Their framework detected instability and performed fall avoidance or at 
@@ -139,14 +156,14 @@ provide a flexible platform to build may real world applications.
 
 
 There is an increasing popularity in using smart-phones to detect activities in health care domain. 
-Using only the accelerometer readings from a smart-phone, \cite{bai2013recognition} analyzed five 
+Using only the accelerometer readings from a smart-phone, \cite{baiFallDetectionPhone2013} analyzed five 
 actions of human walking, running, standing up, sitting down, and jumping. They compared the 
 acceleration characteristics of these actions with three different fall accelerations to infer the 
 direction of the fall. Their method recognize the fall activity, only when a predefined set of 
 conditions were met. But the method did not provide any prediction or indication value, that a fall 
 may occur in future. 
 
-\cite{steidl2012fall} reported that the sensors of the smart-phones from different manufactures 
+\cite{steidlFallDetection2012} reported that the sensors of the smart-phones from different manufactures 
 record values significantly incompatible ranges for identical tasks. Therefore, they trained a SVM 
 classifier based on the features extracted from raw accelerometer readings and the directional 
 changes of the constraining force exerted on an accelerometer to detect fall events. They compared 
@@ -154,7 +171,7 @@ these events to non-fall activities such as walking, running, jumping, and some 
 resembles falls such as sitting down on a chair. Their method detected fall events 84.8\% average 
 accuracy across different smart-phones. 
 
-\cite{DernbachDKTC12} explored methods to detect simple and complex activities using inertial 
+\cite{DernbachActivityAndFallDetectionPhone2012} explored methods to detect simple and complex activities using inertial 
 sensors (accelerometer and gyroscope) of an Android smart-phone. The simple activities included: 
 biking, climbing stairs, driving, running, sitting, standing, walking, and state of the phone not 
 on the person. The complex activities were: cleaning, cooking, medication, sweeping, washing hands, 
@@ -163,7 +180,7 @@ Bayesian  network,  decision  table,  best-first tree, and  K-star,  were traine
 feature extractor. For simple activities, 93\% accuracy using MLP were reported, while, 50\% 
 success was achieved for complex activities.    
 
-\cite{Shen2015390} used a  high-level fuzzy Petri net for the analysis and the development of 
+\cite{ShenFallDetectionPhone2015} used a  high-level fuzzy Petri net for the analysis and the development of 
 identifying normal human actions such as sitting-down, squatting, walking, running, and jumping and 
 abnormal events such as falling forward, backward, sideways, and vertical. Their fall detection 
 method reported 94\% accuracy. One disadvantage of their process was that, some complex situations 
@@ -213,16 +230,19 @@ networking, and a Fuel-Tank BoosterPack for power. We also assembled a wireless 
 collecting motion data from  humans and NAO humanoid robots. The data collection device is connected to a computer with a USB cable for logging sensed data.   
 
 We have developed a set of software tools to create a framework that allow us
-\begin{inparaenum}[1)] \item  to setup the WSN, \item to collect data, \item to extract training examples from sensor readings,\item to learn from sample examples, and \item 
+\begin{inparaenum}[1)] \item  to setup the WSN, \item to collect data, \item to extract training examples from sensor readings, \item to learn from sample examples, and \item 
 to monitor and predict events. \end{inparaenum} This framework is general enough for other practitioners to use the
 available functionalities for creating WSNs, collecting data, learning, and prediction.
 
-The rest of the paper is organized as follows. First, we describe the software development 
-framework that we have proposed and implemented. In the next section, we briefly describe the experimental 
-setup. In the penultimate section, we present evaluation results for humans and NAO humanoid 
-robots. We have utilized two machine learning algorithms and a thresholding based method to learn 
-and identify normal and abnormal activities. Then we also have presented our observations and 
-discussion. Finally, the paper is concluded with a summary and future work.  
+The rest of the paper is organized as follows. In Section~\ref{sec:framework}, we describe the software development 
+framework that we have proposed and implemented.
+Section~\ref{sec:SemiAutomaticExtractionOfTrainingVectors} reports our novel methods for  semi-automatic extraction  of \begin{inparaenum} [1)] \item training samples to be used by the learning algorithms  and \item testing data for activity monitoring. \end{inparaenum} Outlines of offline leaning algorithms used for teaching the device to identify activities and fall events are described in Section~\ref{OffLineLearning}. 
+ In the penultimate section, we present detailed description of evaluation of proposed methods and also, report some typical results for humans and NAO humanoid 
+robots. 
+%We have utilized two machine learning algorithms and a thresholding based method to learn 
+%and identify normal and abnormal activities. Then we also have presented our observations and 
+%discussion. 
+Finally, the paper is concluded with a summary and future work.  
 
 
 \section{Framework for Data Collection and Processing}
@@ -359,6 +379,7 @@ initialization. Therefore, when we have obtained the data belongs to two cluster
 only have to manually provide the semantics of the cluster centroid. 
 
 \section{Offline Learning and Predicting Algorithms}
+\label{OffLineLearning}
 
 TODO: About the algorithms we have used (SoftMax, ANN, and SVM).
 
@@ -376,7 +397,8 @@ TODO: description of the figure2.
 
 TODO: two layer identification. 
 
-\section{Experiment Design and Data Collections}
+\section{Empirical Evaluation of Proposed Algorithms and Methods}
+\label{Evaluation}
 
 %\begin{figure*}[!t]
 %\centering
@@ -748,7 +770,7 @@ experimental results we achieved, our future work will be to use multiple sensin
 a sensor network to detect complex activities with higher sampling rates.  
 
 \bibliographystyle{plain}
-\bibliography{references}
+\bibliography{references,fallRisk}
 
 %\end{sloppy}
 \end{document}
