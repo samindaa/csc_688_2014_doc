@@ -57,17 +57,17 @@ event such as a fall may occur. This might cause damage to the human body or
 to the structural components of the robot. For humans, immediate identification of a fall 
 will allow fast responses, while for a robot, early prediction can be used to take corrective 
 measures to prevent a fall. Modern wireless sensing devices can be attached to humans or robots to 
-collect motion data. We propose: \begin{inparaenum}[1)] \item 
+collect motion data. We propose: \begin{inparaenum}[($i$)] \item 
 methods to learn and predict different activities for humans and robots; and \item software 
 tools to realize these functions  on embedded devices. \end{inparaenum} Our contributions include: 
-\begin{inparaenum}[1)] \item detection of falls for both humans and robots within a unified 
+\begin{inparaenum}[($i$)] \item detection of falls for both humans and robots within a unified 
 framework; and \item  a  novel software development environment for embedded systems. 
 \end{inparaenum} Our empirical evaluations demonstrate that with high accuracy different types of  
 fall-events are predicted using the same learning algorithms for humans and biped humanoid robots. 
 
 \end{abstract}
 
-\tableofcontents
+%\tableofcontents
 
 \section{Introduction}
 \label{sec:Intro}
@@ -78,25 +78,37 @@ As reported in CDC website \cite{CDC2014July},
 ``In 2010, falls among older adults cost the U.S. health care system \$30 billion in direct medical costs, when adjusted for inflation.'' By 2020 it is expected to reach \$67.7 billion. 
 
 \par 
-Availability of inexpensive miniature \emph{microelectromechanical system} (MEMS) sensors  has motivated researchers  to study their potential for assessing fall-risk  (see \cite{shanyReview2012}, \cite{howcroftReview2013}, and the references therein) as well as monitoring \emph{activities of daily livings} (ADLs) \cite{alvarezActivityAndFallRecognotion2015,BaoActivityrecognition2004,DernbachActivityAndFallDetectionPhone2012,krishnanActivityRecognition2014,kumarActivitAndFallDetection2013} and fall events \cite{baekFallDetection2013,baiFallDetectionPhone2013,DernbachActivityAndFallDetectionPhone2012,dumitracheFallDetection2013,kumarActivitAndFallDetection2013,leoneFallDetection2013,liangFallDetection2012,liFallDetection2009,moyaFallAndDamageDetection2015,ojetolaFallDetection2011,ShenFallDetectionPhone2015,steidlFallDetection2012,DoukasFallDetection2011,ErdoganFallDetection2014,JianFallDetection2015}. These studies have used  accelerometers,  or gyroscopes, or magnetometers, or  a combination of them to collect motion datasets at  25 Hz to 200 Hz.  
+Availability of inexpensive miniature \emph{microelectromechanical system} (MEMS) sensors  has motivated researchers  to study their potential for assessing fall-risk  (see \cite{shanyReview2012}, \cite{howcroftReview2013}, and the references therein) as well as monitoring \emph{activities of daily livings} (ADLs) \cite{alvarezActivityAndFallRecognotion2015,BaoActivityrecognition2004,DernbachActivityAndFallDetectionPhone2012,krishnanActivityRecognition2014,kumarActivitAndFallDetection2013} and \emph{fall events} (FEs) \cite{baekFallDetection2013,baiFallDetectionPhone2013,DernbachActivityAndFallDetectionPhone2012,dumitracheFallDetection2013,kumarActivitAndFallDetection2013,leoneFallDetection2013,liangFallDetection2012,liFallDetection2009,moyaFallAndDamageDetection2015,ojetolaFallDetection2011,ShenFallDetectionPhone2015,steidlFallDetection2012,DoukasFallDetection2011,ErdoganFallDetection2014,JianFallDetection2015}. These studies have used  accelerometers,  or gyroscopes, or magnetometers, or  a combination of them to collect motion datasets at  25 Hz to 200 Hz.  
 \par
-Earlier studies demonstrated feasibility of various miniature wired or wireless devices, and recent studies have focused on extracting knowledge from motion sensor data.  Results from past studies have proven  that hardware for MEMS sensor based \emph{intelligent} devices to ($i$) assess fall-risks, ($ii$) monitor ADLs, and ($iii$) identify falls have reached maturity and can be assembled from off-the-shelf hardware.  Remaining major challenges are in automation of development of firmware and software for making these devices \emph{intelligent}.
-\par
+Earlier studies demonstrated feasibility of various miniature wired or wireless devices, and recent studies have focused on extracting knowledge from motion sensor data.  Results from past studies have proven  that hardware for MEMS sensor based \emph{intelligent} devices to \begin{inparaenum} [($i$)] \item assess fall-risks, \item monitor ADLs, and \item identify fall events have reached maturity and can be assembled from off-the-shelf hardware. \end{inparaenum}  
 
+\par
+Remaining major challenges include automatic development of \begin{inparaenum}[($i$)] \item firmware and software for collecting motion data and  extracting features specific to applications and users, and \item software module for making intelligent decisions utilizing features extracted from motion data. \end{inparaenum}
+For example, a device with 9-axis MEMS motion sensor to be used for identifying four fall events --- fall forward, fall backward, fall left, and fall right. The device must have firmware modules to collect motion data, to preprocess motion data, and to extract sufficient features from the preprocessed data for identification of all fall events. Also, the device must have a software module that takes the extracted features as input and recognizes correctly  which fall event has occurred.
+\par
+In this paper we  propose a software framework for creating firmware for collecting data from embedded sensors, and a method for semi-automatic extraction of training examples from motion data for identification of ADLS and FEs. Our studies has shown that the methods applies to both humans and biped robots. The reasons for inclusion of biped robots is explained next.
 
 %However, the challenges: How to gather \textbf{\emph{sufficient }} motion datasets and how to \emph{\textbf{automate }} extraction of required information form the datasets  for assessment of fall-risks.
 
-The humans as well as the biped humanoid robots performs similar activities --- such as, jogging, and running etc. While performing these routine 
-activities, accidents such as falls may occur causing damage to the human body or to the structural 
-components of the humanoid robot \cite{moyaFallAndDamageDetection2015}. 
-In the near future human-robot will cooperatively work together for solving problems that are difficult for both groups.  For instance, there has been an increasing demand in 
-domains such as rescue to use autonomous or teleoperated humanoid robots to complete high-risk 
-tasks, otherwise would have been lethal to a human subject. Therefore, we envision environments 
-where humans and humanoid robots collaboratively work to complete tasks. 
+%The humans as well as the biped humanoid robots performs similar activities --- such as, jogging, and running etc. While performing these routine 
+%activities, accidents such as falls may occur causing damage to the human body or to the structural 
+%components of the humanoid robot \cite{moyaFallAndDamageDetection2015}. 
+%In the near future human-robot will cooperatively work together for solving problems that are difficult for both groups.  For instance, there has been an increasing demand in 
+%domains such as rescue to use autonomous or teleoperated humanoid robots to complete high-risk 
+%tasks, otherwise would have been lethal to a human subject. Therefore, we envision environments 
+%where humans and humanoid robots collaboratively work to complete tasks. 
 \par
 Since both humans and biped humanoid robots have almost identical movements and are susceptible to 
 similar accidents, we believe that the same devices are suitable for monitoring activities and fall events of both 
-groups. To validate our hypotheses, we develop a generalized approach for learning 
+groups. Moreover, in the near future human-robot will cooperatively work together for solving problems that are difficult for both groups.  For instance, there has been an increasing demand in 
+domains such as rescue to use autonomous or teleoperated humanoid robots to complete high-risk 
+tasks, otherwise would have been lethal to a human subject. Therefore, we envision environments 
+where humans and humanoid robots collaboratively work to complete tasks. 
+
+
+
+
+To validate our hypotheses, we develop a generalized approach for learning 
 and predicting activities of both groups.  We have attached wearable sensing devices to collect 
 motion data and have used software tools to interpret the sensor data to distinguish 
 between regular activities and fall events. The sensing devices are assembled using $(i)$ off-the-shelf 
@@ -107,18 +119,66 @@ on/off-line. While attempts for identifying human motions have already been inve
 best of our knowledge, we are the first to investigate the prospect of using external embedded 
 devices to identify activities on a NAO humanoid robot. 
 
-\par
-In this work, we concentrate on extracting training datasets and test datasets from time-series collected from the device. For each type of activity to be monitored we collect nine time-series using a 9-axis MEMS sensor.  
+%\par
+%In this work, we concentrate on extracting training datasets and test datasets from time-series collected from the device. For each type of activity to be monitored we collect nine time-series using a 9-axis MEMS sensor.  
+%
+%Before we report our contributions, we provide a brief review of work related to identification of 
+%human activity.  
 
-Before we report our contributions, we provide a brief review of work related to identification of 
-human activity.  
 
 
-\subsection{Related Work}
+%  The microcontrollers and embedded devices provide a flexible platform to build may 
+% real world applications. In order to build these applications, a practitioner would require  
+% flexible and reliable software solutions. A practitioner also may require to use more than one 
+% functionality provided by the devices to build applications. Existing software solutions provide 
+% facilities to build applications to a certain degree, but, they lack methods or systems to 
+% integrate 
+% multiple devices simultaneously without much user burden. We have developed  a state-of-the-art 
+% open 
+% source software solution to build heterogeneous applications on many devices, which can be 
+% programmed on multiple operating systems. 
+
+\begin{figure*}[!t]
+\centering
+\subfloat[]{\label{fig:fa}\includegraphics[width=0.8\textwidth]{figures/graph_structure_def-crop3}}
+\subfloat[]{\label{fig:fb}\includegraphics[width=0.21\textwidth]{figures/human_figure}}
+\subfloat[]{\label{fig:fc}\includegraphics[width=0.185\textwidth]{figures/robot_figure}} 
+\caption{(a) Currently available software modules in our framework and a directed-graph representation of their functional relationship;  (b) a wireless sensor device (assembled from a TI Tiva C Series  TM4C123G LaunchPad, a Sensor Hub BoosterPack, a CC2533 BoosterPack, and a Fuel Tank BoosterPack) attached to the back of a human subject; the device is running our framework  with only three motion-sensing modules; and (c) the 
+same device configuration was used on the back of a NAO humanoid robot.}
+ \label{fig:framework}
+\end{figure*}
+
+\subsection{Our Approach and Contributions}
+
+Many off-the-shelf hardware boards, such as, TI microcontroller boards (MSP430{\texttrademark}LaunchPad, Tiva{\texttrademark} C Series 
+TM4C123G LaunchPad, Tiva C Series TM4C129 Connected LaunchPad) and add-on  BoosterPacks   with sensors as well as  wireless transmitter and receiver  provide flexible platform for 
+developing smart-devices for a wide rage of low power and portable applications. For our experiments, 
+we have assembled a wireless sensing-device with a Tiva C Series TM4C123G microcontroller board, and three 
+boosterpacks --- a
+Sensor Hub BoosterPack  for sensing 9-axis motion,  a CC2533  BoosterPack for wireless 
+networking, and a Fuel-Tank BoosterPack for power. We also assembled a wireless data collection device with a Tiva C Series TM4C123G microcontroller board, and a  CC2533  BoosterPack. These two devices were networked to create a wireless sensor network (WSN) for 
+collecting motion data from  humans and NAO humanoid robots. The data collection device is connected to a computer with a USB cable for logging sensed data.   
+
+We have developed a set of software tools to create a framework that allow us
+\begin{inparaenum}[($i$)] \item  to setup the WSN, \item to collect data, \item to extract training examples from sensor readings, \item to learn from sample examples, and \item 
+to monitor and predict events. \end{inparaenum} This framework is general enough for other practitioners to use the
+available functionalities for creating WSNs, collecting data, learning, and prediction.
+
+The rest of the paper is organized as follows. In Section~\ref{sec:framework}, we describe the software development 
+framework that we have proposed and implemented.
+Section~\ref{sec:SemiAutomaticExtractionOfTrainingVectors} reports our novel methods for  semi-automatic extraction  of \begin{inparaenum} [($i$)] \item training samples to be used by the learning algorithms  and \item testing data for activity monitoring. \end{inparaenum} Outlines of offline leaning algorithms used for teaching the device to identify activities and fall events are described in Section~\ref{OffLineLearning}. 
+ In the penultimate section, we present detailed description of evaluation of proposed methods and also, report some typical results for humans and NAO humanoid 
+robots. 
+%We have utilized two machine learning algorithms and a thresholding based method to learn 
+%and identify normal and abnormal activities. Then we also have presented our observations and 
+%discussion. 
+Finally, the paper is concluded with a summary and future work.  
+
+\section{Related Work}
 \label{subSec:relatedWork}
 
 The modern activity detection methods can be broadly categorized in to two groups based on: 
-\begin{inparaenum}[1)] \item inexpensive wearable embedded devices; and \item smart-phones. 
+\begin{inparaenum}[($i$)] \item inexpensive wearable embedded devices; and \item smart-phones. 
 \end{inparaenum} Wearable embedded devices with add-on sensors provide options to develop effective 
 activity recognition methods for humans and biped humanoid robots alike. The existing activity 
 detection methods focus on special cases of fall detection in humans and humanoid robots. These 
@@ -197,54 +257,6 @@ extended the human activities to more complex events.  We have used Texas Instru
 but, one can use microcontrollers and  sensor boards from other sources.  
 
 
-%  The microcontrollers and embedded devices provide a flexible platform to build may 
-% real world applications. In order to build these applications, a practitioner would require  
-% flexible and reliable software solutions. A practitioner also may require to use more than one 
-% functionality provided by the devices to build applications. Existing software solutions provide 
-% facilities to build applications to a certain degree, but, they lack methods or systems to 
-% integrate 
-% multiple devices simultaneously without much user burden. We have developed  a state-of-the-art 
-% open 
-% source software solution to build heterogeneous applications on many devices, which can be 
-% programmed on multiple operating systems. 
-
-\begin{figure*}[!t]
-\centering
-\subfloat[]{\label{fig:fa}\includegraphics[width=0.6\textwidth]{figures/graph_structure_def-crop3}}
-\subfloat[]{\label{fig:fb}\includegraphics[width=0.21\textwidth]{figures/human_figure}}
-\subfloat[]{\label{fig:fc}\includegraphics[width=0.185\textwidth]{figures/robot_figure}} 
-\caption{(a) Currently available software modules in our framework and a directed-graph representation of their functional relationship;  (b) a wireless sensor device (assembled from a TI Tiva C Series  TM4C123G LaunchPad, a Sensor Hub BoosterPack, a CC2533 BoosterPack, and a Fuel Tank BoosterPack) attached to the back of a human subject; the device is running our framework  with only three motion-sensing modules; and (c) the 
-same device configuration was used on the back of a NAO humanoid robot.}
- \label{fig:framework}
-\end{figure*}
-
-\subsection{Our Approach and Contributions}
-
-Many off-the-shelf hardware boards, such as, TI microcontroller boards (MSP430{\texttrademark}LaunchPad, Tiva{\texttrademark} C Series 
-TM4C123G LaunchPad, Tiva C Series TM4C129 Connected LaunchPad) and add-on  BoosterPacks   with sensors as well as  wireless transmitter and receiver  provide flexible platform for 
-developing smart-devices for a wide rage of low power and portable applications. For our experiments, 
-we have assembled a wireless sensing-device with a Tiva C Series TM4C123G microcontroller board, and three 
-boosterpacks --- a
-Sensor Hub BoosterPack  for sensing 9-axis motion,  a CC2533  BoosterPack for wireless 
-networking, and a Fuel-Tank BoosterPack for power. We also assembled a wireless data collection device with a Tiva C Series TM4C123G microcontroller board, and a  CC2533  BoosterPack. These two devices were networked to create a wireless sensor network (WSN) for 
-collecting motion data from  humans and NAO humanoid robots. The data collection device is connected to a computer with a USB cable for logging sensed data.   
-
-We have developed a set of software tools to create a framework that allow us
-\begin{inparaenum}[1)] \item  to setup the WSN, \item to collect data, \item to extract training examples from sensor readings, \item to learn from sample examples, and \item 
-to monitor and predict events. \end{inparaenum} This framework is general enough for other practitioners to use the
-available functionalities for creating WSNs, collecting data, learning, and prediction.
-
-The rest of the paper is organized as follows. In Section~\ref{sec:framework}, we describe the software development 
-framework that we have proposed and implemented.
-Section~\ref{sec:SemiAutomaticExtractionOfTrainingVectors} reports our novel methods for  semi-automatic extraction  of \begin{inparaenum} [1)] \item training samples to be used by the learning algorithms  and \item testing data for activity monitoring. \end{inparaenum} Outlines of offline leaning algorithms used for teaching the device to identify activities and fall events are described in Section~\ref{OffLineLearning}. 
- In the penultimate section, we present detailed description of evaluation of proposed methods and also, report some typical results for humans and NAO humanoid 
-robots. 
-%We have utilized two machine learning algorithms and a thresholding based method to learn 
-%and identify normal and abnormal activities. Then we also have presented our observations and 
-%discussion. 
-Finally, the paper is concluded with a summary and future work.  
-
-
 \section{Framework for Data Collection and Processing}
 \label{sec:framework}
 
@@ -260,12 +272,12 @@ on embedded devices that sense and actuate using add-on boards. The execution pa
 to actuators could contain complex behavior manipulations and modeling decisions that needs to be 
 developed efficiently. Hence, the framework takes these consideration into account and provides a 
 topologically sorted graph, based on the decision points provided by practitioners. The framework 
-includes: \begin{inparaenum}[1)] \item tools to develop modules and representations that execute on 
+includes: \begin{inparaenum}[($i$)] \item tools to develop modules and representations that execute on 
 the microcontrollers or off-line, \item the methods to access functionalities for physical robots, 
 and \item a real-time visualization system\end{inparaenum}. Our framework is lightweight, flexible, 
 and consumes minimum memory and computational resources. We have tested our framework on multiple 
 microcontrollers and on boosterpacks as stated above. We have written and distributed  software 
-solutions to access devices on the boosterpacks such as: \begin{inparaenum}[(1)] \item InvenSense 
+solutions to access devices on the boosterpacks such as: \begin{inparaenum}[($i$)] \item InvenSense 
 MPU-9150: 9-axis MEMS motion tracking (thee-axis gyro, thee-axis accelerometer, and thee-axis 
 magnetometer); \item Bosch Sensortec BMP180 pressure sensor; \item Sensirion SHT21 humidity and 
 ambient temperature sensor; \item Intersil ISL29023 ambient and infrared light sensor; and \item 
@@ -530,7 +542,7 @@ humanoid robot (Table \ref{tab:robot-logistic-class}), because  motion character
 robot are very similar. In addition, we 
 have  defined an extended activity, stand to seat, on the human. Therefore, we have conducted 
 twelve motions in total on the human subject.  Example plots for 
-\begin{inparaenum}[1)] \item walking forward; and \item from standing to sitting 
+\begin{inparaenum}[($i$)] \item walking forward; and \item from standing to sitting 
 down  \end{inparaenum}  are shown in Figures \ref{fig:ha} and \ref{fig:hb} respectively. 
 
 
@@ -614,7 +626,7 @@ Our NAO robots have an omni-directional walking engine.
 Walking motions are regulated by linear velocities $\dot{x}_v$ and $\dot{y}_v$, and an 
 angular velocity $\dot{\theta}_v$ as input parameters. Depending on these
 values we can let the robot walk (forward, backward, and side-ways) and rotate (clockwise and
-counter-clockwise) with different speeds. In this study, we have considered \begin{inparaenum}[(1)]
+counter-clockwise) with different speeds. In this study, we have considered \begin{inparaenum}[($i$)]
 \item marching ($\dot{x}_v = 0 , \dot{y}_v = 0, \dot{\theta}_v = 0$); \item walking  
 forward/backward ($\dot{x}_v = \pm200
 , \dot{y}_v = 0, \dot{\theta}_v = 0$);  \item walking side-ways ($\dot{x}_v = 0, \dot{y}_v = 
