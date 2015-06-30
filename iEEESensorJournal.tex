@@ -4,15 +4,16 @@
 \documentclass{IEEEtran}
 %\documentclass[letterpaper]{article}
 %usepackage{aaai}
-%\usepackage{times}
+\usepackage{times}
 %\usepackage{helvet}
 %\usepackage{courier}
-%%
+%
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage{amsfonts}
 \usepackage{moreverb}
 %%
+%\usepackage{float}
 \usepackage{bm}
 \usepackage{paralist}
 %\usepackage{minted}
@@ -20,9 +21,10 @@
 % so we don't need to specify figures subdirectory in figure code
 %\graphicspath{{./figures/}}
 \usepackage{subfig}
+%\usepackage{minipage}
 %needed to change table colors
 \usepackage[table]{xcolor}
-\renewcommand{\arraystretch}{1.2} % General space between rows (1 standard)
+%\renewcommand{\arraystretch}{1.2} % General space between rows (1 standard)
 
 
 %%
@@ -38,17 +40,16 @@
 %\title{Activity Monitoring and Prediction for Humans and NAO Humanoid Robots using 
 %Wearable Sensors}
 \author{{Saminda Abeyruwan}, {Dilip Sarkar}, {Faisal Sikder},   and {Ubbo Visser}
-\thanks{
- University of Miami,
-Department of Computer Science,
- 1365 Memorial Drive, Coral Gables, FL, 33146, USA
-{ emails:\{saminda,faisalsikder,visser,sarkar\}@cs.miami.edu}
-} }
+\thanks{ Authors are with
+ the
+Department of Computer Science, University of Miami,
+  Coral Gables, FL, 33146, USA
+{ emails:\{saminda, faisalsikder, visser, sarkar\}@cs.miami.edu};
+\today} }
  \begin{document}
  %\begin{sloppy}
 % The file aaai.sty is the style file for AAAI Press 
 % proceedings, working notes, and technical reports.
-%
 \maketitle
 
 \begin{abstract}
@@ -67,7 +68,7 @@ fall-events are predicted using the same learning algorithms for humans and bipe
 
 \end{abstract}
 
-%\tableofcontents
+\tableofcontents
 
 \section{Introduction}
 \label{sec:Intro}
@@ -105,7 +106,7 @@ domains such as rescue to use autonomous or teleoperated humanoid robots to comp
 tasks, otherwise would have been lethal to a human subject. Therefore, we envision environments 
 where humans and humanoid robots collaboratively work to complete tasks. 
 
-
+\par
 
 
 To validate our hypotheses, we develop a generalized approach for learning 
@@ -137,16 +138,31 @@ devices to identify activities on a NAO humanoid robot.
 % open 
 % source software solution to build heterogeneous applications on many devices, which can be 
 % programmed on multiple operating systems. 
+%%%% Commented below is the version in FLAIRS
+%\begin{figure*}[!t]
+%\centering
+%\begin{minipage}{0.84\textwidth}
+%\subfloat[]{\label{fig:fa}\includegraphics[width=\textwidth,height=3.5in]{figures/graph_structure_def-crop3.eps}}
+%\end{minipage}
+%\begin{minipage}{.12\textwidth}
+%\begin{subfigure}
+%\subfloat[]{\label{fig:fb}\includegraphics[width=\textwidth]{figures/human_figure.eps}}
+%\end{subfigure}
+%\begin{subfigure}
+%\subfloat[]{\label{fig:fc}\includegraphics[width=\textwidth]{figures/robot_figure.eps}} 
+%\end{subfigure}
+%\end{minipage}
 
-\begin{figure*}[!t]
+
+\begin{figure}[htb]
 \centering
-\subfloat[]{\label{fig:fa}\includegraphics[width=0.8\textwidth]{figures/graph_structure_def-crop3}}
-\subfloat[]{\label{fig:fb}\includegraphics[width=0.21\textwidth]{figures/human_figure}}
-\subfloat[]{\label{fig:fc}\includegraphics[width=0.185\textwidth]{figures/robot_figure}} 
-\caption{(a) Currently available software modules in our framework and a directed-graph representation of their functional relationship;  (b) a wireless sensor device (assembled from a TI Tiva C Series  TM4C123G LaunchPad, a Sensor Hub BoosterPack, a CC2533 BoosterPack, and a Fuel Tank BoosterPack) attached to the back of a human subject; the device is running our framework  with only three motion-sensing modules; and (c) the 
+\subfloat[]{\label{fig:fb}\includegraphics[width=0.45\columnwidth]{figures/human_figure.eps}}
+\qquad
+\subfloat[]{\label{fig:fc}\includegraphics[width=0.4\columnwidth]{figures/robot_figure.eps}} 
+\caption{(a) a wireless sensor device (assembled from a TI Tiva C Series  TM4C123G LaunchPad, a Sensor Hub BoosterPack, a CC2533 BoosterPack, and a Fuel Tank BoosterPack) attached to the back of a human subject; the device is running our framework  with only three motion-sensing modules; and (b) the 
 same device configuration was used on the back of a NAO humanoid robot.}
- \label{fig:framework}
-\end{figure*}
+ \label{fig:deviceWithSubjects}
+\end{figure}
 
 \subsection{Our Approach and Contributions}
 
@@ -260,57 +276,94 @@ but, one can use microcontrollers and  sensor boards from other sources.
 \section{Framework for Data Collection and Processing}
 \label{sec:framework}
 
-TODO: write an introduction paragraph for the section. For convince of reference for 
-Framework for Data Collection and Processing will be denoted by  FDCP. 
+A real-time or near real-time monitoring device performs a sequence of $n$ tasks $T = \{ T_1, T_2,\cdots,T_n\}$. A task $T_i$ may depend on another task $T_j$.  For satisfying dependence of a task on other tasks, it is necessary to create an \emph{execution order} on the set of tasks, if one exists. Denoting dependence of $T_i$ on $T_j$ as $D_{ij}$, a directed graph $G(T,D)$ can conveniently describe dependance among the tasks. A list of dependencies $D_{ij}$ completely describes the graph $G(T,D)$.
+\par
+We have created a generic framework for developing applications for \emph{data collection and processing}. This framework is described next.
+%TODO: write an introduction paragraph for the section. For convince of reference for 
+%Framework for Data Collection and Processing will be denoted by  FDCP. 
 
-\subsection{Ordering of Sensor Data Collection and Processing}
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{figures/graph_structure_def-crop3.eps}
+\caption{Currently available software modules in our framework and a directed-graph representation of their functional relationship.}
+ \label{fig:framework}
+\end{figure*}
 
-TODO: write what is meant by ``ordering''
+\subsection{Overview of the Framework}
+\label{sec:OverviewOfTheFramework}
 
+\par
 The framework provides generic functionalities to develop applications or rational agents 
 on embedded devices that sense and actuate using add-on boards. The execution paths between sensors 
 to actuators could contain complex behavior manipulations and modeling decisions that needs to be 
-developed efficiently. Hence, the framework takes these consideration into account and provides a 
-topologically sorted graph, based on the decision points provided by practitioners. The framework 
+developed efficiently.
+The framework 
 includes: \begin{inparaenum}[($i$)] \item tools to develop modules and representations that execute on 
 the microcontrollers or off-line, \item the methods to access functionalities for physical robots, 
 and \item a real-time visualization system\end{inparaenum}. Our framework is lightweight, flexible, 
 and consumes minimum memory and computational resources. We have tested our framework on multiple 
-microcontrollers and on boosterpacks as stated above. We have written and distributed  software 
-solutions to access devices on the boosterpacks such as: \begin{inparaenum}[($i$)] \item InvenSense 
-MPU-9150: 9-axis MEMS motion tracking (thee-axis gyro, thee-axis accelerometer, and thee-axis 
-magnetometer); \item Bosch Sensortec BMP180 pressure sensor; \item Sensirion SHT21 humidity and 
-ambient temperature sensor; \item Intersil ISL29023 ambient and infrared light sensor; and \item 
-TIs TMP006 non-contact infrared temperature sensor.\end{inparaenum}
-
-
-Our development framework, $\mu$Energia (\textit{pronounced as}: ``micro--Energia'' and 
+microcontrollers and on boosterpacks. 
+Our development framework, $\mu$Energia (\textit{pronounced as}: ``micro--Energia'') is availabe from
 \textit{site}:
-{http://muenergia.saminda.org}), uses a notion of  {\em modules} and {\em representations} to 
-perform computations. The modules implement 
-functions, while the representations exchange information from one module to another. They are 
-connected using directed arcs to form a directed graph. In Figure \ref{fig:fa}, the blue arrows 
-shows the provided representations, and the black arrows show the requested representations. A 
-module can provide multiple representations. The framework computes the topologically sorted 
-graph out of the nodes. This is computed once, and the nodes in the queue will be executed one 
-after the other. If there were to be cycles in the graph, the framework will detect them and 
-indicate them to the users. 
+{http://muenergia.saminda.org}.
 
-\subsection{Utilization of FDCP to 9-Axis Motion Sensor}
+\subsection{Task-Schedule Generation Using our Framework}
+\label{FrameWorkDescription}
 
-The Figure \ref{fig:fa} shows the modules and representations related to our 
-experiments, where the boxes represent the computational modules, while the rounded-boxes represent 
-the input to a module or an output from a module. For brevity, in the rest of the paper, the  
-{\em computational modules} are refereed as  {\em modules}. As an example, the module {\em 
-9-Axis-Motion Module} contains logic to read from or write to MPU-9150 9-Axis 
-(Gyro+Accelerometer+Compass) MEMS MotionTracking device on the sensor hub booster pack. The 
-representation {\em 9-Axis-Motion Representation} contains all the values that 
-this module shares with other modules in the framework. In this graph, {\em 
-Learning Module} requests values from {\em 9-Axis-Motion Representation} to implement the learning 
-function. 
+%TODO: write what is meant by ``ordering''
 
-\section{Semi-Automatic Extraction of  Training Example}
+ For ease of description and clarity of understanding, we have divided each task into two components: a {\em module} and one or more {\em representations}. A module implements executable code, while a representation exchange information from one module to another. Thus, a module may generate information for multiple representations as well as it may get inputs from multiple representations. 
+\par
+Once a user provides dependency descriptions, the framework converts it  into a directed graph (also know as precedence graph, or conflict graph).  If the graph has no cycle, the framework topologically sorts the nodes and creates an schedule for execution of the modules. In case there the graph has one or more cycle, the framework reports so to the users.
+For visualization of schedule, the framework  generates a directed graph. In this graph, modules are drawn as blue-shaded rectangles with rounded corners and the representations are drawn as yellow-shaded rectangles with pointed corners. The dependence of a modules on a representation is depicted as with a black arc with a solid line, while the dependency of a representation on a module is depicted with a blue arc with a dotted line. We have tested our framework on multiple 
+microcontrollers and on boosterpacks.
+
+Directed graph in Figure \ref{fig:framework} shows a framework generated task-schedule for  a TI Tiva C Series TM4C123G microcontroller to collect and process data from \begin{inparaenum}[($i$)] \item Bosch Sensortec BMP180 pressure sensor, \item Intersil ISL29023 ambient and infrared light sensor, \item Sensirion SHT21 humidity and ambient temperature sensor,  \item  TIs TMP006 non-contact infrared temperature sensor, and \item InvenSense 
+MPU-9150 --- a 9-axis MEMS motion sensorthee-axis. \end{inparaenum}
+
+%\par
+%The framework 
+%includes: \begin{inparaenum}[($i$)] \item tools to develop modules and representations that execute on 
+%the microcontrollers or off-line, \item the methods to access functionalities for physical robots, 
+%and \item a real-time visualization system\end{inparaenum}. Our framework is lightweight, flexible, 
+%and consumes minimum memory and computational resources. We have tested our framework on multiple 
+%microcontrollers and on boosterpacks. 
+%Our development framework, $\mu$Energia (\textit{pronounced as}: ``micro--Energia'') is availabe from
+%\textit{site}:
+%{http://muenergia.saminda.org}.
+
+
+\subsection{An Application of the Framework}
+
+%The Figure \ref{fig:fa} shows the modules and representations related to our 
+%experiments, where the boxes represent the computational modules, while the rounded-boxes represent 
+%the input to a module or an output from a module. For brevity, in the rest of the paper, the  
+%{\em computational modules} are refereed as  {\em modules}. 
+Our current project use 
+the module {\em 
+9-Axis-Motion Module} that contains logic to read from or write to MPU-9150, a 9-Axis 
+(Gyro+Accelerometer+Compass) MEMS MotionTracking device on the sensor hub booster pack. The {\em 
+9-Axis-Motion Module} deposits data from the motion sensors to 
+representation {\em 9-Axis-Motion Representation}, which are used by the {\em 
+Learning Module}. The {\em LeaningModule} use the motion sensor data and creates {\em LearningRepresentation} for the {\em PredictionModule}. 
+
+\section{Semi-Automatic Extraction of  Training Examples}
 \label{sec:SemiAutomaticExtractionOfTrainingVectors}
+
+\begin{figure}[htb]
+	\centering
+		\includegraphics[width=0.95\columnwidth]{plots/human_falling-crop.eps}
+	\caption{Motion Dataset for  Fall Event of a Human Subject}
+	\label{fig:human_falling-crop}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+		\includegraphics[width=0.95\columnwidth]{plots/robot_fallen_forward-crop.eps}
+	\caption{Motion Dataset for Fall Forward Event of a Biped Robot}
+	\label{fig:robot_fallen_forward-crop}
+\end{figure}
+
 
 TODO: we need an introductory paragraph describing a set of activities $A = \{A_1, A_2, 
 \dots, A_n\}$. Show unfiltered data sample for couple for fall and non-fall time series. 
@@ -340,8 +393,15 @@ extraction method.
 
 TODO: first paragraph => why we need SATEE. Because of the difficulty of generating 
 training data. Then, description of the algorithm, with the figure (training data only). 
+\begin{figure}[htb]
+	\centering
+		\includegraphics[width = 0.85\columnwidth]{figures/FlowChartAlgoForTrainingExamples.eps}
+	\caption{Flow Chart of an Algorithm for Semi-Automatic Extraction of Training Examples}
+	\label{fig:FlowChartforAlgorTrainingExamples}
+\end{figure}
 
 \subsubsection{K-Mean Clustering}
+
 
 TODO
 
@@ -369,8 +429,15 @@ which the fall triggered and continued.
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=0.48\textwidth]{figures/example_annotation-crop.pdf} 
+\includegraphics[width=0.48\textwidth]{figures/example_annotation-crop.eps} 
 \caption{Semi-automatic annotation of falling forward dataset.}
+ \label{fig:automatic_annotation} 
+\end{figure}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.48\textwidth]{figures/example_annotation-crop.eps} 
+\caption{Semi-Automatic annotation of falling left event dataset.}
  \label{fig:automatic_annotation} 
 \end{figure}
 
@@ -550,7 +617,7 @@ down  \end{inparaenum}  are shown in Figures \ref{fig:ha} and \ref{fig:hb} respe
 \caption{Logistic regression and SVM classification for human activities.}
 	\label{tab:human-logistic-class}
 	\centering
-	\scalebox{0.65}{
+	\resizebox{\columnwidth}{!}{
 		\begin{tabular} {| l | c | c | c| c|| c| c| c| c|}
 		\hline
 		 & \multicolumn{4}{c||}{\bf Logistic regression} & \multicolumn{4}{c|}{\bf SVM classification} \\ 
@@ -582,32 +649,32 @@ similarly, for falling forward and marching the accuracies are 94\% and 91\% on 
 average, respectively. We found comparatively low accuracy in walking backward and falling backward. Rotation has accuracy on an average more than 90\%. We also observed that detection of the walking activity is less than other 
 activities that we experimented with.  
 
-\begin{figure*}[!t]
-  \centering
-  \subfloat[Marching in place.]{\label{fig:tsnedataset_1}\includegraphics[width=0.25\textwidth]
-       {figures/plot1-crop}} 
-  \subfloat[Walking backward.]{\label{fig:tsnedataset_9}\includegraphics[width=0.25\textwidth]
-       {figures/plot5-crop}}
-%  \subfloat[Rotating clockwise.]{\label{fig:tsnedataset_7}\includegraphics[width=0.25\textwidth]
-%       {plot2-crop}}
-%  \subfloat[Left side-way walk.]{\label{fig:tsnedataset_10}\includegraphics[width=0.25\textwidth]
-%       {plot6-crop}}
-%       \\
-  \subfloat[Falling forward.]{\label{fig:tsnedataset_11}\includegraphics[width=0.25\textwidth]
-       {figures/plot1_fallen-crop}}
-  \subfloat[Falling backward.]{\label{fig:tsnedataset_12}\includegraphics[width=0.25\textwidth]
-       {figures/plot2_fallen-crop}}
-%  \subfloat[Falling to left side.]{\label{fig:tsnedataset_13}\includegraphics[width=0.25\textwidth]
-%       {plot3_fallen-crop}}
-%  \subfloat[Falling to right
-%side.]{\label{fig:tsnedataset_14}\includegraphics[width=0.25\textwidth]
-%       {plot4_fallen-crop}}      
-  \caption{Figures (a--b) show the roll and pitch angles (raw and filtered) for normal 
-behaviors marching in place and walking backward. Figures (c--d) show the raw and filtered roll 
-and pitch angles for fallen forward and backwards states of NAO humanoid robot.}
-  \label{fig:normalFallenBehavior}
-
-\end{figure*}
+%\begin{figure*}[!t]
+  %\centering
+  %\subfloat[Marching in place.]{\label{fig:tsnedataset_1}\includegraphics[width=0.25\textwidth]
+       %{figures/plot1-crop}} 
+  %\subfloat[Walking backward.]{\label{fig:tsnedataset_9}\includegraphics[width=0.25\textwidth]
+       %{figures/plot5-crop}}
+%%  \subfloat[Rotating clockwise.]{\label{fig:tsnedataset_7}\includegraphics[width=0.25\textwidth]
+%%       {plot2-crop}}
+%%  \subfloat[Left side-way walk.]{\label{fig:tsnedataset_10}\includegraphics[width=0.25\textwidth]
+%%       {plot6-crop}}
+%%       \\
+  %\subfloat[Falling forward.]{\label{fig:tsnedataset_11}\includegraphics[width=0.25\textwidth]
+       %{figures/plot1_fallen-crop}}
+  %\subfloat[Falling backward.]{\label{fig:tsnedataset_12}\includegraphics[width=0.25\textwidth]
+       %{figures/plot2_fallen-crop}}
+%%  \subfloat[Falling to left side.]{\label{fig:tsnedataset_13}\includegraphics[width=0.25\textwidth]
+%%       {plot3_fallen-crop}}
+%%  \subfloat[Falling to right
+%%side.]{\label{fig:tsnedataset_14}\includegraphics[width=0.25\textwidth]
+%%       {plot4_fallen-crop}}      
+  %\caption{Figures (a--b) show the roll and pitch angles (raw and filtered) for normal 
+%behaviors marching in place and walking backward. Figures (c--d) show the raw and filtered roll 
+%and pitch angles for fallen forward and backwards states of NAO humanoid robot.}
+  %\label{fig:normalFallenBehavior}
+%
+%\end{figure*}
 
 The results for SVM classifier is summarized in Table \ref{tab:human-svm-class}. On an average, 
 accuracy for each type of activity is higher than LLR classifier with on an average 96\% for 
@@ -638,7 +705,7 @@ while all the other activities are classified as {\em fallen states}.
 \caption{Logistic regression  and SVM classification for robot activities.}
 	\label{tab:robot-logistic-class}
 	\centering
-	\scalebox{0.65}{
+	\resizebox{\columnwidth}{!}{
 	\begin{tabular} {| l | c | c | c| c|| c| c| c| c|}
 	\hline
 		& \multicolumn{4}{c||}{\bf Logistic regression} & \multicolumn{4}{c|}{\bf SVM classification} \\ 
