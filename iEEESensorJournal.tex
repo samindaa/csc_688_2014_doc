@@ -347,6 +347,10 @@ the module {\em
 representation {\em 9-Axis-Motion Representation}, which are used by the {\em 
 Learning Module}. The {\em LeaningModule} use the motion sensor data and creates {\em LearningRepresentation} for the {\em PredictionModule}. 
 
+\par 
+
+In the next section we propose a method for semi-automatic extraction of training examples from motion datasets. These examples are used to teach a device/system that identifies desired events. 
+
 \section{Semi-Automatic Extraction of  Training Examples}
 \label{sec:SemiAutomaticExtractionOfTrainingVectors}
 
@@ -369,7 +373,7 @@ TODO: we need an introductory paragraph describing a set of activities $A = \{A_
 \dots, A_n\}$. Show unfiltered data sample for couple for fall and non-fall time series. 
 
 
-\subsection{Preprocessing of the Time Series Data}
+\subsection{Preprocessing of Data Collected with Motion Sensors }
 
 We have setup the framework as described in Section \ref{sec:framework} and enabled the 
 motion tracking device to sample at $20$ ms, which is equivalent to 50$Hz$ 
@@ -380,16 +384,23 @@ Tesla ($T$). For our experiments, we have excluded the magnetometer readings. Th
 our input vectors are in $\mathbb{R}^6$, which consist of accelerometer and gyroscope 
 values.
 
-As a preprocessing step, in order to filter the noise in the input vectors, we have 
-created a moving window that contains 20 consecutive samples, which amounts to 400$ms$, 
-and obtain the 
-average value. We have moved the window 200$ms$, which amounts to 10 samples, and 
+\subsubsection{Identify and Adjust for Missing Data Points}
+\label{sec:IdentifyAndAdjustForMissingDataPoints}
+Some data packets may be lost during transmission because of noise. We numbered each sensor reading sequentially and lost data points were identified from this number and was replaced using linear interpolation. Since only very few data points were lost and results obtained after linear interpolation was excellent, we did not experiment other interpolation method.
+
+\subsubsection{Noise Filtering}
+\label{sec:NoiseFiltering}
+
+After checking for missing data and adding interpolated values for lost data,  high frequency noise was removed using a moving window averaging technique. We used a window  of 20 consecutive samples, which amounts to 400$ms$, 
+and obtain the average value. Then the  window was moved by 200$ms$, which amounts to 10 samples, and 
 repeated the process. Therefore, we have allowed 10 samples to overlap between windows. 
 We have used the preprocessed stream as the input to our automatic training example 
 extraction method.
 
 
 \subsection{Semi-Automatic Training Example Extraction}
+
+The flow chart of method used for extracting training examples are shown in Fig.~\ref{fig:FlowChartforAlgorTrainingExamples}. All the collected data sets were annotated. If a dataset was for simulated fall events, the dataset was treated as a 6-dimension vector for clustering them into two clusters. We used K-Mean and Gaussian Mixture clustering techniques. For completeness a brief description of each is provided next.
 
 TODO: first paragraph => why we need SATEE. Because of the difficulty of generating 
 training data. Then, description of the algorithm, with the figure (training data only). 
