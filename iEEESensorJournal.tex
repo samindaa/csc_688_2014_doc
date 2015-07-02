@@ -12,6 +12,7 @@
 \usepackage{url}
 \usepackage{amsfonts}
 \usepackage{moreverb}
+%\usepackage{mathtools}
 %%
 %\usepackage{float}
 \usepackage{bm}
@@ -400,6 +401,8 @@ extraction method.
 
 \subsection{Semi-Automatic Training Example Extraction}
 
+Barrier for collecting motion data is very low, if any. But,detection and identification of activities and fall events has remained an active area of research, as can be seen from recent list of publications. The main unsettled issue is how to characterize features from motion data that can be extracted easily for training and monitoring. In this section we describe a method that semi-automatically extract vectors that characterize activities and fall events.
+
 The flow chart of method used for extracting training examples are shown in Fig.~\ref{fig:FlowChartforAlgorTrainingExamples}. All the collected data sets were annotated. If a dataset was for simulated fall events, the dataset was treated as a 6-dimension vector for clustering them into two clusters. We used K-Mean and Gaussian Mixture clustering techniques. For completeness a brief description of each is provided next.
 
 TODO: first paragraph => why we need SATEE. Because of the difficulty of generating 
@@ -412,13 +415,18 @@ training data. Then, description of the algorithm, with the figure (training dat
 \end{figure}
 
 \subsubsection{K-Mean Clustering}
+K-mean clustering aims to partition a set of $n$ observations into k clusters. Each observation is assigned to the cluster with the nearest mean. Let  $X = \{X_1, X_2, \cdots, X_n\}$ be the set of $n$ observations, where each observation $X_i$ is a $d$-dimensional real vector and is assigned to one of $k$ sets $S_j \in S$, for $ 1 \leq  j \leq k$ so that within-cluster sum of squares is minimized. Formally,
+
+$$ \min _{S} \sum_{i=1}^{k} \sum_{x \in S_i} || x - \boldsymbol\mu_i ||^2,$$
+where $\mu_i$ is the mean of points in $S_i$.
+
+For our case we set $k = 2$ for extracting examples for all events in the dataset containing fall events. As shown in Figures~\ref{fig:automatic_annotation} and \ref{fig:automatic_annotation2}.
 
 
-TODO
+\subsubsection{Multivariate Gaussian Mixtures}
 
-\subsubsection{Gaussian Mixtures}
-
-TODO
+Gaussian mixture clustering is a generalization of k-men clustering, where each cluster is assumed to be from a Gaussian distribution parametrized by $\mu_k, \Sigma_k$. The mean vector $\mu_i$ represents the center of the cluster $i$. Usually an \emph{expectation maximixation} (EM) algorithm iteratively identifies the clusters.
+ 
 
 The activity annotation is an arduous and cumbersome process. As we have mentioned in 
 Section \ref{subSec:relatedWork}, the previous methods favor manual activity annotation, 
@@ -449,7 +457,7 @@ which the fall triggered and continued.
 \centering
 \includegraphics[width=0.48\textwidth]{figures/example_annotation-crop.eps} 
 \caption{Semi-Automatic annotation of falling left event dataset.}
- \label{fig:automatic_annotation} 
+ \label{fig:automatic_annotation2} 
 \end{figure}
 
 Figure \ref{fig:automatic_annotation} shows our semi-automatic annotation of falling 
