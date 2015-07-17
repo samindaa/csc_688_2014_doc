@@ -409,7 +409,8 @@ TODO: first paragraph => why we need SATEE. Because of the difficulty of generat
 training data. Then, description of the algorithm, with the figure (training data only). 
 \begin{figure}[htb]
 	\centering
-		\includegraphics[width = 0.85\columnwidth]{figures/FlowChartAlgoForTrainingExamples.eps}
+		\includegraphics[width = 
+		0.84\columnwidth]{figures/FlowChartAlgoForTrainingExamples.eps}
 	\caption{Flow Chart of an Algorithm for Semi-Automatic Extraction of Training Examples}
 	\label{fig:FlowChartforAlgorTrainingExamples}
 \end{figure}
@@ -479,9 +480,53 @@ only have to manually provide the semantics of the cluster centroid.
 \section{Offline Learning and Predicting Algorithms}
 \label{OffLineLearning}
 
-TODO: About the algorithms we have used (SoftMax, ANN, and SVM).
+%TODO: About the algorithms we have used (SoftMax, ANN, and SVM).
+%Trained the models using offline models. This is offline learning figure. 
 
-Trained the models using using offline models. This is offline learning figure. 
+Our activity monitoring and identification requires to learn and to predict beliefs of 
+multiple 
+discrete hypothesis. This includes learning and predicting dichotomies such as falling 
+forward and 
+backward, falling events and non-falling events, different types of falling events, and 
+so forth. 
+Therefore, 
+we have used multi-class classification networks to rationally answer the question we 
+have posed.
+
+Using our semi-automated training example extraction method (Section 
+\ref{sec:SemiAutomaticExtractionOfTrainingVectors}), we have created $m \in 
+\mathbb{N}$ 
+training examples 
+\{($\bm{x}_{(1)}, \bm{y}_{(1)}$), ($\bm{x}_{(2)}, \bm{y}_{(2)}$), $\ldots$, 
+($\bm{x}_{(m)}, 
+\bm{y}_{(m)}$)\} such that $\bm{x} \in \mathbb{R}^{n}$ and $\bm{y} \in \{0,1\}^k$. $k \in 
+\mathbb{N}$ is the number of dichotomies. Each training example belongs only to one class 
+and $\bm{y}$ uses the 1--of--$k$ coding scheme.    
+
+The first classification network is based on Softmax regression \cite{Bishop06a}. In this 
+model, given an 
+example $\bm{x}$, it will determine the probability, $\mathbb{P}(y | \bm{x})$, for 
+each dichotomy $y=0,\ldots,k-1$. In this model, the input is appended with constant bias 
+term, $x_0 = 1$, therefore, $\bm{x} \in \mathbb{R}^7$. The model uses a parameter matrix 
+$\bm{W} 
+\in \mathbb{R}^{7 \times k}$, and the output vector, $\bm{a} = \bm{Wx}$, is passed 
+through 
+the 
+Softmax 
+activation function $\bm{z} = \frac{e^{\bm{a}}}{\bm{1}^\mathtt{T} e^{\bm{a}}}$. We have 
+used the negative-log likelihood function, $l(\bm{x}) = -\bm{y}$.ln $\bm{z}$, as our 
+objective function. We have used L-BFGS \cite{DBLP:conf/icml/LeNCLPN11} to learn the 
+parameter vector $\bm{W}$.  
+
+The second classification network is based on Artificial Neural Network \cite{Bishop06a}. 
+We have used the prior Softmax activation  and the negative-log likelihood 
+functions in the output layer. The hidden layers have used sigmoid activation functions. 
+We have also included the bias terms for all hidden layers. The backpropagation algorithm 
+has been used to calculate the gradient, while the L-BFGS procedure has been used to 
+learn the network parameters. We have independently set each dimension of the sample to 
+have zero-mean and unit-variance. We achieved this by first computing the mean of each 
+dimension across the training set and subtracting this from each dimension. Then each 
+dimension is divided by its standard deviation.       
 
 \section{Online Activity Monitoring and Identification}
 
