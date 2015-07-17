@@ -7,7 +7,7 @@
 \usepackage{times}
 %\usepackage{helvet}
 %\usepackage{courier}
-%
+\usepackage{cite}
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage{amsfonts}
@@ -25,9 +25,9 @@
 %\usepackage{minipage}
 %needed to change table colors
 \usepackage[table]{xcolor}
-%\renewcommand{\arraystretch}{1.2} % General space between rows (1 standard)
-
-
+%\renewcommand{\arraystretch}{1.75} % General space between rows (1 standard)
+%\renewcommand{\baselinestretch}{2}
+\renewcommand\IEEEkeywordsname{Index Terms}
 %%
 %\frenchspacing
 %\setlength{\pdfpagewidth}{8.5in}
@@ -66,10 +66,12 @@ tools to realize these functions  on embedded devices. \end{inparaenum} Our cont
 framework; and \item  a  novel software development environment for embedded systems. 
 \end{inparaenum} Our empirical evaluations demonstrate that with high accuracy different types of  
 fall-events are predicted using the same learning algorithms for humans and biped humanoid robots. 
-
 \end{abstract}
 
-\tableofcontents
+\begin{IEEEkeywords} Fall detection, learning algorithms, 9-axis sensor, semi-automatic extraction of training examples,  softmax, neural networks.
+\end{IEEEkeywords}
+
+%\tableofcontents
 
 \section{Introduction}
 \label{sec:Intro}
@@ -117,9 +119,10 @@ between regular activities and fall events. The sensing devices are assembled us
 hardware component boards and $(ii)$  a set of generalized software tools that we have developed. The software tools 
 collect data  from the sensors, which we used for learning to distinguish between routine activities and fall events as well as predicting activities. The software tools provide a modular 
 functionality to use for collecting  data from any sensing devices, and to learn and predict 
-on/off-line. While attempts for identifying human motions have already been investigated, to the 
-best of our knowledge, we are the first to investigate the prospect of using external embedded 
-devices to identify activities on a NAO humanoid robot. 
+on/off-line. While attempts for identifying human motions have already been investigated extensively, to the 
+best of our knowledge only a three studies have been dedicated to biped robots \cite{Andre2015,Goswami2014,Moya2015}. 
+% to investigate the prospect of using external embedded 
+%devices to identify activities on a NAO humanoid robot. 
 
 %\par
 %In this work, we concentrate on extracting training datasets and test datasets from time-series collected from the device. For each type of activity to be monitored we collect nine time-series using a 9-axis MEMS sensor.  
@@ -446,19 +449,33 @@ differs from the states before the process starts (e.g., standing) and the state
 (e.g., laying on the floor). Therefore, each fall dataset, there exists a duration in 
 which the fall triggered and continued.
 
-\begin{figure}[!t]
+
+\begin{figure}[!htb]
 \centering
-\includegraphics[width=0.48\textwidth]{figures/example_annotation-crop.eps} 
-\caption{Semi-automatic annotation of falling forward dataset.}
+\includegraphics[width=0.48\textwidth]{plots/human_falling_forward2.eps} 
+\caption{Semi-automatic annotation of falling forward event dataset.}
  \label{fig:automatic_annotation} 
 \end{figure}
 
-\begin{figure}[!t]
+
+\begin{figure}[!htb]
 \centering
-\includegraphics[width=0.48\textwidth]{figures/example_annotation-crop.eps} 
-\caption{Semi-Automatic annotation of falling left event dataset.}
+\includegraphics[width=0.48\textwidth]{plots/human_falling_backward2.eps} 
+\caption{Semi-Automatic annotation of falling bax event dataset.}
  \label{fig:automatic_annotation2} 
 \end{figure}
+
+
+
+
+
+%\begin{figure}[!t]
+%\centering
+%\includegraphics[width=0.48\textwidth]{figures/example_annotation-crop.eps} 
+%\caption{Semi-automatic annotation of falling forward dataset.}
+ %\label{fig:automatic_annotation} 
+%\end{figure}
+
 
 Figure \ref{fig:automatic_annotation} shows our semi-automatic annotation of falling 
 forward dataset. The subject in this experiment exercises a fall froward. After a 
@@ -468,6 +485,14 @@ events. We have observed that there is a clear separation of the events with two
 clusters. Each segment has betweens 15 to 20 consecutive data points, which amounts to 
 3000$ms$ to 4000$ms$ fall event after the triggering the event. The fall event triggers 
 at the end of the non-fall segment and at the beginning of the fall segment.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=0.48\textwidth]{figures/viz_all_training_examples.eps} 
+\caption{Visualization of 11 sets of training examples 11 using Tsne.}
+ \label{fig:automatic_annotation} 
+\end{figure}
+
 
 Since we are 
 interested in the signature of the fall event, we have annotated all the samples belongs 
