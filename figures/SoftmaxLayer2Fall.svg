@@ -9,7 +9,7 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="526.29944"
+   width="526.31268"
    height="279.83847"
    id="svg2"
    version="1.1"
@@ -138,8 +138,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="195.99999"
-     inkscape:cy="-58.8002"
+     inkscape:cx="196.00014"
+     inkscape:cy="-58.800199"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -162,7 +162,7 @@
        visible="true"
        enabled="true"
        snapvisiblegridlinesonly="true"
-       originx="-1.9888891in"
+       originx="-1.9888875in"
        originy="-6.4311133in" />
   </sodipodi:namedview>
   <metadata
@@ -181,31 +181,27 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-179,-193.72351)">
+     transform="translate(-178.99984,-193.72351)">
     <g
-       id="g4323">
-      <g
-         transform="translate(0,58)"
-         id="g2993">
-        <rect
-           style="opacity:0.98999999;color:#000000;fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:2;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-           id="rect2987"
-           width="236.29947"
-           height="54"
-           x="180"
-           y="242.36218" />
-        <text
-           xml:space="preserve"
-           style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:end;text-decoration:none;line-height:23.00000042%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:end;baseline-shift:baseline;opacity:0.98999999;color:#000000;fill:#000000;stroke:#000000;stroke-width:0.15625;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.5;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Arial"
-           x="381.12189"
-           y="273.53458"
-           id="text2989"
-           sodipodi:linespacing="23%"><tspan
-             sodipodi:role="line"
-             id="tspan2991"
-             x="381.12189"
-             y="273.53458">Softmax Regretaion</tspan></text>
-      </g>
+       id="g6951">
+      <rect
+         y="300.36218"
+         x="180"
+         height="54"
+         width="236.29947"
+         id="rect2987"
+         style="opacity:0.98999999;color:#000000;fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:2;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+      <text
+         sodipodi:linespacing="23%"
+         id="text2989"
+         y="331.53458"
+         x="383.12189"
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:end;text-decoration:none;line-height:23.00000042%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:end;baseline-shift:baseline;opacity:0.98999999;color:#000000;fill:#000000;stroke:#000000;stroke-width:0.15625;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.5;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Arial"
+         xml:space="preserve"><tspan
+           y="331.53458"
+           x="383.12189"
+           id="tspan6947"
+           sodipodi:role="line">Softmax Regression</tspan></text>
       <path
          inkscape:connector-curvature="0"
          id="path2998"
@@ -221,31 +217,28 @@
          id="path3000-4"
          d="m 378,354.36218 c 0,54 0,54 0,54"
          style="fill:none;stroke:#000000;stroke-width:2;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#Arrow1Lend)" />
-      <g
-         id="g4266">
-        <text
-           xml:space="preserve"
-           style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:end;text-decoration:none;line-height:23.00000042%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:end;baseline-shift:baseline;opacity:0.98999999;color:#000000;fill:#000000;stroke:#000000;stroke-width:0.15625;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.5;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Sans"
-           x="364"
+      <text
+         sodipodi:linespacing="23%"
+         id="text4238"
+         y="210.36218"
+         x="364"
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:end;text-decoration:none;line-height:23.00000042%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:end;baseline-shift:baseline;opacity:0.98999999;color:#000000;fill:#000000;stroke:#000000;stroke-width:0.15625;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.5;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
            y="210.36218"
-           id="text4238"
-           sodipodi:linespacing="23%"><tspan
-             sodipodi:role="line"
-             id="tspan4240"
-             x="364"
-             y="210.36218">Training Set for</tspan></text>
-        <text
-           xml:space="preserve"
-           style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:end;text-decoration:none;line-height:23.00000042%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:end;baseline-shift:baseline;opacity:0.98999999;color:#000000;fill:#000000;stroke:#000000;stroke-width:0.15625;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.5;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Arial"
-           x="344"
+           x="364"
+           id="tspan4240"
+           sodipodi:role="line">Training Set for</tspan></text>
+      <text
+         sodipodi:linespacing="23%"
+         id="text4242"
+         y="236.36218"
+         x="344"
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:end;text-decoration:none;line-height:23.00000042%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:end;baseline-shift:baseline;opacity:0.98999999;color:#000000;fill:#000000;stroke:#000000;stroke-width:0.15625;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.5;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Arial"
+         xml:space="preserve"><tspan
            y="236.36218"
-           id="text4242"
-           sodipodi:linespacing="23%"><tspan
-             sodipodi:role="line"
-             id="tspan4264"
-             x="344"
-             y="236.36218">Fall Events</tspan></text>
-      </g>
+           x="344"
+           id="tspan4264"
+           sodipodi:role="line">Fall Events</tspan></text>
       <path
          inkscape:connector-curvature="0"
          id="path3000-48"
@@ -300,9 +293,6 @@
            x="388"
            id="tspan4321"
            sodipodi:role="line">FR</tspan></text>
-    </g>
-    <g
-       id="g4762">
       <rect
          y="298.36218"
          x="468"
@@ -314,13 +304,13 @@
          sodipodi:linespacing="23%"
          id="text2989-2"
          y="371.53458"
-         x="669.12189"
+         x="671.12189"
          style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:end;text-decoration:none;line-height:23.00000042%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:end;baseline-shift:baseline;opacity:0.98999999;color:#000000;fill:#000000;stroke:#000000;stroke-width:0.15625;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.5;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Arial"
          xml:space="preserve"><tspan
            y="371.53458"
-           x="669.12189"
-           id="tspan2991-8"
-           sodipodi:role="line">Softmax Regretaion</tspan></text>
+           x="671.12189"
+           id="tspan6949"
+           sodipodi:role="line">Softmax Regression</tspan></text>
       <path
          inkscape:connector-curvature="0"
          id="path2998-6"
