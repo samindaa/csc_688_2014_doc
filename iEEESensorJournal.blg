@@ -1,0 +1,9 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: iEEESensorJournal.aux
+The style file: plain.bst
+Database file #1: references.bib
+Database file #2: fallRisk.bib
+A bad cross reference---entry "DernbachActivityAndFallDetectionPhone2012"
+refers to entry "conf/intenv/2012", which doesn't exist
+Warning--I didn't find a database entry for "conf/intenv/2012"
+Warning--to sort, need author or key in CDC2014July
+(There was 1 error message)

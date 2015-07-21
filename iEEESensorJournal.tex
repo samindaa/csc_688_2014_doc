@@ -80,7 +80,6 @@ Fall is a major cause of injury to the elderly population \cite{Rubenstein2006}.
 Each year about 30-60\% of the elderly population have one or more falls, and  about 10-20\% of these falls results in injury \cite{Rubenstein2006}. 
 As reported in CDC website \cite{CDC2014July},
 ``In 2010, falls among older adults cost the U.S. health care system \$30 billion in direct medical costs, when adjusted for inflation.'' By 2020 it is expected to reach \$67.7 billion. 
-
 \par 
 Availability of inexpensive miniature \emph{microelectromechanical system} (MEMS) sensors  has motivated researchers  to study their potential for assessing fall-risk  (see \cite{shanyReview2012}, \cite{howcroftReview2013}, and the references therein) as well as monitoring \emph{activities of daily livings} (ADLs) \cite{alvarezActivityAndFallRecognotion2015,BaoActivityrecognition2004,DernbachActivityAndFallDetectionPhone2012,krishnanActivityRecognition2014,kumarActivitAndFallDetection2013} and \emph{fall events} (FEs) \cite{baekFallDetection2013,baiFallDetectionPhone2013,DernbachActivityAndFallDetectionPhone2012,dumitracheFallDetection2013,kumarActivitAndFallDetection2013,leoneFallDetection2013,liangFallDetection2012,liFallDetection2009,moyaFallAndDamageDetection2015,ojetolaFallDetection2011,ShenFallDetectionPhone2015,steidlFallDetection2012,DoukasFallDetection2011,ErdoganFallDetection2014,JianFallDetection2015}. These studies have used  accelerometers,  or gyroscopes, or magnetometers, or  a combination of them to collect motion datasets at  25 Hz to 200 Hz.  
 \par
@@ -402,14 +401,14 @@ We have used the preprocessed stream as the input to our automatic training exam
 extraction method.
 
 
-\subsection{Semi-Automatic Training Example Extraction}
+\subsection{Semi-Automatic  Extraction Training Examples}
 
-Barrier for collecting motion data is very low, if any. But,detection and identification of activities and fall events has remained an active area of research, as can be seen from recent list of publications. The main unsettled issue is how to characterize features from motion data that can be extracted easily for training and monitoring. In this section we describe a method that semi-automatically extract vectors that characterize activities and fall events.
+Barrier for collecting motion data is very low, if any. But, detection and identification of activities and fall events from motion data has remained an active area of research, as can be seen from recent list of publications. The main unsettled issue is how to characterize features from motion data that can be extracted easily for training and monitoring. In this section, we describe a method that semi-automatically extracts feature vectors that characterize activities and fall events.
 
 The flow chart of method used for extracting training examples are shown in Fig.~\ref{fig:FlowChartforAlgorTrainingExamples}. All the collected data sets were annotated. If a dataset was for simulated fall events, the dataset was treated as a 6-dimension vector for clustering them into two clusters. We used K-Mean and Gaussian Mixture clustering techniques. For completeness a brief description of each is provided next.
 
-TODO: first paragraph => why we need SATEE. Because of the difficulty of generating 
-training data. Then, description of the algorithm, with the figure (training data only). 
+%TODO: first paragraph => why we need SATEE. Because of the difficulty of generating 
+%training data. Then, description of the algorithm, with the figure (training data only). 
 \begin{figure}[htb]
 	\centering
 		\includegraphics[width = 
@@ -424,7 +423,7 @@ K-mean clustering aims to partition a set of $n$ observations into k clusters. E
 $$ \min _{S} \sum_{i=1}^{k} \sum_{x \in S_i} || x - \boldsymbol\mu_i ||^2,$$
 where $\mu_i$ is the mean of points in $S_i$.
 
-For our case we set $k = 2$ for extracting examples for all events in the dataset containing fall events. As shown in Figures~\ref{fig:automatic_annotation} and \ref{fig:automatic_annotation2}.
+For our case we set $k = 2$ for extracting  training examples for fall events. As shown in Figures~\ref{fig:automatic_annotation} and \ref{fig:automatic_annotation2}.
 
 
 \subsubsection{Multivariate Gaussian Mixtures}
@@ -528,6 +527,9 @@ training examples
 \mathbb{N}$ is the number of dichotomies. Each training example belongs only to one class 
 and $\bm{y}$ uses the 1--of--$k$ coding scheme.    
 
+\subsection{Softmax Regration Algorthm}
+\label{sec:SoftmaxRegrationAlgorthm}
+
 The first classification network is based on Softmax regression \cite{Bishop06a}. In this 
 model, given an 
 example $\bm{x}$, it will determine the probability, $\mathbb{P}(y | \bm{x})$, for 
@@ -543,6 +545,24 @@ used the negative-log likelihood function, $l(\bm{x}) = -\bm{y}$.ln $\bm{z}$, as
 objective function. We have used L-BFGS \cite{DBLP:conf/icml/LeNCLPN11} to learn the 
 parameter vector $\bm{W}$.  
 
+\begin{figure}[htbp]
+	\centering
+		\includegraphics[width=0.98\columnwidth]{figures/SoftmaxLayer1.eps}
+	\caption{Layer 1 Learning Modules. Examples are classified into Fall and Non-Fall Events.  The Left-side Figure is using Softmax Regression Model. The Right-side Figure is a hybrid of Neural Network and Softmax Regression.}
+	\label{fig:SoftmaxLayer1}
+\end{figure}
+
+
+\begin{figure}[htbp]
+	\centering
+		\includegraphics[width=0.98\columnwidth]{figures/SoftmaxLayer2Fall.eps}
+	\caption{Layer 2 Learning Module for Four Fall Events. The Left-side Figure is using Softmax Regression Model. The Right-side Figure is a hybrid of Neural Network and Softmax Regression }
+	\label{fig:SoftmaxLayer2Fall}
+\end{figure}
+
+\subsection{Hybrid Algorithm: Neural Network and Softmax Regreation}
+\label{sec:HybridAlgorithmNeuralNetworkAndSoftmaxRegreation}
+
 The second classification network is based on Artificial Neural Network \cite{Bishop06a}. 
 We have used the prior Softmax activation  and the negative-log likelihood 
 functions in the output layer. The hidden layers have used sigmoid activation functions. 
@@ -555,11 +575,17 @@ dimension is divided by its standard deviation.
 
 \section{Online Activity Monitoring and Identification}
 
-TODO:
+
 
 \subsection{Monitoring of Event}
 
-TODO: description of the figure2.
+\begin{figure}[htbp]
+	\centering
+		\includegraphics[width=0.48\textwidth]{figures/TrainedIdentificationModule.eps}
+	\caption{Block Diagram of Event Identification Module.}
+	\label{fig:TrainedIdentificationModule}
+\end{figure}
+
 
 \subsection{Identification of Events}
 
