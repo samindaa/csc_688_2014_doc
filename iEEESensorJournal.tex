@@ -711,7 +711,7 @@ Event} \\ \hline
 
 \begin{table}
 \caption{fixme: Softmax: L2\_true: 100, Neural network: L2\_true: 100}
-\resizebox{\columnwidth}{!}
+%\resizebox{\columnwidth}{!}
 {
 \begin{tabular}{|c|c|c|c|c||c|c|c|c|}
 \hline 
@@ -729,7 +729,7 @@ L2 Fall Event: 100} \\ \hline
 
 \begin{table}
 \caption{fixme: Softmax: L2\_negg: 100}
-\resizebox{\columnwidth}{!}
+%\resizebox{\columnwidth}{!}
 {
 \begin{tabular}{|c|c|c|c|c|c|c|c|}
 \hline 
@@ -748,7 +748,7 @@ L2 Fall Event: 100} \\ \hline
 
 \begin{table}
 \caption{ixme: Neural network: L2\_negg: 100}
-\resizebox{\columnwidth}{!}
+%\resizebox{\columnwidth}{!}
 {
 \begin{tabular}{|c|c|c|c|c|c|c|c|}
 \hline 
@@ -862,32 +862,7 @@ twelve motions in total on the human subject.  Example plots for
 down  \end{inparaenum}  are shown in Figures \ref{fig:ha} and \ref{fig:hb} respectively. 
 
 
- \begin{table}[!ht]
-\caption{Logistic regression and SVM classification for human activities.}
-	\label{tab:human-logistic-class}
-	\centering
-	\resizebox{\columnwidth}{!}{
-		\begin{tabular} {| l | c | c | c| c|| c| c| c| c|}
-		\hline
-		 & \multicolumn{4}{c||}{\bf Logistic regression} & \multicolumn{4}{c|}{\bf SVM classification} \\ 
-\hline
-			{\bf Activity} & {\bf  TP}  &	{\bf TN}  &	{\bf FP} &	{\bf FN}& {\bf  TP}  &	{\bf TN}  &	{\bf FP} &	{\bf FN} \\ 
-\hline
-			Walking forward	& 91\%	& 90\%	& 10\%	& 9\% & 96\%	& 93\%	& 7\%	& 4\% \\ \hline
-			Walking backward	& 82\%	& 86\%	& 14\%	& 18\% & 81\%	& 84\%	& 16\%	& 19\% \\ \hline
-			Walking left 	& 86\%	& 86\%	& 14\%	& 14\% & 89\%	& 90\%	& 10\%	& 11\% \\ \hline
-			Walking right 	& 86\%	& 86\%	& 14\%	& 14\% & 89\%	& 90\%	& 10\%	& 11\% \\ \hline
-			Falling forward	& 94\%	& 93\%	& 7\%	& 6\% & 96\%	& 93\%	& 7\%	& 4\%	 \\ \hline
-			Falling Backward	& 84\%	& 88\%	& 12\%	& 16\%	& 84\%	& 87\%	& 13\%	& 16\% \\ \hline
-			Falling left	& 92\%	& 91\%	& 9\%	& 8\%	& 93\%	& 93\%	& 7\%	& 7\% \\ \hline
-			Falling Right	& 92\%	& 91\%	& 9\%	& 8\%	& 92\%	& 93\%	& 7\%	& 8\% \\ \hline
-			Marching	& 91\%	& 90\%	& 10\%	& 9\%	& 95\%	& 93\%	& 7\%	& 5\% \\ \hline
-			Rotate counter-clockwise	& 91\%	& 89\%	& 11\%	& 9\%	& 93\%	& 91\%	& 9\%	& 7\%	 \\ \hline
-			Rotate clockwise	& 92\%	& 89\%	& 11\%	& 8\%	& 94\%	& 91\%	& 9\%	& 6\% \\ \hline
-			Stand to seat	& 96\%	& 92\%	& 8\%	& 4\%	& 96\%	& 92\%	& 8\%	& 4\%	 \\ \hline
-		\end{tabular}
-		}
-\end{table}
+ 
 
 
 
@@ -934,147 +909,6 @@ reading and a bias term. We plan to combine and prune features to improve the cl
 accuracy for future work.  
 
 
-\subsection{Experiments with a NAO Robot}
-
-
-
-Our NAO robots have an omni-directional walking engine.  
-Walking motions are regulated by linear velocities $\dot{x}_v$ and $\dot{y}_v$, and an 
-angular velocity $\dot{\theta}_v$ as input parameters. Depending on these
-values we can let the robot walk (forward, backward, and side-ways) and rotate (clockwise and
-counter-clockwise) with different speeds. In this study, we have considered \begin{inparaenum}[($i$)]
-\item marching ($\dot{x}_v = 0 , \dot{y}_v = 0, \dot{\theta}_v = 0$); \item walking  
-forward/backward ($\dot{x}_v = \pm200
-, \dot{y}_v = 0, \dot{\theta}_v = 0$);  \item walking side-ways ($\dot{x}_v = 0, \dot{y}_v = 
-\pm200, \dot{\theta}_v = 0$); and  \item rotating clockwise/counter-clockwise
-($\dot{x}_v = 0 , \dot{y}_v = 0, \dot{\theta}_v = \pm 0.5$) \end{inparaenum} as {\em normal states}, 
-while all the other activities are classified as {\em fallen states}. 
-
-\begin{table}[!ht]
-\caption{Logistic regression  and SVM classification for robot activities.}
-	\label{tab:robot-logistic-class}
-	\centering
-	\resizebox{\columnwidth}{!}{
-	\begin{tabular} {| l | c | c | c| c|| c| c| c| c|}
-	\hline
-		& \multicolumn{4}{c||}{\bf Logistic regression} & \multicolumn{4}{c|}{\bf SVM classification} \\ 
-\hline
-			{\bf Activity} & {\bf  TP}  &	{\bf TN}  &	{\bf FP} &	{\bf FN}& {\bf  TP}  &	{\bf TN}  &	{\bf FP} &	{\bf FN} \\ 
-\hline
-			Walking forward	& 91\%	& 90\%	& 10\%	& 9\% & 93\%	& 91\%	& 9\%	& 7 \% \\ \hline
-			Walking backward	& 90\%	& 90\%	& 10\%	& 10\% & 93\%	& 91\%	& 9\%	& 7\% \\ \hline
-			Walking left 	& 92\%	& 90\%	& 10\%	& 8\%  & 94\%	& 90\%	& 10\%	& 6\% \\ \hline
-			Walking right 	& 89\%	& 90\%	& 10\%	& 11\% & 90\%	& 91\%	& 9\%	& 10\% \\ \hline
-			Falling forward	& 94\%	& 93\%	& 7\%	& 6\%	& 98\%	& 93\%	& 7\%	& 2\% \\ \hline
-			Falling Backward	& 94\%	& 93\%	& 7\%	& 6\%	 & 98\%	& 93\%	& 7\%	& 2\% \\ \hline
-			Falling left	& 95\%	& 93\%	& 7\%	& 5\%	& 99\%	& 94\%	& 6\%	& 1\% \\ \hline
-			Falling Right	& 94\%	& 93\%	& 7\%	& 6\%	& 98\%	& 93\%	& 7\%	& 2\%	 \\ \hline
-			Marching	& 91\%	& 89\%	& 11\%	& 9\%	& 90\%	& 91\%	& 11\%	& 10\%	 \\ \hline
-			Rotate counter-clockwise	& 97\%	& 92\%	& 8\%	& 3\%	& 97\%	& 93\%	& 7\%	& 3\%	 \\ \hline
-			Rotate clockwise	& 98\%	& 92\%	& 8\%	& 2\%	& 96\%	& 93\%	& 7\%	& 4\%	 \\ \hline
-		\end{tabular}
-		}
-\end{table}
-
-
-
-We have attached the sensors on the back of the NAO humanoid robot as shown in Figure \ref{fig:fc} 
-and used the following protocol to collect the datasets. First, we set the velocity 
-parameters and activate the walking engine of the robot. Then, we collect the motion data 
-transmitted by the wireless device attached at the back of the robot. Finally, we marked the start 
-point of the sample stream and collect data approximately for a minute and marked the end of the 
-sample stream. This is an episode of a normal  or a fallen state. We repeat the described 
-protocol for collecting multiple episodes to obtain our learning ensemble. To collect samples for 
-fallen states, we have configured the walking engine to marching activity. Then, we safely pushed 
-the robot to different directions to inducing the fallen state. Similarly, we marked the sample 
-streams to generate several episodes for the learning ensemble.    
-%
-%\begin{table}[!ht]
-%\caption{SVM classification for robot activities.}
-	%\label{tab:robot-svm-class}
-	%\centering
-		%\begin{tabular} {| l | c | c | c | c | }
-		%\hline
-			%{\bf Activity} & {\bf  TP}  &	{\bf TN}  &	{\bf FP} &	{\bf FN} \\ 
-%\hline
-			%Walking forward	& 93\%	& 91\%	& 9\%	& 7\% \\ \hline
-			%Walking backward	& 93\%	& 91\%	& 9\%	& 7\% \\ \hline
-			%Walking left	& 94\%	& 90\%	& 10\%	& 6\% \\ \hline
-			%Walking right	& 90\%	& 91\%	& 9\%	& 10\% \\ \hline
-			%Falling forward	& 98\%	& 93\%	& 7\%	& 2\%	 \\ \hline
-			%Falling backward	& 98\%	& 93\%	& 7\%	& 2\%	 \\ \hline
-			%Falling left	& 99\%	& 94\%	& 6\%	& 1\%	 \\ \hline
-			%Falling right	& 98\%	& 93\%	& 7\%	& 2\%	 \\ \hline
-			%Marching	& 90\%	& 91\%	& 11\%	& 10\%	 \\ \hline
-			%Rotate counter-clockwise	& 97\%	& 93\%	& 7\%	& 3\%	 \\ \hline
-			%Rotate clockwise	& 96\%	& 93\%	& 7\%	& 4\%	 \\ \hline
-		%\end{tabular}
-%\end{table}
-
-
-\subsubsection{Results:}
-
-The results for LLR and SVM classifiers are summarized in Table \ref{tab:robot-logistic-class}. The results are similar to that of human activities and fall events, and for 
-conserving space we omit detail discussion of the results. It is worthwhile to note that the SVM 
- identified events more accurately than LLR as observed for human activities.  
-
-% Even though the thresholding method successfully distinguished between normal and fallen states, 
-%we 
-% were 
-% unable to detect states within normal activities, i.e., walking forward to walking backward etc.. 
-% Therefore, similar to the previous experiments, we have used logistic regression and SVM 
-% classifiers to identify different activities. We have followed the same protocols as mentioned in 
-% the previous section to generate features, learning, and prediction. Table 
-% \ref{tab:robot-logistic-class} shows the results for the logistic regression classifier while 
-% Table \ref{tab:robot-svm-class} shows the results for the SVM classifier.    
-
-
-
-% We conclude that the classification methods are able to predict activities within normal states 
-% as well as fallen states. Similar to the previous experiments with a human, the SVM classifier 
-% performs 
-% better that the logistic regression classifier, though, during operation, we prefer the logistic 
-% regression classifier. The range of motion of the NAO robot is comparatively constrained compared to 
-% a 
-% human. Therefore, we can only conduct primary activities as described in this section. We have not 
-% conducted experiments on activities such as \textit{standing to sitting down}. When determining the 
-% results, we 
-% have sampled the motion device data at the rate 50$Hz$. During operation, if the 
-% thresholding method is used, we can use the same thresholds with higher sampling rates. The second 
-% method requires learning for different sampling rates.
-
-Even though the above learning methods provide accurate results, there are microcontrollers with 
-very limited computational and memory capacities. In such devices, it is better to use less memory 
-expensive methods such as Kalman filtering, which is reported in the next section.
-
-\subsubsection{Kalman Filtering:}
-
-We have designed a thresholding base activity predictor in these experiments. Using the same 
-datasets, we have calculated the roll, pitch, and yaw angles  using the DCM algorithm. In order to 
-achieve an effective threshold-based decision making, we have filtered the roll, pitch, and
-yaw values using a Kalman filter \cite{Welch:1995:IKF:897831}. Figures 
-\ref{fig:normalFallenBehavior} (a--b) show the raw and the filtered values of the roll and the 
-pitch values for marching and walk backward. The other activities show similar plots.
-
-The thresholding method suggests that, if the filtered roll values are within the range $[90\pm15]$ 
-(degrees) and the filtered pitch values are within the rage $[0\pm15]$ (degrees), then with 100\% 
-accuracy, the NAO  robot will be in a normal state. Otherwise, we can safely assume that the robot 
-is in a fallen state. Figures \ref{fig:normalFallenBehavior} (c--d) show the roll and pitch 
-angles (raw and filtered) for a typical fallen robot. If the filtered roll value is less that 60 
-degrees, we can safely assume that the robot is falling forward. If the filtered roll values is 
-more than 100$^{\circ}$ we can assume that the robot is falling backward. To detect the events 
-falling to the left and right, we have used the filtered pitch values. If the filtered pitch value 
-is less than -50$^{\circ}$, we can assume that the robot is falling to the left side, while if the 
-filtered pitch values is more than 50$^{\circ}$, we can assume that the robot is falling to the right 
-side. With these thresholds for a separate test cases, the thresholding method has detected fallen 
-state with 100\% accuracy. 
-
-Even though the thresholding method successfully distinguished between normal and fallen 
-activities, it was unable to detect states within the normal activities, i.e., walking forward 
-to walking backward so on. This one of the limitation of using thresholding methods, which has 
-been overcome by the learning methods.  We use Kalman filter in this experiments because of its 
-efficacy and the choice of the filter is entirely arbitrary depending on the computational 
-resources of the microcontroller.  
 
 
 \section{Conclusions and Future Work}
