@@ -418,7 +418,13 @@ The flow chart of method used for extracting training examples are shown in Fig.
 \end{figure}
 
 \subsubsection{K-Mean Clustering}
-K-mean clustering aims to partition a set of $n$ observations into k clusters. Each observation is assigned to the cluster with the nearest mean. Let  $X = \{X_1, X_2, \cdots, X_n\}$ be the set of $n$ observations, where each observation $X_i$ is a $d$-dimensional real vector and is assigned to one of $k$ sets $S_j \in S$, for $ 1 \leq  j \leq k$ so that within-cluster sum of squares is minimized. Formally,
+K-mean clustering aims to partition a set of $n$ observations into $k$ clusters. Each 
+observation is assigned to the cluster with the nearest mean. Let 
+\{($\mathbf{x}^{(i)}$)\}$_{i=1}^n$  be the set of $n$ 
+observations, where each observation $\mathbf{x}^{(i)}$ is a $d$-dimensional real vector 
+and is 
+assigned to one of $k$ sets $S_j \in S$, for $ 1 \leq  j \leq k$ so that within-cluster 
+sum of squares is minimized. Formally,
 
 $$ \min _{S} \sum_{i=1}^{k} \sum_{x \in S_i} || x - \boldsymbol\mu_i ||^2,$$
 where $\mu_i$ is the mean of points in $S_i$.
@@ -521,29 +527,36 @@ Using our semi-automated training example extraction method (Section
 \ref{sec:SemiAutomaticExtractionOfTrainingVectors}), we have created $m \in 
 \mathbb{N}$ 
 training examples 
-\{($\bm{x}_{(1)}, \bm{y}_{(1)}$), ($\bm{x}_{(2)}, \bm{y}_{(2)}$), $\ldots$, 
-($\bm{x}_{(m)}, 
-\bm{y}_{(m)}$)\} such that $\bm{x} \in \mathbb{R}^{n}$ and $\bm{y} \in \{0,1\}^k$. $k \in 
+\{($\mathbf{x}^{(i)}, \mathbf{y}^{(i)}$)\}$_{i=1}^m$ such that $\mathbf{x} \in 
+\mathbb{R}^{n}$ 
+and 
+$\mathbf{y} \in 
+\{0,1\}^k$. $k \in 
 \mathbb{N}$ is the number of dichotomies. Each training example belongs only to one class 
-and $\bm{y}$ uses the 1--of--$k$ coding scheme.    
+and $\mathbf{y}$ uses the 1--of--$k$ coding scheme.    
 
 \subsection{Softmax Regression Algorthm}
 \label{sec:SoftmaxRegrationAlgorthm}
 
 The first classification network is based on Softmax regression \cite{Bishop06a}. In this 
 model, given an 
-example $\bm{x}$, it will determine the probability, $\mathbb{P}(y | \bm{x})$, for 
+example $\mathbf{x}$, it will determine the probability, $\mathbb{P}(y | \mathbf{x})$, 
+for 
 each dichotomy $y=0,\ldots,k-1$. In this model, the input is appended with constant bias 
-term, $x_0 = 1$, therefore, $\bm{x} \in \mathbb{R}^7$. The model uses a parameter matrix 
-$\bm{W} 
-\in \mathbb{R}^{7 \times k}$, and the output vector, $\bm{a} = \bm{Wx}$, is passed 
+term, $x_0 = 1$, therefore, $\mathbf{x} \in \mathbb{R}^7$. The model uses a parameter 
+matrix 
+$\mathbf{W} 
+\in \mathbb{R}^{7 \times k}$, and the output vector, $\mathbf{a} = \mathbf{Wx}$, is 
+passed 
 through 
 the 
 Softmax 
-activation function $\bm{z} = \frac{e^{\bm{a}}}{\bm{1}^\mathtt{T} e^{\bm{a}}}$. We have 
-used the negative-log likelihood function, $l(\bm{x}) = -\bm{y}$.ln $\bm{z}$, as our 
+activation function $\mathbf{z} = \frac{e^{\mathbf{a}}}{\mathbf{1}^\mathtt{T} 
+e^{\mathbf{a}}}$. We have 
+used the negative-log likelihood function, $l(\mathbf{x}) = -\mathbf{y}$.ln $\mathbf{z}$, 
+as our 
 objective function. We have used L-BFGS \cite{DBLP:conf/icml/LeNCLPN11} to learn the 
-parameter vector $\bm{W}$.  
+parameter vector $\mathbf{W}$.  
 
 \begin{figure}[htbp]
 	\centering
