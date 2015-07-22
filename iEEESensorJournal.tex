@@ -630,6 +630,126 @@ TODO: put the numbers into the description provided in the previous sections.
 
 \subsection{Results}
 
+\begin{table}
+\caption{fixme: Softmax: 94.4}
+\resizebox{\columnwidth}{!}
+{
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline 
+& \textbf{FF} & \textbf{FB}  & \textbf{FL} & \textbf{FR} &  \textbf{WF} & 
+\textbf{WB} & \textbf{WL} & \textbf{WR} & \textbf{MR} & 
+\textbf{RC} & \textbf{RA} \\ \hline
+\textbf{FF} & 66.7 &  0 &  0 &  0 &  0 &  16.7 &  0 &  0 &  16.7 &  0 &  0 \\ \hline
+\textbf{FB} & 0 &  100 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 \\ \hline
+\textbf{FL} & 0 &  0 &  100 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 \\ \hline
+\textbf{FR} & 0 &  0 &  0 &  100 &  0 &  0 &  0 &  0 &  0 &  0 &  0 \\ \hline
+\textbf{WF} & 0 &  0 &  0 &  0 &  87.5 &  0 &  0 &  12.5 &  0 &  0 &  0 \\ \hline
+\textbf{WB} & 0 &  0 &  0 &  0 &  0 &  100 &  0 &  0 &  0 &  0 &  0 \\ \hline
+\textbf{WL} & 0 &  0 &  0 &  0 &  0 &  0 &  100 &  0 &  0 &  0 &  0 \\ \hline
+\textbf{WR} & 0 &  0 &  0 &  0 &  0 &  0 &  12.5 &  87.5 &  0 &  0 &  0 \\ \hline
+\textbf{MR} & 0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  100 &  0 &  0 \\ \hline
+\textbf{RC} & 0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  100 &  0 \\ \hline
+\textbf{RA} & 0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  100 \\ \hline
+\end{tabular}
+}
+\end{table}
+
+\begin{table}
+\caption{fixme: Neural network: 95.8}
+\resizebox{\columnwidth}{!}
+{
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline 
+& \textbf{FF} & \textbf{FB}  & \textbf{FL} & \textbf{FR} &  \textbf{WF} & 
+\textbf{WB} & \textbf{WL} & \textbf{WR} & \textbf{MR} & 
+\textbf{RC} & \textbf{RA} \\ \hline
+\textbf{FF} & 66.7 &  0 &  0 &  0 &  0 &  0 &  16.7 &  0 &  16.7 &  0 &  0 \\ \hline
+\textbf{FB} & 0 &  100 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 \\ \hline
+\textbf{FL} & 0 &  0 &  100 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 \\ \hline
+\textbf{FR} & 0 &  0 &  0 &  100 &  0 &  0 &  0 &  0 &  0 &  0 &  0 \\ \hline
+\textbf{WF} & 0 &  0 &  0 &  0 &  100 &  0 &  0 &  0 &  0 &  0 &  0 \\ \hline
+\textbf{WB} & 0 &  0 &  0 &  0 &  0 &  100 &  0 &  0 &  0 &  0 &  0 \\ \hline
+\textbf{WL} & 0 &  0 &  0 &  0 &  0 &  0 &  100 &  0 &  0 &  0 &  0 \\ \hline
+\textbf{WR} & 0 &  0 &  0 &  0 &  0 &  0 &  12.5 &  87.5 &  0 &  0 &  0 \\ \hline
+\textbf{MR} & 0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  100 &  0 &  0 \\ \hline
+\textbf{RC} & 0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  100 &  0 \\ \hline
+\textbf{RA} & 0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  100 \\ \hline
+\end{tabular}
+}
+\end{table}
+
+\begin{table}
+\caption{fixme: Softmax L1: 87.17, fixme: Neural network L1: 100}
+\resizebox{\columnwidth}{!}
+{
+\begin{tabular}{|c|c|c||c|c|}
+\hline
+& \multicolumn{2}{c||}{\bf Softmax L1: 87.2} & \multicolumn{2}{c|}{\bf Neural L1: 
+100} \\ \hline
+& \textbf{Fall Event} & \textbf{Non-Fall Event}  & \textbf{Fall Event} & \textbf{Non-Fall 
+Event} \\ \hline
+\textbf{Fall Event} & 85.7 &  14.3  & 100 &  0 \\ \hline
+\textbf{Non-Fall Event} & 12.7 &  87.3 & 0 &  100 \\ \hline
+\end{tabular}
+}
+\end{table}
+
+
+\begin{table}
+\caption{fixme: Softmax: L2\_true: 100, Neural network: L2\_true: 100}
+\resizebox{\columnwidth}{!}
+{
+\begin{tabular}{|c|c|c|c|c||c|c|c|c|}
+\hline 
+& \multicolumn{4}{c||}{\bf Softmax: L2 Fall Event: 100} & \multicolumn{4}{c|}{\bf Neural 
+L2 Fall Event: 100} \\ \hline
+& \textbf{FF} & \textbf{FB}  & \textbf{FL} & \textbf{FR} & \textbf{FF} & \textbf{FB}  & 
+\textbf{FL} & \textbf{FR} \\ \hline
+\textbf{FF} & 100 &  0 &  0 &  0  & 100 &  0 &  0 &  0\\ \hline
+\textbf{FB} & 0 &  100 &  0 &  0  & 0 &  100 &  0 &  0\\ \hline
+\textbf{FL} & 0 &  0 &  100 &  0  & 0 &  0 &  100 &  0\\ \hline
+\textbf{FR} & 0 &  0 &  0 &  100  & 0 &  0 &  0 &  100 \\ \hline
+\end{tabular}
+}
+\end{table}
+
+\begin{table}
+\caption{fixme: Softmax: L2\_negg: 100}
+\resizebox{\columnwidth}{!}
+{
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline 
+ & \textbf{WF} & \textbf{WB} & \textbf{WL} & \textbf{WR} & \textbf{MR} & 
+\textbf{RC} & \textbf{RA} \\ \hline    
+\textbf{WF} & 100 &  0 &  0 &  0 &  0 &  0 &  0 \\ \hline
+\textbf{WB} & 0 &  100 &  0 &  0 &  0 &  0 &  0 \\ \hline
+\textbf{WL} & 0 &  0 &  100 &  0 &  0 &  0 &  0 \\ \hline
+\textbf{WR} & 0 &  0 &  0 &  100 &  0 &  0 &  0 \\ \hline
+\textbf{MR} & 0 &  0 &  0 &  0 &  100 &  0 &  0 \\ \hline
+\textbf{RC} & 0 &  0 &  0 &  0 &  0 &  100 &  0 \\ \hline
+\textbf{RA} & 0 &  0 &  0 &  0 &  0 &  0 &  100 \\ \hline
+\end{tabular}
+}
+\end{table}
+
+\begin{table}
+\caption{ixme: Neural network: L2\_negg: 100}
+\resizebox{\columnwidth}{!}
+{
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline 
+ & \textbf{WF} & \textbf{WB} & \textbf{WL} & \textbf{WR} & \textbf{MR} & 
+\textbf{RC} & \textbf{RA} \\ \hline 
+\textbf{WF} & 100 &  0 &  0 &  0 &  0 &  0 &  0 \\ \hline
+\textbf{WB} & 0 &  100 &  0 &  0 &  0 &  0 &  0 \\ \hline
+\textbf{WL} & 0 &  0 &  100 &  0 &  0 &  0 &  0 \\ \hline
+\textbf{WR} & 0 &  0 &  0 &  100 &  0 &  0 &  0 \\ \hline
+\textbf{MR} & 0 &  0 &  0 &  0 &  100 &  0 &  0 \\ \hline
+\textbf{RC} & 0 &  0 &  0 &  0 &  0 &  100 &  0 \\ \hline
+\textbf{RA} & 0 &  0 &  0 &  0 &  0 &  0 &  100 \\ \hline
+\end{tabular}
+}
+\end{table}
 
 
 
