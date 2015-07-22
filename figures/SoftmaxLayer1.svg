@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="SoftmaxLayer1.pdf">
+   sodipodi:docname="SoftmaxLayer1.eps">
   <defs
      id="defs4">
     <marker
@@ -83,7 +83,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
      inkscape:cx="195.99999"
-     inkscape:cy="-58.8247"
+     inkscape:cy="-58.824698"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -106,7 +106,7 @@
        visible="true"
        enabled="true"
        snapvisiblegridlinesonly="true"
-       originx="-1.9888891in"
+       originx="-1.9888892in"
        originy="-6.4313856in" />
   </sodipodi:namedview>
   <metadata
@@ -127,10 +127,9 @@
      id="layer1"
      transform="translate(-179,-193.72351)">
     <g
-       id="g2993"
-       transform="translate(0,58)">
+       id="g6740">
       <rect
-         y="242.36218"
+         y="300.36218"
          x="180"
          height="54"
          width="236.29947"
@@ -139,80 +138,77 @@
       <text
          sodipodi:linespacing="23%"
          id="text2989"
-         y="273.53458"
+         y="331.53458"
          x="381.12189"
          style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:end;text-decoration:none;line-height:23.00000042%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:end;baseline-shift:baseline;opacity:0.98999999;color:#000000;fill:#000000;stroke:#000000;stroke-width:0.15625;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.5;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Arial"
          xml:space="preserve"><tspan
-           y="273.53458"
+           y="331.53458"
            x="381.12189"
-           id="tspan2991"
-           sodipodi:role="line">Softmax Regretaion</tspan></text>
-    </g>
-    <path
-       style="fill:none;stroke:#000000;stroke-width:2;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-       d="m 276,242.36218 0,36 -18,0 36,18 36,-18 -18,0 0,-36"
-       id="path2998"
-       inkscape:connector-curvature="0" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:2;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#Arrow1Lend)"
-       d="m 236,354.36218 c 0,54 0,54 0,54"
-       id="path3000"
-       inkscape:connector-curvature="0" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:2;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#Arrow1Lend)"
-       d="m 360,354.36218 c 0,54 0,54 0,54"
-       id="path3000-4"
-       inkscape:connector-curvature="0" />
-    <g
-       id="g4254"
-       transform="translate(-172,-356)">
-      <text
-         sodipodi:linespacing="23%"
-         id="text4238"
-         y="566.36218"
-         x="536"
-         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:end;text-decoration:none;line-height:23.00000042%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:end;baseline-shift:baseline;opacity:0.98999999;color:#000000;fill:#000000;stroke:#000000;stroke-width:0.15625;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.5;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Sans"
-         xml:space="preserve"><tspan
-           y="566.36218"
+           id="tspan6736"
+           sodipodi:role="line">Softmax Regression</tspan></text>
+      <path
+         inkscape:connector-curvature="0"
+         id="path2998"
+         d="m 276,242.36218 0,36 -18,0 36,18 36,-18 -18,0 0,-36"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3000"
+         d="m 236,354.36218 c 0,54 0,54 0,54"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#Arrow1Lend)" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3000-4"
+         d="m 360,354.36218 c 0,54 0,54 0,54"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linejoin:miter;stroke-miterlimit:2;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#Arrow1Lend)" />
+      <g
+         transform="translate(-172,-356)"
+         id="g4254">
+        <text
+           xml:space="preserve"
+           style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:end;text-decoration:none;line-height:23.00000042%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:end;baseline-shift:baseline;opacity:0.98999999;color:#000000;fill:#000000;stroke:#000000;stroke-width:0.15625;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.5;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Sans"
            x="536"
-           id="tspan4240"
-           sodipodi:role="line">Training Set for</tspan></text>
+           y="566.36218"
+           id="text4238"
+           sodipodi:linespacing="23%"><tspan
+             sodipodi:role="line"
+             id="tspan4240"
+             x="536"
+             y="566.36218">Training Set for</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:end;text-decoration:none;line-height:23.00000042%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:end;baseline-shift:baseline;opacity:0.98999999;color:#000000;fill:#000000;stroke:#000000;stroke-width:0.15625;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.5;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Sans"
+           x="522"
+           y="592.36218"
+           id="text4242"
+           sodipodi:linespacing="23%"><tspan
+             sodipodi:role="line"
+             id="tspan4244"
+             x="522"
+             y="592.36218">All Activities</tspan></text>
+      </g>
       <text
          sodipodi:linespacing="23%"
-         id="text4242"
-         y="592.36218"
-         x="522"
+         id="text4246"
+         y="449.22498"
+         x="268.71069"
          style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:end;text-decoration:none;line-height:23.00000042%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:end;baseline-shift:baseline;opacity:0.98999999;color:#000000;fill:#000000;stroke:#000000;stroke-width:0.15625;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.5;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Sans"
          xml:space="preserve"><tspan
-           y="592.36218"
-           x="522"
-           id="tspan4244"
-           sodipodi:role="line">All Activities</tspan></text>
-    </g>
-    <text
-       xml:space="preserve"
-       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:end;text-decoration:none;line-height:23.00000042%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:end;baseline-shift:baseline;opacity:0.98999999;color:#000000;fill:#000000;stroke:#000000;stroke-width:0.15625;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.5;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Sans"
-       x="268.71069"
-       y="449.22498"
-       id="text4246"
-       sodipodi:linespacing="23%"><tspan
-         sodipodi:role="line"
-         id="tspan4248"
-         x="268.71069"
-         y="449.22498">Fall Event</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:end;text-decoration:none;line-height:23.00000042%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:end;baseline-shift:baseline;opacity:0.98999999;color:#000000;fill:#000000;stroke:#000000;stroke-width:0.15625;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.5;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Sans"
-       x="424.33508"
-       y="447.18439"
-       id="text4250"
-       sodipodi:linespacing="23%"><tspan
-         sodipodi:role="line"
-         id="tspan4252"
+           y="449.22498"
+           x="268.71069"
+           id="tspan4248"
+           sodipodi:role="line">Fall Event</tspan></text>
+      <text
+         sodipodi:linespacing="23%"
+         id="text4250"
+         y="447.18439"
          x="424.33508"
-         y="447.18439">Non-Fall Event</tspan></text>
-    <g
-       id="g3964">
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:end;text-decoration:none;line-height:23.00000042%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:end;baseline-shift:baseline;opacity:0.98999999;color:#000000;fill:#000000;stroke:#000000;stroke-width:0.15625;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:0.5;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="447.18439"
+           x="424.33508"
+           id="tspan4252"
+           sodipodi:role="line">Non-Fall Event</tspan></text>
       <rect
          y="298.36218"
          x="488"
@@ -229,8 +225,8 @@
          xml:space="preserve"><tspan
            y="370.36218"
            x="690"
-           id="tspan2991-8"
-           sodipodi:role="line">Softmax Regretaion</tspan></text>
+           id="tspan6738"
+           sodipodi:role="line">Softmax Regression</tspan></text>
       <path
          inkscape:connector-curvature="0"
          id="path2998-8"
