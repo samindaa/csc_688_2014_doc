@@ -441,7 +441,15 @@ optimal value that clearly separated the duration of the fall.
 
 \subsubsection{Multivariate Gaussian Mixtures}
 
-Gaussian mixture clustering is a generalization of k-men clustering, where each cluster is assumed to be from a Gaussian distribution parametrized by $\mu_k, \Sigma_k$. The mean vector $\mu_i$ represents the center of the cluster $i$. Usually an \emph{expectation maximixation} (EM) algorithm iteratively identifies the clusters.
+Gaussian mixture clustering is a generalization of k-mean clustering, where each cluster 
+is assumed to be from a Gaussian distribution parametrized by $\boldsymbol{\mu}_k, 
+\boldsymbol{\Sigma}_k$. The mean vector $\boldsymbol{\mu}_i$ represents the center of the 
+cluster $i$. 
+Usually an \emph{expectation maximixation} (EM) algorithm iteratively identifies the 
+clusters. Compared to the clustering obtained from k-mean, the mixture models did not 
+provide an optimal separation for our fall datasets. Therefore, we have only used the 
+clustering obtained from 
+k-means algorithm to extract the training examples. 
  
 
 The activity annotation is an arduous and cumbersome process. As we have mentioned in 
