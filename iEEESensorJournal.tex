@@ -37,7 +37,7 @@
 %Author (Saminda Abeyruwan, Faisal Sikder, Ubbo Visser, Dilip Sarkar)}
 %\setcounter{secnumdepth}{0}  
 %\title{Semi-Automatic Extraction of  Training Examples from Sensor Readings for Activity Monitoring and Prediction for Humans and NAO Humanoid Robots}
-\title{Semi-Automatic Extraction of  Training Examples from Sensor Readings for Activity Monitoring and Prediction for Humans and Humanoid Robots}
+\title{Semi-Automatic Extraction of  Training Examples from Sensor Readings for Activity Monitoring and Prediction for Humans}
 %\title{Activity Monitoring and Prediction for Humans and NAO Humanoid Robots using 
 %Wearable Sensors}
 \author{{Saminda Abeyruwan}, {Dilip Sarkar}, {Faisal Sikder},   and {Ubbo Visser}
@@ -88,8 +88,6 @@ Earlier studies demonstrated feasibility of various miniature wired or wireless 
 \par
 Remaining major challenges include automatic development of \begin{inparaenum}[($i$)] \item firmware and software for collecting motion data and  extracting features specific to applications and users, and \item software module for making intelligent decisions utilizing features extracted from motion data. \end{inparaenum}
 For example, a device with 9-axis MEMS motion sensor to be used for identifying four fall events --- fall forward, fall backward, fall left, and fall right. The device must have firmware modules to collect motion data, to preprocess motion data, and to extract sufficient features from the preprocessed data for identification of all fall events. Also, the device must have a software module that takes the extracted features as input and recognizes correctly  which fall event has occurred.
-\par
-In this paper we  propose a software framework for creating firmware for collecting data from embedded sensors, and a method for semi-automatic extraction of training examples from motion data for identification of ADLS and FEs. Our studies has shown that the methods applies to both humans and biped robots. The reasons for inclusion of biped robots is explained next.
 
 %However, the challenges: How to gather \textbf{\emph{sufficient }} motion datasets and how to \emph{\textbf{automate }} extraction of required information form the datasets  for assessment of fall-risks.
 
@@ -103,23 +101,17 @@ In this paper we  propose a software framework for creating firmware for collect
 \par
 Since both humans and biped humanoid robots have almost identical movements and are susceptible to 
 similar accidents, we believe that the same devices are suitable for monitoring activities and fall events of both 
-groups. Moreover, in the near future human-robot will cooperatively work together for solving problems that are difficult for both groups.  For instance, there has been an increasing demand in 
+groups. Moreover, in the near future human-robot will cooperatively work together for solving problems that are impossible for either group but can be done with a combination of both groups.  For instance, there has been an increasing demand in 
 domains such as rescue to use autonomous or teleoperated humanoid robots to complete high-risk 
 tasks, otherwise would have been lethal to a human subject. Therefore, we envision environments 
 where humans and humanoid robots collaboratively work to complete tasks. 
 
 \par
-
-
-To validate our hypotheses, we develop a generalized approach for learning 
-and predicting activities of both groups.  We have attached wearable sensing devices to collect 
+To validate our hypotheses, we developed a generalized approach for learning 
+and predicting activities of both groups \cite{abeyruwanFlairs2015}.  We attached wearable sensing devices to collect
 motion data and have used software tools to interpret the sensor data to distinguish 
-between regular activities and fall events. The sensing devices are assembled using $(i)$ off-the-shelf 
-hardware component boards and $(ii)$  a set of generalized software tools that we have developed. The software tools 
-collect data  from the sensors, which we used for learning to distinguish between routine activities and fall events as well as predicting activities. The software tools provide a modular 
-functionality to use for collecting  data from any sensing devices, and to learn and predict 
-on/off-line. While attempts for identifying human motions have already been investigated extensively, to the 
-best of our knowledge only a three studies have been dedicated to biped robots \cite{Andre2015,Goswami2014,Moya2015}. 
+between regular activities and fall events (see Fig.~\ref{fig:deviceWithSubjects}). 
+In our study, all four fall and seven non-fall activities of biped robots were identified with 100\%  accuracy after using Kalman filter \cite{Welch:1995:IKF:897831} with appropriate thresholding. However, for the same set of activities of human subjects, we could not use \emph{Kalman filtering} technique, because datasets for human subject had too much availabilities. And using Logistic Regression and \emph{Support Vector Machines} (SVM) true positive recognition was low as 90\%. The most \emph{ad hoc} and arduous part of our work was extraction of training datasets from the time series, which was part of the motivation for the work presented in this paper.
 % to investigate the prospect of using external embedded 
 %devices to identify activities on a NAO humanoid robot. 
 
@@ -266,14 +258,21 @@ method reported 94\% accuracy. One disadvantage of their process was that, some 
 and movements cannot be detected accurately; e.g., falling down from  stairs, multiple collisions, 
 or temporal unbalance motions.
 
-Similar to existing methods, we have defined different normal and abnormal activities for humans 
-and NAO humanoid robots. In order to validate our hypotheses that the learning and predicting 
-methods unifies across the two groups, firstly, we have restricted the activities that can be 
-performed on a NAO robot. Therefore, in our experiments, the human performed activities that are 
-similar to the robot, such as, walk or falling forward/backward so forth. Secondly, we have 
-extended the human activities to more complex events.  We have used Texas Instruments 
-(TIs)  microcontrollers and boosterpacks for our experiments, 
-but, one can use microcontrollers and  sensor boards from other sources.  
+\par 
+To the 
+best of our knowledge only a three studies have been dedicated to biped robots \cite{Andre2015,Goswami2014,Moya2015}. The focus for these studies were prediction of a fall before it occurs and taking corrective measures to prevent the fall. The work reported in these papers are using readings from multiple sensors embedded in a robot for predicting potential fall. On the other hand, our research goal is identification of fall and non-fall events after it occurs.
+
+
+%Similar to existing methods, we have defined different normal and abnormal activities for humans 
+%and NAO humanoid robots. In order to validate our hypotheses that the learning and predicting 
+%methods unifies across the two groups, firstly, we have restricted the activities that can be 
+%performed on a NAO robot. Therefore, in our experiments, the human performed activities that are 
+%similar to the robot, such as, walk or falling forward/backward so forth. Secondly, we have 
+%extended the human activities to more complex events.  We have used Texas Instruments 
+%(TIs)  microcontrollers and boosterpacks for our experiments, 
+%but, one can use microcontrollers and  sensor boards from other sources.  
+
+
 
 
 \section{Framework for Data Collection and Processing}
@@ -288,7 +287,7 @@ We have created a generic framework for developing applications for \emph{data c
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{figures/graph_structure_def-crop3.eps}
-\caption{Currently available software modules in our framework and a directed-graph representation of their functional relationship.}
+\caption{Currently available software modules in our framework and a directed-graph representation of their functional relationship. Execution of a module (rounded-corner rectangle) generated data that is stored in the representation module (pointed-corner rectangle) for feeding into the next module.}
  \label{fig:framework}
 \end{figure*}
 
@@ -360,14 +359,14 @@ In the next section we propose a method for semi-automatic extraction of trainin
 \begin{figure}[htb]
 	\centering
 		\includegraphics[width=0.95\columnwidth]{plots/human_falling-crop.eps}
-	\caption{Motion Dataset for  Fall Event of a Human Subject}
+	\caption{Motion dataset for  Fall Forward event of a human subject}
 	\label{fig:human_falling-crop}
 \end{figure}
 
 \begin{figure}[htb]
 	\centering
-		\includegraphics[width=0.95\columnwidth]{plots/robot_fallen_forward-crop.eps}
-	\caption{Motion Dataset for Fall Forward Event of a Biped Robot}
+		\includegraphics[width=0.95\columnwidth]{plots/human_walk-crop.eps}
+	\caption{Motion dataset for Walk Forward event of a human subject. }
 	\label{fig:robot_fallen_forward-crop}
 \end{figure}
 
@@ -395,9 +394,9 @@ Some data packets may be lost during transmission because of noise. We numbered 
 \label{sec:NoiseFiltering}
 
 After checking for missing data and adding interpolated values for lost data,  high frequency noise was removed using a moving window averaging technique. We used a window  of 20 consecutive samples, which amounts to 400$ms$, 
-and obtain the average value. Then the  window was moved by 200$ms$, which amounts to 10 samples, and 
+and obtain the average value. Then the  window was moved by 10 samples, then average was and 
 repeated the process. Therefore, we have allowed 10 samples to overlap between windows. 
-We have used the preprocessed stream as the input to our automatic training example 
+Selection of 10 samples overlaps is based on our empirical observation that a transition from non-fall event to a fall event is about 500$ms$. Thus, averaged values will preserve transitions from non-fall events to fall events.   We have used the preprocessed stream as the input to our automatic training example 
 extraction method.
 
 
@@ -413,7 +412,7 @@ The flow chart of method used for extracting training examples are shown in Fig.
 	\centering
 		\includegraphics[width = 
 		0.84\columnwidth]{figures/FlowChartAlgoForTrainingExamples.eps}
-	\caption{Flow Chart of an Algorithm for Semi-Automatic Extraction of Training Examples}
+	\caption{Flow chart of an algorithm for semi-automatic extraction of training examples}
 	\label{fig:FlowChartforAlgorTrainingExamples}
 \end{figure}
 
@@ -474,7 +473,7 @@ which the fall triggered and continued.
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=0.48\textwidth]{plots/human_falling_backward2.eps} 
-\caption{Semi-Automatic annotation of falling bax event dataset.}
+\caption{Semi-automatic annotation of falling bax event dataset.}
  \label{fig:automatic_annotation2} 
 \end{figure}
 
@@ -501,8 +500,8 @@ at the end of the non-fall segment and at the beginning of the fall segment.
 
 \begin{figure}[!htb]
 \centering
-\includegraphics[width=0.48\textwidth]{figures/viz_all_training_examples.eps} 
-\caption{Visualization of 11 sets of training examples 11 using Tsne.}
+\includegraphics[width=0.48\textwidth]{figures/viz_all_training_examples_corp.eps} 
+\caption{Visualization of 11 sets of training examples using Tsne projection. In this projection, the 4 fall events (numbered 1 through 4) show a clear separation from each other and other 7 non-fall events.}
  \label{fig:automatic_annotation} 
 \end{figure}
 
@@ -549,7 +548,7 @@ The first classification network is based on Softmax regression \cite{Bishop06a}
 model, given an 
 example $\mathbf{x}$, it will determine the probability, $\mathbb{P}(y | \mathbf{x})$, 
 for 
-each dichotomy $y=0,\ldots,k-1$. In this model, the input is appended with constant bias 
+each dichotomy $y=0,\ldots,k-1$. The input is appended with constant bias 
 term, $x_0 = 1$, therefore, $\mathbf{x} \in \mathbb{R}^7$. The model uses a parameter 
 matrix 
 $\mathbf{W} 
@@ -558,7 +557,7 @@ passed
 through 
 the 
 Softmax 
-activation function $\mathbf{z} = \frac{e^{\mathbf{a}}}{\mathbf{1}^\mathtt{T} 
+activation function $\mathbf{z(a)} = \frac{e^{\mathbf{a}}}{\mathbf{1}^\mathtt{T}
 e^{\mathbf{a}}}$. We have 
 used the negative-log likelihood function, $l(\mathbf{x}) = -\mathbf{y}$.ln $\mathbf{z}$, 
 as our 
@@ -568,21 +567,28 @@ parameter vector $\mathbf{W}$.
 \begin{figure}[htbp]
 	\centering
 		\includegraphics[width=0.98\columnwidth]{figures/SoftmaxLayer1.eps}
-	\caption{Layer 1 Learning Modules. Examples are classified into Fall and Non-Fall Events.  The Left-side Figure is using Softmax Regression Model. The Right-side Figure is a hybrid of Neural Network and Softmax Regression.}
+	\caption{Layer 1 learning modules. Examples are classified into Fall and Non-Fall events.  The left-side Figure is using Softmax Regression model. The Right-side Figure is a hybrid of Neural Network and Softmax Regression model.}
 	\label{fig:SoftmaxLayer1}
 \end{figure}
+
+We trained and tested two networks with Softmax regression algorithm. In first case, we trained a one-layer network with 11 binary outputs, one for each fall or non-fall events. In the second case, we trained a two layer softmax regression network. The top layer network was trained with 2 binary outputs to distinguish between fall and non-fall events (see Fig.~\ref{fig:SoftmaxLayer1}). The bottom layer has two sub-networks:  one to identify fall events and has 4 binary outputs, the other to identify non-fall events and has 7 binary outputs. Each sub-network was trained separately. Fig~\ref{fig:SoftmaxLayer2Fall} shows a block diagram of a subnetwork for training and identification of four fall events. For conserving space, we omit diagram for non-fall events. As will be discussed in the next section, none of them identified all events with 100\% accuracy.
 
 \begin{figure}[htbp]
 	\centering
 		\includegraphics[width=0.98\columnwidth]{figures/SoftmaxLayer2Fall.eps}
-	\caption{Layer 2 Learning Module for Four Fall Events. The Left-side Figure is using Softmax Regression Model. The Right-side Figure is a hybrid of Neural Network and Softmax Regression }
+	\caption{Layer 2 learning module for four Fall events. The left-side Figure is using Softmax Regression model. The right-side Figure is a hybrid of Neural Network and Softmax Regression }
 	\label{fig:SoftmaxLayer2Fall}
 \end{figure}
+
+\subsection{Neural Network}
+\label{sec:NeuralNetwork}
+The second classification network is based on Artificial Neural Network \cite{Bishop06a}. We experimented with both one and two layer networks. Performance of these networks are reported in the next section. None of them identified all evetns with 100\% accuracy.
 
 \subsection{Hybrid Algorithm: Neural Network and Softmax Regreation}
 \label{sec:HybridAlgorithmNeuralNetworkAndSoftmaxRegreation}
 
-The second classification network is based on Artificial Neural Network \cite{Bishop06a}. 
+The hybrid classification network is based on both Artificial Neural Network  and Softmax regression network. Fig.~\ref{fig:SoftmaxLayer1} shows a block diagram of a hybrid network: a single layer of neurons followed by a softmax regression layer.
+\par
 We have used the prior Softmax activation  and the negative-log likelihood 
 functions in the output layer. The hidden layers have used sigmoid activation functions. 
 We have also included the bias terms for all hidden layers. The backpropagation algorithm 
@@ -591,6 +597,8 @@ learn the network parameters. We have independently set each dimension of the sa
 have zero-mean and unit-variance. We achieved this by first computing the mean of each 
 dimension across the training set and subtracting this from each dimension. Then each 
 dimension is divided by its standard deviation.       
+
+Similar to Softmax regression networks and Neural networks we experimented  with both single-layer hybrid networks and two-layer hybrid networks. While single-layer network failed to identify all events with 100\% accuracy, the two-layer network successfully identified all event with 100\%. There were no false positives or false negatives.
 
 \section{Online Activity Monitoring and Identification}
 
@@ -601,7 +609,7 @@ dimension is divided by its standard deviation.
 \begin{figure}[htbp]
 	\centering
 		\includegraphics[width=0.48\textwidth]{figures/TrainedIdentificationModule.eps}
-	\caption{Block Diagram of Event Identification Module.}
+	\caption{Block diagram of event identification system. The top layer separates fall events from non-fall events. The bottom layer modules receive the same input data vector as the top layer, but they also get a zero or one input from the upper layer module depending on where the input data vector is classified. The final output is a binary valued vector of 11 components.}
 	\label{fig:TrainedIdentificationModule}
 \end{figure}
 
