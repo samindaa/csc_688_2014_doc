@@ -360,23 +360,21 @@ In the next section we propose a method for semi-automatic extraction of trainin
 \section{Semi-Automatic Extraction of  Training Examples}
 \label{sec:SemiAutomaticExtractionOfTrainingVectors}
 
-\begin{figure}[htb]
-	\centering
-		\includegraphics[width=0.95\columnwidth]{plots/human_falling-crop.eps}
-	\caption{Motion dataset for  Fall Forward event of a human subject}
-	\label{fig:human_falling-crop}
-\end{figure}
-
-\begin{figure}[htb]
-	\centering
-		\includegraphics[width=0.95\columnwidth]{plots/human_walk-crop.eps}
-	\caption{Motion dataset for Walk Forward event of a human subject. }
-	\label{fig:robot_fallen_forward-crop}
-\end{figure}
+This section provides our main contribution of the paper. We provide a detail description 
+of the semi-automatic training examples extraction method, which has expedited the 
+annotation 
+of motion data considerably. In our study, we have considered four types of fall events: 
+\begin{inparaenum}[1)] \item fall forward ({\sf FF}), \item fall backward ({\sf FB}), 
+\item fall left ({\sf FL}), and fall right ({\sf FR}). \end{inparaenum} We have used the 
+following seven activities:\begin{inparaenum}[1)] \item walk forward ({\sf WF}), \item 
+walk backward ({\sf WB}), \item walk left ({\sf WL}), \item walk right ({\sf WR}), \item 
+marching ({\sf MR}), \item rotate counter clockwise ({\sf RC}), and \item rotate 
+clockwise ({\sf RA})  \end{inparaenum} as non-fall activities. 
 
 
-TODO: we need an introductory paragraph describing a set of activities $A = \{A_1, A_2, 
-\dots, A_n\}$. Show unfiltered data sample for couple for fall and non-fall time series. 
+ 
+%TODO: we need an introductory paragraph describing a set of activities $A = \{A_1, A_2, 
+%\dots, A_n\}$. Show unfiltered data sample for couple for fall and non-fall time series. 
 
 
 \subsection{Preprocessing of Data Collected with Motion Sensors }
@@ -391,9 +389,29 @@ Tesla ($T$). For our experiments, we have excluded the magnetometer readings. Th
 our input vectors are in $\mathbb{R}^6$, which consist of accelerometer and gyroscope 
 values.
 
+\begin{figure}[htb]
+	\centering
+		\includegraphics[width=0.95\columnwidth]{plots/human_falling-crop.eps}
+	\caption{Motion dataset for  Fall Forward event of a human subject}
+	\label{fig:human_falling-crop}
+\end{figure}
+
+
 \subsubsection{Identify and Adjust for Missing Data Points}
 \label{sec:IdentifyAndAdjustForMissingDataPoints}
-Some data packets may be lost during transmission because of noise. We numbered each sensor reading sequentially and lost data points were identified from this number and was replaced using linear interpolation. Since only very few data points were lost and results obtained after linear interpolation was excellent, we did not experiment other interpolation method.
+Some data packets may be lost during transmission because of noise. We numbered each 
+sensor reading sequentially and lost data points were identified from this number and was 
+replaced using linear interpolation. Since only very few data points were lost and 
+results obtained after linear interpolation was excellent, we did not experiment other 
+interpolation method.
+
+\begin{figure}[htb]
+	\centering
+		\includegraphics[width=0.95\columnwidth]{plots/human_walk-crop.eps}
+	\caption{Motion dataset for Walk Forward event of a human subject. }
+	\label{fig:robot_fallen_forward-crop}
+\end{figure}
+
 
 \subsubsection{Noise Filtering}
 \label{sec:NoiseFiltering}
