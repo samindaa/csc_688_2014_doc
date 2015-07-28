@@ -177,7 +177,11 @@ available functionalities for creating WSNs, collecting data, learning, and pred
 
 The rest of the paper is organized as follows. In Section~\ref{sec:framework}, we describe the software development 
 framework that we have proposed and implemented.
-Section~\ref{sec:SemiAutomaticExtractionOfTrainingVectors} reports our novel methods for  semi-automatic extraction  of \begin{inparaenum} [($i$)] \item training samples to be used by the learning algorithms  and \item testing data for activity monitoring. \end{inparaenum} Outlines of offline leaning algorithms used for teaching the device to identify activities and fall events are described in Section~\ref{OffLineLearning}. 
+Section~\ref{sec:SemiAutomaticExtractionOfTrainingVectors} reports our novel methods for  
+semi-automatic extraction  of \begin{inparaenum} [($i$)] \item training samples to be 
+used by the learning algorithms  and \item testing data for activity monitoring. 
+\end{inparaenum} Outlines of offline leaning algorithms used for teaching the device to 
+identify activities and fall events are described in Section~\ref{sec:OffLineLearning}. 
  In the penultimate section, we present detailed description of evaluation of proposed methods and also, report some typical results for humans and NAO humanoid 
 robots. 
 %We have utilized two machine learning algorithms and a thresholding based method to learn 
@@ -376,6 +380,7 @@ TODO: we need an introductory paragraph describing a set of activities $A = \{A_
 
 
 \subsection{Preprocessing of Data Collected with Motion Sensors }
+\label{subsec:preDataCollection}
 
 We have setup the framework as described in Section \ref{sec:framework} and enabled the 
 motion tracking device to sample at $20$ ms, which is equivalent to 50$Hz$ 
@@ -497,7 +502,7 @@ which the fall triggered and continued.
 %\end{figure}
 
 
-Figure \ref{fig:automatic_annotation} shows our semi-automatic annotation of falling 
+Figure \ref{fig:automatic_annotation3} shows our semi-automatic annotation of falling 
 forward dataset. The subject in this experiment exercises a fall froward. After a 
 fall, the subject immediately gets up and repeats the process. The green ``+'' segments 
 show the annotated fall events, while the black ``x'' segments show the non-fall 
@@ -510,7 +515,7 @@ at the end of the non-fall segment and at the beginning of the fall segment.
 \centering
 \includegraphics[width=0.48\textwidth]{figures/viz_all_training_examples_corp.eps} 
 \caption{Visualization of 11 sets of training examples using Tsne projection. In this projection, the 4 fall events (numbered 1 through 4) show a clear separation from each other and other 7 non-fall events.}
- \label{fig:automatic_annotation} 
+ \label{fig:automatic_annotation3} 
 \end{figure}
 
 
@@ -522,7 +527,7 @@ initialization. Therefore, when we have obtained the data belongs to two cluster
 only have to manually provide the semantics of the cluster centroid. 
 
 \section{Offline Learning and Predicting Algorithms}
-\label{OffLineLearning}
+\label{sec:OffLineLearning}
 
 %TODO: About the algorithms we have used (SoftMax, ANN, and SVM).
 %Trained the models using offline models. This is offline learning figure. 
@@ -566,8 +571,10 @@ through
 the 
 Softmax 
 activation function $\mathbf{z(a)} = \frac{e^{\mathbf{a}}}{\mathbf{1}^\mathtt{T}
-e^{\mathbf{a}}}$. We have 
-used the negative-log likelihood function, $l(\mathbf{x}) = -\mathbf{y}$.ln $\mathbf{z}$, 
+e^{\mathbf{a}}}$, which represents the probability mass function $\mathbb{P}(y | 
+\mathbf{x})$. We have 
+used the cross-entropy negative-log likelihood function, $l(\mathbf{x}) = -\mathbf{y}$.ln 
+$\mathbf{z}$, 
 as our 
 objective function. We have used L-BFGS \cite{DBLP:conf/icml/LeNCLPN11} to learn the 
 parameter vector $\mathbf{W}$.  
@@ -610,11 +617,33 @@ Similar to Softmax regression networks and Neural networks we experimented  with
 
 \section{Online Activity Monitoring and Identification}
 
+In Sections \ref{sec:SemiAutomaticExtractionOfTrainingVectors} and 
+\ref{sec:OffLineLearning}, we have discussed the semi-automatic training example 
+extraction and the learning of the parameter vectors of the classifiers for the event 
+prediction and identification. This process is primarily offline. In operational mode, we 
+require that the learned classifiers monitor and identify events online. This section 
+provides our setup and methodology.  
+
 
 
 \subsection{Monitoring of Event}
 
-\begin{figure}[htbp]
+For the monitoring of events, we have followed a methodology similar to that of 
+Subsection \ref{subsec:preDataCollection}. We have continuously collected the sample data 
+to a ring buffer. From a starting marker (initially at the beginning of the ring buffer) 
+we have averaged 20 consecutive sample and added that value to a second ring buffer. The 
+first ring buffer is incremented by 10 samples, then average the next 20 samples (if the 
+data 
+is available), and pushed  the average value into the second ring buffer. We have 
+continued this process in 
+the first ring buffer with 10 samples overlap. In the second ring buffer, we have 
+maintained a window of 20 samples. 
+In order to compensate for noise, we have used five average values from a window. We have 
+used the first 20, 18, 16, 14, and 12 average values. These  values are used in the event 
+identification. We then incremented the second ring buffer by 10 samples and continued 
+the process.  
+
+\begin{figure}[h]
 	\centering
 		\includegraphics[width=0.48\textwidth]{figures/TrainedIdentificationModule.eps}
 	\caption{Block diagram of event identification system. The top layer separates fall events from non-fall events. The bottom layer modules receive the same input data vector as the top layer, but they also get a zero or one input from the upper layer module depending on where the input data vector is classified. The final output is a binary valued vector of 11 components.}
@@ -667,7 +696,7 @@ TODO: put the numbers into the description provided in the previous sections.
 
 \subsection{Results}
 
-\begin{table}
+\begin{table}[!b]
 \caption{fixme: Softmax: 94.4}
 \resizebox{\columnwidth}{!}
 {
