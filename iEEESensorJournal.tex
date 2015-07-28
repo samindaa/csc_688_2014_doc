@@ -630,7 +630,7 @@ provides our setup and methodology.
 
 For the monitoring of events, we have followed a methodology similar to that of 
 Subsection \ref{subsec:preDataCollection}. We have continuously collected the sample data 
-to a ring buffer. From a starting marker (initially at the beginning of the ring buffer) 
+to a ring buffer. From a starting marker (initially at the beginning of the ring buffer), 
 we have averaged 20 consecutive sample and added that value to a second ring buffer. The 
 first ring buffer is incremented by 10 samples, then average the next 20 samples (if the 
 data 
@@ -638,7 +638,8 @@ is available), and pushed  the average value into the second ring buffer. We hav
 continued this process in 
 the first ring buffer with 10 samples overlap. In the second ring buffer, we have 
 maintained a window of 20 samples. 
-In order to compensate for noise, we have used five average values from a window. We have 
+In order to compensate for noise, we have used five average values from the window. We 
+have 
 used the first 20, 18, 16, 14, and 12 average values. These  values are used in the event 
 identification. We then incremented the second ring buffer by 10 samples and continued 
 the process.  
@@ -653,7 +654,20 @@ the process.
 
 \subsection{Identification of Events}
 
-TODO: two layer identification. 
+In order to identify the events, we have used a layered classification network as 
+shown in Fig. \ref{fig:TrainedIdentificationModule}. The inputs to the classifiers are 
+the 
+pre-processed motion data from the previous subsection. In the first layer of our 
+classification network (Layer 1), we have used a binary decision classifier that predicts 
+whether the current input is a fall or a non-fall. Based on this decision, at the second 
+layer of our network (Layer 2), one of the specialized fall event or non-fall activity 
+recognition classification network is activated. The decision of this classifier is 
+considered as the output of the classification network. In order to compensate for noise, 
+we have used the five samples as described in the previous section. We have marked the 
+predicted events and if the five samples predict the same outcome, then the network voted 
+to that event, otherwise, we have identified an inconclusive event. 
+
+
 
 \section{Empirical Evaluation of Proposed Algorithms and Methods}
 \label{Evaluation}
