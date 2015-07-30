@@ -592,8 +592,10 @@ Softmax
 activation function $\mathbf{z(a)} = \frac{e^{\mathbf{a}}}{\mathbf{1}^\mathtt{T}
 e^{\mathbf{a}}}$, which represents the probability mass function $\mathbb{P}(y | 
 \mathbf{x})$. We have 
-used the cross-entropy negative-log likelihood function, $l(\mathbf{x}) = -\mathbf{y}$.ln 
-$\mathbf{z}$, 
+used the regularized cross-entropy negative-log likelihood function, $l(\mathbf{x}) = 
+-\mathbf{y}$.ln 
+$\mathbf{z} + \frac{\lambda}{2} \mathbf{W}.\mathbf{W}$ (``.'' represents the scalar dot  
+or Frobenius product, with $\lambda$ as the regularization parameter),
 as our 
 objective function. We have used L-BFGS \cite{DBLP:conf/icml/LeNCLPN11} to learn the 
 parameter vector $\mathbf{W}$.  
@@ -616,7 +618,13 @@ We trained and tested two networks with Softmax regression algorithm. In first c
 
 \subsection{Neural Network}
 \label{sec:NeuralNetwork}
-The second classification network is based on Artificial Neural Network \cite{Bishop06a}. We experimented with both one and two layer networks. Performance of these networks are reported in the next section. None of them identified all evetns with 100\% accuracy.
+The second classification network is based on Artificial Neural Network \cite{Bishop06a}. 
+The network has configured with the same classification objective function as in the 
+previous section. We have 
+used the rectified linear unit  activation function in the hidden layers 
+\cite{AISTATS2011_GlorotBB11}. We have experimented with both one and two layer networks. 
+Performance of these networks are reported in the next section. None of them identified 
+all events with 100\% accuracy.
 
 \subsection{Hybrid Algorithm: Neural Network and Softmax Regreation}
 \label{sec:HybridAlgorithmNeuralNetworkAndSoftmaxRegreation}

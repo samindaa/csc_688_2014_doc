@@ -1,4 +1,6 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: iEEESensorJournal.aux
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: iEEESensorJournal.aux
 The style file: plain.bst
 Database file #1: references.bib
 Database file #2: fallRisk.bib
@@ -6,4 +8,45 @@ A bad cross reference---entry "DernbachActivityAndFallDetectionPhone2012"
 refers to entry "conf/intenv/2012", which doesn't exist
 Warning--I didn't find a database entry for "conf/intenv/2012"
 Warning--to sort, need author or key in CDC2014July
+You've used 31 entries,
+            2118 wiz_defined-function locations,
+            712 strings with 11335 characters,
+and the built_in function-call counts, 12575 in all, are:
+= -- 1256
+> -- 594
+< -- 18
++ -- 233
+- -- 199
+* -- 855
+:= -- 1980
+add.period$ -- 105
+call.type$ -- 31
+change.case$ -- 190
+chr.to.int$ -- 0
+cite$ -- 32
+duplicate$ -- 505
+empty$ -- 981
+format.name$ -- 199
+if$ -- 2760
+int.to.chr$ -- 0
+int.to.str$ -- 31
+missing$ -- 30
+newline$ -- 158
+num.names$ -- 66
+pop$ -- 220
+preamble$ -- 1
+purify$ -- 159
+quote$ -- 0
+skip$ -- 379
+stack$ -- 0
+substring$ -- 776
+swap$ -- 170
+text.length$ -- 18
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 122
+warning$ -- 1
+while$ -- 120
+width$ -- 33
+write$ -- 353
 (There was 1 error message)

@@ -79,6 +79,14 @@ Lei Gao, AK~Bourke, and John Nelson.
   activity recognition systems.
 \newblock {\em Medical engineering \& physics}, 36(6):779--785, 2014.
 
+\bibitem{AISTATS2011_GlorotBB11}
+Xavier Glorot, Antoine Bordes, and Yoshua Bengio.
+\newblock {Deep Sparse Rectifier Neural Networks}.
+\newblock In Geoffrey~J. Gordon and David~B. Dunson, editors, {\em {Proceedings
+  of the Fourteenth International Conference on Artificial Intelligence and
+  Statistics (AISTATS-11)}}, volume~15, pages 315--323. {Journal of Machine
+  Learning Research - Workshop and Conference Proceedings}, 2011.
+
 \bibitem{Goswami2014}
 Ambarish Goswami, Seung-kook Yun, Umashankar Nagarajan, Sung-Hee Lee, KangKang
   Yin, and Shivaram Kalyanakrishnan.
