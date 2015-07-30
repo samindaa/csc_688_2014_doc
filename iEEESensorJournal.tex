@@ -111,7 +111,7 @@ To validate our hypotheses, we developed a generalized approach for learning
 and predicting activities of both groups \cite{abeyruwanFlairs2015}.  We attached wearable sensing devices to collect
 motion data and have used software tools to interpret the sensor data to distinguish 
 between regular activities and fall events (see Fig.~\ref{fig:deviceWithSubjects}). 
-In our study, all four fall and seven non-fall activities of biped robots were identified with 100\%  accuracy after using Kalman filter \cite{Welch:1995:IKF:897831} with appropriate thresholding. However, for the same set of activities of human subjects, we could not use \emph{Kalman filtering} technique, because datasets for human subject had too much availabilities. And using Logistic Regression and \emph{Support Vector Machines} (SVM) true positive recognition was low as 90\%. The most \emph{ad hoc} and arduous part of our work was extraction of training datasets from the time series, which was part of the motivation for the work presented in this paper.
+In our study, fall and on-fall activities of biped robots were identified with 100\%  accuracy after using Kalman filter \cite{Welch:1995:IKF:897831} with appropriate thresholding.  Using Logistic Regression and \emph{Support Vector Machines} (SVM) true positive recognition for human subjects was as low as 90\%. The most \emph{ad hoc} and arduous part of our work was extraction of training datasets from the time series, which was part of the motivation for the work presented in this paper.
 % to investigate the prospect of using external embedded 
 %devices to identify activities on a NAO humanoid robot. 
 
@@ -394,7 +394,7 @@ values.
 	\centering
 		\includegraphics[width=0.95\columnwidth]{plots/human_falling-crop.eps}
 	\caption{Motion dataset for  Fall Forward event of a human subject}
-	\label{fig:human_falling-crop}
+	\label{fig:human_fall_forward_crop}
 \end{figure}
 
 
@@ -410,7 +410,7 @@ interpolation method.
 	\centering
 		\includegraphics[width=0.95\columnwidth]{plots/human_walk-crop.eps}
 	\caption{Motion dataset for Walk Forward event of a human subject. }
-	\label{fig:robot_fallen_forward-crop}
+	\label{fig:human_walk_forward-crop}
 \end{figure}
 
 
@@ -532,7 +532,7 @@ at the end of the non-fall segment and at the beginning of the fall segment.
 
 \begin{figure}[!htb]
 \centering
-\includegraphics[width=0.48\textwidth]{figures/viz_all_training_examples_corp.eps} 
+\includegraphics[width=0.48\textwidth, height=2.8in]{figures/viz_all_training_examples_corp.eps} 
 \caption{Visualization of 11 sets of training examples using Tsne projection. In this projection, the 4 fall events (numbered 1 through 4) show a clear separation from each other and other 7 non-fall events.}
  \label{fig:automatic_annotation3} 
 \end{figure}
@@ -615,7 +615,7 @@ We trained and tested two networks with Softmax regression algorithm. In first c
 \end{figure}
 
 \subsection{Neural Network}
-\label{sec:NeuralNetwork}
+\label{sec:NeuralNetwork1}
 The second classification network is based on Artificial Neural Network \cite{Bishop06a}. We experimented with both one and two layer networks. Performance of these networks are reported in the next section. None of them identified all evetns with 100\% accuracy.
 
 \subsection{Hybrid Algorithm: Neural Network and Softmax Regreation}
@@ -649,18 +649,18 @@ provides our setup and methodology.
 
 For the monitoring of events, we have followed a methodology similar to that of 
 Subsection \ref{subsec:preDataCollection}. We have continuously collected the sample data 
-to a ring buffer. From a starting marker (initially at the beginning of the ring buffer), 
-we have averaged 20 consecutive sample and added that value to a second ring buffer. The 
-first ring buffer is incremented by 10 samples, then average the next 20 samples (if the 
+to a circular buffer. From a starting marker (initially at the beginning of the circular buffer), 
+we have averaged 20 consecutive sample and added that value to a second circular buffer. The 
+first circular buffer is incremented by 10 samples, then average the next 20 samples (if the 
 data 
-is available), and pushed  the average value into the second ring buffer. We have 
+is available), and pushed  the average value into the second circular buffer. We have 
 continued this process in 
-the first ring buffer with 10 samples overlap. In the second ring buffer, we have 
+the first circular buffer with 10 samples overlap. In the second circular buffer, we have 
 maintained a window of 20 samples. 
 In order to compensate for noise, we have used five average values from the window. We 
 have 
 used the first 20, 18, 16, 14, and 12 average values. These  values are used in the event 
-identification. We then incremented the second ring buffer by 10 samples and continued 
+identification. We then incremented the second circular buffer by 10 samples and continued 
 the process.  
 
 \begin{figure}[h]
@@ -691,46 +691,37 @@ to that event, otherwise, we have identified an inconclusive event.
 \section{Empirical Evaluation of Proposed Algorithms and Methods}
 \label{Evaluation}
 
-%\begin{figure*}[!t]
-%\centering
-%\subfloat[Human walking 
-%forward.]{\label{fig:ha}\includegraphics[width=0.25\textwidth]{plots/human_walk2-crop.pdf}}
-% 
-%\subfloat[Human stand to 
-%seat.]{\label{fig:hb}\includegraphics[width=0.25\textwidth]{plots/human_stand2-crop.pdf}}
-%%\subfloat[Human stand to 
-%%fall.]{\label{fig:hc}\includegraphics[width=0.32\textwidth]{plots/human_falling-crop.pdf}}
-%%\\
-%%\subfloat[Robot walk forward.]{\label{fig:ra}\includegraphics[width=0.32\textwidth]
-%%{plots/robot_walk_forward-crop.pdf}}
-%%\subfloat[Robot walk backward.]{\label{fig:rb}\includegraphics[width=0.32\textwidth]
-%%{plots/robot_walk_backward-crop.pdf}}
-%%\subfloat[Robot rotate clockwise.]{\label{fig:rc}\includegraphics[width=0.32\textwidth]
-%%{plots/robot_rotate_cw-crop.pdf}}
-%%\\
-%\subfloat[Robot fallen forward.]{\label{fig:rd}\includegraphics[width=0.25\textwidth]
-%{plots/robot_fallen_forward2-crop.pdf}} 
-%\subfloat[Robot fallen backward.]{\label{fig:re}\includegraphics[width=0.25\textwidth]
-%{plots/robot_fallen_backward2-crop.pdf}}
-%%\subfloat[Robot fallen right.]{\label{fig:rf}\includegraphics[width=0.32\textwidth]
-%%{plots/robot_fallen_right-crop.pdf}}
-%
-%\caption{Figures (a--b) shows 3-axis accelerometer and 3-axis gyroscope graph for human 
-%motions 
-%walking forward and stand to seat. Figures (c--d) shows 3-axis accelerometer and 3-axis 
-%gyroscope 
-%graph for robot's fallen forward and backward motions.}
-% \label{fig:anotation-human-robot} 
-%\end{figure*}
-%% Figures (d)-(f) shows 3-axis accelerometer and 3-axis gyroscope graph for robot's walk 
-%%motion. 
 
 TODO: put the numbers into the description provided in the previous sections. 
 
-\subsection{Results}
+\subsection{Data Collection}
 
-\begin{table}[!b]
-\caption{fixme: Softmax: 94.4}
+\begin{table}[htb]
+\caption{Activities and Fall Events and their abbreviations}
+%\resizebox{\columnwidth}{!}
+{
+\begin{tabular}{|l|l|}
+\hline \hline
+\textbf{Activity} & \textbf{Abbreviation} \\  \hline
+Fall Forward &\textbf{FF} \\ \hline
+Fall Backward &\textbf{FB}  \\ \hline
+Fall Left &\textbf{FL}  \\ \hline
+Fall Left &\textbf{FR}  \\ \hline
+Walk Forward &\textbf{WF} \\ \hline
+Walk Backward &\textbf{WB} \\ \hline
+Walk Left &\textbf{WL} \\ \hline
+Walk Right &\textbf{WR}  \\ \hline
+March &\textbf{MR}  \\ \hline
+Rotate Clockwise &\textbf{RC} \\ \hline
+Rotate Anticlockwise&\textbf{RA}  \\ \hline
+\end{tabular}
+}
+\label{Tbl:ListOfActivities}
+\end{table}
+
+\begin{table}[htb]
+\caption{Performance of a single layer Softmax regression network with six inputs and 11 outputs. On an average 94.4\% of the events were classified correctly.}
+\label{tab:softmaxOnelayer}
 \resizebox{\columnwidth}{!}
 {
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
@@ -752,9 +743,32 @@ TODO: put the numbers into the description provided in the previous sections.
 \end{tabular}
 }
 \end{table}
+We have conducted our experiments on detecting seven non-fall movement activities and four fall events on 
+%able-bodied 
+humans. The list of these activities and fall events are shown in Table~\ref{Tbl:ListOfActivities}. 
+The normal activities include walking 
+(forward, backward, left, and right), marching, and rotating (left and right). Falling  (forward, 
+backward, left, and right) has been considered as an abnormal event.   
 
-\begin{table}
-\caption{fixme: Neural network: 95.8}
+ As shown in Fig.~\ref{fig:deviceWithSubjects}, a wireless 9-axis  motion sensing device was attached to the back of the subjects and a wireless data collecting device was connected to a computer. These two devices formed a WSN.
+\par
+ While a subject performed prescribed activities and simulated-fall events, data was logged in the computer 
+for extracting training examples for learning algorithms as well as  performance evaluation.
+The motion data included 3-axis accelerometer readings, 3-axis gyroscope readings, and 3-axis magnetometer readings.  Figures \ref{fig:human_fall_forward_crop} and \ref{fig:human_walk_forward-crop} show plots of motion data for\begin{inparaenum}[($i$)] \item fall forward and \item walk forward\end{inparaenum}, respectively.
+ 
+
+
+
+\subsection{Single-Layer Networks}
+\label{sec:SingleLayerNetworks}
+We  trained two one layer networks: softmax regression and neural networks (see Fig.~\ref{fig:SoftmaxLayer1} for block diagrams of these networks). Performance of these networks are discussed in the next two paragraphs.
+ 
+ \paragraph{Softmax Regression}
+ \label{sec:SoftmaxRegression}
+ As can be seen from Table~\ref{tab:softmaxOnelayer}, one-layer sofmax regression network with 6 inputs and 11 outputs recognized on an average 94.4\% of all  events. A closer examination reveals that all but fall forward, walk forward, and walk right events are recognized correctly. Recognition rate for fall forward event is only 66.7\%. This event is sometimes  incorrectly classified as walk back or march events. Walk forward event is correctly recognized on an average rate of 87.5\% and is incorrectly recognized as  walk right. Recognition rate for walk right is same as walk forward and is confused with  walk left.
+\begin{table}[htb]
+\caption{Performance of a Neural network with one row of neurons with sigmoid activation functions and one row of elements with softmax activation function. On an average 95.8\% of the events were classified correctly.}
+\label{tbl:neuralNetworkOneLayer}
 \resizebox{\columnwidth}{!}
 {
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
@@ -777,8 +791,19 @@ TODO: put the numbers into the description provided in the previous sections.
 }
 \end{table}
 
-\begin{table}
-\caption{fixme: Softmax L1: 87.17, fixme: Neural network L1: 100}
+\paragraph{Neural Network}
+\label{sec:NeuralNetwork2}
+Performance of neural networks is shown in Table~\ref{tbl:neuralNetworkOneLayer}; it recognized 95.8\% of all events correctly. Before we discuss our results, it should be noted that the network is composed of one row of neurons with sigmoid activation function followed by a row of elements with softmax activation function (see Fig.~\ref{fig:SoftmaxLayer1} in Section~\ref{sec:OffLineLearning}). An advantage of this architecture is that the number of neurons in the first row  can be varied for optimal performance.
+
+\par
+As can be seen from Table~\ref{tbl:neuralNetworkOneLayer}, all events except fall forward and walk right events were recognized correctly. The neural network improved recognition rate of walk forward to 100\%. But recognition rates of fall forward and walk right remained same as softmax netowrk at 66.7\% and 87.5\%, respectively.
+\par
+Because of failure of one layer networks, we explored two-layer networks: first layer classified input into two categories, fall or non-fall. Then, a second layer  differentiated events within its own category. A block of the classifier  is shown in Fig.~\ref{fig:TrainedIdentificationModule}.
+\subsection{Two-Layer Networks}
+\label{sec:TwoLayerNetworks}
+\begin{table}[htb]
+\caption{ Performance of layer-one of a two-layer classifiers. Softmax network at layer-one correctly identified 87.17\% of fall events from non-fall events, but neural network correctly identified all fall and non-fall events.}
+\label{tbl:layer1RecognitionRates}
 \resizebox{\columnwidth}{!}
 {
 \begin{tabular}{|c|c|c||c|c|}
@@ -793,10 +818,26 @@ Event} \\ \hline
 }
 \end{table}
 
+\subsubsection{Layer One: Fall and Non-fall identification}
+\label{sec:LayerOneFallAndNonFallIdentification}
 
-\begin{table}
-\caption{fixme: Softmax: L2\_true: 100, Neural network: L2\_true: 100}
-%\resizebox{\columnwidth}{!}
+Performance of layer-one of a two-layer classifiers is reported in Table~\ref{tbl:layer1RecognitionRates}. As can be seen from the table, softmax network at layer-one (top layer) correctly classified only 87.2\% of fall and non-fall events, but neural network correctly classified all fall and non-fall events. Therefore, we choose neural networks as layer-one network. In the subsequent discussion, unless otherwise mentioned, results reported for layer-two classified utilizing a neural network at layer-one.
+
+%\paragraph{Siftmax Regression}
+%\label{sec:SiftmaxRegression}
+%
+%\paragraph{Neural Network}
+%\label{sec:NeuralNetwork}
+
+\subsubsection{Layer Two: Fall or Non-fall Event Identification}
+\label{sec:LayerTwoFallOrNonFallEventIdentification}
+
+Performance of layer-two networks are shown in Tables~\ref{Layer2FallEvents},\ref{Layer2FallEvents}, and \ref{Layer2FallEvents}. It is easy to see from Table~\ref{Layer2FallEvents} that both Softmax and Neural networks at layer-two correctly classified 100\% of fall events.
+Results for seven non-fall events are shown in Tables~\ref{Layer2FallEvents} and \ref{Layer2FallEvents}. Again both Softmax and Neural networks achieved 100\% accuracy.
+\begin{table}[htb]
+\caption{ Performance of layer-2 network for  four fall events. Both softmax and neural networks correctly classified 100\% of fall events.}
+\label{Layer2FallEvents}
+\resizebox{\columnwidth}{!}
 {
 \begin{tabular}{|c|c|c|c|c||c|c|c|c|}
 \hline 
@@ -812,8 +853,11 @@ L2 Fall Event: 100} \\ \hline
 }
 \end{table}
 
-\begin{table}
-\caption{fixme: Softmax: L2\_negg: 100}
+
+
+\begin{table}[htb]
+\caption{Performance of layer-2 network for  seven non-fall events. Softmax networks correctly classified 100\% of non-fall events.}
+\label{Layer2NonFallEventsSoftmax}
 %\resizebox{\columnwidth}{!}
 {
 \begin{tabular}{|c|c|c|c|c|c|c|c|}
@@ -831,8 +875,11 @@ L2 Fall Event: 100} \\ \hline
 }
 \end{table}
 
-\begin{table}
-\caption{ixme: Neural network: L2\_negg: 100}
+
+
+\begin{table}[htb]
+\caption{Performance of layer-2 network for  seven non-fall events. Neural networks correctly classified 100\% of  seven non-fall events.}
+\label{Layer2NonFallEventsNeuralNets}
 %\resizebox{\columnwidth}{!}
 {
 \begin{tabular}{|c|c|c|c|c|c|c|c|}
@@ -849,150 +896,6 @@ L2 Fall Event: 100} \\ \hline
 \end{tabular}
 }
 \end{table}
-
-
-
-We have conducted our experiments on detecting eight regular movement activities and four fall events on 
-%able-bodied 
-humans. The list of these activities and fall events are shown in Table~\ref{tab:human-logistic-class}. For humanoid robots (NAO robots) we evaluated all these activities and fall events, except stand-to-sit activity. 
- A wireless 9-axis  motion sensing device was attached to the back of the subjects as shown in Fig.~\ref{fig:framework}, and a wireless data collecting device was connected to a computer. These two devices formed a WSN. While each subject was performing each of the prescribed activities, and fall events data was logged in the computer for leaning and performance evaluation.
-\par
-The motion data included 3-axis accelerometer readings, 3-axis gyroscope readings, and 3-axis magnetometer readings. These datasets were used to calculate
-the quaternion rotation axis of the device, and Euler angles roll, pitch, and yaw. We have used the Direction Cosine Matrix (DCM) algorithm for calculating Euler angles. 
-\par
-The rest of the  section reports our data collection, data processing, learning, 
-and prediction results.
-
-
-%\subsubsection{Activity Annotation:} The annotation for different human and robot motion 
-%activities 
-%are shown in 
-%Figure {~\ref{fig:anotation-human-robot}}. 
-%Accelerometer and gyroscope's $x$, $y$ and $z$ axis are shown for different motions. We 
-%can observe 
-%that transition from a routine motion activity to a fall event 
-%takes between 180 to 250 ms. Figure{~\ref{fig:anotation-human-robot}} (a--b) shows the 
-%activity annotations for human motions (walking forward and sitting down). 
-%Figure {~\ref{fig:anotation-human-robot}}
-%(c--d) shows activity annotations for the NAO robot. The following section provides the 
-%evaluation 
-%matrices of our experiments. 
-
-
-%\section{Evaluation Results}
-%%\subsection{Learning Algorithms}
-%We have structured this section in a way that we discuss feature extraction, data 
-%processing, 
-%machine learning, and experimental results for both the human and robotic experiments. 
-%We have 
-%tested our hypotheses using  {\em Regularized Logistic Regression} (LLR) and {\em 
-%Support 
-%Vector Machine} (SVM) algorithms. We have used a randomly generated 80\%--20\% partition 
-%for 
-%training and cross-validation on our learning dataset. We have used an independent test 
-%set to 
-%report our results. We have used standard parameter sweeping techniques to find the 
-%classifier 
-%parameters that provide the optimal trade-off between the bias and the variance, while 
-%precision, 
-%recall, and F$_1$-scores have been used to obtain the optimal value. 
-%
-%\subsection{Feature Extraction}
-%
-%We  have configured the motion sensor to sample at every  $20ms$, which is equivalent to 
-%50$Hz$ 
-%sampling rate. In order to 
-%identify activities: \begin{inparaenum}[1)] \item we have used a window size of $400ms$ 
-%(20 
-%samples); and \item we have allowed 10 samples ($200ms$) to overlap between windows. 
-%\end{inparaenum} The selection of the window size is based on the observation that 
-%transition from routine  activities to a fall event 
-%takes between $180-250ms$. Thus, a window size of $400ms$ will include both fall event 
-%and 
-%non-fall event data for classification. For each window, we have calculated the running 
-%average of 
-%all 9-axis values. This has produced nine values per window, which has been used as 
-%features. We 
-%also added a bias term to provide additional capacity for the learning algorithms. The  
-%accelerometer readings are in  meter per square second ($m/s^2$), gyroscope readings are 
-%in 3-axis in radian per square second ($rads/s^2$), and the magnetometer readings are  
-%in 
-%Tesla ($T$). 
-%
-%As a preprocessing step, the features, except the bias, have been subjected to feature 
-%standardization. We have independently set each dimension of the sample  to have 
-%zero-mean and 
-%unit-variance. We achieved this by first computing the mean of each dimension across the 
-%dataset and 
-%subtracting this from each dimension. Then each dimension is divided by its standard 
-%deviation.
- 
-
-\subsection{Experiments with a Human}
-
-%We have attached the sensors on the mid-back of the human body as shown in Figure \ref{fig:fb} for 
-%collecting our datasets. 
-
-We have defined a protocol that collects data for seven normal activities and four falling events 
-as 
-shown in Table \ref{tab:human-logistic-class}. The normal activities include walking 
-(forward, backward, left, and right), marching, and rotating (left and right). Falling  (forward, 
-backward, left, and right) has been considered as an abnormal event.  The same protocol has also 
-been applied to the 
-humanoid robot (Table \ref{tab:robot-logistic-class}), because  motion characteristics of the human and the 
-robot are very similar. In addition, we 
-have  defined an extended activity, stand to seat, on the human. Therefore, we have conducted 
-twelve motions in total on the human subject.  Example plots for 
-\begin{inparaenum}[($i$)] \item walking forward; and \item from standing to sitting 
-down  \end{inparaenum}  are shown in Figures \ref{fig:ha} and \ref{fig:hb} respectively. 
-
-
- 
-
-
-
-\subsubsection{Results:} Table \ref{tab:human-logistic-class} shows the final results for 
-LLR classification, where, true positive, true negative, false positive, and false negative are 
-abbreviated with TP, TN, FP, and FN respectively. For walking forward on an average, the accuracy is 91\%, 
-similarly, for falling forward and marching the accuracies are 94\% and 91\% on an 
-average, respectively. We found comparatively low accuracy in walking backward and falling backward. Rotation has accuracy on an average more than 90\%. We also observed that detection of the walking activity is less than other 
-activities that we experimented with.  
-
-%\begin{figure*}[!t]
-  %\centering
-  %\subfloat[Marching in place.]{\label{fig:tsnedataset_1}\includegraphics[width=0.25\textwidth]
-       %{figures/plot1-crop}} 
-  %\subfloat[Walking backward.]{\label{fig:tsnedataset_9}\includegraphics[width=0.25\textwidth]
-       %{figures/plot5-crop}}
-%%  \subfloat[Rotating clockwise.]{\label{fig:tsnedataset_7}\includegraphics[width=0.25\textwidth]
-%%       {plot2-crop}}
-%%  \subfloat[Left side-way walk.]{\label{fig:tsnedataset_10}\includegraphics[width=0.25\textwidth]
-%%       {plot6-crop}}
-%%       \\
-  %\subfloat[Falling forward.]{\label{fig:tsnedataset_11}\includegraphics[width=0.25\textwidth]
-       %{figures/plot1_fallen-crop}}
-  %\subfloat[Falling backward.]{\label{fig:tsnedataset_12}\includegraphics[width=0.25\textwidth]
-       %{figures/plot2_fallen-crop}}
-%%  \subfloat[Falling to left side.]{\label{fig:tsnedataset_13}\includegraphics[width=0.25\textwidth]
-%%       {plot3_fallen-crop}}
-%%  \subfloat[Falling to right
-%%side.]{\label{fig:tsnedataset_14}\includegraphics[width=0.25\textwidth]
-%%       {plot4_fallen-crop}}      
-  %\caption{Figures (a--b) show the roll and pitch angles (raw and filtered) for normal 
-%behaviors marching in place and walking backward. Figures (c--d) show the raw and filtered roll 
-%and pitch angles for fallen forward and backwards states of NAO humanoid robot.}
-  %\label{fig:normalFallenBehavior}
-%
-%\end{figure*}
-
-The results for SVM classifier is summarized in Table \ref{tab:human-svm-class}. On an average, 
-accuracy for each type of activity is higher than LLR classifier with on an average 96\% for 
-walking, 95\% for marching, and 96\% for falling forward. Both type of rotations have little higher accuracy over LLR. As a consequence, SVM classifier has less false positives and false negative compared to LLR.  Our experiments reveal that the SVM classifier performs better than the logistic regression classifier. However, due to memory and 
-computational restrictions on the embedded devices, we have found that the logistic 
-regression classifier is a better choice.  Our feature vector consists of the mean normalized sensor 
-reading and a bias term. We plan to combine and prune features to improve the classification 
-accuracy for future work.  
-
 
 
 
