@@ -87,7 +87,7 @@ Earlier studies demonstrated feasibility of various miniature wired or wireless 
 
 \par
 Remaining major challenges include automatic development of \begin{inparaenum}[($i$)] \item firmware and software for collecting motion data and  extracting features specific to applications and users, and \item software module for making intelligent decisions utilizing features extracted from motion data. \end{inparaenum}
-For example, a device with 9-axis MEMS motion sensor to be used for identifying four fall events --- fall forward, fall backward, fall left, and fall right. The device must have firmware modules to collect motion data, to preprocess motion data, and to extract sufficient features from the preprocessed data for identification of all fall events. Also, the device must have a software module that takes the extracted features as input and recognizes correctly  which fall event has occurred.
+For example, a device with 9-axis MEMS motion sensor to be used for identifying four fall events --- fall forward, fall backward, fall left, and fall right. The device must have firmware modules to collect motion data, to preprocess motion data, and to extract sufficient features from the preprocessed data for identification of all fall events. Also, the device must have a software module that takes the extracted features as input and  correctly recognizes which fall event has occurred.
 
 %However, the challenges: How to gather \textbf{\emph{sufficient }} motion datasets and how to \emph{\textbf{automate }} extraction of required information form the datasets  for assessment of fall-risks.
 
@@ -101,7 +101,7 @@ For example, a device with 9-axis MEMS motion sensor to be used for identifying 
 \par
 Since both humans and biped humanoid robots have almost identical movements and are susceptible to 
 similar accidents, we believe that the same devices are suitable for monitoring activities and fall events of both 
-groups. Moreover, in the near future human-robot will cooperatively work together for solving problems that are impossible for either group but can be done with a combination of both groups.  For instance, there has been an increasing demand in 
+groups. Moreover, in the near future human-robot will cooperatively work together for solving problems that are impossible for either group but can be solved with  combined efforts of both groups.  For instance, there has been an increasing demand in 
 domains such as rescue to use autonomous or teleoperated humanoid robots to complete high-risk 
 tasks, otherwise would have been lethal to a human subject. Therefore, we envision environments 
 where humans and humanoid robots collaboratively work to complete tasks. 
@@ -168,22 +168,24 @@ we have assembled a wireless sensing-device with a Tiva C Series TM4C123G microc
 boosterpacks --- a
 Sensor Hub BoosterPack  for sensing 9-axis motion,  a CC2533  BoosterPack for wireless 
 networking, and a Fuel-Tank BoosterPack for power. We also assembled a wireless data collection device with a Tiva C Series TM4C123G microcontroller board, and a  CC2533  BoosterPack. These two devices were networked to create a wireless sensor network (WSN) for 
-collecting motion data from  humans and NAO humanoid robots. The data collection device is connected to a computer with a USB cable for logging sensed data.   
+collecting motion data from  humans.
+% and NAO humanoid robots. 
+The data collection device is connected to a computer with a USB cable for logging sensed data.   
 
 We have developed a set of software tools to create a framework that allow us
 \begin{inparaenum}[($i$)] \item  to setup the WSN, \item to collect data, \item to extract training examples from sensor readings, \item to learn from sample examples, and \item 
 to monitor and predict events. \end{inparaenum} This framework is general enough for other practitioners to use the
 available functionalities for creating WSNs, collecting data, learning, and prediction.
 
-The rest of the paper is organized as follows. In Section~\ref{sec:framework}, we describe the software development 
+The rest of the paper is organized as follows. Related work is reviewed in Section~\ref{subSec:relatedWork}. In Section~\ref{sec:framework}, we describe the software development 
 framework that we have proposed and implemented.
 Section~\ref{sec:SemiAutomaticExtractionOfTrainingVectors} reports our novel methods for  
 semi-automatic extraction  of \begin{inparaenum} [($i$)] \item training samples to be 
 used by the learning algorithms  and \item testing data for activity monitoring. 
 \end{inparaenum} Outlines of offline leaning algorithms used for teaching the device to 
 identify activities and fall events are described in Section~\ref{sec:OffLineLearning}. 
- In the penultimate section, we present detailed description of evaluation of proposed methods and also, report some typical results for humans and NAO humanoid 
-robots. 
+ In the penultimate section, we present detailed description of evaluation of proposed methods and also, report some typical results for humans.
+%and NAO humanoid robots. 
 %We have utilized two machine learning algorithms and a thresholding based method to learn 
 %and identify normal and abnormal activities. Then we also have presented our observations and 
 %discussion. 
@@ -211,14 +213,14 @@ accelerometer  and  gyroscope  sensors  for classifying  the  behavior  and  pos
  
 \cite{leoneFallDetection2013} prosed a system to detect event that cause trauma, and disabilities
 using a tri-axial MEMS wearable wireless accelerometer. They used support vector machine (SVM) for
-robust classification of different events. \cite{BaoActivityrecognition2004} reported of using five 
+classification of different events. \cite{BaoActivityrecognition2004} reported of using five 
 small biaxial wire-free accelerometers attached  on the left bicep, right wrist, left quadriceps, 
 right ankle, and right hip to recognize 20 activities starting from  walking  to  riding elevator  
 to  strength  training to bicycling. They reported using decision table, instance-based learning, 
 decision tree, and na\"{i}ve Bayes classifiers, where, decision tree showed the best performance 
 with 84\% accuracy.  Similar efforts have been reported to detect human motions using motion 
-tracking, e.g., 
-\cite{dumitracheFallDetection2013,kumarActivitAndFallDetection2013,krishnanActivityRecognition2014,gaoActivityRecognition2014,alvarezActivityAndFallRecognotion2015}.
+tracking (see 
+\cite{dumitracheFallDetection2013,kumarActivitAndFallDetection2013,krishnanActivityRecognition2014,gaoActivityRecognition2014,alvarezActivityAndFallRecognotion2015}).
  
 
 
@@ -243,8 +245,8 @@ record values significantly incompatible ranges for identical tasks. Therefore, 
 classifier based on the features extracted from raw accelerometer readings and the directional 
 changes of the constraining force exerted on an accelerometer to detect fall events. They compared 
 these events to non-fall activities such as walking, running, jumping, and some actives which 
-resembles falls such as sitting down on a chair. Their method detected fall events 84.8\% average 
-accuracy across different smart-phones. 
+resembles falls such as sitting down on a chair. Their method detected fall events with 84.8\% average 
+accuracy for different smart-phones. 
 
 \cite{DernbachActivityAndFallDetectionPhone2012} explored methods to detect simple and complex activities using inertial 
 sensors (accelerometer and gyroscope) of an Android smart-phone. The simple activities included: 
@@ -361,10 +363,10 @@ In the next section we propose a method for semi-automatic extraction of trainin
 \section{Semi-Automatic Extraction of  Training Examples}
 \label{sec:SemiAutomaticExtractionOfTrainingVectors}
 
-This section provides our main contribution of the paper. We provide a detail description 
+This section  and next section provide our main contributions of the paper. We provide a detail description 
 of the semi-automatic training examples extraction method, which has expedited the 
 annotation 
-of motion data considerably. In our study, we have considered four types of fall events: 
+of motion data considerably. As shown in Table~\ref{Tbl:ListOfActivities}, in our study we have considered four types of fall events: 
 \begin{inparaenum}[1)] \item fall forward ({\sf FF}), \item fall backward ({\sf FB}), 
 \item fall left ({\sf FL}), and fall right ({\sf FR}). \end{inparaenum} We have used the 
 following seven activities:\begin{inparaenum}[1)] \item walk forward ({\sf WF}), \item 
@@ -399,7 +401,7 @@ Rotate Anticlockwise&\textbf{RA}  \\ \hline
 %\dots, A_n\}$. Show unfiltered data sample for couple for fall and non-fall time series. 
 
 
-\subsection{Preprocessing of Data Collected with Motion Sensors }
+\subsection{Data Collection and Preprocessing  }
 \label{subsec:preDataCollection}
 
 We have setup the framework as described in Section \ref{sec:framework} and enabled the 
@@ -409,8 +411,7 @@ accelerometer readings are in  meter per square second ($m/s^2$), gyroscope read
 in 3-axis in radian per square second ($rads/s^2$), and the magnetometer readings are  in 
 Tesla ($T$). For our experiments, we have excluded the magnetometer readings. Therefore, 
 our input vectors are in $\mathbb{R}^6$, which consist of accelerometer and gyroscope 
-values.
-
+values. Figures~\ref{fig:human_fall_forward_crop} and\ref{fig:human_walk_forward-crop} show plots of fall-forward and walk forward events of a human subject.
 \begin{figure}[htb]
 	\centering
 		\includegraphics[width=0.95\columnwidth]{plots/human_falling-crop.eps}
@@ -447,7 +448,7 @@ extraction method.
 
 \subsection{Semi-Automatic  Extraction Training Examples}
 
-Barrier for collecting motion data is very low, if any. But, detection and identification of activities and fall events from motion data has remained an active area of research, as can be seen from recent list of publications. The main unsettled issue is how to characterize features from motion data that can be extracted easily for training and monitoring. In this section, we describe a method that semi-automatically extracts feature vectors that characterize activities and fall events.
+Barrier for collecting motion data is very low, if any. But, detection and identification of activities and fall events from motion data has remained an active area of research, as can be seen from large number of recent publications. The main unsettled issue is how to characterize features from motion data that can be extracted easily for training and monitoring. In this section, we describe a method that semi-automatically extracts feature vectors that characterize activities and fall events.
 
 The flow chart of method used for extracting training examples are shown in Fig.~\ref{fig:FlowChartforAlgorTrainingExamples}. All the collected data sets were annotated. If a dataset was for simulated fall events, the dataset was treated as a 6-dimension vector for clustering them into two clusters. We used K-Mean and Gaussian Mixture clustering techniques. For completeness a brief description of each is provided next.
 
@@ -477,9 +478,9 @@ $$ \min _{\mathcal{S}} \sum_{i=1}^{k} \sum_{\mathbf{x} \in \mathrm{S}_i} || \mat
 ||^2,$$
 where $\boldsymbol{\mu}_i $ is the mean of points in $\mathrm{S}_i$.
 
-For our case, we set $k = 2$ for extracting  training examples for fall events. The 
-clustered samples are shown in Figures~\ref{fig:automatic_annotation} and 
-\ref{fig:automatic_annotation2}. For our fall event datasets, the choice of $k=2$ is the 
+For our case, we set $k = 2$ for extracting  training examples for fall events. Data samples grouped into two
+clustered have been annotated and shown in Figures~\ref{fig:automatic_annotation} and 
+\ref{fig:automatic_annotation2} for fall-forward and fall-backward event datasets. For our fall event datasets, the choice of $k=2$ is the 
 optimal value that clearly separated the duration of the fall. 
 
 
@@ -490,18 +491,17 @@ is assumed to be from a Gaussian distribution parametrized by $\boldsymbol{\mu}_
 \boldsymbol{\Sigma}_k$. The mean vector $\boldsymbol{\mu}_i$ represents the center of the 
 cluster $i$. 
 Usually an \emph{expectation maximixation} (EM) algorithm iteratively identifies the 
-clusters. Compared to the clustering obtained from k-mean, the mixture models did not 
-provide an optimal separation for our fall datasets. Therefore, we have only used the 
-clustering obtained from 
-k-means algorithm to extract the training examples. 
+clusters. Compared to the clustering results obtained from k-mean, the mixture models did not 
+provide an optimal separation for our fall datasets. Therefore, we discuss and show results for
+k-means algorithm only. 
  
 
-The activity annotation is an arduous and cumbersome process. As we have mentioned in 
-Section \ref{subSec:relatedWork}, the previous methods favor manual activity annotation, 
-which has been the single most time consuming part of the training example gathering 
-process. We present a semi-automatic activity annotation methodology based on 
-clustering, which has 
-significantly alleviated the time to generate samples. 
+%The activity annotation is an arduous and cumbersome process. As we have mentioned in 
+%Section \ref{subSec:relatedWork}, the previous methods favor manual activity annotation, 
+%which has been the single most time consuming part of the training example gathering 
+%process. We present a semi-automatic activity annotation methodology based on 
+%clustering, which has 
+%significantly alleviated the time to generate samples. 
 
 Our method is relatively simple and easy to implement in practice. We have used the 
 samples from the preprocessing stage, and subjected them to k-means algorithm 
@@ -526,7 +526,7 @@ which the fall triggered and continued.
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=0.48\textwidth]{plots/human_falling_backward2.eps} 
-\caption{Semi-automatic annotation of falling bax event dataset.}
+\caption{Semi-automatic annotation of falling backward event dataset.}
  \label{fig:automatic_annotation2} 
 \end{figure}
 
@@ -542,14 +542,17 @@ which the fall triggered and continued.
 %\end{figure}
 
 
-Figure \ref{fig:automatic_annotation3} shows our semi-automatic annotation of falling 
-forward dataset. The subject in this experiment exercises a fall froward. After a 
+Figures~\ref{fig:automatic_annotation} and \ref{fig:automatic_annotation2} show our semi-automatic annotation of falling 
+forward  and falling backward datasets, respectively. The subject in this experiment exercises a fall froward. After a 
 fall, the subject immediately gets up and repeats the process. The green ``+'' segments 
 show the annotated fall events, while the black ``x'' segments show the non-fall 
 events. We have observed that there is a clear separation of the events with two 
 clusters. Each segment has betweens 15 to 20 consecutive data points, which amounts to 
 3000$ms$ to 4000$ms$ fall event after the triggering the event. The fall event triggers 
 at the end of the non-fall segment and at the beginning of the fall segment.
+
+\par
+For visualization of 11 sets of training examples we show a sample Tsne projection in Fig.~\ref{fig:automatic_annotation3}. In this projection, the 4 fall events (numbered 1 through 4) show a clear separation from each other and other 7 non-fall events. Although, separation of non-fall events do not show as good separations, our results show that they are far enough for 100\% accurate classifications.
 
 \begin{figure}[!htb]
 \centering
@@ -613,12 +616,15 @@ Softmax
 activation function $\mathbf{z(a)} = \frac{e^{\mathbf{a}}}{\mathbf{1}^\mathtt{T}
 e^{\mathbf{a}}}$, which represents the probability mass function $\mathbb{P}(y | 
 \mathbf{x})$. We have 
-used the regularized cross-entropy negative-log likelihood function, $l(\mathbf{x}) = 
--\mathbf{y}$.ln 
-$\mathbf{z} + \frac{\lambda}{2} \mathbf{W}.\mathbf{W}$ (``.'' represents the scalar dot  
-or Frobenius product, with $\lambda$ as the regularization parameter),
-as our 
-objective function. We have used L-BFGS \cite{DBLP:conf/icml/LeNCLPN11} to learn the 
+used the regularized cross-entropy negative-log likelihood function as our objective function. 
+
+\begin{equation} 
+l(\mathbf{x}) = -\mathbf{y}.\ln \mathbf{z} + \frac{\lambda}{2} \mathbf{W}.\mathbf{W}
+\label{eq:objective-function}
+\end{equation}
+ where  $\lambda$ is the regularization parameter, and ``.'' represents the scalar dot  
+or Frobenius product.
+ We have used L-BFGS \cite{DBLP:conf/icml/LeNCLPN11} to learn the 
 parameter vector $\mathbf{W}$.  
 
 \begin{figure}[htbp]
@@ -642,7 +648,7 @@ We trained and tested two networks with Softmax regression algorithm. In first c
 The second classification network is based on Artificial Neural Network \cite{Bishop06a}. 
 The network has configured with the same classification objective function as in the 
 previous section. We have 
-used the rectified linear unit  activation function in the hidden layers 
+used the \emph{rectified linear unit  activation} (ReLU) in the hidden layers 
 \cite{AISTATS2011_GlorotBB11}. We have experimented with both one and two layer networks. 
 Performance of these networks are reported in the next section. None of them identified 
 all events with 100\% accuracy.
@@ -650,11 +656,11 @@ all events with 100\% accuracy.
 \subsection{Hybrid Algorithm: Neural Network and Softmax Regreation}
 \label{sec:HybridAlgorithmNeuralNetworkAndSoftmaxRegreation}
 
-The hybrid classification network is based on both Artificial Neural Network  and Softmax regression network. Fig.~\ref{fig:SoftmaxLayer1} shows a block diagram of a hybrid network: a single layer of neurons followed by a softmax regression layer.
+The hybrid classification network is based on both Artificial Neural Network  and Softmax regression network. Fig.~\ref{fig:SoftmaxLayer1} shows a block diagram of a hybrid network: a row of neurons followed by a row of softmax regression units.
 \par
 We have used the prior Softmax activation  and the negative-log likelihood 
-functions in the output layer. The hidden layers have used sigmoid activation functions. 
-We have also included the bias terms for all hidden layers. The backpropagation algorithm 
+functions in the output layer. The hidden layers have used rectified linear units. 
+We have also included the bias terms for all hidden layers. The backpropagation algorithm\cite{Sarkar1995}
 has been used to calculate the gradient, while the L-BFGS procedure has been used to 
 learn the network parameters. We have independently set each dimension of the sample to 
 have zero-mean and unit-variance. We achieved this by first computing the mean of each 
@@ -702,13 +708,13 @@ the process.
 
 \subsection{Identification of Events}
 
-In order to identify the events, we have used a layered classification network as 
+As stated earlier and discussed in Section~\ref{Evaluation} for 100\% success rate, we have used a layered classification network as 
 shown in Fig. \ref{fig:TrainedIdentificationModule}. The inputs to the classifiers are 
 the 
 pre-processed motion data from the previous subsection. In the first layer of our 
 classification network (Layer 1), we have used a binary decision classifier that predicts 
 whether the current input is a fall or a non-fall. Based on this decision, at the second 
-layer of our network (Layer 2), one of the specialized fall event or non-fall activity 
+layer of our network (Layer 2), one of the specific fall event or non-fall activity 
 recognition classification network is activated. The decision of this classifier is 
 considered as the output of the classification network. In order to compensate for noise, 
 we have used the five samples as described in the previous section. We have marked the 
@@ -720,13 +726,14 @@ to that event, otherwise, we have identified an inconclusive event.
 \section{Empirical Evaluation of Proposed Algorithms and Methods}
 \label{Evaluation}
 
+In this section we report performance of our proposed algorithms and methods. 
+%First we brieflydescribe our data collection procedure. 
+We have experimented with one-layer and two-layer classifiers.  First, performance of one-layer softmax and neural networks classifiers are reported. Then that for two-layer networks are presented. 
+\emph{For all results reported here the value of $\lambda$ in the optimization function 
+(Equation~\ref{eq:objective-function}) is $0.1$.}
 
-TODO: put the numbers into the description provided in the previous sections. 
-
-\subsection{Data Collection}
-
-
-
+%\subsection{Data Collection}
+%\label{Sec:dataCollection}
 \begin{table}[htb]
 \caption{Performance of a single layer Softmax regression network with six inputs and 11 outputs. On an average 94.4\% of the events were classified correctly.}
 \label{tab:softmaxOnelayer}
@@ -751,31 +758,29 @@ TODO: put the numbers into the description provided in the previous sections.
 \end{tabular}
 }
 \end{table}
-We have conducted our experiments on detecting seven non-fall movement activities and four fall events on 
-%able-bodied 
-humans. The list of these activities and fall events are shown in Table~\ref{Tbl:ListOfActivities}. 
-The normal activities include walking 
-(forward, backward, left, and right), marching, and rotating (left and right). Falling  (forward, 
-backward, left, and right) has been considered as an abnormal event.   
-
- As shown in Fig.~\ref{fig:deviceWithSubjects}, a wireless 9-axis  motion sensing device was attached to the back of the subjects and a wireless data collecting device was connected to a computer. These two devices formed a WSN.
-\par
- While a subject performed prescribed activities and simulated-fall events, data was logged in the computer 
-for extracting training examples for learning algorithms as well as  performance evaluation.
-The motion data included 3-axis accelerometer readings, 3-axis gyroscope readings, and 3-axis magnetometer readings.  Figures \ref{fig:human_fall_forward_crop} and \ref{fig:human_walk_forward-crop} show plots of motion data for\begin{inparaenum}[($i$)] \item fall forward and \item walk forward\end{inparaenum}, respectively.
- 
+%We have conducted our experiments on detecting seven non-fall movement activities and four fall events on 
+%%able-bodied 
+%humans. The list of these activities and fall events with their abbreviations are shown in
+%Table~\ref{Tbl:ListOfActivities}. 
+%
+ %As shown in Fig.~\ref{fig:deviceWithSubjects}, a wireless 9-axis  motion sensing device was attached to the back of the subjects and a wireless data collecting device was connected to a computer. These two devices formed a wireless sensor network.
+%\par
+ %While a subject performed prescribed activities and simulated-fall events, data was logged in a computer. The collected datasets are  used
+%for extracting training examples for learning algorithms as well as  performance evaluation purpose.
+%The motion data included 3-axis accelerometer readings, 3-axis gyroscope readings, and 3-axis magnetometer readings. For results reported in this paper we did not use magnetometer readings. Figures \ref{fig:human_fall_forward_crop} and \ref{fig:human_walk_forward-crop} show plots of motion data for\begin{inparaenum}[($i$)] \item fall forward and \item walk forward\end{inparaenum}, respectively.
+ %
 
 
 
-\subsection{Single-Layer Networks}
+\subsection{One-Layer Networks}
 \label{sec:SingleLayerNetworks}
-We  trained two one layer networks: softmax regression and neural networks (see Fig.~\ref{fig:SoftmaxLayer1} for block diagrams of these networks). Performance of these networks are discussed in the next two paragraphs.
+We  trained two one-layer networks: softmax regression and neural networks (see Fig.~\ref{fig:SoftmaxLayer1} for block diagrams of these networks). Performance of these networks are discussed in the next two paragraphs.
  
  \paragraph{Softmax Regression}
  \label{sec:SoftmaxRegression}
- As can be seen from Table~\ref{tab:softmaxOnelayer}, one-layer sofmax regression network with 6 inputs and 11 outputs recognized on an average 94.4\% of all  events. A closer examination reveals that all but fall forward, walk forward, and walk right events are recognized correctly. Recognition rate for fall forward event is only 66.7\%. This event is sometimes  incorrectly classified as walk back or march events. Walk forward event is correctly recognized on an average rate of 87.5\% and is incorrectly recognized as  walk right. Recognition rate for walk right is same as walk forward and is confused with  walk left.
+ As can be seen from Table~\ref{tab:softmaxOnelayer}, one-layer sofmax regression network with 7 inputs (6 for feature vector and one for bias) and 11 outputs recognized on an average 94.4\% of all  events. A closer examination reveals that all but three types of events --- fall-forward, walk-forward, and walk-right events  --- are recognized correctly. Recognition rate for fall forward events is only 66.7\%. This event is sometimes  incorrectly classified as a walk backward or a march event. Walk forward event is correctly recognized on an average rate of 87.5\% and sometimes it is incorrectly classified as a walk right event. Recognition rate for walk right events is same as walk forward and is confused with  walk left events.
 \begin{table}[htb]
-\caption{Performance of a Neural network with one row of neurons with sigmoid activation functions and one row of elements with softmax activation function. On an average 95.8\% of the events were classified correctly.}
+\caption{Performance of a Neural network with one row of neurons with ReLU and one row of elements with softmax activation function. On an average 95.8\% of the events were classified correctly.}
 \label{tbl:neuralNetworkOneLayer}
 \resizebox{\columnwidth}{!}
 {
@@ -801,12 +806,12 @@ We  trained two one layer networks: softmax regression and neural networks (see 
 
 \paragraph{Neural Network}
 \label{sec:NeuralNetwork2}
-Performance of neural networks is shown in Table~\ref{tbl:neuralNetworkOneLayer}; it recognized 95.8\% of all events correctly. Before we discuss our results, it should be noted that the network is composed of one row of neurons with sigmoid activation function followed by a row of elements with softmax activation function (see Fig.~\ref{fig:SoftmaxLayer1} in Section~\ref{sec:OffLineLearning}). An advantage of this architecture is that the number of neurons in the first row  can be varied for optimal performance.
+Performance of neural networks is shown in Table~\ref{tbl:neuralNetworkOneLayer}; it recognized 95.8\% of all events correctly. Before we discuss our results, it should be noted that the network is composed of one hidden row of  16 neurons with ReLU followed by a row of 11 elements with softmax activation function (see Fig.~\ref{fig:SoftmaxLayer1} in Section~\ref{sec:OffLineLearning}). An advantage of this architecture is that the number of neurons in the hidden row  can be varied for optimal performance.
 
 \par
 As can be seen from Table~\ref{tbl:neuralNetworkOneLayer}, all events except fall forward and walk right events were recognized correctly. The neural network improved recognition rate of walk forward to 100\%. But recognition rates of fall forward and walk right remained same as softmax netowrk at 66.7\% and 87.5\%, respectively.
 \par
-Because of failure of one layer networks, we explored two-layer networks: first layer classified input into two categories, fall or non-fall. Then, a second layer  differentiated events within its own category. A block of the classifier  is shown in Fig.~\ref{fig:TrainedIdentificationModule}.
+Because of failure of one-layer networks, we explored two-layer classification networks: first layer classified input into two categories, fall event or non-fall event. Then, a second layer  differentiated events within its own category. A block diagram of the classifier  is shown in Fig.~\ref{fig:TrainedIdentificationModule}.
 \subsection{Two-Layer Networks}
 \label{sec:TwoLayerNetworks}
 \begin{table}[htb]
@@ -826,10 +831,12 @@ Event} \\ \hline
 }
 \end{table}
 
-\subsubsection{Layer One: Fall and Non-fall identification}
+\subsubsection{Layer One - Classification of Fall or Non-fall Events }
 \label{sec:LayerOneFallAndNonFallIdentification}
 
-Performance of layer-one of a two-layer classifiers is reported in Table~\ref{tbl:layer1RecognitionRates}. As can be seen from the table, softmax network at layer-one (top layer) correctly classified only 87.2\% of fall and non-fall events, but neural network correctly classified all fall and non-fall events. Therefore, we choose neural networks as layer-one network. In the subsequent discussion, unless otherwise mentioned, results reported for layer-two classified utilizing a neural network at layer-one.
+Performance of layer-one of a two-layer classifiers has been tabulated in Table~\ref{tbl:layer1RecognitionRates}. As can be seen from the table, softmax network at layer-one (top layer) correctly classified only 87.2\% of fall and non-fall events, but neural network correctly classified all fall and non-fall events. We used only two neurons in the hidden row.
+\par
+ Because of  100\% recognition rate we choose neural networks as layer-one network. In the subsequent discussion, unless otherwise mentioned,  layer-one classifier is a neural network.
 
 %\paragraph{Siftmax Regression}
 %\label{sec:SiftmaxRegression}
@@ -837,14 +844,13 @@ Performance of layer-one of a two-layer classifiers is reported in Table~\ref{tb
 %\paragraph{Neural Network}
 %\label{sec:NeuralNetwork}
 
-\subsubsection{Layer Two: Fall or Non-fall Event Identification}
+\subsubsection{Layer Two - Identification of Individual Fall or Non-fall Event}
 \label{sec:LayerTwoFallOrNonFallEventIdentification}
 
-Performance of layer-two networks are shown in Tables~\ref{Layer2FallEvents},\ref{Layer2FallEvents}, and \ref{Layer2FallEvents}. It is easy to see from Table~\ref{Layer2FallEvents} that both Softmax and Neural networks at layer-two correctly classified 100\% of fall events.
-Results for seven non-fall events are shown in Tables~\ref{Layer2FallEvents} and \ref{Layer2FallEvents}. Again both Softmax and Neural networks achieved 100\% accuracy.
+Performance of layer-two networks are shown in Tables~\ref{Layer2FallEvents}, \ref{Layer2NonFallEventsSoftmax}, and \ref{Layer2NonFallEventsNeuralNets}. It is easy to see from Table~\ref{Layer2FallEvents} that both Softmax and Neural networks at layer-two correctly classified 100\% of fall events.
+Results for seven non-fall events are shown in Tables~\ref{Layer2NonFallEventsSoftmax} and 
+\ref{Layer2NonFallEventsNeuralNets}. Again both Softmax and Neural networks achieved 100\% accuracy. The neural network used one hidden row of 6 neurons.
 \begin{table}[htb]
-\caption{ Performance of layer-2 network for  four fall events. Both softmax and neural networks correctly classified 100\% of fall events.}
-\label{Layer2FallEvents}
 \resizebox{\columnwidth}{!}
 {
 \begin{tabular}{|c|c|c|c|c||c|c|c|c|}
@@ -859,6 +865,8 @@ L2 Fall Event: 100} \\ \hline
 \textbf{FR} & 0 &  0 &  0 &  100  & 0 &  0 &  0 &  100 \\ \hline
 \end{tabular}
 }
+\caption{ Performance of layer-2 network for  four fall events. Both softmax and neural networks correctly classified 100\% of fall events.}
+\label{Layer2FallEvents}
 \end{table}
 
 
