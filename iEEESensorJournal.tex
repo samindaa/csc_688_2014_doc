@@ -404,22 +404,12 @@ Rotate Anticlockwise&\textbf{RA}  \\ \hline
 
 We have setup the framework as described in Section \ref{sec:framework} and enabled the 
 motion tracking device to sample at $20$ ms, which is equivalent to 50$Hz$ 
-<<<<<<< HEAD
 sampling rate. The motion tracking device outputs nine values. Three-axis  
 accelerometer readings are in  meter per square second ($m/s^2$), 3-axis gyroscope readings are 
 in radian per square second ($rads/s^2$), and  3-axis magnetometer readings are  in 
 Tesla ($T$). For experiments  and results reported here, we have excluded the magnetometer readings. Therefore, 
 our input data vectors  are in $\mathbb{R}^6$ and they consist of accelerometer and gyroscope 
-values. The plots of motion datasets for fall-forward and  walk-forward events are illustrated in Figures~\ref{fig:human_fall_forward_crop} and \ref{fig:human_walk_forward-crop}, respectively. They demonstrate  complex nature of these time series, and indicate difficulty of extracting features from them that are useful for training as well as monitoring of events and falls.
-=======
-sampling rate. The motion tracking device outputs nine values. The  
-accelerometer readings are in  meter per square second ($m/s^2$), gyroscope readings are 
-in 3-axis in radian per square second ($rads/s^2$), and the magnetometer readings are  in 
-Tesla ($T$). For our experiments, we have excluded the magnetometer readings. Therefore, 
-our input vectors are in $\mathbb{R}^6$, which consist of accelerometer and gyroscope 
-values. Figures~\ref{fig:human_fall_forward_crop} and \ref{fig:human_walk_forward-crop} 
-show the raw data traces of fall-forward and walk forward events of a human subject.
->>>>>>> c5577895af1101fc63cd0611b7a2dce421da4a2e
+values. The plots of raw motion datasets for fall-forward and  walk-forward events are illustrated in Figures~\ref{fig:human_fall_forward_crop} and \ref{fig:human_walk_forward-crop}, respectively. They demonstrate  complex nature of these time series, and indicate difficulty of extracting features from them that are useful for training as well as monitoring of events and falls.
 \begin{figure}[htb]
 	\centering
 		\includegraphics[width=0.95\columnwidth]{plots/human_falling-crop.eps}
