@@ -1,7 +1,9 @@
 \def\year{2015}
 
 %File: formatting-instruction.tex
-\documentclass{IEEEtran}
+%\documentclass[]{IEEEtran}
+\documentclass[onecolumn]{IEEEtran}
+\renewcommand{\baselinestretch}{2}
 %\documentclass[letterpaper]{article}
 %usepackage{aaai}
 \usepackage{times}
@@ -363,10 +365,10 @@ In the next section we propose a method for semi-automatic extraction of trainin
 \section{Semi-Automatic Extraction of  Training Examples}
 \label{sec:SemiAutomaticExtractionOfTrainingVectors}
 
-This section  and next section provide our main contributions of the paper. We provide a detail description 
-of the semi-automatic training examples extraction method, which has expedited the 
+This section and the next section provide our main contributions of the paper. In this section we provide a description 
+of a method for semi-automatic extraction of training examples. This method has expedited our 
 annotation 
-of motion data considerably. As shown in Table~\ref{Tbl:ListOfActivities}, in our study we have considered four types of fall events: 
+of motion data considerably. As shown in Table~\ref{Tbl:ListOfActivities},  our study has considered four types of fall events: 
 \begin{inparaenum}[1)] \item fall forward ({\sf FF}), \item fall backward ({\sf FB}), 
 \item fall left ({\sf FL}), and fall right ({\sf FR}). \end{inparaenum} We have used the 
 following seven activities:\begin{inparaenum}[1)] \item walk forward ({\sf WF}), \item 
@@ -396,22 +398,18 @@ Rotate Anticlockwise&\textbf{RA}  \\ \hline
 }
 \label{Tbl:ListOfActivities}
 \end{table}
- 
-%TODO: we need an introductory paragraph describing a set of activities $A = \{A_1, A_2, 
-%\dots, A_n\}$. Show unfiltered data sample for couple for fall and non-fall time series. 
-
 
 \subsection{Data Collection and Preprocessing  }
 \label{subsec:preDataCollection}
 
 We have setup the framework as described in Section \ref{sec:framework} and enabled the 
 motion tracking device to sample at $20$ ms, which is equivalent to 50$Hz$ 
-sampling rate. The motion tracking device outputs nine values. The  
-accelerometer readings are in  meter per square second ($m/s^2$), gyroscope readings are 
-in 3-axis in radian per square second ($rads/s^2$), and the magnetometer readings are  in 
-Tesla ($T$). For our experiments, we have excluded the magnetometer readings. Therefore, 
-our input vectors are in $\mathbb{R}^6$, which consist of accelerometer and gyroscope 
-values. Figures~\ref{fig:human_fall_forward_crop} and\ref{fig:human_walk_forward-crop} show plots of fall-forward and walk forward events of a human subject.
+sampling rate. The motion tracking device outputs nine values. Three-axis  
+accelerometer readings are in  meter per square second ($m/s^2$), 3-axis gyroscope readings are 
+in radian per square second ($rads/s^2$), and  3-axis magnetometer readings are  in 
+Tesla ($T$). For experiments  and results reported here, we have excluded the magnetometer readings. Therefore, 
+our input data vectors  are in $\mathbb{R}^6$ and they consist of accelerometer and gyroscope 
+values. The plots of motion datasets for fall-forward and  walk-forward events are illustrated in Figures~\ref{fig:human_fall_forward_crop} and \ref{fig:human_walk_forward-crop}, respectively. They demonstrate  complex nature of these time series, and indicate difficulty of extracting features from them that are useful for training as well as monitoring of events and falls.
 \begin{figure}[htb]
 	\centering
 		\includegraphics[width=0.95\columnwidth]{plots/human_falling-crop.eps}
@@ -423,10 +421,10 @@ values. Figures~\ref{fig:human_fall_forward_crop} and\ref{fig:human_walk_forward
 \subsubsection{Identify and Adjust for Missing Data Points}
 \label{sec:IdentifyAndAdjustForMissingDataPoints}
 Some data packets may be lost during transmission because of noise. We numbered each 
-sensor reading sequentially and lost data points were identified from this number and was 
+sensor reading sequentially and the lost data points were identified from this number and was 
 replaced using linear interpolation. Since only very few data points were lost and 
-results obtained after linear interpolation was excellent, we did not experiment other 
-interpolation method.
+results obtained after linear interpolation was excellent, we did not experiment with other 
+interpolation methods.
 
 \begin{figure}[htb]
 	\centering
@@ -439,18 +437,18 @@ interpolation method.
 \subsubsection{Noise Filtering}
 \label{sec:NoiseFiltering}
 
-After checking for missing data and adding interpolated values for lost data,  high frequency noise was removed using a moving window averaging technique. We used a window  of 20 consecutive samples, which amounts to 400$ms$, 
-and obtain the average value. Then the  window was moved by 10 samples, then average was and 
-repeated the process. Therefore, we have allowed 10 samples to overlap between windows. 
-Selection of 10 samples overlaps is based on our empirical observation that a transition from non-fall event to a fall event is about 500$ms$. Thus, averaged values will preserve transitions from non-fall events to fall events.   We have used the preprocessed stream as the input to our automatic training example 
+After checking for missing data and adding interpolated values for the lost data,  high frequency noise was removed using a moving window averaging technique. We used a window  of 20 consecutive samples, which amounts to 400$ms$, 
+and obtain the average value. Then the  window was moved by 10 samples and average  value was computed again. The
+process was repeated for each time-series of all motion datasets. Thus, we have allowed 10 samples to overlap between windows. 
+Selection of an overlap of 10 samples is based on our empirical observation that a transition from non-fall event to a fall event takes about 500$ms$. Thus, averaged values will preserve transitions from non-fall events to fall events.   We have used the preprocessed time-series as the input to our automatic training example 
 extraction method.
 
 
-\subsection{Semi-Automatic  Extraction Training Examples}
+\subsection{Semi-Automatic  Extraction of Training Examples}
 
-Barrier for collecting motion data is very low, if any. But, detection and identification of activities and fall events from motion data has remained an active area of research, as can be seen from large number of recent publications. The main unsettled issue is how to characterize features from motion data that can be extracted easily for training and monitoring. In this section, we describe a method that semi-automatically extracts feature vectors that characterize activities and fall events.
+Barrier for collecting motion data is very low, if any. But, detection and identification of non-fall activities and fall events from motion data have remained an active area of research, as can be seen from large number of recent publications. One of the main unsettled issue is how to characterize features from motion data that can be extracted easily for training and monitoring. In this section, we describe a method that semi-automatically extracts feature vectors that characterize non-fall activities and fall events.
 
-The flow chart of method used for extracting training examples are shown in Fig.~\ref{fig:FlowChartforAlgorTrainingExamples}. All the collected data sets were annotated. If a dataset was for simulated fall events, the dataset was treated as a 6-dimension vector for clustering them into two clusters. We used K-Mean and Gaussian Mixture clustering techniques. For completeness a brief description of each is provided next.
+The flow chart of method used for extracting training examples are shown in Fig.~\ref{fig:FlowChartforAlgorTrainingExamples}. All the collected datasets were annotated as described next. If a dataset was for simulated-fall events, the dataset was treated as a 6-dimension vectors for clustering them into two clusters. We explored K-Mean and Gaussian Mixture clustering techniques. For completeness a brief description of each is provided next.
 
 %TODO: first paragraph => why we need SATEE. Because of the difficulty of generating 
 %training data. Then, description of the algorithm, with the figure (training data only). 
@@ -462,13 +460,13 @@ The flow chart of method used for extracting training examples are shown in Fig.
 	\label{fig:FlowChartforAlgorTrainingExamples}
 \end{figure}
 
-\subsubsection{K-Mean Clustering}
+\subsubsection{K-Mean Clustering\cite{Bishop:2006:PRM:1162264}}
 K-mean clustering aims to partition a set of $n$ observations into $k$ clusters. Each 
 observation is assigned to the cluster with the nearest mean. Let 
 \{($\mathbf{x}^{(i)}$)\}$_{i=1}^n$  be the set of $n$ 
 observations, where each observation $\mathbf{x}^{(i)}$ is a $d$-dimensional real vector 
 and is 
-assigned to one of $k$ sets $\mathrm{S}_j \in \mathcal{S}$, for $ 1 \leq  j \leq k$ so 
+assigned to one of the $k$ sets $\mathrm{S}_j \in \mathcal{S}$, for $ 1 \leq  j \leq k$ so 
 that 
 within-cluster 
 sum of squares is minimized. Formally,
@@ -479,20 +477,20 @@ $$ \min _{\mathcal{S}} \sum_{i=1}^{k} \sum_{\mathbf{x} \in \mathrm{S}_i} || \mat
 where $\boldsymbol{\mu}_i $ is the mean of points in $\mathrm{S}_i$.
 
 For our case, we set $k = 2$ for extracting  training examples for fall events. Data samples grouped into two
-clustered have been annotated and shown in Figures~\ref{fig:automatic_annotation} and 
-\ref{fig:automatic_annotation2} for fall-forward and fall-backward event datasets. For our fall event datasets, the choice of $k=2$ is the 
+clusters and  each cluster was annotated. Figures~\ref{fig:automatic_annotation} and 
+\ref{fig:automatic_annotation2}  show annotated time-series for a fall-forward and a fall-backward datasets. As can be seen for our fall-event datasets, the choice of $k=2$ is the 
 optimal value that clearly separated the duration of the fall. 
 
 
 \subsubsection{Multivariate Gaussian Mixtures}
 
 Gaussian mixture clustering is a generalization of k-mean clustering, where each cluster 
-is assumed to be from a Gaussian distribution parametrized by $\boldsymbol{\mu}_k, 
-\boldsymbol{\Sigma}_k$. The mean vector $\boldsymbol{\mu}_i$ represents the center of the 
+is assumed to be from a Gaussian distribution parametrized by $\boldsymbol{\mu}_k$ and 
+$\boldsymbol{\Sigma}_k$. The mean vector $\boldsymbol{\mu}_i$ represents the center of the 
 cluster $i$. 
-Usually an \emph{expectation maximixation} (EM) algorithm iteratively identifies the 
+Usually, an \emph{expectation maximization} (EM) algorithm iteratively identifies the 
 clusters. Compared to the clustering results obtained from k-mean, the mixture models did not 
-provide an optimal separation for our fall datasets. Therefore, we discuss and show results for
+provide an optimal separation for our fall datasets. Therefore, we omit results for the Gaussian mixture clustering, and present results for
 k-means algorithm only. 
  
 
@@ -504,11 +502,10 @@ k-means algorithm only.
 %significantly alleviated the time to generate samples. 
 
 Our method is relatively simple and easy to implement in practice. We have used the 
-samples from the preprocessing stage, and subjected them to k-means algorithm 
-\cite{Bishop06a}. We have empirically found that the minimum cost separation is 
-achievable when we have two clusters. This intuitively supports the fall event datasets 
+samples from the preprocessing stage, and subjected them to k-means algorithm. We have empirically found that the minimum cost separation is 
+achievable when we have two clusters. This intuitively supports the fall-event datasets 
 as well. For 
-example, if we consider the falling forward event, there is a window in which the fall 
+example, if we consider the falling-forward event, there is a window in which the fall 
 triggers and the subject falls to the ground. Therefore, the signature of this process 
 differs from the states before the process starts (e.g., standing) and the states after 
 (e.g., laying on the floor). Therefore, each fall dataset, there exists a duration in 
@@ -542,17 +539,16 @@ which the fall triggered and continued.
 %\end{figure}
 
 
-Figures~\ref{fig:automatic_annotation} and \ref{fig:automatic_annotation2} show our semi-automatic annotation of falling 
-forward  and falling backward datasets, respectively. The subject in this experiment exercises a fall froward. After a 
+Figures~\ref{fig:automatic_annotation} and \ref{fig:automatic_annotation2} show plots and annotations of our semi-automatic annotation of falling-forward  and falling-backward datasets, respectively. The subject in this experiment simulated a fall froward. After a 
 fall, the subject immediately gets up and repeats the process. The green ``+'' segments 
 show the annotated fall events, while the black ``x'' segments show the non-fall 
 events. We have observed that there is a clear separation of the events with two 
-clusters. Each segment has betweens 15 to 20 consecutive data points, which amounts to 
-3000$ms$ to 4000$ms$ fall event after the triggering the event. The fall event triggers 
-at the end of the non-fall segment and at the beginning of the fall segment.
+clusters. Each segment has between 15 to 20 consecutive data points, which amounts to 
+3000$ms$ to 4000$ms$ fall event after triggering the event. Each fall-event triggers 
+towards the end of the preceding non-fall data points and continues into the beginning of the fall data points; this is the transition zone of a fall event.
 
 \par
-For visualization of 11 sets of training examples we show a sample Tsne projection in Fig.~\ref{fig:automatic_annotation3}. In this projection, the 4 fall events (numbered 1 through 4) show a clear separation from each other and other 7 non-fall events. Although, separation of non-fall events do not show as good separations, our results show that they are far enough for 100\% accurate classifications.
+For visualization of 11 sets of training examples, a sample Tsne projection  is displayed in Fig.~\ref{fig:automatic_annotation3}. In this projection, the 4 fall events (numbered 1 through 4) show a clear separation from each other and all 7 non-fall events. Although, separation of non-fall events do not show as good separations, but our results show that they are far enough from each other for 100\% accurate classifications.
 
 \begin{figure}[!htb]
 \centering
@@ -563,9 +559,9 @@ For visualization of 11 sets of training examples we show a sample Tsne projecti
 
 
 Since we are 
-interested in the signature of the fall event, we have annotated all the samples belongs 
+interested in the signatures of the fall events, we have annotated all the samples belongs 
 to ``a'' cluster as the fall data. The k-means clustering finds a 
-local minimum in general. The cluster assignments may also vary depending on the 
+local minimum in general. Moreover, the cluster assignments may vary depending on the 
 initialization. Therefore, when we have obtained the data belongs to two clusters, we 
 only have to manually provide the semantics of the cluster centroid. 
 
@@ -593,7 +589,7 @@ training examples
 \mathbb{R}^{n}$ 
 and 
 $\mathbf{y} \in 
-\{0,1\}^k$. $k \in 
+\{0,1\}^k$, where  $k \in 
 \mathbb{N}$ is the number of dichotomies. Each training example belongs only to one class 
 and $\mathbf{y}$ uses the 1--of--$k$ coding scheme.    
 
@@ -643,23 +639,23 @@ We trained and tested two networks with Softmax regression algorithm. In first c
 	\label{fig:SoftmaxLayer2Fall}
 \end{figure}
 
-\subsection{Neural Network}
-\label{sec:NeuralNetwork1}
-The second classification network is based on Artificial Neural Network \cite{Bishop06a}. 
-The network has configured with the same classification objective function as in the 
-previous section. We have 
-used the \emph{rectified linear unit  activation} (ReLU) in the hidden layers 
-\cite{AISTATS2011_GlorotBB11}. We have experimented with both one and two layer networks. 
-Performance of these networks are reported in the next section. None of them identified 
-all events with 100\% accuracy.
+%\subsection{Neural Network}
+%\label{sec:NeuralNetwork1}
+%The second classification network is based on Artificial Neural Network \cite{Bishop06a}. 
+%The network has configured with the same classification objective function as in the 
+%previous section. We have 
+%used the \emph{rectified linear unit  activation} (ReLU) in the hidden layers 
+%\cite{AISTATS2011_GlorotBB11}. We have experimented with both one and two layer networks. 
+%Performance of these networks are reported in the next section. None of them identified 
+%all events with 100\% accuracy.
 
-\subsection{Hybrid Algorithm: Neural Network and Softmax Regreation}
+\subsection{Hybrid Algorithm: Neural Network with Softmax Regression}
 \label{sec:HybridAlgorithmNeuralNetworkAndSoftmaxRegreation}
 
 The hybrid classification network is based on both Artificial Neural Network  and Softmax regression network. Fig.~\ref{fig:SoftmaxLayer1} shows a block diagram of a hybrid network: a row of neurons followed by a row of softmax regression units.
 \par
 We have used the prior Softmax activation  and the negative-log likelihood 
-functions in the output layer. The hidden layers have used rectified linear units. 
+functions in the output layer. The hidden layers have used \emph{rectified linear units }(ReLUs). 
 We have also included the bias terms for all hidden layers. The backpropagation algorithm\cite{Sarkar1995}
 has been used to calculate the gradient, while the L-BFGS procedure has been used to 
 learn the network parameters. We have independently set each dimension of the sample to 
@@ -667,7 +663,7 @@ have zero-mean and unit-variance. We achieved this by first computing the mean o
 dimension across the training set and subtracting this from each dimension. Then each 
 dimension is divided by its standard deviation.       
 
-Similar to Softmax regression networks and Neural networks we experimented  with both single-layer hybrid networks and two-layer hybrid networks. While single-layer network failed to identify all events with 100\% accuracy, the two-layer network successfully identified all event with 100\%. There were no false positives or false negatives.
+Similar to Softmax regression networks, we experimented  with both single-layer hybrid networks and two-layer hybrid networks. While single-layer network failed to identify all events with 100\% accuracy, the two-layer network successfully identified all event with 100\%. There were no false positives or false negatives. In the rest of paper, we use hybrid networks and neural networks interchangeably.
 
 \section{Online Activity Monitoring and Identification}
 
@@ -680,7 +676,7 @@ provides our setup and methodology.
 
 
 
-\subsection{Monitoring of Event}
+\subsection{Monitoring of Events}
 
 For the monitoring of events, we have followed a methodology similar to that of 
 Subsection \ref{subsec:preDataCollection}. We have continuously collected the sample data 
@@ -778,7 +774,8 @@ We  trained two one-layer networks: softmax regression and neural networks (see 
  
  \paragraph{Softmax Regression}
  \label{sec:SoftmaxRegression}
- As can be seen from Table~\ref{tab:softmaxOnelayer}, one-layer sofmax regression network with 7 inputs (6 for feature vector and one for bias) and 11 outputs recognized on an average 94.4\% of all  events. A closer examination reveals that all but three types of events --- fall-forward, walk-forward, and walk-right events  --- are recognized correctly. Recognition rate for fall forward events is only 66.7\%. This event is sometimes  incorrectly classified as a walk backward or a march event. Walk forward event is correctly recognized on an average rate of 87.5\% and sometimes it is incorrectly classified as a walk right event. Recognition rate for walk right events is same as walk forward and is confused with  walk left events.
+ As can be seen from Table~\ref{tab:softmaxOnelayer}, one-layer sofmax regression network with 7 inputs (6 for feature vector and one for bias) and 11 outputs recognized on an average 94.4\% of all  events. A closer examination reveals that all but three types of events --- fall-forward, walk-forward, and walk-right events  --- are recognized correctly. Recognition rate for fall-forward events is only 66.7\%. This event is sometimes  incorrectly classified as a 
+walk backward or a march event. Walk forward event is correctly recognized on an average rate of 87.5\% and sometimes it is incorrectly classified as a walk-right event. Recognition rate for walk right events is same as walk forward and is confused with  some  walk-left events.
 \begin{table}[htb]
 \caption{Performance of a Neural network with one row of neurons with ReLU and one row of elements with softmax activation function. On an average 95.8\% of the events were classified correctly.}
 \label{tbl:neuralNetworkOneLayer}
@@ -809,7 +806,8 @@ We  trained two one-layer networks: softmax regression and neural networks (see 
 Performance of neural networks is shown in Table~\ref{tbl:neuralNetworkOneLayer}; it recognized 95.8\% of all events correctly. Before we discuss our results, it should be noted that the network is composed of one hidden row of  16 neurons with ReLU followed by a row of 11 elements with softmax activation function (see Fig.~\ref{fig:SoftmaxLayer1} in Section~\ref{sec:OffLineLearning}). An advantage of this architecture is that the number of neurons in the hidden row  can be varied for optimal performance.
 
 \par
-As can be seen from Table~\ref{tbl:neuralNetworkOneLayer}, all events except fall forward and walk right events were recognized correctly. The neural network improved recognition rate of walk forward to 100\%. But recognition rates of fall forward and walk right remained same as softmax netowrk at 66.7\% and 87.5\%, respectively.
+As can be seen from Table~\ref{tbl:neuralNetworkOneLayer}, all events except fall-forward and walk-right events were recognized correctly. The neural network improved recognition rate of walk-forward events to 100\%. But recognition rates of 
+fall-forward and walk-right events remained same as softmax network at 66.7\% and 87.5\%, respectively.
 \par
 Because of failure of one-layer networks, we explored two-layer classification networks: first layer classified input into two categories, fall event or non-fall event. Then, a second layer  differentiated events within its own category. A block diagram of the classifier  is shown in Fig.~\ref{fig:TrainedIdentificationModule}.
 \subsection{Two-Layer Networks}
@@ -836,7 +834,7 @@ Event} \\ \hline
 
 Performance of layer-one of a two-layer classifiers has been tabulated in Table~\ref{tbl:layer1RecognitionRates}. As can be seen from the table, softmax network at layer-one (top layer) correctly classified only 87.2\% of fall and non-fall events, but neural network correctly classified all fall and non-fall events. We used only two neurons in the hidden row.
 \par
- Because of  100\% recognition rate we choose neural networks as layer-one network. In the subsequent discussion, unless otherwise mentioned,  layer-one classifier is a neural network.
+ Because of  100\% recognition rate we choose neural networks as layer-one network. In the subsequent discussion, unless otherwise mentioned,  layer-one classifier is a neural network with two hidden units.
 
 %\paragraph{Siftmax Regression}
 %\label{sec:SiftmaxRegression}
