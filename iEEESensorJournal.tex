@@ -378,14 +378,15 @@ clockwise ({\sf RA})  \end{inparaenum} as non-fall activities.
 \begin{table}[htb]
 \caption{Activities and Fall Events and their abbreviations}
 %\resizebox{\columnwidth}{!}
+\centering
 {
-\begin{tabular}{|l|l|}
-\hline \hline
+\begin{tabular}{|l|c|}
+\hline
 \textbf{Activity} & \textbf{Abbreviation} \\  \hline
 Fall Forward &\textbf{FF} \\ \hline
 Fall Backward &\textbf{FB}  \\ \hline
 Fall Left &\textbf{FL}  \\ \hline
-Fall Left &\textbf{FR}  \\ \hline
+Fall Left &\textbf{FR}  \\ \hline \hline
 Walk Forward &\textbf{WF} \\ \hline
 Walk Backward &\textbf{WB} \\ \hline
 Walk Left &\textbf{WL} \\ \hline
@@ -403,12 +404,22 @@ Rotate Anticlockwise&\textbf{RA}  \\ \hline
 
 We have setup the framework as described in Section \ref{sec:framework} and enabled the 
 motion tracking device to sample at $20$ ms, which is equivalent to 50$Hz$ 
+<<<<<<< HEAD
 sampling rate. The motion tracking device outputs nine values. Three-axis  
 accelerometer readings are in  meter per square second ($m/s^2$), 3-axis gyroscope readings are 
 in radian per square second ($rads/s^2$), and  3-axis magnetometer readings are  in 
 Tesla ($T$). For experiments  and results reported here, we have excluded the magnetometer readings. Therefore, 
 our input data vectors  are in $\mathbb{R}^6$ and they consist of accelerometer and gyroscope 
 values. The plots of motion datasets for fall-forward and  walk-forward events are illustrated in Figures~\ref{fig:human_fall_forward_crop} and \ref{fig:human_walk_forward-crop}, respectively. They demonstrate  complex nature of these time series, and indicate difficulty of extracting features from them that are useful for training as well as monitoring of events and falls.
+=======
+sampling rate. The motion tracking device outputs nine values. The  
+accelerometer readings are in  meter per square second ($m/s^2$), gyroscope readings are 
+in 3-axis in radian per square second ($rads/s^2$), and the magnetometer readings are  in 
+Tesla ($T$). For our experiments, we have excluded the magnetometer readings. Therefore, 
+our input vectors are in $\mathbb{R}^6$, which consist of accelerometer and gyroscope 
+values. Figures~\ref{fig:human_fall_forward_crop} and \ref{fig:human_walk_forward-crop} 
+show the raw data traces of fall-forward and walk forward events of a human subject.
+>>>>>>> c5577895af1101fc63cd0611b7a2dce421da4a2e
 \begin{figure}[htb]
 	\centering
 		\includegraphics[width=0.95\columnwidth]{plots/human_falling-crop.eps}
@@ -611,7 +622,7 @@ Softmax
 activation function $\mathbf{z(a)} = \frac{e^{\mathbf{a}}}{\mathbf{1}^\mathtt{T}
 e^{\mathbf{a}}}$, which represents the probability mass function $\mathbb{P}(y | 
 \mathbf{x})$. We have 
-used the regularized cross-entropy negative-log likelihood function as our objective function. 
+used the regularized cross-entropy cost function as our objective function, 
 
 \begin{equation} 
 l(\mathbf{x}) = -\mathbf{y}.\ln \mathbf{z} + \frac{\lambda}{2} \mathbf{W}.\mathbf{W}
@@ -713,7 +724,9 @@ layer of our network (Layer 2), one of the specific fall event or non-fall activ
 recognition classification network is activated. The decision of this classifier is 
 considered as the output of the classification network. In order to compensate for noise, 
 we have used the five samples as described in the previous section. We have marked the 
-predicted events and if the five samples predict the same outcome, then the network voted 
+predicted events; if the five inputs (calculated from a window of the second circular 
+buffer) 
+predict the same outcome, then the network voted 
 to that event, otherwise, we have identified an inconclusive event. 
 
 
@@ -724,7 +737,7 @@ to that event, otherwise, we have identified an inconclusive event.
 In this section we report performance of our proposed algorithms and methods. 
 %First we brieflydescribe our data collection procedure. 
 We have experimented with one-layer and two-layer classifiers.  First, performance of one-layer softmax and neural networks classifiers are reported. Then that for two-layer networks are presented. 
-\emph{For all results reported here the value of $\lambda$ in the optimization function 
+\emph{For all results reported here the value of $\lambda$ in the cost function 
 (Equation~\ref{eq:objective-function}) is $0.1$.}
 
 %\subsection{Data Collection}
@@ -828,7 +841,7 @@ Event} \\ \hline
 }
 \end{table}
 
-\subsubsection{Layer One - Classification of Fall or Non-fall Events }
+\subsubsection{Layer One - Classification of Fall Events or Non-fall Activities }
 \label{sec:LayerOneFallAndNonFallIdentification}
 
 Performance of layer-one of a two-layer classifiers has been tabulated in Table~\ref{tbl:layer1RecognitionRates}. As can be seen from the table, softmax network at layer-one (top layer) correctly classified only 87.2\% of fall and non-fall events, but neural network correctly classified all fall and non-fall events. We used only two neurons in the hidden row.
@@ -841,7 +854,8 @@ Performance of layer-one of a two-layer classifiers has been tabulated in Table~
 %\paragraph{Neural Network}
 %\label{sec:NeuralNetwork}
 
-\subsubsection{Layer Two - Identification of Individual Fall or Non-fall Event}
+\subsubsection{Layer Two - Identification of Individual Fall Events or Non-fall 
+Activities}
 \label{sec:LayerTwoFallOrNonFallEventIdentification}
 
 Performance of layer-two networks are shown in Tables~\ref{Layer2FallEvents}, \ref{Layer2NonFallEventsSoftmax}, and \ref{Layer2NonFallEventsNeuralNets}. It is easy to see from Table~\ref{Layer2FallEvents} that both Softmax and Neural networks at layer-two correctly classified 100\% of fall events.
@@ -872,6 +886,7 @@ L2 Fall Event: 100} \\ \hline
 \caption{Performance of layer-2 network for  seven non-fall events. Softmax networks correctly classified 100\% of non-fall events.}
 \label{Layer2NonFallEventsSoftmax}
 %\resizebox{\columnwidth}{!}
+\centering
 {
 \begin{tabular}{|c|c|c|c|c|c|c|c|}
 \hline 
@@ -894,6 +909,7 @@ L2 Fall Event: 100} \\ \hline
 \caption{Performance of layer-2 network for  seven non-fall events. Neural networks correctly classified 100\% of  seven non-fall events.}
 \label{Layer2NonFallEventsNeuralNets}
 %\resizebox{\columnwidth}{!}
+\centering
 {
 \begin{tabular}{|c|c|c|c|c|c|c|c|}
 \hline 
