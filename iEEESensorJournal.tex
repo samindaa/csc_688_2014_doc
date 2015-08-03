@@ -55,18 +55,8 @@ Department of Computer Science, University of Miami,
 \maketitle
 
 \begin{abstract}
-While humans or biped humanoid robots perform activities such as jogging and running, an accident 
-event such as a fall may occur. This might cause damage to the human body or 
-to the structural components of the robot. For humans, immediate identification of a fall 
-will allow fast responses, while for a robot, early prediction can be used to take corrective 
-measures to prevent a fall. Modern wireless sensing devices can be attached to humans or robots to 
-collect motion data. We propose: \begin{inparaenum}[($i$)] \item 
-methods to learn and predict different activities for humans and robots; and \item software 
-tools to realize these functions  on embedded devices. \end{inparaenum} Our contributions include: 
-\begin{inparaenum}[($i$)] \item detection of falls for both humans and robots within a unified 
-framework; and \item  a  novel software development environment for embedded systems. 
-\end{inparaenum} Our empirical evaluations demonstrate that with high accuracy different types of  
-fall-events are predicted using the same learning algorithms for humans and biped humanoid robots. 
+While humans perform activities of daily life, an accident 
+such as a fall may occur. This might cause injuries to the human body, and immediate identification of it can alert for a fast response.  Currently, a plethora of inexpensive wireless motion sensing devices are available or can be assembled using off-the-shelf components. They are being used to collect motion data to monitor non-fall activities and fall events. There still remain problems such as automatic extraction of motion features that distinguishes among the prior categories. In this paper, we have developed a framework  to setup a wireless sensor network to collect motion data. We also have introduced a novel method for semi-automatically extracting training examples from the motion data. We have developed a two-level classification network to accurately identify each type of non-fall activities and fall events. The proposed network is   a combination of neural and softmax regression networks.  Our empirical evaluations of the proposed two-layer network show that with 100\% accuracy seven type of non-fall activities and four types of fall events are classified on our datasets. 
 \end{abstract}
 
 \begin{IEEEkeywords} Fall detection, learning algorithms, 9-axis sensor, semi-automatic extraction of training examples,  softmax, neural networks.
@@ -920,23 +910,16 @@ L2 Fall Event: 100} \\ \hline
 
 \section{Conclusions and Future Work}
 
-%It is known that while humans and biped humanoid robots perform normal activities such as jogging, 
-%running and so on, an abnormal event such as a fall may occur. These events may cause injuries 
- %to the humans or robots. 
-%  In order to avoid 
-%  damages to biped humanoid robots, machine learning can be used to predict potential falls before 
-%  such events occur. 
-Falling events could cause damage to both humans and robots.  Using prediction information, 
-corrective measures can be engaged to avoid 
- many fall events. Similarly, for humans, after  a fall is identified, rescue services 
- can be called upon. We have reported a wireless sensing device that have assembled using 
-off-the-shelf hardware components. Using two devices, we have created a sensor network for 
-collecting motion data from humans and biped humanoid robots. The sensing devices were connected to 
-the back of the subjects and the data collecting device was connected to a laptop which archived 
-the data. We have used two machine learning algorithms and thresholding methods to 
-identify both normal and abnormal activities within 91\%--100\% accuracy. Comparing the encouraging 
-experimental results we achieved, our future work will be to use multiple sensing devices to create 
-a sensor network to detect complex activities with higher sampling rates.  
+%While humans perform activities of daily life, an accident 
+%such as a fall may occur. This might cause injuries to the human body, and immediate identification of it can alert for a fast response.  
+During activities of daily life, an accident 
+such as a fall may occur to humans. This may lead to injuries, and immediate identification of it can alert for a fast response.  There are many inexpensive wireless motion sensing devices or one can be assembled using off-the-shelf components. These devices can be attached to a human to collect motion data for monitoring activities of daily living. However, while performing these activities, an accident such as fall may occur.
+
+We have developed a generic software platform for embedded devices. The software platform has been tested on combinations of microcontrollers and sensing devices. We have used it for creating a wireless sensor network and using the network for collecting motion data.
+
+In order to accurately identify these events, it is necessary to extract distinguishing features from the motion data. Here, we have proposed a novel semi-automatic training example extraction method to identify features and automatically annotate the datasets. The proposed method significantly  expedites the creation of the training set compared to manually extracting them. Moreover, we have proposed and implemented a two-level classification network with  a combination of neural and softmax regression networks to identify seven type of non-fall activities and four types of fall events with 100\% accuracy. 
+
+While evaluation of the proposed techniques using our off-the-shelf device has proven to be effective, the project is far from complete. It requires further testing. Also, for real-world deployment, a miniaturized prototype must be developed and tested on a wide population. We expect that the software platform will require only minimum modifications, if at all.
 
 \bibliographystyle{plain}
 \bibliography{references,fallRisk}
