@@ -2,7 +2,7 @@
 %File: formatting-instruction.tex
 \documentclass[]{IEEEtran}
 %\documentclass[onecolumn]{IEEEtran}
-%\renewcommand{\baselinestretch}{2}
+\renewcommand{\baselinestretch}{2}
 %\documentclass[letterpaper]{article}
 %usepackage{aaai}
 \usepackage{times}
@@ -56,10 +56,10 @@ Department of Computer Science, University of Miami,
 
 \begin{abstract}
 While humans perform activities of daily life, an accident 
-such as a fall may occur. This might cause injuries to the human body, and immediate identification of it can alert for a fast response.  Currently, a plethora of inexpensive wireless motion sensing devices are available or can be assembled using off-the-shelf components. They are being used to collect motion data to monitor non-fall activities and fall events. There still remain problems such as automatic extraction of motion features that distinguishes among the prior categories. In this paper, we have developed a framework  to setup a wireless sensor network to collect motion data. We also have introduced a novel method for semi-automatically extracting training examples from the motion data. We have developed a two-level classification network to accurately identify each type of non-fall activities and fall events. The proposed network is   a combination of neural and softmax regression networks.  Our empirical evaluations of the proposed two-layer network show that with 100\% accuracy seven type of non-fall activities and four types of fall events are classified on our datasets. 
+such as a fall may occur. This might cause injuries to the human body, and immediate identification of it can alert for a fast response.  Currently, a plethora of inexpensive wireless motion sensing devices are available or can be assembled using off-the-shelf components. They are being used to collect motion data to monitor non-fall activities and fall events. There still remain problems such as automatic extraction of motion features that distinguishes among the prior categories. In this paper, we have developed a framework  to setup a wireless sensor network to collect motion data. We also have introduced a novel method for semi-automatically extracting training examples from the motion data. We have developed a two-level classification network to accurately identify each type of non-fall activities and fall events. The proposed classification-network is   a combination of neural and softmax regression networks.  Our empirical evaluations of the proposed two-layer network show that with 100\% accuracy seven type of non-fall activities and four types of fall events are classified on our datasets. 
 \end{abstract}
 
-\begin{IEEEkeywords} Fall detection, learning algorithms, 9-axis sensor, semi-automatic extraction of training examples,  softmax, neural networks.
+\begin{IEEEkeywords} Fall detection, learning algorithms, neural networks, {MEMS}, 9-axis sensor, semi-automatic extraction of training examples,  softmax.
 \end{IEEEkeywords}
 
 %\tableofcontents
@@ -94,7 +94,7 @@ Since both humans and biped humanoid robots have almost identical movements and 
 similar accidents, we believe that the same devices are suitable for monitoring activities and fall events of both 
 groups. Moreover, in the near future human-robot will cooperatively work together for solving problems that are impossible for either group but can be solved with  combined efforts of both groups.  For instance, there has been an increasing demand in 
 domains such as rescue to use autonomous or teleoperated humanoid robots to complete high-risk 
-tasks, otherwise would have been lethal to a human subject. Therefore, we envision environments 
+tasks, that otherwise would have been lethal to a human subject. Therefore, we envision environments 
 where humans and humanoid robots collaboratively work to complete tasks. 
 
 \par
@@ -102,7 +102,7 @@ To validate our hypotheses, we developed a generalized approach for learning
 and predicting activities of both groups \cite{abeyruwanFlairs2015}.  We attached wearable sensing devices to collect
 motion data and have used software tools to interpret the sensor data to distinguish 
 between regular activities and fall events (see Fig.~\ref{fig:deviceWithSubjects}). 
-In our study, fall and on-fall activities of biped robots were identified with 100\%  accuracy after using Kalman filter \cite{Welch:1995:IKF:897831} with appropriate thresholding.  Using Logistic Regression and \emph{Support Vector Machines} (SVM) true positive recognition for human subjects was as low as 90\%. The most \emph{ad hoc} and arduous part of our work was extraction of training datasets from the time series, which was part of the motivation for the work presented in this paper.
+In our study, fall and on-fall activities of biped robots were identified with 100\%  accuracy after using Kalman filter \cite{Welch:1995:IKF:897831} with appropriate thresholding, but same method would not be as successful for human subjects.  However, using Logistic Regression and \emph{Support Vector Machines} (SVM) true positive recognition for human subjects was as low as 90\%. The most \emph{ad hoc} and arduous part of our work was extraction of training datasets from the time series, which was part of the motivation for the work presented in this paper.
 % to investigate the prospect of using external embedded 
 %devices to identify activities on a NAO humanoid robot. 
 
@@ -146,7 +146,7 @@ In our study, fall and on-fall activities of biped robots were identified with 1
 \qquad
 \subfloat[]{\label{fig:fc}\includegraphics[width=0.4\columnwidth]{figures/robot_figure.eps}} 
 \caption{(a) a wireless sensor device (assembled from a TI Tiva C Series  TM4C123G LaunchPad, a Sensor Hub BoosterPack, a CC2533 BoosterPack, and a Fuel Tank BoosterPack) attached to the back of a human subject; the device is running our framework  with only three motion-sensing modules; and (b) the 
-same device configuration was used on the back of a NAO humanoid robot.}
+same device configuration was used on the back of a NAO humanoid robot\cite{abeyruwanFlairs2015}.}
  \label{fig:deviceWithSubjects}
 \end{figure}
 
@@ -160,6 +160,7 @@ boosterpacks --- a
 Sensor Hub BoosterPack  for sensing 9-axis motion,  a CC2533  BoosterPack for wireless 
 networking, and a Fuel-Tank BoosterPack for power. We also assembled a wireless data collection device with a Tiva C Series TM4C123G microcontroller board, and a  CC2533  BoosterPack. These two devices were networked to create a wireless sensor network (WSN) for 
 collecting motion data from  humans.
+
 % and NAO humanoid robots. 
 The data collection device is connected to a computer with a USB cable for logging sensed data.   
 
@@ -172,7 +173,7 @@ The rest of the paper is organized as follows. Related work is reviewed in Secti
 framework that we have proposed and implemented.
 Section~\ref{sec:SemiAutomaticExtractionOfTrainingVectors} reports our novel methods for  
 semi-automatic extraction  of \begin{inparaenum} [($i$)] \item training samples to be 
-used by the learning algorithms  and \item testing data for activity monitoring. 
+used by  learning algorithms  and \item testing data for activity monitoring. 
 \end{inparaenum} Outlines of offline leaning algorithms used for teaching the device to 
 identify activities and fall events are described in Section~\ref{sec:OffLineLearning}. 
  In the penultimate section, we present detailed description of evaluation of proposed methods and also, report some typical results for humans.
@@ -185,8 +186,8 @@ Finally, the paper is concluded with a summary and future work.
 \section{Related Work}
 \label{subSec:relatedWork}
 
-The modern activity detection methods can be broadly categorized in to two groups based on: 
-\begin{inparaenum}[($i$)] \item inexpensive wearable embedded devices; and \item smart-phones. 
+The modern activity detection methods can be broadly categorized into two groups based on: 
+\begin{inparaenum}[($i$)] \item inexpensive wearable embedded devices, and \item smart-phones. 
 \end{inparaenum} Wearable embedded devices with add-on sensors provide options to develop effective 
 activity recognition methods for humans and biped humanoid robots alike. The existing activity 
 detection methods focus on special cases of fall detection in humans and humanoid robots. These 
@@ -314,11 +315,11 @@ Our development framework, $\mu$Energia (\textit{pronounced as}: ``micro--Energi
 
  For ease of description and clarity of understanding, we have divided each task into two components: a {\em module} and one or more {\em representations}. A module implements executable code, while a representation exchange information from one module to another. Thus, a module may generate information for multiple representations as well as it may get inputs from multiple representations. 
 \par
-Once a user provides dependency descriptions, the framework converts it  into a directed graph (also know as precedence graph, or conflict graph).  If the graph has no cycle, the framework topologically sorts the nodes and creates an schedule for execution of the modules. In case there the graph has one or more cycle, the framework reports so to the users.
-For visualization of schedule, the framework  generates a directed graph. In this graph, modules are drawn as blue-shaded rectangles with rounded corners and the representations are drawn as yellow-shaded rectangles with pointed corners. The dependence of a modules on a representation is depicted as with a black arc with a solid line, while the dependency of a representation on a module is depicted with a blue arc with a dotted line. We have tested our framework on multiple 
-microcontrollers and on boosterpacks.
+Once a user provides dependency descriptions, the framework converts it  into a directed graph (also know as precedence graph, or conflict graph).  If the graph has no cycle, the framework topologically sorts (see a book on algorithms such as\cite{Cormen:AlgorithmBook}), the nodes and creates an schedule for execution of the modules. In case there the graph has one or more cycle, the framework reports so to the users.
+For visualization of schedule, the framework  generates a directed graph. In this graph, modules are drawn as blue-shaded rectangles with rounded corners and the representations are drawn as yellow-shaded rectangles with pointed corners. The dependence of a modules on a representation is depicted as with a black arc with a solid line, while the dependency of a representation on a module is depicted with a blue arc with a dotted line. 
+%We have tested our framework on multiple microcontrollers and on boosterpacks.
 
-Directed graph in Figure \ref{fig:framework} shows a framework generated task-schedule for  a TI Tiva C Series TM4C123G microcontroller to collect and process data from \begin{inparaenum}[($i$)] \item Bosch Sensortec BMP180 pressure sensor, \item Intersil ISL29023 ambient and infrared light sensor, \item Sensirion SHT21 humidity and ambient temperature sensor,  \item  TIs TMP006 non-contact infrared temperature sensor, and \item InvenSense 
+Directed graph in Fig.~\ref{fig:framework} shows a framework generated task-schedule for  a TI Tiva C Series TM4C123G microcontroller to collect and process data from \begin{inparaenum}[($i$)] \item Bosch Sensortec BMP180 pressure sensor, \item Intersil ISL29023 ambient and infrared light sensor, \item Sensirion SHT21 humidity and ambient temperature sensor,  \item  TIs TMP006 non-contact infrared temperature sensor, and \item InvenSense 
 MPU-9150 --- a 9-axis MEMS motion sensorthee-axis. \end{inparaenum}
 
 %\par
@@ -349,7 +350,7 @@ Learning Module}. The {\em LeaningModule} use the motion sensor data and creates
 
 \par 
 
-In the next section we propose a method for semi-automatic extraction of training examples from motion datasets. These examples are used to teach a device/system that identifies desired events. 
+In the next section, we propose a method for semi-automatic extraction of training examples from motion datasets. These examples are used to teach a device/system that identifies desired events. 
 
 \section{Semi-Automatic Extraction of  Training Examples}
 \label{sec:SemiAutomaticExtractionOfTrainingVectors}
@@ -411,7 +412,7 @@ values. The plots of raw motion datasets for fall-forward and  walk-forward even
 \subsubsection{Identify and Adjust for Missing Data Points}
 \label{sec:IdentifyAndAdjustForMissingDataPoints}
 Some data packets may be lost during transmission because of noise. We numbered each 
-sensor reading sequentially and the lost data points were identified from this number and was 
+sensor reading sequentially and at the receiver the lost data points were identified from this number and was 
 replaced using linear interpolation. Since only very few data points were lost and 
 results obtained after linear interpolation was excellent, we did not experiment with other 
 interpolation methods.
@@ -533,12 +534,13 @@ Figures~\ref{fig:automatic_annotation} and \ref{fig:automatic_annotation2} show 
 fall, the subject immediately gets up and repeats the process. The green ``+'' segments 
 show the annotated fall events, while the black ``x'' segments show the non-fall 
 events. We have observed that there is a clear separation of the events with two 
-clusters. Each segment has between 15 to 20 consecutive data points, which amounts to 
-3000$ms$ to 4000$ms$ fall event after triggering the event. Each fall-event triggers 
+clusters. Each segment has between 15 to 20 consecutive data points.
+% which amounts to 3000$ms$ to 4000$ms$ fall event after triggering the event. 
+Each fall-event triggers 
 towards the end of the preceding non-fall data points and continues into the beginning of the fall data points; this is the transition zone of a fall event.
 
 \par
-For visualization of 11 sets of training examples, a sample Tsne projection  is displayed in Fig.~\ref{fig:automatic_annotation3}. In this projection, the 4 fall events (numbered 1 through 4) show a clear separation from each other and all 7 non-fall events. Although, separation of non-fall events do not show as good separations, but our results show that they are far enough from each other for 100\% accurate classifications.
+For visualization of 11 sets of training examples, a sample Tsne projection  is displayed in Fig.~\ref{fig:automatic_annotation3}. In this projection, the 4 fall events (numbered 1 through 4) show a clear separation from each other and all 7 non-fall events. Although, separation of non-fall events in Fig.~\ref{fig:automatic_annotation3} do not show as good separations, but our results show that they are far enough from each other for 100\% accurate classifications.
 
 \begin{figure}[!htb]
 \centering
@@ -550,9 +552,9 @@ For visualization of 11 sets of training examples, a sample Tsne projection  is 
 
 Since we are 
 interested in the signatures of the fall events, we have annotated all the samples belongs 
-to ``a'' cluster as the fall data. The k-means clustering finds a 
-local minimum in general. Moreover, the cluster assignments may vary depending on the 
-initialization. Therefore, when we have obtained the data belongs to two clusters, we 
+to ``a'' cluster as the fall data. In general, the k-means clustering finds a 
+local minimum. Moreover, the cluster assignments may vary depending on the 
+initialization. Therefore, after we have obtained the data belongs to two clusters, we 
 only have to manually provide the semantics of the cluster centroid. 
 
 \section{Offline Learning and Predicting Algorithms}
@@ -620,7 +622,7 @@ parameter vector $\mathbf{W}$.
 	\label{fig:SoftmaxLayer1}
 \end{figure}
 
-We trained and tested two networks with Softmax regression algorithm. In first case, we trained a one-layer network with 11 binary outputs, one for each fall or non-fall events. In the second case, we trained a two layer softmax regression network. The top layer network was trained with 2 binary outputs to distinguish between fall and non-fall events (see Fig.~\ref{fig:SoftmaxLayer1}). The bottom layer has two sub-networks:  one to identify fall events and has 4 binary outputs, the other to identify non-fall events and has 7 binary outputs. Each sub-network was trained separately. Fig~\ref{fig:SoftmaxLayer2Fall} shows a block diagram of a subnetwork for training and identification of four fall events. For conserving space, we omit diagram for non-fall events. As will be discussed in the next section, none of them identified all events with 100\% accuracy.
+We trained and tested two networks with Softmax regression algorithm. In the first case, we trained a one-layer network with 11 binary outputs, one for each fall or non-fall events. In the second case, we trained a two layer softmax regression network. The top layer network was trained with 2 binary outputs to distinguish between fall and non-fall events (see Fig.~\ref{fig:SoftmaxLayer1}). The bottom layer has two sub-networks:  one to identify fall events and has 4 binary outputs, the other to identify non-fall events and has 7 binary outputs. Each sub-network was trained separately. Fig.~\ref{fig:SoftmaxLayer2Fall} shows a block diagram of a subnetwork for training and identification of four fall events. For conserving space, we omit diagram for non-fall events. As will be discussed in the next section, none of them identified all events with 100\% accuracy.
 
 \begin{figure}[htbp]
 	\centering
@@ -653,7 +655,7 @@ have zero-mean and unit-variance. We achieved this by first computing the mean o
 dimension across the training set and subtracting this from each dimension. Then each 
 dimension is divided by its standard deviation.       
 
-Similar to Softmax regression networks, we experimented  with both single-layer hybrid networks and two-layer hybrid networks. While single-layer network failed to identify all events with 100\% accuracy, the two-layer network successfully identified all event with 100\%. There were no false positives or false negatives. In the rest of paper, we use hybrid networks and neural networks interchangeably.
+Similar to Softmax regression networks, we experimented  with both single-layer hybrid networks and two-layer hybrid networks. While single-layer network failed to identify all events with 100\% accuracy, the two-layer network successfully identified all event with 100\% accuracy. There were no false positives or false negatives. In the rest of paper, we use hybrid networks and neural networks interchangeably.
 
 \section{Online Activity Monitoring and Identification}
 
@@ -801,7 +803,7 @@ Performance of neural networks is shown in Table~\ref{tbl:neuralNetworkOneLayer}
 As can be seen from Table~\ref{tbl:neuralNetworkOneLayer}, all events except fall-forward and walk-right events were recognized correctly. The neural network improved recognition rate of walk-forward events to 100\%. But recognition rates of 
 fall-forward and walk-right events remained same as softmax network at 66.7\% and 87.5\%, respectively.
 \par
-Because of failure of one-layer networks, we explored two-layer classification networks: first layer classified input into two categories, fall event or non-fall event. Then, a second layer  differentiated events within its own category. A block diagram of the classifier  is shown in Fig.~\ref{fig:TrainedIdentificationModule}.
+Because of failure of one-layer networks, we explored two-layer classification networks: first layer classified an input into two categories, a fall event or a non-fall event. Then, a second layer  differentiated events within its own category. A block diagram of the classifier  is shown in Fig.~\ref{fig:TrainedIdentificationModule}.
 \subsection{Two-Layer Networks}
 \label{sec:TwoLayerNetworks}
 \begin{table}[htb]
@@ -915,7 +917,7 @@ L2 Fall Event: 100} \\ \hline
 During activities of daily life, an accident 
 such as a fall may occur to humans. This may lead to injuries, and immediate identification of it can alert for a fast response.  There are many inexpensive wireless motion sensing devices or one can be assembled using off-the-shelf components. These devices can be attached to a human to collect motion data for monitoring activities of daily living. However, while performing these activities, an accident such as fall may occur.
 
-We have developed a generic software platform for embedded devices. The software platform has been tested on combinations of microcontrollers and sensing devices. We have used it for creating a wireless sensor network and using the network for collecting motion data.
+We have developed a generic software platform for embedded devices. The software platform has been tested on several combinations of microcontrollers and sensing devices. We have used it for creating a wireless sensor network and using the network for collecting motion data.
 
 In order to accurately identify these events, it is necessary to extract distinguishing features from the motion data. Here, we have proposed a novel semi-automatic training example extraction method to identify features and automatically annotate the datasets. The proposed method significantly  expedites the creation of the training set compared to manually extracting them. Moreover, we have proposed and implemented a two-level classification network with  a combination of neural and softmax regression networks to identify seven type of non-fall activities and four types of fall events with 100\% accuracy. 
 
