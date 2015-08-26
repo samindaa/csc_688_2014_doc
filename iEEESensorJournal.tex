@@ -69,7 +69,8 @@ such as a fall may occur. This might cause injuries to the human body, and immed
 %Justification for activity monitoring
 Fall is a major cause of injury to the elderly population \cite{Rubenstein2006}. 
 Each year about 30-60\% of the elderly population have one or more falls, and  about 10-20\% of these falls results in injury \cite{Rubenstein2006}. 
-As reported in CDC website \cite{CDC2014July},
+As reported in the Centers for Disease Control and Prevention (CDC) website 
+\cite{CDC2014July},
 ``In 2010, falls among older adults cost the U.S. health care system \$30 billion in direct medical costs, when adjusted for inflation.'' By 2020 it is expected to reach \$67.7 billion. 
 \par 
 The availability of inexpensive miniature \emph{microelectromechanical system} (MEMS) sensors  has motivated researchers  to study their potential for assessing fall-risk  (see \cite{shanyReview2012}, \cite{howcroftReview2013}, and the references therein) as well as monitoring \emph{activities of daily livings} (ADLs) \cite{alvarezActivityAndFallRecognotion2015,BaoActivityrecognition2004,DernbachActivityAndFallDetectionPhone2012,krishnanActivityRecognition2014,kumarActivitAndFallDetection2013} and \emph{fall events} (FEs) \cite{baekFallDetection2013,baiFallDetectionPhone2013,DernbachActivityAndFallDetectionPhone2012,dumitracheFallDetection2013,kumarActivitAndFallDetection2013,leoneFallDetection2013,liangFallDetection2012,liFallDetection2009,moyaFallAndDamageDetection2015,ojetolaFallDetection2011,ShenFallDetectionPhone2015,steidlFallDetection2012,DoukasFallDetection2011,ErdoganFallDetection2014,JianFallDetection2015}. These studies have used  accelerometers,  or gyroscopes, or magnetometers, or  a combination of them to collect motion datasets at  25 Hz to 200 Hz.  
@@ -145,7 +146,10 @@ In our study, fall and on-fall activities of biped robots were identified with 1
 \subfloat[]{\label{fig:fb}\includegraphics[width=0.45\columnwidth]{figures/human_figure.eps}}
 \qquad
 \subfloat[]{\label{fig:fc}\includegraphics[width=0.4\columnwidth]{figures/robot_figure.eps}} 
-\caption{(a) a wireless sensor device (assembled from a TI Tiva C Series  TM4C123G LaunchPad, a Sensor Hub BoosterPack, a CC2533 BoosterPack, and a Fuel Tank BoosterPack) attached to the back of a human subject; the device is running our framework  with only three motion-sensing modules; and (b) the 
+\caption{(a) a wireless sensor device (assembled from a Tiva C Series  TM4C123G 
+LaunchPad, a Sensor Hub BoosterPack, a CC2533 BoosterPack, and a Fuel Tank BoosterPack) 
+attached to the back of a human subject; the device is running our framework  with only 
+three motion-sensing modules; and (b) the 
 same device configuration was used on the back of a NAO humanoid robot\cite{abeyruwanFlairs2015}.}
  \label{fig:deviceWithSubjects}
 \end{figure}
@@ -160,8 +164,6 @@ boosterpacks --- a
 Sensor Hub BoosterPack  for sensing 9-axis motion,  a CC2533  BoosterPack for wireless 
 networking, and a Fuel-Tank BoosterPack for power. We also assembled a wireless data collection device with a Tiva C Series TM4C123G microcontroller board, and a  CC2533  BoosterPack. These two devices were networked to create a wireless sensor network (WSN) for 
 collecting motion data from  humans.
-
-% and NAO humanoid robots. 
 The data collection device is connected to a computer with a USB cable for logging sensed data.   
 
 We have developed a set of software tools to create a framework that allow us
@@ -204,7 +206,7 @@ accelerometer  and  gyroscope  sensors  for classifying  the  behavior  and  pos
  events. 
  
 \cite{leoneFallDetection2013} prosed a system to detect events that cause trauma, and disabilities
-using a tri-axial MEMS wearable wireless accelerometer. They used support vector machines (SVM) for
+using a tri-axial MEMS wearable wireless accelerometer. They used SVM or
 classification of different events. \cite{BaoActivityrecognition2004} reported of using five 
 small biaxial wire-free accelerometers attached  on the left bicep, right wrist, left quadriceps, 
 right ankle, and right hip to recognize 20 activities starting from  walking  to  riding elevator  
@@ -319,7 +321,12 @@ Once a user provides dependency descriptions, the framework converts it  into a 
 For a visualization of the schedule, the framework  generates a directed graph. In this graph, modules are drawn as blue-shaded rectangles with rounded corners and the representations are drawn as yellow-shaded rectangles with pointed corners. The dependence of a modules on a representation is depicted as with a black arc with a solid line, while the dependency of a representation on a module is depicted with a blue arc with a dotted line. 
 %We have tested our framework on multiple microcontrollers and on boosterpacks.
 
-The directed graph in Fig.~\ref{fig:framework} shows a framework generated task-schedule for  a TI Tiva C Series TM4C123G microcontroller to collect and process data from \begin{inparaenum}[($i$)] \item Bosch Sensortec BMP180 pressure sensor, \item Intersil ISL29023 ambient and infrared light sensor, \item Sensirion SHT21 humidity and ambient temperature sensor,  \item  TIs TMP006 non-contact infrared temperature sensor, and \item InvenSense 
+The directed graph in Fig.~\ref{fig:framework} shows a framework generated task-schedule 
+for  a Tiva C Series TM4C123G microcontroller to collect and process data from 
+\begin{inparaenum}[($i$)] \item Bosch Sensortec BMP180 pressure sensor, \item Intersil 
+ISL29023 ambient and infrared light sensor, \item Sensirion SHT21 humidity and ambient 
+temperature sensor,  \item  TMP006 non-contact infrared temperature sensor, and \item 
+InvenSense 
 MPU-9150 --- a 9-axis MEMS motion sensor. \end{inparaenum}
 
 %\par
@@ -394,7 +401,7 @@ Rotate Anticlockwise&\textbf{RA}  \\ \hline
 \label{subsec:preDataCollection}
 
 We have setup the framework as described in Section \ref{sec:framework} and enabled the 
-motion tracking device to sample at $20$ ms, which is equivalent to 50$Hz$ 
+motion tracking device to sample at $20ms$, which is equivalent to 50$Hz$ 
 sampling rate. The motion tracking device outputs nine values. Three-axis  
 accelerometer readings are in  meter per square second ($m/s^2$), 3-axis gyroscope readings are 
 in radian per square second ($rads/s^2$), and  3-axis magnetometer readings are  in 
