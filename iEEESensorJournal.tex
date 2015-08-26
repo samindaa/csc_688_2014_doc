@@ -2,7 +2,7 @@
 %File: formatting-instruction.tex
 \documentclass[]{IEEEtran}
 %\documentclass[onecolumn]{IEEEtran}
-\renewcommand{\baselinestretch}{2}
+%\renewcommand{\baselinestretch}{2}
 %\documentclass[letterpaper]{article}
 %usepackage{aaai}
 \usepackage{times}
@@ -400,12 +400,30 @@ accelerometer readings are in  meter per square second ($m/s^2$), 3-axis gyrosco
 in radian per square second ($rads/s^2$), and  3-axis magnetometer readings are  in 
 Tesla ($T$). For experiments  and results reported here, we have excluded the magnetometer readings. Therefore, 
 our input data vectors  are in $\mathbb{R}^6$ and they consist of accelerometer and gyroscope 
-values. The plots of raw motion datasets for fall-forward and  walk-forward events are illustrated in Figures~\ref{fig:human_fall_forward_crop} and \ref{fig:human_walk_forward-crop}, respectively. They demonstrate  complex nature of these time series, and indicate difficulty of extracting features from them that are useful for training as well as monitoring of events and falls.
-\begin{figure}[htb]
-	\centering
-		\includegraphics[width=0.95\columnwidth]{plots/human_falling-crop.eps}
-	\caption{Motion dataset for  Fall Forward event of a human subject}
-	\label{fig:human_fall_forward_crop}
+values. The plots of raw motion datasets for fall and  walk forward events are shown in 
+Figures~\ref{fig:human_fall_forward_crop} and \ref{fig:human_walk_forward-crop}, 
+respectively. They demonstrate  complex nature of these time series, and indicate 
+difficulty of extracting features from them that are useful for training as well as 
+monitoring of events and falls.
+
+%\begin{figure}[htb]
+%	\centering
+%		\includegraphics[width=0.95\columnwidth]{plots/human_falling-crop.eps}
+%	\caption{Motion dataset for  Fall Forward event of a human subject}
+%	\label{fig:human_fall_forward_crop}
+%\end{figure}
+
+\begin{figure}
+\centering
+  \mbox{\subfloat[Motion dataset for  fall forward event of a human 
+  subject.]{\label{fig:human_fall_forward_crop} 
+  \includegraphics[width=0.95\columnwidth]{plots/human_falling-crop.eps}}}
+  \mbox{\subfloat[Motion dataset for walk forward event of a human subject. 
+  ]{\label{fig:human_walk_forward-crop} 
+  \includegraphics[width=0.95\columnwidth]{plots/human_falling-crop.eps}}}
+  \caption{Fall and walk forward motion datasets. The accelerometer ($\dot{x}$, 
+  $\dot{y}$, $\dot{z}$) and the gyroscope ($\dot{\theta_x}$, 
+  $\dot{\theta_y}$, $\dot{\theta_z}$) readings are shown with the respective traces. }
 \end{figure}
 
 
@@ -417,12 +435,12 @@ replaced using linear interpolation. Since only very few data points were lost a
 results obtained after linear interpolation was excellent, we did not experiment with other 
 interpolation methods.
 
-\begin{figure}[htb]
-	\centering
-		\includegraphics[width=0.95\columnwidth]{plots/human_walk-crop.eps}
-	\caption{Motion dataset for Walk Forward event of a human subject. }
-	\label{fig:human_walk_forward-crop}
-\end{figure}
+%\begin{figure}[htb]
+%	\centering
+%		\includegraphics[width=0.95\columnwidth]{plots/human_walk-crop.eps}
+%	\caption{Motion dataset for Walk Forward event of a human subject. }
+%	\label{fig:human_walk_forward-crop}
+%\end{figure}
 
 
 \subsubsection{Noise Filtering}

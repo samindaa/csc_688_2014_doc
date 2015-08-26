@@ -54,6 +54,11 @@ Christopher~M. Bishop.
   and Statistics)}.
 \newblock Springer-Verlag New York, Inc., Secaucus, NJ, USA, 2006.
 
+\bibitem{Cormen:AlgorithmBook}
+Thomas~H. Cormen, Charles Leiserson, Ronald~L. Rivest, , and Clifford Stein.
+\newblock {\em Introduction to Algorithms}.
+\newblock The {MIT} Press, 3rd edition, 2009.
+
 \bibitem{DernbachActivityAndFallDetectionPhone2012}
 Stefan Dernbach, Barnan Das, Narayanan~Chatapuram Krishnan, Brian~L. Thomas,
   and Diane~J. Cook.
