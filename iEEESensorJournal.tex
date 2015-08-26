@@ -591,10 +591,12 @@ backward, falling events and non-falling events, different types of falling even
 so forth. 
 Therefore, 
 we have used multi-class classification networks to rationally answer the question we 
-have posed.
+have posed. We learn the classifiers offline from the training example extracted 
+according to the methods presented in Section 
+\ref{sec:SemiAutomaticExtractionOfTrainingVectors}. This section explains the classifiers 
+that we have considered in our experiments and their configurations. 
 
-Using our semi-automated training example extraction method (Section 
-\ref{sec:SemiAutomaticExtractionOfTrainingVectors}), we have created $m \in 
+Using our semi-automated training example extraction method, we have created $m \in 
 \mathbb{N}$ 
 training examples 
 \{($\mathbf{x}^{(i)}, \mathbf{y}^{(i)}$)\}$_{i=1}^m$ such that $\mathbf{x} \in 
