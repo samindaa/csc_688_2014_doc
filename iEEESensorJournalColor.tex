@@ -146,9 +146,9 @@ In our study, fall and on-fall activities of biped robots were identified with 1
 
 \begin{figure}[htb]
 \centering
-\subfloat[]{\label{fig:fb}\includegraphics[width=0.45\columnwidth]{figures/human_figure.eps}}
+\subfloat[]{\label{fig:fb}\includegraphics[width=0.28\columnwidth]{figures/human_figure.eps}}
 \qquad
-\subfloat[]{\label{fig:fc}\includegraphics[width=0.4\columnwidth]{figures/robot_figure.eps}} 
+\subfloat[]{\label{fig:fc}\includegraphics[width=0.25\columnwidth]{figures/robot_figure.eps}} 
 \caption{(a) h1{a wireless sensor device (assembled from a Tiva C Series  TM4C123G 
 LaunchPad, a Sensor Hub BoosterPack, a CC2533 BoosterPack, and a Fuel Tank BoosterPack) 
 attached to the back of a human subject; the device is running our framework  with only 
@@ -289,7 +289,7 @@ We have created a generic framework for developing applications for \emph{data c
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=\textwidth]{figures/graph_structure_def-crop3.eps}
+\includegraphics[width=.75\textwidth]{figures/graph_structure_def-crop3.eps}
 \caption{Currently available software modules in our framework and a directed-graph representation of their functional relationship. Execution of a module (rounded-corner rectangle) generated data that is stored in the representation module (pointed-corner rectangle) for feeding into the next module.}
  \label{fig:framework}
 \end{figure*}
@@ -426,10 +426,10 @@ useful for training as well as monitoring of events and falls.}
 \centering
   \mbox{\subfloat[Motion dataset for  fall forward event of a human 
   subject.]{\label{fig:human_fall_forward_crop} 
-  \includegraphics[width=0.95\columnwidth]{plots/human_falling-crop.eps}}}
+  \includegraphics[width=0.9\columnwidth,height = 1.5in]{plots/human_falling-crop.eps}}}
   \mbox{\subfloat[Motion dataset for walk forward event of a human subject. 
   ]{\label{fig:human_walk_forward-crop} 
-  \includegraphics[width=0.95\columnwidth]{plots/human_falling-crop.eps}}}
+  \includegraphics[width=0.9\columnwidth,height = 1.5in]{plots/human_falling-crop.eps}}}
   \caption{\hl{Fall and walk forward motion datasets. The accelerometer ($\dot{x}$, 
   $\dot{y}$, $\dot{z}$) and the gyroscope ($\dot{\theta_x}$, 
   $\dot{\theta_y}$, $\dot{\theta_z}$) readings are shown with the respective traces. }}
@@ -530,17 +530,17 @@ differs from the states before the process starts (e.g., standing) and the state
 which the fall triggered and continued.
 
 
-\begin{figure}[!htb]
+\begin{figure}[!tb]
 \centering
-\includegraphics[width=0.48\textwidth]{plots/human_falling_forward2.eps} 
+\includegraphics[width=0.45\textwidth]{plots/human_falling_forward2.eps} 
 \caption{Semi-automatic annotation of falling forward event dataset.}
  \label{fig:automatic_annotation} 
 \end{figure}
 
 
-\begin{figure}[!htb]
+\begin{figure}[!tb]
 \centering
-\includegraphics[width=0.48\textwidth]{plots/human_falling_backward2.eps} 
+\includegraphics[width=0.45\textwidth]{plots/human_falling_backward2.eps} 
 \caption{Semi-automatic annotation of falling backward event dataset.}
  \label{fig:automatic_annotation2} 
 \end{figure}
@@ -571,7 +571,7 @@ For visualization of 11 sets of training examples, a sample Tsne projection  is 
 
 \begin{figure*}[!htb]
 \centering
-\includegraphics[width=1.0\textwidth]{figures/viz_all_training_examples_crop2.pdf} 
+\includegraphics[width=.85\textwidth]{figures/viz_all_training_examples_crop2.pdf} 
 \caption{Visualization of 11 sets of training examples using Tsne projection. In this projection, the 4 fall events (numbered 1 through 4) show a clear separation from each other and other 7 non-fall events.}
  \label{fig:automatic_annotation3} 
 \end{figure*}
@@ -646,7 +646,7 @@ parameter vector $\mathbf{W}$.
 
 \begin{figure}[htbp]
 	\centering
-		\includegraphics[width=0.98\columnwidth]{figures/SoftmaxLayer1.eps}
+		\includegraphics[width=0.75\columnwidth]{figures/SoftmaxLayer1.eps}
 	\caption{Layer 1 learning modules. Examples are classified into Fall and Non-Fall events.  The left-side Figure is using Softmax Regression model. The Right-side Figure is a hybrid of Neural Network and Softmax Regression model.}
 	\label{fig:SoftmaxLayer1}
 \end{figure}
@@ -655,7 +655,7 @@ We trained and tested two networks with \hl{the Softmax} regression algorithm. I
 
 \begin{figure}[htbp]
 	\centering
-		\includegraphics[width=0.98\columnwidth]{figures/SoftmaxLayer2Fall.eps}
+		\includegraphics[width=0.75\columnwidth]{figures/SoftmaxLayer2Fall.eps}
 	\caption{Layer 2 learning module for four Fall events. The left-side Figure is using Softmax Regression model. The right-side Figure is a hybrid of Neural Network and Softmax Regression }
 	\label{fig:SoftmaxLayer2Fall}
 \end{figure}
@@ -717,7 +717,7 @@ the process.
 
 \begin{figure}[h]
 	\centering
-		\includegraphics[width=0.48\textwidth]{figures/TrainedIdentificationModule.eps}
+		\includegraphics[width=0.365\textwidth]{figures/TrainedIdentificationModule.eps}
 	\caption{Block diagram of event identification system. The top layer separates fall events from non-fall events. The bottom layer modules receive the same input data vector as the top layer, but they also get a zero or one input from the upper layer module depending on where the input data vector is classified. The final output is a binary valued vector of 11 components.}
 	\label{fig:TrainedIdentificationModule}
 \end{figure}
