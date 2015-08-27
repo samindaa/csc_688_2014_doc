@@ -40,7 +40,7 @@
 %Author (Saminda Abeyruwan, Faisal Sikder, Ubbo Visser, Dilip Sarkar)}
 %\setcounter{secnumdepth}{0}  
 %\title{Semi-Automatic Extraction of  Training Examples from Sensor Readings for Activity Monitoring and Prediction for Humans and NAO Humanoid Robots}
-\title{Semi-Automatic Extraction of Training Examples from Sensor Readings for Tracking Human Activities}
+\title{\hl{Semi-Automatic Extraction of Training Examples from Sensor Readings for Tracking Human Activities}}
 %\title{Activity Monitoring and Prediction for Humans and NAO Humanoid Robots using 
 %Wearable Sensors}
 \author{{Saminda Abeyruwan}, {Dilip Sarkar}, {Faisal Sikder}, and {Ubbo Visser}
@@ -57,9 +57,9 @@ Department of Computer Science, University of Miami,
 \maketitle
 
 \begin{abstract}
-	\hl{
+	
 While humans perform activities of daily life, an accident 
-such as a fall may occur. This might cause injuries to the human body, and immediate identification of it can alert for a fast response.  Currently, a plethora of inexpensive wireless motion sensing devices are available or can be assembled using off-the-shelf components. They are being used to collect motion data to monitor non-fall activities and fall events. However, there are remaining problems such as automatic extraction of motion features that distinguishes among the prior categories. We have developed a framework to setup a wireless sensor network collecting motion data. We also have introduced a novel method for semi-automatically extracting training examples from the motion data. We have developed a two-level classification network to accurately identify each type of non-fall activities and fall events. The proposed classification-network is a combination of neural and softmax regression networks.  Our empirical evaluations of the proposed two-layer network show that seven types of non-fall activities and four types of fall events are classified on our datasets with 100\% accuracy. }
+such as a fall may occur. This might cause injuries to the human body, and immediate identification of it can alert for a fast response.  Currently, a plethora of inexpensive wireless motion sensing devices are available or can be assembled using off-the-shelf components. They are being used to collect motion data to monitor non-fall activities and fall events. \hl{However, there are remaining} problems such as automatic extraction of motion features that distinguishes among the prior categories. We have developed a framework to setup a wireless sensor network \hl{collecting motion data}. We also have introduced a novel method for semi-automatically extracting training examples from the motion data. \hl{We have developed} a two-level classification network to accurately identify each type of non-fall activities and fall events. The proposed classification-network is a combination of neural and softmax regression networks.  \hl{Our empirical evaluations of the proposed two-layer network show that seven types of non-fall activities and four types of fall events are classified on our datasets with 100\% accuracy.}
 \end{abstract}
 
 \begin{IEEEkeywords} Fall detection, learning algorithms, neural networks, {MEMS}, 9-axis sensor, semi-automatic extraction of training examples, softmax.
@@ -72,7 +72,7 @@ such as a fall may occur. This might cause injuries to the human body, and immed
 %Justification for activity monitoring
 Fall is a major cause of injury to the elderly population \cite{Rubenstein2006}. 
 Each year about 30-60\% of the elderly population have one or more falls, and  about 10-20\% of these falls results in injury \cite{Rubenstein2006}. 
-As reported in the Centers for Disease Control and Prevention (CDC) website 
+As reported in the \hl{Centers for Disease Control and Prevention} (CDC) website 
 \cite{CDC2014July},
 ``In 2010, falls among older adults cost the U.S. health care system \$30 billion in direct medical costs, when adjusted for inflation.'' By 2020 it is expected to reach \$67.7 billion. 
 \par 
@@ -170,7 +170,7 @@ collecting motion data from  humans.
 The data collection device is connected to a computer with a USB cable for logging sensed data. }  
 
 We have developed a set of software tools to create a framework that allow us
-\begin{inparaenum}[($i$)] \item  \hl{to setup the WSN}, \item \hl{to collect data}, \item \hl{to extract training examples from sensor readings (see Section \ref{sec:SemiAutomaticExtractionOfTrainingVectors})}, \item \hl{to learn from sample examples}, and \item 
+\begin{inparaenum}[($i$)] \item  \hl{to setup the WSN}, \item \hl{to collect data}, \item \hl{to extract training examples from sensor readings} (see Section \ref{sec:SemiAutomaticExtractionOfTrainingVectors}), \item \hl{to learn from sample examples}, and \item 
 \hl{to monitor and predict events}. \end{inparaenum} This framework is general enough for other practitioners to use the
 available functionalities for creating WSNs, collecting data, learning, and prediction.
 
@@ -318,7 +318,7 @@ microcontrollers and on boosterpacks.
 
 %TODO: write what is meant by ``ordering''
 
-\hl{We have divided each task into two components for an easier description and for the clarity of understanding: a {\em module} and one or more {\em representations}. A module implements executable code, while a representation exchange information from one module to another. Thus, a module may generate information for multiple representations as well as it may get inputs from multiple representations. }
+\hl{We have divided each task into two components for an easier description and for the clarity of understanding: a} {\em module} \hl{ one or more} {\em representations}. \hl{A module implements executable code, while a representation exchange information from one module to another. Thus, a module may generate information for multiple representations as well as it may get inputs from multiple representations. }
 \par
 Once a user provides dependency descriptions, the framework converts it  into a directed graph (also know as precedence graph, or conflict graph).  If the graph has no cycle, the framework topologically sorts (see a book on algorithms such as\cite{Cormen:AlgorithmBook}), the nodes and creates an schedule for execution of the modules. In case the graph has one or more cycles, the framework reports so to the users.
 For a visualization of the schedule, the framework  generates a directed graph. In this graph, modules are drawn as blue-shaded rectangles with rounded corners and the representations are drawn as yellow-shaded rectangles with pointed corners. The dependence of a modules on a representation is depicted as with a black arc with a solid line, while the dependency of a representation on a module is depicted with a blue arc with a dotted line.
