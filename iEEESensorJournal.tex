@@ -102,7 +102,7 @@ In our study, fall and non-fall activities of biped robots were identified with 
 
 
 
-\begin{figure}[tb]
+\begin{figure}[!tb]
 \centering
 \subfloat[]{\label{fig:fb}\includegraphics[width=0.28\columnwidth]{figures/human_figure.eps}}
 \qquad
@@ -338,7 +338,7 @@ useful for training as well as monitoring of events and falls.
 
 
 
-\begin{figure}
+\begin{figure}[!tbh]
 \centering
   \mbox{\subfloat[Motion dataset for  fall forward event of a human 
   subject.]{\label{fig:human_fall_forward_crop} 
@@ -370,6 +370,12 @@ process was repeated for each time-series of all motion datasets. Thus, we have 
 Selection of an overlap of ten samples is based on our empirical observation that a transition from non-fall event to a fall event takes about 500$ms$. Thus, averaged values will preserve transitions from non-fall events to fall events.   We have used the preprocessed time-series as the input to our automatic training example 
 extraction method.
 
+\begin{figure}[b]
+\centering
+\includegraphics[width=0.4\textwidth]{plots/human_falling_forward2.eps} 
+\caption{Semi-automatic annotation of falling forward event dataset.}
+ \label{fig:automatic_annotation} 
+\end{figure}
 
 \subsection{Semi-Automatic  Extraction of Training Examples}
 
@@ -377,9 +383,9 @@ The barrier for collecting motion data is very low, if any. However, detection a
 
 The flow chart of the method used for extracting training examples are shown in Fig.~\ref{fig:FlowChartforAlgorTrainingExamples}. All the collected datasets were annotated as described next. If a dataset was for simulated-fall events, the dataset was treated as a 6-dimension vectors for clustering them into two clusters. We explored K-Mean and Gaussian Mixture clustering techniques. For completeness a brief description of each is provided next.
 
-\begin{figure}[htb]
+\begin{figure}[!htb]
 	\centering
-		\includegraphics[width = 0.65\columnwidth]{figures/FlowChartAlgoForTrainingExamples.pdf}
+		\includegraphics[width = 0.6\columnwidth]{figures/FlowChartAlgoForTrainingExamples.pdf}
 	\caption{Flow chart of an algorithm for semi-automatic extraction of training 
 	examples}
 	\label{fig:FlowChartforAlgorTrainingExamples}
@@ -406,9 +412,21 @@ clusters and  each cluster was annotated. Figures~\ref{fig:automatic_annotation}
 \ref{fig:automatic_annotation2}  show annotated time-series for a fall-forward and a fall-backward datasets. As can be seen for our fall-event datasets, the choice of $k=2$ is the 
 optimal value that clearly separated the duration of the fall. 
 
+\begin{figure}[b]
+\centering
+\includegraphics[width=0.4\textwidth]{plots/human_falling_backward2.eps} 
+\caption{Semi-automatic annotation of falling backward event dataset.}
+ \label{fig:automatic_annotation2} 
+\end{figure}
+
+\begin{figure*}[!bht]
+\centering
+\includegraphics[width=.85\textwidth]{figures/viz_all_training_examples_crop2.pdf} 
+\caption{Visualization of 11 sets of training examples using Tsne projection. In this projection, the 4 fall events (numbered 1 through 4) show a clear separation from each other and other 7 non-fall events.}
+ \label{fig:automatic_annotation3} 
+\end{figure*}
 
 \subsubsection{Multivariate Gaussian Mixtures}
-
 Gaussian mixture clustering is a generalization of k-mean clustering, where each cluster 
 is assumed to be from a Gaussian distribution parametrized by $\boldsymbol{\mu}_k$ and 
 $\boldsymbol{\Sigma}_k$. The mean vector $\boldsymbol{\mu}_i$ represents the center of the 
@@ -417,7 +435,6 @@ Usually, an \emph{expectation maximization} (EM) algorithm iteratively identifie
 clusters. Compared to the clustering results obtained from k-mean, the mixture models did not 
 provide an optimal separation for our fall datasets. Therefore, we omit results for the Gaussian mixture clustering, and present results for
 k-means algorithm only. 
- 
 
 Our method is relatively simple and easy to implement in practice. We have used the 
 samples from the preprocessing stage, and subjected them to k-means algorithm. We have empirically found that the minimum cost separation is 
@@ -428,23 +445,6 @@ triggers and the subject falls to the ground. Therefore, the signature of this p
 differs from the states before the process starts (e.g., standing) and the states after 
 (e.g., laying on the floor). Therefore, each fall dataset, there exists a duration in 
 which the fall triggered and continued.
-
-
-\begin{figure}[!tb]
-\centering
-\includegraphics[width=0.45\textwidth]{plots/human_falling_forward2.eps} 
-\caption{Semi-automatic annotation of falling forward event dataset.}
- \label{fig:automatic_annotation} 
-\end{figure}
-
-
-\begin{figure}[!tb]
-\centering
-\includegraphics[width=0.45\textwidth]{plots/human_falling_backward2.eps} 
-\caption{Semi-automatic annotation of falling backward event dataset.}
- \label{fig:automatic_annotation2} 
-\end{figure}
-
 
 Figures~\ref{fig:automatic_annotation} and \ref{fig:automatic_annotation2} show plots and annotations of our semi-automatic annotation of falling-forward  and falling-backward datasets, respectively. The subject in this experiment simulated a fall froward. After a 
 fall, the subject immediately gets up and repeats the process. The green ``+'' segments 
@@ -457,14 +457,6 @@ towards the end of the preceding non-fall data points and continues into the beg
 
 \par
 For visualization of 11 sets of training examples, a sample Tsne projection  is displayed in Fig.~\ref{fig:automatic_annotation3}. In this projection, the 4 fall events (numbered 1 through 4) show a clear separation from each other and all 7 non-fall events. Although, separation of non-fall events in Fig.~\ref{fig:automatic_annotation3} do not show as good separations, but our results show that they are far enough from each other for 100\% accurate classifications.
-
-\begin{figure*}[!htb]
-\centering
-\includegraphics[width=.85\textwidth]{figures/viz_all_training_examples_crop2.pdf} 
-\caption{Visualization of 11 sets of training examples using Tsne projection. In this projection, the 4 fall events (numbered 1 through 4) show a clear separation from each other and other 7 non-fall events.}
- \label{fig:automatic_annotation3} 
-\end{figure*}
-
 
 Since we are 
 interested in the signatures of the fall events, we have annotated all the samples belongs 
@@ -532,21 +524,14 @@ or Frobenius product.
  We have used L-BFGS \cite{DBLP:conf/icml/LeNCLPN11} to learn the 
 parameter vector $\mathbf{W}$.  
 
-\begin{figure}[htbp]
+\begin{figure}[t]
 	\centering
-		\includegraphics[width=0.75\columnwidth]{figures/SoftmaxLayer1.eps}
+		\includegraphics[width=0.7\columnwidth]{figures/SoftmaxLayer1.eps}
 	\caption{Layer 1 learning modules. Examples are classified into Fall and Non-Fall events.  The left-side Figure is using Softmax Regression model. The Right-side Figure is a hybrid of Neural Network and Softmax Regression model.}
 	\label{fig:SoftmaxLayer1}
 \end{figure}
 
 We trained and tested two networks with the Softmax regression algorithm. In the first case, we trained a one-layer network with 11 binary outputs, one for each fall or non-fall events. In the second case, we trained a two layer softmax regression network. The top layer network was trained with 2 binary outputs to distinguish between fall and non-fall events (see Fig.~\ref{fig:SoftmaxLayer1}). The bottom layer has two sub-networks:  one to identify fall events and has 4 binary outputs, the other to identify non-fall events and has 7 binary outputs. Each sub-network was trained separately. Fig.~\ref{fig:SoftmaxLayer2Fall} shows a block diagram of a subnetwork for training and identification of four fall events. For conserving space, we omit the diagram for non-fall events. As will be discussed in the next section, none of them identified all events with 100\% accuracy.
-
-\begin{figure}[htbp]
-	\centering
-		\includegraphics[width=0.75\columnwidth]{figures/SoftmaxLayer2Fall.eps}
-	\caption{Layer 2 learning module for four Fall events. The left-side Figure is using Softmax Regression model. The right-side Figure is a hybrid of Neural Network and Softmax Regression }
-	\label{fig:SoftmaxLayer2Fall}
-\end{figure}
 
 
 \subsection{Hybrid Algorithm: Neural Network with Softmax Regression}
@@ -564,6 +549,14 @@ dimension across the training set and subtracting this from each dimension. Then
 dimension is divided by its standard deviation.       
 
 Similar to Softmax regression networks, we experimented  with both single-layer hybrid networks and two-layer hybrid networks. While single-layer network failed to identify all events with 100\% accuracy, the two-layer network successfully identified all event with 100\% accuracy. There were no false positives or false negatives. In the rest of paper, we use hybrid networks and neural networks interchangeably.
+
+\begin{figure}[t]
+	\centering
+		\includegraphics[width=0.7\columnwidth]{figures/SoftmaxLayer2Fall.eps}
+	\caption{Layer 2 learning module for four Fall events. The left-side Figure is using Softmax Regression model. The right-side Figure is a hybrid of Neural Network and Softmax Regression }
+	\label{fig:SoftmaxLayer2Fall}
+\end{figure}
+
 
 \section{Online Activity Monitoring and Identification}
 
@@ -594,7 +587,7 @@ used the first 20, 18, 16, 14, and 12 average values. These  values are used in 
 identification. We then incremented the second circular buffer by 10 samples and continued 
 the process.  
 
-\begin{figure}[h]
+\begin{figure}[!tbh]
 	\centering
 		\includegraphics[width=0.365\textwidth]{figures/TrainedIdentificationModule.eps}
 	\caption{Block diagram of event identification system. The top layer separates fall events from non-fall events. The bottom layer modules receive the same input data vector as the top layer, but they also get a zero or one input from the upper layer module depending on where the input data vector is classified. The final output is a binary valued vector of 11 components.}
@@ -810,6 +803,9 @@ We have developed a generic software platform for embedded devices. The software
 In order to accurately identify these events, it is necessary to extract distinguishing features from the motion data. Here, we have proposed a novel semi-automatic training example extraction method to identify features and automatically annotate the datasets. The proposed method significantly  expedites the creation of the training set compared to manually extracting them. Moreover, we have proposed and implemented a two-level classification network with  a combination of neural and softmax regression networks to identify seven type of non-fall activities and four types of fall events with 100\% accuracy. 
 
 While the evaluation of the proposed techniques using our off-the-shelf device has proven to be effective, the project is far from complete. It requires further testing. Also, for real-world deployment, a miniaturized prototype must be developed and tested on a wide population. We expect that the software platform will require only minimum modifications, if at all.
+\section*{Acknowledgement}
+\label{sec:Acknowledgement}
+Authors greatly appreciate  constructive comments and suggestions of anonymous reviewers. Their comments have improved presentations of the contents.
 
 \bibliographystyle{plain}
 \bibliography{references,fallRisk}
