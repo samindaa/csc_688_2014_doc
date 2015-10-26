@@ -57,7 +57,7 @@ Department of Computer Science, University of Miami,
 \IEEEpeerreviewmaketitle
 
 \begin{abstract}
-While humans perform daily life activities, an accident such as a fall may occur. This might cause physical injuries, and immediate identification of it can alert for a fast response.  Currently, a plethora of inexpensive wireless motion sensing devices are available or can be assembled using off-the-shelf components. They are being used to collect motion data to monitor non-fall activities and fall events. However, there are remaining problems such as automatic extraction of motion features that distinguishes among the prior categories. We have developed a framework to setup a wireless sensor network collecting motion data. We also have introduced a novel method for semi-automatically extracting training examples from the motion data. We have developed a two-level classification network to accurately identify each type of non-fall activities and fall events. The proposed classification-network is a combination of neural and softmax regression networks.  Our empirical evaluations of the proposed two-layer network shows that seven types of non-fall activities and four types of fall events are classified on our datasets with 100\% accuracy. 
+While humans perform daily life activities, an accident such as a fall may occur. This might cause physical injuries, and immediate identification of it can alert for a fast response.  Currently, a plethora of inexpensive wireless motion sensing devices are available or one can be assembled using off-the-shelf components. They are being used to collect motion data to monitor non-fall activities and to detect fall events. However, there are remaining problems such as automatic extraction of motion features that distinguishes among the prior categories. We have developed a framework to setup a wireless sensor network for collecting motion data. We also have introduced a novel method for semi-automatically extracting training examples from the motion data. We have developed a two-level classification network to accurately identify several types of non-fall activities and fall events. The proposed classification-network is a combination of neural and softmax regression networks.  Our empirical evaluations of the proposed two-layer network show that seven types of non-fall activities and four types of fall events are classified on our datasets with 100\% accuracy. 
 \end{abstract}
 
 \begin{IEEEkeywords} Fall detection, learning algorithms, neural networks, {MEMS}, 9-axis sensor, semi-automatic extraction of training examples, softmax.
@@ -70,14 +70,13 @@ While humans perform daily life activities, an accident such as a fall may occur
 %Justification for activity monitoring
 Fall is a major cause of injury to the elderly population \cite{Rubenstein2006}. 
 Each year about 30-60\% of the elderly population have one or more falls, and  about 10-20\% of these falls results in injury \cite{Rubenstein2006}. 
-As reported in the Centers for Disease Control and Prevention (CDC) website 
-\cite{CDC2014July},
-``In 2010, falls among older adults cost the U.S. health care system \$30 billion in direct medical costs, when adjusted for inflation.'' By 2020 it is expected to reach \$67.7 billion. 
+The Centers for Disease Control and Prevention (CDC) reported,
+``In 2010, falls among older adults cost the U.S. health care system \$30 billion in direct medical costs, when adjusted for inflation.'' By 2020 it is expected to reach \$67.7 billion \cite{CDC2014July}. 
 \par 
 The availability of inexpensive miniature \emph{microelectromechanical system} (MEMS) sensors  have motivated researchers  to study their potential for assessing fall-risk  (see \cite{howcroftReview2013}, \cite{MukReview15},
 \cite{shanyReview2012}, and the references therein) as well as monitoring \emph{activities of daily livings} (ADLs) \cite{MukReview15,d2014simple,kan2012wearable,alvarezActivityAndFallRecognotion2015,BaoActivityrecognition2004,DernbachActivityAndFallDetectionPhone2012,krishnanActivityRecognition2014,kumarActivitAndFallDetection2013} and \emph{fall events} (FEs) \cite{baekFallDetection2013,baiFallDetectionPhone2013,DernbachActivityAndFallDetectionPhone2012,shany2012sensors,ranhotigmage2013human,dumitracheFallDetection2013,kumarActivitAndFallDetection2013,leoneFallDetection2013,liangFallDetection2012,liFallDetection2009,moyaFallAndDamageDetection2015,ojetolaFallDetection2011,ShenFallDetectionPhone2015,steidlFallDetection2012,DoukasFallDetection2011,ErdoganFallDetection2014,JianFallDetection2015,aziz2011analysis}. These studies have used  accelerometers,  or gyroscopes, or magnetometers, or  a combination of them to collect motion datasets at  25 Hz to 200 Hz. 
 \par
-Earlier studies demonstrated feasibility of various miniature wired or wireless devices, and recent studies have focused on extracting knowledge from motion sensor data.  Results from past studies have proven  that hardware for MEMS sensor based \emph{intelligent} devices to \begin{inparaenum} [($i$)] \item assess fall-risks, \item monitor ADLs, and \item identify fall events has reached maturity and can be assembled from off-the-shelf hardware. \end{inparaenum}   
+Earlier studies demonstrated feasibility of various miniature wired or wireless devices, and recent studies have focused on extracting knowledge from data of motion sensors.  Results from past studies have proven  that hardware for MEMS sensor based \emph{intelligent} devices to \begin{inparaenum} [($i$)] \item assess fall-risks, \item monitor ADLs, and \item identify fall events has reached maturity and can be assembled from off-the-shelf hardware. \end{inparaenum}   
 
 \par
 Remaining major challenges include automatic development of \begin{inparaenum}[($i$)] \item firmware and software for collecting motion data and  extracting features specific to applications and users, and \item software module for making intelligent decisions utilizing features extracted from motion data. \end{inparaenum}
@@ -137,9 +136,7 @@ semi-automatic extraction  of \begin{inparaenum} [($i$)] \item training samples 
 used by  learning algorithms  and \item testing data for activity monitoring. 
 \end{inparaenum} Outlines of offline leaning algorithms used for teaching the device to 
 identify activities and fall events are described in Section~\ref{sec:OffLineLearning}. 
- In the penultimate section, we present a detailed description of evaluation of proposed methods and also, report some typical results for humans.
-
-Finally, the paper is concluded with a summary and future work.  
+ In the penultimate section, we present a detailed description of evaluation of proposed methods and also, report some typical results for humans. Finally, the paper is concluded with a summary and future work.  
 
 \section{Related Work}
 \label{subSec:relatedWork}
@@ -150,61 +147,56 @@ Based on the platforms used, modern activity detection methods can be broadly ca
 activity recognition methods for humans and biped humanoid robots alike. 
 
 \par
-Using readings from accelerometer and gyroscope a method for detecting four fall events --- forward, backward, right, and left - was reported in \cite{ojetolaFallDetection2011}.  The reported method utilized  a decision tree to 
-learn and classify falls and activities of daily living (ADL). The method identified fall events 
-with a precision of 81\%  and a recall of 92\%. 
+Using readings from accelerometer and gyroscope a method for detecting four fall events --- forward, backward, right, and left - was reported in \cite{ojetolaFallDetection2011}.  The method utilized  a decision tree to 
+learn and classify falls and ADLs. It identified fall events 
+with 81\% precision and 92\% recall rate. 
 
-Another detection method reported in\cite{baekFallDetection2013} used necklace-shaped tri-axial
-accelerometer  and  gyroscope  sensors  for classifying  the  behavior  and  posture  of  human
- subjects. Their method distinguished between ADLs and  falls, with  sensitivities  greater  than 
- 80\%  and specificities  of  100\%. Their experiments included both normal ADLs such as standing, sitting in the 
+The method  in\cite{baekFallDetection2013} used  data from tri-axial
+accelerometer  and  gyroscope  sensors, embedded in a necklace, for classifying  the  behavior  and  posture  of  human
+ subjects. Their method distinguished between ADLs and  falls, with 80\%  or higher sensitivity  
+  and  100\% specificity. Their experiments included both normal ADLs such as standing, sitting in the 
  chair or floor, laying, walking, running, going upstairs/downstairs, and bending, as well as abnormal events such as
  falling forward, backward, leftward, rightward, and fall on the stairs. 
  
-A system to detect events that cause trauma, and disabilities
-using a tri-axial MEMS wearable wireless accelerometer was proposed in \cite{leoneFallDetection2013}. They used SVM for
+A system  to detect  events that may cause trauma and disabilities  was proposed in \cite{leoneFallDetection2013}. It used readings form MEMS accelerometer embedded in a wearable wireless device. They used SVM for
 classification of different events. For study reported in \cite{BaoActivityrecognition2004},  five 
 small-biaxial wire-free accelerometers were attached  on the left bicep, the right wrist, the left quadriceps, 
-the right ankle, and the right hip  of the subjects for collecting motion data to recognize 20 activities including,   walking  to  riding elevator  to  strength  training to bicycling. For recognition of activities they reported performance of decision table, instance-based learning, 
-decision tree, and na\"{i}ve Bayes classifiers; the decision-tree based method performed best and had an accuracy of
- 84\%.  Similar efforts have been reported to detect human motions using motion 
+the right ankle, and the right hip  of the subjects for collecting motion data to recognize 20 activities including,   walking  to  riding elevator  to  strength  training to bicycling. They evaluated performance of decision table, instance-based learning, 
+decision tree, and na\"{i}ve Bayes classifiers and found  that the decision-tree based method performed best and had 
+ 84\% accuracy.  Similar efforts have been reported to detect human motions using motion 
 tracking (see 
 \cite{dumitracheFallDetection2013,kumarActivitAndFallDetection2013,krishnanActivityRecognition2014,gaoActivityRecognition2014,alvarezActivityAndFallRecognotion2015}).
  
 
-
-{~\cite{moyaFallAndDamageDetection2015}} proposed a fall detection, avoidance, and damage 
-reduction mechanism for biped humanoid robots. They simulated the real world environment 
-where humanoid robots had to walk over irregular surface, run or play sports where fall or collision 
+A fall detection, avoidance, and damage 
+reduction mechanism for biped humanoid robots was proposed in {~\cite{moyaFallAndDamageDetection2015}}.
+They simulated the real world environment for humanoid robots. These biped robots walked over irregular surface, run or play sports where fall or collision 
 with other robots may occur. Their framework detected instability and executed fall avoidance  procedures, or invoked mechanism  that would reduce damage in case of a fall. The goal of the study was to show that embedded devices  with add-on sensors provide a flexible platform for many real-world applications. 
 
 
 There is an increasing interest in using smart-phones to detect activities in health care domain. 
-Using only the accelerometer readings from a smart-phone, \cite{baiFallDetectionPhone2013} analyzed five 
-actions of human walking, running, standing up, sitting down, and jumping. They compared the 
-acceleration characteristics of these actions with three different fall accelerations to infer the 
-direction of the fall. Their method recognized the fall activity, only when a predetermined set of 
+Using only the readings from accelerometer  of a smart-phone,  five 
+actions of human --- walking, running, standing up, sitting down, and jumping  --- were analyzed in \cite{baiFallDetectionPhone2013}. They compared the acceleration characteristics of these actions with  those of three different fall events to infer the 
+direction of a fall. The method recognized the fall activity, only when a predetermined set of 
 conditions were satisfied. But the method did not provide any prediction or hint that a fall could occur in the near future. 
 
-\cite{steidlFallDetection2012} reported that the sensors in the smart-phones of different manufactures 
-record significantly incompatible ranges values for identical tasks. To overcome this problem, they trained a SVM 
-classifier based on the features extracted from raw accelerometer readings and the directional 
+ It was show in \cite{steidlFallDetection2012}, that the sensors in the smart-phones of different manufactures 
+record significantly different range of values for identical tasks. 
+To overcome this problem, they trained a SVM with extracted features from raw accelerometer readings and the directional 
 changes of the constraining force exerted on an accelerometer to detect fall events. They compared 
 these events to non-fall activities such as walking, running, jumping, and some actives which 
-resembles falls such as sitting down on a chair. Their method detected fall events with 84.8\% average 
-accuracy for different smart-phones. 
+resembles falls such as sitting down on a chair. Their method detected fall events with recordings from different smart-phones with 84.8\% accuracy. 
 
-\cite{DernbachActivityAndFallDetectionPhone2012} explored methods to detect simple and complex activities using accelerometer and gyroscope of an Android smart-phone. The simple activities including 
+Methods to detect simple and complex activities using reading from accelerometer and gyroscope of an Android smart-phone were explored in\cite{DernbachActivityAndFallDetectionPhone2012}. The simple activities including 
 biking, climbing stairs, driving, running, sitting, standing, walking, and the phone-not-on-the-person, and  complex activities such as cleaning, cooking, medication, sweeping, washing hands, 
 and watering plants were  combined together for recognition. Six different classifiers --- multi-layer  perceptron (MLP), na\"{i}ve  Bayes,  
 Bayesian  network,  decision  table,  best-first tree, and  K-star ---  were trained using  the same set of
-features extracted for the datasets. For simple activities, 93\% accuracy with MLP was reported, but only 50\% 
-success was achieved for complex activities.    
+features extracted from the datasets. They obtained 93\% accuracy for simple activities (with MLP), but only 50\% accuracy 
+for complex activities.    
 
-\cite{ShenFallDetectionPhone2015} used a  high-level fuzzy Petri net for the analysis and the development of 
-identifying normal human actions such as sitting-down, squatting, walking, running, and jumping and 
-abnormal events such as falling forward, backward, sideways, and vertical. Their fall detection 
-method reported 94\% accuracy. One disadvantage of their process was that, some complex situations 
+ In \cite{ShenFallDetectionPhone2015}, High-level fuzzy Petri nets were evaluated for the analysis and detection of normal human actions such as sitting-down, squatting, walking, running, and jumping and 
+abnormal events such as falling forward, backward, sideways, and vertical. They 
+ 94\% accuracy for fall-detection. One disadvantage of their process was that, some complex situations 
 and movements cannot be detected accurately; e.g., falling down from  stairs, multiple collisions, 
 or temporal unbalanced motions.
 
