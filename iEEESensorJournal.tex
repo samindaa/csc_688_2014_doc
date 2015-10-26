@@ -177,7 +177,7 @@ with other robots may occur. Their framework detected instability and executed f
 There is an increasing interest in using smart-phones to detect activities in health care domain. 
 Using only the readings from accelerometer  of a smart-phone,  five 
 actions of human --- walking, running, standing up, sitting down, and jumping  --- were analyzed in \cite{baiFallDetectionPhone2013}. They compared the acceleration characteristics of these actions with  those of three different fall events to infer the 
-direction of a fall. The method recognized the fall activity, only when a predetermined set of 
+direction of a fall. The method recognized a fall activity, only when  a predetermined set of 
 conditions were satisfied. But the method did not provide any prediction or hint that a fall could occur in the near future. 
 
  It was show in \cite{steidlFallDetection2012}, that the sensors in the smart-phones of different manufactures 
@@ -185,24 +185,26 @@ record significantly different range of values for identical tasks.
 To overcome this problem, they trained a SVM with extracted features from raw accelerometer readings and the directional 
 changes of the constraining force exerted on an accelerometer to detect fall events. They compared 
 these events to non-fall activities such as walking, running, jumping, and some actives which 
-resembles falls such as sitting down on a chair. Their method detected fall events with recordings from different smart-phones with 84.8\% accuracy. 
+resembles falls such as sitting down on a chair. Their method detected fall events 
+%with recordings from different smart-phones 
+with 84.8\% accuracy. 
 
-Methods to detect simple and complex activities using reading from accelerometer and gyroscope of an Android smart-phone were explored in\cite{DernbachActivityAndFallDetectionPhone2012}. The simple activities including 
+Methods to detect simple and complex activities using reading from accelerometer and gyroscope of an Android smart-phone were studied in\cite{DernbachActivityAndFallDetectionPhone2012}. The simple activities including 
 biking, climbing stairs, driving, running, sitting, standing, walking, and the phone-not-on-the-person, and  complex activities such as cleaning, cooking, medication, sweeping, washing hands, 
 and watering plants were  combined together for recognition. Six different classifiers --- multi-layer  perceptron (MLP), na\"{i}ve  Bayes,  
 Bayesian  network,  decision  table,  best-first tree, and  K-star ---  were trained using  the same set of
 features extracted from the datasets. They obtained 93\% accuracy for simple activities (with MLP), but only 50\% accuracy 
 for complex activities.    
 
- In \cite{ShenFallDetectionPhone2015}, High-level fuzzy Petri nets were evaluated for the analysis and detection of normal human actions such as sitting-down, squatting, walking, running, and jumping and 
-abnormal events such as falling forward, backward, sideways, and vertical. They 
- 94\% accuracy for fall-detection. One disadvantage of their process was that, some complex situations 
-and movements cannot be detected accurately; e.g., falling down from  stairs, multiple collisions, 
+ In \cite{ShenFallDetectionPhone2015}, High-level fuzzy Petri-net based systems were proposed and evaluated for the analysis and detection of normal human actions such as sitting-down, squatting, walking, running, and jumping as well as 
+abnormal events such as falling forward, backward, sideways, and vertical. They reported
+ 94\% accuracy for fall-detection. But, the proposed system  could not accurately detect some complex situations 
+and movements  such as falling down from  stairs, multiple collisions, 
 or temporal unbalanced motions.
 
 \par 
 To the 
-best of our knowledge only three studies have been dedicated to biped robots \cite{Andre2015,Goswami2014,Moya2015}. The focus for these studies were prediction of a fall before it occurs and taking corrective measures to prevent the fall. The work reported in these papers are using readings from multiple sensors embedded in a robot for predicting a potential fall. On the other hand, our research goal is the proper identification of fall and non-fall events after they occur.
+best of our knowledge only three studies have been dedicated to biped robots \cite{Andre2015,Goswami2014,Moya2015}. The focus for these studies were prediction of a fall before it occurs and taking corrective measures to prevent the fall. The work reported in these papers are using readings from multiple sensors embedded in a robot for predicting a potential fall. On the other hand, our research goal is to identify  fall and non-fall events after they occur.
 
 \section{Framework for Data Collection and Processing}
 \label{sec:framework}
