@@ -57,7 +57,7 @@
 \begin{abstract}
 While humans perform daily life activities accidents such as a fall or a collision may occur. As
 this might cause physical injuries, an immediate identification of an accident could alert humans for a fast
-response in order to prevent the accident. Currently, a plethora of inexpensive wireless motion sensing devices are available or can be assembled using off-the-shelf components. They can be used to collect motion data in 
+response. Currently, a plethora of inexpensive wireless motion sensing devices are available or can be assembled using off-the-shelf components. They can be used to collect motion data in 
 order to monitor non-fall activities and to detect fall events. However, there are remaining problems such as
 automatic extraction of motion features that distinguishes among the prior categories. We propose
  a framework to setup a wireless sensor network for collecting motion data. We also 
@@ -134,7 +134,7 @@ and fall events (see Fig.~\ref{fig:deviceWithSubjects}).
 
 In our study, both fall and non-fall activities of biped robots were identified with
 100\%  accuracy after using a Kalman filter \cite{Welch:1995:IKF:897831} with
-appropriate thresholding. However, the but same method would not be as successful for our human
+appropriate thresholding. However, the same method would not be as successful for our human
 subjects. Using Logistic Regression and \emph{Support Vector
 Machines} (SVM), the true positive recognition for human subjects was as low as
 90\%\cite{abeyruwanFlairs2015}. The most \emph{ad hoc} and arduous part of our
@@ -215,12 +215,12 @@ forward, backward, leftward, rightward, and fall on the stairs.
 A system  to detect  events that may cause trauma and disabilities  was
 proposed in \cite{leoneFallDetection2013}. It used readings from MEMS
 accelerometer embedded in a wearable wireless device. They use SVM for
-the classification of different events. Bao \& Intille 
+the classification of different events. Bao and Intille 
 \cite{BaoActivityrecognition2004} used five small-biaxial wire-free accelerometers
 that were attached  on the left bicep, the right wrist, the left quadriceps, the
-right ankle, and the right hip  of the subjects for collecting motion data. They 
-aim at recognizing 20 activities including walking to riding elevator for
-bicycle training. They evaluated the performance of a decision table,
+right ankle, and the right hip  of the subjects for collecting motion data. They used motion data for 
+recognizing 20 activities, including walking, riding elevator, strength training, and
+bicycle . They evaluated the performance of a decision table,
 instance-based learning, a decision tree, and na\"{i}ve Bayes classifiers. The results
 revealed that the decision-tree based method performed best with 84\%
 accuracy.  Similar efforts have been reported to detect human motions using
@@ -272,12 +272,12 @@ In \cite{ShenFallDetectionPhone2015}, high-level fuzzy Petri-net based systems
 were proposed and evaluated for the analysis and detection of normal human
 actions such as sitting-down, squatting, walking, running, and jumping as well
 as abnormal events such as falling forward, backward, sideways, and vertical.
-They reported 94\% accuracy for fall-detection. Howver, the proposed system  could
+They reported 94\% accuracy for fall-detection. However, the proposed system  could
 not accurately detect some complex situations and movements  such as falling
 down from  stairs, multiple collisions, or temporal unbalanced motions.
 
-\par To the best of our knowledge only three studies have been dedicated using
-biped robots \cite{Andre2015,Goswami2014,Moya2015}. The focus for these studies
+\par Only three studies have been reported for biped robots
+\cite{Andre2015,Goswami2014,Moya2015}. The focus for these studies
 were prediction of a fall before it occurs and taking corrective measures to
 prevent the fall. The work reported in these papers are using readings from
 multiple sensors embedded in a robot for predicting a potential fall. On the
@@ -557,7 +557,7 @@ datasets as well. For example, if we consider the falling-forward event, there
 is a window in which the fall triggers and the subject falls to the ground.
 Therefore, the signature of this process differs from the states before the
 process starts (e.g., standing) and the states after (e.g., laying on the
-floor). Therefore, each fall dataset, there exists a duration in which the fall
+floor). Therefore, for each fall-event dataset, there exists a duration in which the fall
 triggered and continued.
 
 Figures~\ref{fig:automatic_annotation} and \ref{fig:automatic_annotation2} show
@@ -576,13 +576,11 @@ transition zone of a fall event.
 \par For visualization of 11 sets of training examples, a sample Tsne
 projection  is displayed in Fig.~\ref{fig:automatic_annotation3}. In this
 projection, the 4 fall events (numbered 1 through 4) show a clear separation
-from each other and all 7 non-fall events. Although, separation of non-fall
-events in Fig.~\ref{fig:automatic_annotation3} do not show as good separations,
-but our results show that they are far enough from each other for 100\%
-accurate classifications.
+from each other and all 7 non-fall events. Although Fig.~\ref{fig:automatic_annotation3} does show as good separations for non-fall events, the results, reported in Section~\ref{Evaluation}, show that the separations are for good enough for classification of the events with 100\%
+accuracy.
 
 Since we are interested in the signatures of the fall events, we have annotated
-all the samples belongs to ``a'' cluster as the fall data. In general, the
+all the samples  that belong to ``a'' cluster as the fall data. In general, the
 k-means clustering finds a local minimum. Moreover, the cluster assignments may
 vary depending on the initialization. Therefore, after we have obtained the
 data belongs to two clusters, we only have to manually provide the semantics of
@@ -602,7 +600,7 @@ training example extracted according to the methods presented in Section
 classifiers that we have considered in our experiments and their
 configurations. 
 
-Using our semi-automated training example extraction method, we have created $m \in 
+Using our semi-automated training example extraction method, we have created $i \in 
 \mathbb{N}$ 
 training examples 
 \{($\mathbf{x}^{(i)}, \mathbf{y}^{(i)}$)\}$_{i=1}^m$ such that $\mathbf{x} \in 
@@ -997,7 +995,7 @@ be developed and tested on a wide population. We expect that the software
 platform will require only minimum modifications, if at all.
 \section*{Acknowledgement} \label{sec:Acknowledgement} Authors greatly
 appreciate  constructive comments and suggestions of anonymous reviewers. Their
-comments have improved presentations of the contents.
+comments have improved presentations of the contents, especially Sections~\ref{sec:Intro} and \ref{subSec:relatedWork}.
 
 \bibliographystyle{plain}
 \bibliography{references,fallRisk}
