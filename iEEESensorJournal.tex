@@ -86,12 +86,12 @@ reported, ``In 2010, falls among older adults cost the U.S. health care system
 is expected to reach \$67.7 billion \cite{CDC2014July}.  \par The availability
 of inexpensive miniature \emph{microelectromechanical system} (MEMS) sensors
 have motivated researchers  to study their potential for assessing fall-risk
-(see \cite{howcroftReview2013}, \cite{MukReview15}, \cite{shanyReview2012}, and
+(see \cite{howcroftReview2013}, \cite{MukReview15}, \cite{shany2012sensors}, and
 the references therein) as well as monitoring \emph{activities of daily
 livings} (ADLs)
 \cite{MukReview15,d2014simple,kan2012wearable,alvarezActivityAndFallRecognotion2015,BaoActivityrecognition2004,DernbachActivityAndFallDetectionPhone2012,krishnanActivityRecognition2014,kumarActivitAndFallDetection2013}
 and \emph{fall events} (FEs)
-\cite{baekFallDetection2013,baiFallDetectionPhone2013,DernbachActivityAndFallDetectionPhone2012,shany2012sensors,ranhotigmage2013human,dumitracheFallDetection2013,kumarActivitAndFallDetection2013,leoneFallDetection2013,liangFallDetection2012,liFallDetection2009,moyaFallAndDamageDetection2015,ojetolaFallDetection2011,ShenFallDetectionPhone2015,steidlFallDetection2012,DoukasFallDetection2011,ErdoganFallDetection2014,JianFallDetection2015,aziz2011analysis}.
+\cite{baekFallDetection2013,baiFallDetectionPhone2013,DernbachActivityAndFallDetectionPhone2012,shany2012sensors,ranhotigmage2013human,dumitracheFallDetection2013,kumarActivitAndFallDetection2013,leoneFallDetection2013,liangFallDetection2012,liFallDetection2009,Moya2015,ojetolaFallDetection2011,ShenFallDetectionPhone2015,steidlFallDetection2012,DoukasFallDetection2011,ErdoganFallDetection2014,JianFallDetection2015,aziz2011analysis}.
 These studies have used accelerometers, gyroscopes, magnetometers, or a
 combination of them to collect motion datasets at  25 Hz to 200 Hz.  \par
 Earlier studies demonstrated feasibility of various miniature wired or wireless
@@ -229,7 +229,7 @@ motion tracking (see
  
 
 A fall detection, avoidance, and damage reduction mechanism for biped humanoid
-robots was proposed in {~\cite{moyaFallAndDamageDetection2015}}.  The authors
+robots was proposed in {~\cite{Moya2015}}.  The authors
 simulated the real world environment for humanoid robots. These biped robots would
 walk over irregular surfaces, run or play sports where a fall or a collision with
 other robots may occur. Their framework detects instability and executs fall
@@ -615,7 +615,7 @@ and $\mathbf{y}$ uses the 1--of--$k$ coding scheme.
 \label{sec:SoftmaxRegrationAlgorthm}
 
 The first classification network is based on Softmax regression
-\cite{Bishop06a}. In this model, given an example $\mathbf{x}$, it will
+\cite{Bishop:2006:PRM:1162264}. In this model, given an example $\mathbf{x}$, it will
 determine the probability, $\mathbb{P}(y | \mathbf{x})$, for each dichotomy
 $y=0,\ldots,k-1$. The input is appended with constant bias term, $x_0 = 1$,
 therefore, $\mathbf{x} \in \mathbb{R}^7$. The model uses a parameter matrix
