@@ -143,9 +143,9 @@ of the motivation for the work presented in this paper.
 
 \begin{figure}[!tb]
 \centering
-\subfloat[]{\label{fig:fb}\includegraphics[width=0.28\columnwidth]{figures/human_figure.eps}}
+\subfloat[]{\label{fig:fb}\includegraphics[width=0.28\columnwidth]{figures/human_figure_bw.eps}}
 \qquad
-\subfloat[]{\label{fig:fc}\includegraphics[width=0.25\columnwidth]{figures/robot_figure.eps}} 
+\subfloat[]{\label{fig:fc}\includegraphics[width=0.25\columnwidth]{figures/robot_figure_bw.eps}} 
 \caption{(a) a wireless sensor device (assembled from a Tiva C Series  TM4C123G 
 LaunchPad, a Sensor Hub BoosterPack, a CC2533 BoosterPack, and a Fuel Tank BoosterPack) 
 attached to the back of a human subject; the device is running our framework  with only 
@@ -299,7 +299,7 @@ processing}. This framework is described next.
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=.75\textwidth]{figures/graph_structure_def-crop3.eps}
+\includegraphics[width=.75\textwidth]{figures/graph_structure_def-crop3_bw.eps}
 \caption{Currently available software modules in our framework and a directed-graph representation of their functional relationship. Execution of a module (rounded-corner rectangle) generated data that is stored in the representation module (pointed-corner rectangle) for feeding into the next module.}
  \label{fig:framework}
 \end{figure*}
@@ -338,11 +338,10 @@ topologically sorts (see a book on algorithms such
 as\cite{Cormen:AlgorithmBook}), the nodes and creates an schedule for execution
 of the modules. In case the graph has one or more cycles, the framework reports
 so to the users.  For a visualization of the schedule, the framework  generates
-a directed graph. In this graph, modules are drawn as blue-shaded rectangles
-with rounded corners and the representations are drawn as yellow-shaded
-rectangles with pointed corners. The dependence of a modules on a
+a directed graph. In this graph, modules are drawn as gray-shaded rectangles
+with rounded corners and the representations are drawn as rectangles with pointed corners. The dependence of a modules on a
 representation is depicted as with a black arc with a solid line, while the
-dependency of a representation on a module is depicted with a blue arc with a
+dependency of a representation on a module is depicted with a gray arc with a
 dotted line. 
 
 
@@ -435,7 +434,7 @@ falls.
 \centering
   \mbox{\subfloat[Motion dataset for  fall forward event of a human 
   subject.]{\label{fig:human_fall_forward_crop} 
-  \includegraphics[width=0.9\columnwidth,height = 1.5in]{plots/human_falling-crop.eps}}}
+  \includegraphics[width=0.9\columnwidth,height = 1.5in]{plots/human_falling-crop_bw.eps}}}
   \mbox{\subfloat[Motion dataset for walk forward event of a human subject. 
   ]{\label{fig:human_walk_forward-crop} 
   \includegraphics[width=0.9\columnwidth,height = 1.5in]{plots/human_walk-crop.eps}}}
@@ -529,7 +528,7 @@ value that clearly separated the duration of the fall.
 
 \begin{figure*}[!bht]
 \centering
-\includegraphics[width=.85\textwidth]{figures/viz_all_training_examples_crop2.pdf} 
+\includegraphics[width=.85\textwidth]{figures/viz_all_training_examples_crop2_bw.eps} 
 \caption{Visualization of 11 sets of training examples using Tsne projection.
 In this projection, the 4 fall events (numbered 1 through 4) show a clear
 separation from each other and other 7 non-fall events.}
