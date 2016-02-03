@@ -56,16 +56,20 @@
 
 \begin{abstract}
 %Motivation for the work
-While inexpensive wearable motion-sensing devices have shown great promise for fall detection and posture monitoring,  two major problems still exit and have to be solved: \begin{inparaenum}  \item framework for development of firmware, and \item software to make intelligent decisions. \end{inparaenum} We address both the problems. 
+While inexpensive wearable motion-sensing devices have shown great promise for fall detection and posture monitoring,  two major problems still exist and have to be solved: \begin{inparaenum}  \item a framework for the development of firmware, and \item software to make intelligent decisions. \end{inparaenum} We address both the problems.  
 %The method used
-We propose a generic framework for developing firmware. We also demonstrate that k-means clustering algorithm can semi-automatically extract training examples from motion data. 
+We propose a generic framework for developing firmware. We also demonstrate that the k-means clustering algorithm can semi-automatically extract training examples from motion data. 
 %A wearable devices can preprocess motion data in real time.
 Moreover, we trained and evaluated several one- and two-level classification networks to monitor 
 non-fall activities and to detect fall events.
 The proposed classification-networks are combinations of neural
-and Softmax regression networks. 
+and softmax regression networks. 
 %The results
+<<<<<<< HEAD
 These networks are trained offline with training examples extracted  by our proposed method. Cross-validations of trained two-level networks show 100\% acuracy for non-fall activities and fall events. The dataset for training and testing have been collected using the devices we assembled with four off-the-shelf components and programmed them using a prototype of our proposed framework. The dataset include seven types of non-fall activities and four types of fall events.
+=======
+These networks are trained offline with examples extracted  by our proposed method. Cross-validation of trained two-level networks show 100\% accuracy for non-fall activities and fall events. The datasets for training and testing have been collected using the devices we assembled with four off-the-shelf components. We have programmed them using a prototype of our proposed framework. The datasets include seven types of non-fall activities and four types of fall events.
+>>>>>>> 109836093fead9f3b327e1bb1ce2f611ead0fd04
 %Conclusion reached
 This work advances the state-of-the-art for development and training of wearable devices for monitoring non-fall activities and detecting fall events.
 %
@@ -84,7 +88,7 @@ This work advances the state-of-the-art for development and training of wearable
 \end{abstract}
 
 \begin{IEEEkeywords} Fall detection, learning algorithms, neural networks, {MEMS}, 9-axis sensor,
-semi-automatic extraction of training examples, Softmax.  \end{IEEEkeywords}
+semi-automatic extraction of training examples, softmax regression.  \end{IEEEkeywords}
 
 %\tableofcontents
 
@@ -657,7 +661,7 @@ The Right-side Figure is a hybrid of Neural Network and Softmax Regression
 model.} \label{fig:SoftmaxLayer1}
 \end{figure}
 
-We trained and tested two networks with the Softmax regression algorithm. In
+We trained and tested two networks with the softmax regression algorithm. In
 the first case, we trained a one-layer network with 11 binary outputs, one for
 each fall or non-fall events. In the second case, we trained a two layer
 softmax regression network. The top layer network was trained with 2 binary
@@ -675,9 +679,9 @@ of them identified all events with 100\% accuracy.
 \label{sec:HybridAlgorithmNeuralNetworkAndSoftmaxRegreation}
 
 The hybrid classification network is based on both Artificial Neural Network
-and Softmax regression network. Fig.~\ref{fig:SoftmaxLayer1} shows a block
+and softmax regression network. Fig.~\ref{fig:SoftmaxLayer1} shows a block
 diagram of a hybrid network: a row of neurons followed by a row of softmax
-regression units.  \par We have used the prior Softmax activation  and the
+regression units.  \par We have used the prior softmax activation  and the
 negative-log likelihood functions in the output layer. The hidden layers have
 used \emph{rectified linear units }(ReLUs).  We have also included the bias
 terms for all hidden layers. The backpropagation algorithm\cite{Sarkar1995} has
@@ -688,7 +692,7 @@ computing the mean of each dimension across the training set and subtracting
 this from each dimension. Then each dimension is divided by its standard
 deviation.       
 
-Similar to Softmax regression networks, we experimented  with both single-layer
+Similar to softmax regression networks, we experimented  with both single-layer
 hybrid networks and two-layer hybrid networks. While single-layer network
 failed to identify all events with 100\% accuracy, the two-layer network
 successfully identified all event with 100\% accuracy. There were no false
@@ -776,7 +780,7 @@ $0.1$.}
 
 
 \begin{table}[htb]
-\caption{Performance of a single layer Softmax regression network with six
+\caption{Performance of a single layer softmax regression network with six
 inputs and 11 outputs. On an average 94.4\% of the events were classified
 correctly.} \label{tab:softmaxOnelayer}
 \resizebox{\columnwidth}{!}
@@ -808,7 +812,7 @@ Fig.~\ref{fig:SoftmaxLayer1} for block diagrams of these networks). Performance
 of these networks are discussed in the next two paragraphs.
  
  \paragraph{Softmax Regression} \label{sec:SoftmaxRegression} As can be seen
-from Table~\ref{tab:softmaxOnelayer}, one-layer sofmax regression network with
+from Table~\ref{tab:softmaxOnelayer}, one-layer softmax regression network with
 7 inputs (6 for feature vector and one for bias) and 11 outputs recognized on
 an average 94.4\% of all  events. A closer examination reveals that all but
 three types of events --- fall-forward, walk-forward, and walk-right events
@@ -902,10 +906,10 @@ Activities} \label{sec:LayerTwoFallOrNonFallEventIdentification}
 the performances of layer-two networks are shown in
 Tables~\ref{Layer2FallEvents}, \ref{Layer2NonFallEventsSoftmax}, and
 \ref{Layer2NonFallEventsNeuralNets}. It is easy to see from
-Table~\ref{Layer2FallEvents} that both Softmax and Neural networks at layer-two
+Table~\ref{Layer2FallEvents} that both softmax and Neural networks at layer-two
 correctly classified 100\% of fall events.  Results for seven non-fall events
 are shown in Tables~\ref{Layer2NonFallEventsSoftmax} and
-\ref{Layer2NonFallEventsNeuralNets}. Again both Softmax and Neural networks
+\ref{Layer2NonFallEventsNeuralNets}. Again both softmax and Neural networks
 achieved 100\% accuracy. The neural network used one hidden row of 6 neurons.
 \begin{table}[htb]
 \resizebox{\columnwidth}{!}
@@ -1009,8 +1013,8 @@ be developed and tested on a wide population. We expect that the software
 platform will require only minimum modifications, if at all.
 
 \section*{Acknowledgement} \label{sec:Acknowledgement} Authors greatly
-appreciate  constructive comments and suggestions of anonymous reviewers and editors. Their
-comments have improved presentations of the contents, especially abstract, Sections~\ref{sec:Intro}, and \ref{subSec:relatedWork}.
+appreciate the constructive comments and suggestions of anonymous reviewers and editors. Their
+comments have improved the presentation of the content, especially the abstract, Sections~\ref{sec:Intro}, and \ref{subSec:relatedWork}.
 
 \bibliographystyle{plain}
 \bibliography{references,fallRisk}
