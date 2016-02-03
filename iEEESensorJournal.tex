@@ -28,7 +28,7 @@
 %needed to change table colors
 \usepackage[table]{xcolor}
 %\renewcommand{\arraystretch}{1.75} % General space between rows (1 standard)
-%\renewcommand{\baselinestretch}{2}
+%\renewcommand{\baselinestretch}{2.5}
 \renewcommand\IEEEkeywordsname{Index Terms}
 %%
 %\frenchspacing
@@ -55,16 +55,33 @@
 \IEEEpeerreviewmaketitle
 
 \begin{abstract}
-While humans perform daily life activities, accidents such as a fall or a collision may occur. As
-this might cause physical injuries, an immediate identification of an accident could alert humans for a fast
-response. Currently, a plethora of inexpensive wireless motion sensing devices are available or can be assembled using off-the-shelf components. They can be used to collect motion data in 
-order to monitor non-fall activities and to detect fall events. However, there are remaining problems such as
-automatic extraction of motion features that distinguishes among the prior categories. We propose
- a framework to setup a wireless sensor network for collecting motion data. We also 
-introduce a novel method for semi-automatically extracting training examples from the motion data.
-We developed a two-level classification network to accurately identify several types of
-non-fall activities and fall events. The proposed classification-network is a combination of neural
-and Softmax regression networks. Our empirical evaluations of the proposed two-layer network show that seven types of non-fall activities and four types of fall events are classified on our datasets with 100\% accuracy.  \end{abstract}
+%Motivation for the work
+While inexpensive wearable motion-sensing devices have shown great promise for fall detection and posture monitoring,  two major problems still exit and have to be solved: \begin{inparaenum}  \item framework for development of firmware, and \item software to make intelligent decisions. \end{inparaenum} We address both the problems. 
+%The method used
+We propose a generic framework for developing firmware. We also demonstrate that k-means clustering algorithm can semi-automatically extract training examples from motion data. 
+%A wearable devices can preprocess motion data in real time.
+Moreover, we trained and evaluated several one- and two-level classification networks to monitor 
+non-fall activities and to detect fall events.
+The proposed classification-networks are combinations of neural
+and Softmax regression networks. 
+%The results
+These networks are trained offline with training examples extracted  by our proposed method. Cross-validation of trained two-level networks show 100\% acuracy for non-fall activities and fall events. The dataset for training and testing have been collected using the devices we assembled with four off-the-shelf components and programmed them using a prototype of our proposed framework. The dataset include seven types of non-fall activities and four types of fall events.
+%Conclusion reached
+This work advances the state-of-the-art for development and training of wearable devices for monitoring non-fall activities and detecting fall events.
+%
+%
+%
+%While humans perform daily life activities, accidents such as a fall or a collision may occur. As
+%this might cause physical injuries, an immediate identification of an accident could alert humans for a fast
+%response. Currently, a plethora of inexpensive wireless motion sensing devices are available or can be assembled using off-the-shelf components. They can be used to collect motion data in 
+%order to monitor non-fall activities and to detect fall events. However, there are remaining problems such as
+%automatic extraction of motion features that distinguishes among the prior categories. We propose
+ %a framework to setup a wireless sensor network for collecting motion data. We also 
+%introduce a novel method for semi-automatically extracting training examples from the motion data.
+%We developed a two-level classification network to accurately identify several types of
+%non-fall activities and fall events. The proposed classification-network is a combination of neural
+%and Softmax regression networks. Our empirical evaluations of the proposed two-layer network show that seven types of non-fall activities and four types of fall events are classified on our datasets with 100\% accuracy.  
+\end{abstract}
 
 \begin{IEEEkeywords} Fall detection, learning algorithms, neural networks, {MEMS}, 9-axis sensor,
 semi-automatic extraction of training examples, Softmax.  \end{IEEEkeywords}
@@ -991,9 +1008,9 @@ further testing. Also, for real-world deployment, a miniaturized prototype must
 be developed and tested on a wide population. We expect that the software
 platform will require only minimum modifications, if at all.
 
-%\section*{Acknowledgement} \label{sec:Acknowledgement} Authors greatly
-%appreciate  constructive comments and suggestions of anonymous reviewers. Their
-%comments have improved presentations of the contents, especially Sections~\ref{sec:Intro} and \ref{subSec:relatedWork}.
+\section*{Acknowledgement} \label{sec:Acknowledgement} Authors greatly
+appreciate  constructive comments and suggestions of anonymous reviewers and editors. Their
+comments have improved presentations of the contents, especially abstract, Sections~\ref{sec:Intro}, and \ref{subSec:relatedWork}.
 
 \bibliographystyle{plain}
 \bibliography{references,fallRisk}
