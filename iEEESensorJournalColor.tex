@@ -30,7 +30,7 @@
 %needed to change table colors
 %\usepackage[table]{xcolor}
 %\renewcommand{\arraystretch}{1.75} % General space between rows (1 standard)
-%\renewcommand{\baselinestretch}{2}
+%\renewcommand{\baselinestretch}{2.5}
 \renewcommand\IEEEkeywordsname{Index Terms}
 %%
 %\frenchspacing
@@ -41,7 +41,7 @@
 %Author (Saminda Abeyruwan, Faisal Sikder, Ubbo Visser, Dilip Sarkar)}
 %\setcounter{secnumdepth}{0}  
 %\title{Semi-Automatic Extraction of  Training Examples from Sensor Readings for Activity Monitoring and Prediction for Humans and NAO Humanoid Robots}
-\title{Semi-Automatic Extraction of Training Examples from Sensor Readings for \hl{Fall Detection and Posture Monitoring}}
+\title{Semi-Automatic Extraction of Training Examples from Sensor Readings for Fall Detection and Posture Monitoring}
 %\title{Activity Monitoring and Prediction for Humans and NAO Humanoid Robots using 
 %Wearable Sensors}
 \author{{Saminda Abeyruwan}, {Dilip Sarkar}, {Faisal Sikder}, and {Ubbo Visser}
@@ -57,19 +57,37 @@
 \IEEEpeerreviewmaketitle
 
 \begin{abstract}
-While humans perform \hl{daily life activities accidents such as a fall or a collision} may occur. \hl{As
-this might cause physical injuries}, an immediate identification of \hl{an accident could alert humans for a fast
-response}. Currently, a plethora of inexpensive wireless motion sensing devices are available or can be assembled using off-the-shelf components. They \hl{can be} used to collect motion data \hl{in 
-order} to monitor non-fall activities and \hl{to detect} fall events. However, there are remaining problems such as
-automatic extraction of motion features that distinguishes among the prior categories. We \hl{propose}
- a framework to setup a wireless sensor network for collecting motion data. We also 
-\hl{introduce a novel} method for semi-automatically extracting training examples from the motion data.
-We developed a two-level classification network to accurately \hl{identify several types of}
-non-fall activities and fall events. The proposed classification-network is a combination of neural
-and Softmax regression networks.  Our empirical evaluations of the proposed two-layer network show that seven types of non-fall activities and four types of fall events are classified on our datasets with 100\% accuracy.  \end{abstract}
+%Motivation for the work
+\hl{
+While inexpensive wearable motion-sensing devices have shown great promise for fall detection and posture monitoring,  two major problems still exist and have to be solved: }\begin{inparaenum}  \item \hl{a framework for the development of firmware, and} \item \hl{software to make intelligent decisions.} \end{inparaenum} \hl{We address both the problems.  
+%The method used
+We propose a generic framework for developing firmware. We also demonstrate that the k-means clustering algorithm can semi-automatically extract training examples from motion data. 
+%A wearable devices can preprocess motion data in real time.
+Moreover, we trained and evaluated several one- and two-level classification networks to monitor 
+non-fall activities and to detect fall events.
+The proposed classification-networks are combinations of neural  networks
+and softmax regression. 
+%The results
+These networks are trained offline with examples extracted  by our proposed method. Cross-validation of trained two-level networks show 100\% accuracy for non-fall activities and fall events. The datasets for training and testing have been collected using the devices we assembled with four off-the-shelf components. We have programmed them using a prototype of our proposed framework. The datasets include seven types of non-fall activities and four types of fall events.
+%Conclusion reached
+This work advances the state-of-the-art for development and training of wearable devices for monitoring non-fall activities and detecting fall events.}
+%
+%
+%
+%While humans perform daily life activities, accidents such as a fall or a collision may occur. As
+%this might cause physical injuries, an immediate identification of an accident could alert humans for a fast
+%response. Currently, a plethora of inexpensive wireless motion sensing devices are available or can be assembled using off-the-shelf components. They can be used to collect motion data in 
+%order to monitor non-fall activities and to detect fall events. However, there are remaining problems such as
+%automatic extraction of motion features that distinguishes among the prior categories. We propose
+ %a framework to setup a wireless sensor network for collecting motion data. We also 
+%introduce a novel method for semi-automatically extracting training examples from the motion data.
+%We developed a two-level classification network to accurately identify several types of
+%non-fall activities and fall events. The proposed classification-network is a combination of neural
+%and Softmax regression networks. Our empirical evaluations of the proposed two-layer network show that seven types of non-fall activities and four types of fall events are classified on our datasets with 100\% accuracy.  
+\end{abstract}
 
 \begin{IEEEkeywords} Fall detection, learning algorithms, neural networks, {MEMS}, 9-axis sensor,
-semi-automatic extraction of training examples, Softmax.  \end{IEEEkeywords}
+semi-automatic extraction of training examples, softmax regression.  \end{IEEEkeywords}
 
 %\tableofcontents
 
@@ -92,15 +110,14 @@ livings} (ADLs)
 and \emph{fall events} (FEs)
 \cite{baekFallDetection2013,baiFallDetectionPhone2013,DernbachActivityAndFallDetectionPhone2012,shany2012sensors,ranhotigmage2013human,dumitracheFallDetection2013,kumarActivitAndFallDetection2013,leoneFallDetection2013,liangFallDetection2012,liFallDetection2009,Moya2015,ojetolaFallDetection2011,ShenFallDetectionPhone2015,steidlFallDetection2012,DoukasFallDetection2011,ErdoganFallDetection2014,JianFallDetection2015,aziz2011analysis}.
 These studies have used accelerometers, gyroscopes, magnetometers, or a
-combination of them to collect motion datasets at  25 Hz to 200 Hz.  \hl{A comprehensive and recent review of wearable sensors for human activity monitoring can be found in} \cite{MukReview15}.
-
+combination of them to collect motion datasets at  25 Hz to 200 Hz.  A comprehensive and recent review of wearable sensors for human activity monitoring can be found in \cite{MukReview15}.
 \par
 Earlier studies demonstrated feasibility of various miniature wired or wireless
-devices, and recent studies have focused on \hl{extracting knowledge from data of
-motion sensors}.  Results from past studies have proven  that hardware for MEMS
+devices, and recent studies have focused on extracting knowledge from data of
+motion sensors.  Results from past studies have proven  that hardware for MEMS
 sensor based \emph{intelligent} devices to \begin{inparaenum} [($i$)] \item
-assess fall-risks, \item monitor ADLs, and \item identify fall events \hl{has
-reached} maturity and can be assembled from off-the-shelf hardware.
+assess fall-risks, \item monitor ADLs, and \item identify fall events has
+reached maturity and can be assembled from off-the-shelf hardware.
 \end{inparaenum}   
 
 \par
@@ -114,7 +131,7 @@ fall backward, fall left, and fall right --- the device must have firmware
 modules to collect motion data, to preprocess motion data, and to extract
 sufficient features from the preprocessed data for the identification of the fall
 events. Also, the device must have a software module that takes the extracted
-features as input and  \hl{correctly classifies the four fall events}.
+features as input and  correctly classifies the four fall events.
 
 \par Since both humans and biped humanoid robots have almost identical
 movements and are susceptible to similar accidents, we believe that the same
@@ -129,13 +146,13 @@ robots collaboratively work to complete tasks.
 
 \par To validate our hypotheses, we developed a generalized approach for
 learning and predicting activities for both groups \cite{abeyruwanFlairs2015}.
-We attached wearable sensing devices to collect motion data and \hl{used software}
+We attached wearable sensing devices to collect motion data and used software
 tools to interpret the sensor data to distinguish between regular activities
 and fall events (see Fig.~\ref{fig:deviceWithSubjects}). 
 
-In our study, \hl{both fall and non-fall} activities of biped robots were identified with
+In our study, both fall and non-fall activities of biped robots were identified with
 100\%  accuracy after using a Kalman filter \cite{Welch:1995:IKF:897831} with
-appropriate thresholding. \hl{However}, the same method would not be as successful for our human
+appropriate thresholding. However, the same method would not be as successful for our human
 subjects. Using Logistic Regression and \emph{Support Vector
 Machines} (SVM), the true positive recognition for human subjects was as low as
 90\%\cite{abeyruwanFlairs2015}. The most \emph{ad hoc} and arduous part of our
@@ -146,9 +163,9 @@ of the motivation for the work presented in this paper.
 
 \begin{figure}[!tb]
 \centering
-\subfloat[]{\label{fig:fb}\includegraphics[width=0.28\columnwidth]{figures/human_figure.eps}}
+\subfloat[]{\label{fig:fb}\includegraphics[width=0.28\columnwidth]{figures/human_figure_bw.eps}}
 \qquad
-\subfloat[]{\label{fig:fc}\includegraphics[width=0.25\columnwidth]{figures/robot_figure.eps}} 
+\subfloat[]{\label{fig:fc}\includegraphics[width=0.25\columnwidth]{figures/robot_figure_bw.eps}} 
 \caption{(a) a wireless sensor device (assembled from a Tiva C Series  TM4C123G 
 LaunchPad, a Sensor Hub BoosterPack, a CC2533 BoosterPack, and a Fuel Tank BoosterPack) 
 attached to the back of a human subject; the device is running our framework  with only 
@@ -173,8 +190,8 @@ We have developed a set of software tools to create a framework that allow us
 \begin{inparaenum}[($i$)] \item  to setup the WSN, \item to collect data, \item
 to extract training examples from sensor readings (see Section
 \ref{sec:SemiAutomaticExtractionOfTrainingVectors}), \item to learn from sample
-examples, and \item to monitor and predict events. \end{inparaenum} \hl{This
-framework is generic and can be used by other practitioners.}
+examples, and \item to monitor and predict events. \end{inparaenum} This
+framework is generic and can be used by other practitioners.
 
 The rest of the paper is organized as follows: Related work is reviewed in
 Section~\ref{subSec:relatedWork}. In Section~\ref{sec:framework}, we describe
@@ -192,36 +209,36 @@ summary and future work.
 \section{Related Work}
 \label{subSec:relatedWork}
 
-\hl{Based on the platforms used, modern} activity detection methods can be broadly
+Based on the platforms used, modern activity detection methods can be broadly
 categorized into two groups: \begin{inparaenum}[($i$)] \item inexpensive
 wearable embedded devices, and \item smart-phones.  \end{inparaenum} Wearable
 embedded devices with add-on sensors provide options to develop effective
 activity recognition methods for both humans and biped humanoid robots alike. 
 
-\par \hl{Ojetola et al.} \cite{ojetolaFallDetection2011} \hl{report a method for detecting
+\par Ojetola et al. \cite{ojetolaFallDetection2011} report a method for detecting
 four fall events -- forward, backward, right, and left -- using readings from both 
 accelerometer and gyroscope. Their approach utilizes a decision tree to learn
 and classify falls and ADLs. It identified fall events with 81\% precision and
-92\% recall rate.} 
+92\% recall rate. 
 
-\hl{The method  in}\cite{baekFallDetection2013} \hl{uses  data from} tri-axial
+The method  in\cite{baekFallDetection2013} uses  data from tri-axial
 accelerometer  and  gyroscope  sensors, embedded in a necklace, for classifying
-the  behavior  and  posture  of  human subjects. \hl{Their method distinguishes
+the  behavior  and  posture  of  human subjects. Their method distinguishes
 between ADLs and  falls, with 80\%  or higher sensitivity  and  100\%
 specificity. Their experiments include both normal ADLs such as standing,
 sitting in the chair or floor, laying, walking, running, going
 upstairs/downstairs, and bending, as well as abnormal events such as falling
-forward, backward, leftward, rightward, and fall on the stairs. }
+forward, backward, leftward, rightward, and fall on the stairs. 
  
-\hl{A system  to detect  events that may cause trauma and disabilities  was
-proposed in} \cite{leoneFallDetection2013}. \hl{It used readings from MEMS
-accelerometer embedded in a wearable wireless device.} They use SVM for
-the classification of different events. \hl{Bao and Intille} 
+A system  to detect  events that may cause trauma and disabilities  was
+proposed in \cite{leoneFallDetection2013}. It used readings from MEMS
+accelerometer embedded in a wearable wireless device. They use SVM for
+the classification of different events. Bao and Intille 
 \cite{BaoActivityrecognition2004} used five small-biaxial wire-free accelerometers
 that were attached  on the left bicep, the right wrist, the left quadriceps, the
-right ankle, and the right hip  of the subjects for collecting motion data. \hl{They used motion data for 
+right ankle, and the right hip  of the subjects for collecting motion data. They used motion data for 
 recognizing 20 activities, including walking, riding elevator, strength training, and
-bicycle.} \hl{They evaluated the performance }of a decision table,
+bicycle . They evaluated the performance of a decision table,
 instance-based learning, a decision tree, and na\"{i}ve Bayes classifiers. The results
 revealed that the decision-tree based method performed best with 84\%
 accuracy.  Similar efforts have been reported to detect human motions using
@@ -229,47 +246,47 @@ motion tracking (see
 \cite{dumitracheFallDetection2013,kumarActivitAndFallDetection2013,krishnanActivityRecognition2014,gaoActivityRecognition2014,alvarezActivityAndFallRecognotion2015}).
  
 
-\hl{A fall detection, avoidance, and damage reduction mechanism for biped humanoid
-robots was proposed in} {~\cite{Moya2015}}.  \hl{The authors
+A fall detection, avoidance, and damage reduction mechanism for biped humanoid
+robots was proposed in {~\cite{Moya2015}}.  The authors
 simulated the real world environment for humanoid robots. These biped robots would
 walk over irregular surfaces, run or play sports where a fall or a collision with
 other robots may occur. Their framework detects instability and executs fall
 avoidance  procedures or invoked mechanism that would reduce damages in case
-of a fall.} %The goal of the study was to show that embedded devices  with add-on
+of a fall. %The goal of the study was to show that embedded devices  with add-on
 %sensors provide a flexible platform for many real-world applications. 
 
 There is an increasing interest in using smart-phones to detect activities in the
 health care domain. Using only readings from an accelerometer of a
-smart-phone,  \hl{five human actions -- walking, running, standing up, sitting
-down, and jumping  -- were analyzed in} \cite{baiFallDetectionPhone2013}. They
+smart-phone,  five human actions -- walking, running, standing up, sitting
+down, and jumping  -- were analyzed in \cite{baiFallDetectionPhone2013}. They
 compared the acceleration characteristics of these actions with  those of three
 different fall events to infer the direction of a fall. The method recognizes a
-fall activity when a predetermined set of conditions were satisfied. \hl{However},
+fall activity when a predetermined set of conditions were satisfied. However,
 the method did not provide any prediction or hint that a fall could occur in
 the near future. 
 
-\hl{It was show in} \cite{steidlFallDetection2012}, that the sensors in the
+It was show in \cite{steidlFallDetection2012}, that the sensors in the
 smart-phones from different manufactures record significantly different range of
-values for identical tasks.  \hl{To overcome this problem,} they trained a SVM with
+values for identical tasks.  To overcome this problem, they trained a SVM with
 extracted features from raw accelerometer readings and the directional changes
 of the constraining force exerted on an accelerometer to detect fall events.
 They compared these events to non-fall activities such as walking, running,
 jumping, and some actives which resembles falls such as sitting down on a
-chair.\hl{ Their method detected fall events with an accuracy of 84.8\%.} 
+chair. Their method detected fall events with an accuracy of 84.8\%. 
 
-\hl{Methods that detect both simple and complex activities using readings from
+Methods that detect both simple and complex activities using readings from
 an accelerometer and a gyroscope of an Android smart-phone were studied
-in} \cite{DernbachActivityAndFallDetectionPhone2012}. Simple activities
+in \cite{DernbachActivityAndFallDetectionPhone2012}. Simple activities
 include biking, climbing stairs, driving, running, sitting, standing,
-walking, and the phone-not-on-the-person. \hl{Complex activities include}
+walking, and the phone-not-on-the-person. Complex activities include
 cleaning, cooking, medication, sweeping, washing hands, and watering plants. Both
 simple and complex activities were combined together for recognition. Six different classifiers 
 -- multi-layer  perceptron (MLP), na\"{i}ve  Bayes,  Bayesian  network,  decision
 table,  best-first tree, and  K-star --  were trained using  the same set of
-features extracted from the datasets. \hl{They obtained 93\% accuracy} for simple
+features extracted from the datasets. They obtained 93\% accuracy for simple
 activities (with MLP), but only 50\% accuracy for complex activities.    
 
-\hl{In} \cite{ShenFallDetectionPhone2015}, high-level fuzzy Petri-net based systems
+In \cite{ShenFallDetectionPhone2015}, high-level fuzzy Petri-net based systems
 were proposed and evaluated for the analysis and detection of normal human
 actions such as sitting-down, squatting, walking, running, and jumping as well
 as abnormal events such as falling forward, backward, sideways, and vertical.
@@ -277,13 +294,13 @@ They reported 94\% accuracy for fall-detection. However, the proposed system  co
 not accurately detect some complex situations and movements  such as falling
 down from  stairs, multiple collisions, or temporal unbalanced motions.
 
-\par \hl{Only three studies} have been reported for biped robots
+\par Only three studies have been reported for biped robots
 \cite{Andre2015,Goswami2014,Moya2015}. The focus for these studies
 were prediction of a fall before it occurs and taking corrective measures to
 prevent the fall. The work reported in these papers are using readings from
 multiple sensors embedded in a robot for predicting a potential fall. On the
-other hand, our research goal is \hl{to identify  fall and non-fall events  after
-they occur.}
+other hand, our research goal is to identify  fall and non-fall events  after
+they occur.
 
 \section{Framework for Data Collection and Processing}
 \label{sec:framework}
@@ -297,13 +314,12 @@ conveniently describe dependance among the tasks. A list of dependencies
 $D_{ij}$ completely describes the graph $G(T,D)$.  \par We have created a
 generic framework for developing applications for \emph{data collection and
 processing}. This framework is described next.
-
 %TODO: write an introduction paragraph for the section. For convince of reference for 
 %Framework for Data Collection and Processing will be denoted by  FDCP. 
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=.75\textwidth]{figures/graph_structure_def-crop3.eps}
+\includegraphics[width=.75\textwidth]{figures/graph_structure_def-crop3_bw.eps}
 \caption{Currently available software modules in our framework and a directed-graph representation of their functional relationship. Execution of a module (rounded-corner rectangle) generated data that is stored in the representation module (pointed-corner rectangle) for feeding into the next module.}
  \label{fig:framework}
 \end{figure*}
@@ -321,7 +337,7 @@ modules and representations that execute on the micro-controllers or offline,
 \item the methods to access functionalities for physical robots, and \item a
 real-time visualization system\end{inparaenum}. Our framework is lightweight,
 flexible, and consumes minimum memory and computational resources. We have
-tested our framework on multiple \hl{micro-controllers and on booster packs}.  Our
+tested our framework on multiple micro-controllers and on booster packs.  Our
 development framework, $\mu$Energia (\textit{pronounced as}:
 ``micro--Energia'') is available from the following web \textit{site}:
 {http://muenergia.saminda.org}.
@@ -342,11 +358,10 @@ topologically sorts (see a book on algorithms such
 as\cite{Cormen:AlgorithmBook}), the nodes and creates an schedule for execution
 of the modules. In case the graph has one or more cycles, the framework reports
 so to the users.  For a visualization of the schedule, the framework  generates
-a directed graph. In this graph, modules are drawn as blue-shaded rectangles
-with rounded corners and the representations are drawn as yellow-shaded
-rectangles with pointed corners. The dependence of a modules on a
+a directed graph. In this graph, modules are drawn as gray-shaded rectangles
+with rounded corners and the representations are drawn as rectangles with pointed corners. The dependence of a modules on a
 representation is depicted as with a black arc with a solid line, while the
-dependency of a representation on a module is depicted with a blue arc with a
+dependency of a representation on a module is depicted with a gray arc with a
 dotted line. 
 
 
@@ -439,10 +454,10 @@ falls.
 \centering
   \mbox{\subfloat[Motion dataset for  fall forward event of a human 
   subject.]{\label{fig:human_fall_forward_crop} 
-  \includegraphics[width=0.9\columnwidth,height = 1.5in]{plots/human_falling-crop.eps}}}
+  \includegraphics[width=0.9\columnwidth,height=1.5in]{plots/human_falling-crop_bw.eps}}}
   \mbox{\subfloat[Motion dataset for walk forward event of a human subject. 
   ]{\label{fig:human_walk_forward-crop} 
-  \includegraphics[width=0.9\columnwidth,height = 1.5in]{plots/human_walk-crop.eps}}}
+  \includegraphics[width=0.95\columnwidth,height = 1.5in]{plots/human_walk-crop_bw.eps}}}
   \caption{Fall and walk forward motion datasets. The accelerometer ($\dot{x}$, 
   $\dot{y}$, $\dot{z}$) and the gyroscope ($\dot{\theta_x}$, 
   $\dot{\theta_y}$, $\dot{\theta_z}$) readings are shown with the respective traces. }
@@ -475,8 +490,8 @@ the input to our automatic training example extraction method.
 
 \begin{figure}[b]
 \centering
-\includegraphics[width=0.4\textwidth]{plots/human_falling_forward2.eps} 
-\caption{Semi-automatic annotation of falling forward event dataset.}
+\includegraphics[width=0.45\textwidth,height=1.7in]{plots/human_falling_forward2_bw.eps} 
+\caption{Semi-automatic annotation of falling-forward dataset.}
  \label{fig:automatic_annotation} 
 \end{figure}
 
@@ -526,14 +541,14 @@ value that clearly separated the duration of the fall.
 
 \begin{figure}[b]
 \centering
-\includegraphics[width=0.4\textwidth]{plots/human_falling_backward2.eps} 
-\caption{Semi-automatic annotation of falling backward event dataset.}
+\includegraphics[width=0.45\textwidth,height = 1.7in]{plots/human_falling_backward2_bw.eps} 
+\caption{Semi-automatic annotation of falling-backward dataset.}
  \label{fig:automatic_annotation2} 
 \end{figure}
 
 \begin{figure*}[!bht]
 \centering
-\includegraphics[width=.85\textwidth]{figures/viz_all_training_examples_crop2.pdf} 
+\includegraphics[width=.85\textwidth]{figures/viz_all_training_examples_crop2_bw.eps} 
 \caption{Visualization of 11 sets of training examples using Tsne projection.
 In this projection, the 4 fall events (numbered 1 through 4) show a clear
 separation from each other and other 7 non-fall events.}
@@ -578,8 +593,8 @@ transition zone of a fall event.
 \par For visualization of 11 sets of training examples, a sample Tsne
 projection  is displayed in Fig.~\ref{fig:automatic_annotation3}. In this
 projection, the 4 fall events (numbered 1 through 4) show a clear separation
-from each other and all 7 non-fall events. Although Fig.~\ref{fig:automatic_annotation3} does show as good separations for non-fall events, the results, reported in Section~\ref{Evaluation}, \hl{show that the separations are for good enough for classification of the events with 100\%
-accuracy.}
+from each other and all 7 non-fall events. Although Fig.~\ref{fig:automatic_annotation3} does show as good separations for non-fall events, the results, reported in Section~\ref{Evaluation}, show that the separations are for good enough for classification of the events with 100\%
+accuracy.
 
 Since we are interested in the signatures of the fall events, we have annotated
 all the samples  that belong to ``a'' cluster as the fall data. In general, the
@@ -645,7 +660,7 @@ The Right-side Figure is a hybrid of Neural Network and Softmax Regression
 model.} \label{fig:SoftmaxLayer1}
 \end{figure}
 
-We trained and tested two networks with the Softmax regression algorithm. In
+We trained and tested two networks with the softmax regression algorithm. In
 the first case, we trained a one-layer network with 11 binary outputs, one for
 each fall or non-fall events. In the second case, we trained a two layer
 softmax regression network. The top layer network was trained with 2 binary
@@ -663,9 +678,9 @@ of them identified all events with 100\% accuracy.
 \label{sec:HybridAlgorithmNeuralNetworkAndSoftmaxRegreation}
 
 The hybrid classification network is based on both Artificial Neural Network
-and Softmax regression network. Fig.~\ref{fig:SoftmaxLayer1} shows a block
+and softmax regression network. Fig.~\ref{fig:SoftmaxLayer1} shows a block
 diagram of a hybrid network: a row of neurons followed by a row of softmax
-regression units.  \par We have used the prior Softmax activation  and the
+regression units.  \par We have used the prior softmax activation  and the
 negative-log likelihood functions in the output layer. The hidden layers have
 used \emph{rectified linear units }(ReLUs).  We have also included the bias
 terms for all hidden layers. The backpropagation algorithm\cite{Sarkar1995} has
@@ -676,7 +691,7 @@ computing the mean of each dimension across the training set and subtracting
 this from each dimension. Then each dimension is divided by its standard
 deviation.       
 
-Similar to Softmax regression networks, we experimented  with both single-layer
+Similar to softmax regression networks, we experimented  with both single-layer
 hybrid networks and two-layer hybrid networks. While single-layer network
 failed to identify all events with 100\% accuracy, the two-layer network
 successfully identified all event with 100\% accuracy. There were no false
@@ -764,7 +779,7 @@ $0.1$.}
 
 
 \begin{table}[htb]
-\caption{Performance of a single layer Softmax regression network with six
+\caption{Performance of a single layer softmax regression network with six
 inputs and 11 outputs. On an average 94.4\% of the events were classified
 correctly.} \label{tab:softmaxOnelayer}
 \resizebox{\columnwidth}{!}
@@ -796,7 +811,7 @@ Fig.~\ref{fig:SoftmaxLayer1} for block diagrams of these networks). Performance
 of these networks are discussed in the next two paragraphs.
  
  \paragraph{Softmax Regression} \label{sec:SoftmaxRegression} As can be seen
-from Table~\ref{tab:softmaxOnelayer}, one-layer sofmax regression network with
+from Table~\ref{tab:softmaxOnelayer}, one-layer softmax regression network with
 7 inputs (6 for feature vector and one for bias) and 11 outputs recognized on
 an average 94.4\% of all  events. A closer examination reveals that all but
 three types of events --- fall-forward, walk-forward, and walk-right events
@@ -890,10 +905,10 @@ Activities} \label{sec:LayerTwoFallOrNonFallEventIdentification}
 the performances of layer-two networks are shown in
 Tables~\ref{Layer2FallEvents}, \ref{Layer2NonFallEventsSoftmax}, and
 \ref{Layer2NonFallEventsNeuralNets}. It is easy to see from
-Table~\ref{Layer2FallEvents} that both Softmax and Neural networks at layer-two
+Table~\ref{Layer2FallEvents} that both softmax and Neural networks at layer-two
 correctly classified 100\% of fall events.  Results for seven non-fall events
 are shown in Tables~\ref{Layer2NonFallEventsSoftmax} and
-\ref{Layer2NonFallEventsNeuralNets}. Again both Softmax and Neural networks
+\ref{Layer2NonFallEventsNeuralNets}. Again both softmax and Neural networks
 achieved 100\% accuracy. The neural network used one hidden row of 6 neurons.
 \begin{table}[htb]
 \resizebox{\columnwidth}{!}
@@ -995,12 +1010,13 @@ has proven to be effective, the project is far from complete. It requires
 further testing. Also, for real-world deployment, a miniaturized prototype must
 be developed and tested on a wide population. We expect that the software
 platform will require only minimum modifications, if at all.
-\section*{Acknowledgement} \label{sec:Acknowledgement} \hl{Authors greatly
-appreciate  constructive comments and suggestions of anonymous reviewers. Their
-comments have improved presentations of the contents, especially Sections}~\ref{sec:Intro} and \ref{subSec:relatedWork}.
+
+\section*{Acknowledgement} \label{sec:Acknowledgement} Authors greatly
+appreciate the constructive comments and suggestions of anonymous reviewers and editors. Their
+comments have improved the presentation of the content, especially the abstract, Sections~\ref{sec:Intro}, and \ref{subSec:relatedWork}.
 
 \bibliographystyle{plain}
-\bibliography{referencescolor,fallRisk}
+\bibliography{references,fallRisk}
 
 %\end{sloppy}
 \end{document}
