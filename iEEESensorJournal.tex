@@ -172,8 +172,6 @@ same device configuration was used on the back of a NAO humanoid robot\cite{abey
 \end{figure}
 
 \subsection{Our Approach and Contributions}
-
- 
 We have assembled a wireless sensing-device with a Tiva C Series TM4C123G
 micro-controller board, and three booster packs --- a Sensor Hub BoosterPack  for
 sensing 9-axis motion,  a CC2533  BoosterPack for wireless networking, and a
@@ -403,29 +401,50 @@ backward ({\sf WB}), \item walk left ({\sf WL}), \item walk right ({\sf WR}),
 \item marching ({\sf MR}), \item rotate counter clockwise ({\sf RC}), and \item
 rotate clockwise ({\sf RA})  \end{inparaenum} as non-fall activities. 
 
+%\begin{table}[htb]
+%\caption{Activities and Fall Events and their abbreviations}
+%%\resizebox{\columnwidth}{!}
+%\centering
+%{
+%\begin{tabular}{|l|c|}
+%\hline
+%\textbf{Activity} & \textbf{Abbreviation} \\  \hline
+%Fall Forward &\textbf{FF} \\ \hline
+%Fall Backward &\textbf{FB}  \\ \hline
+%Fall Left &\textbf{FL}  \\ \hline
+%Fall Right &\textbf{FR}  \\ \hline \hline
+%Walk Forward &\textbf{WF} \\ \hline
+%Walk Backward &\textbf{WB} \\ \hline
+%Walk Left &\textbf{WL} \\ \hline
+%Walk Right &\textbf{WR}  \\ \hline
+%March &\textbf{MR}  \\ \hline
+%Rotate Clockwise &\textbf{RC} \\ \hline
+%Rotate Anticlockwise&\textbf{RA}  \\ \hline
+%\end{tabular}
+%}
+%\label{Tbl:ListOfActivities}
+%\end{table}
+
 \begin{table}[htb]
 \caption{Activities and Fall Events and their abbreviations}
 %\resizebox{\columnwidth}{!}
 \centering
 {
-\begin{tabular}{|l|c|}
+\begin{tabular}{|l|c||l|c|}
 \hline
-\textbf{Activity} & \textbf{Abbreviation} \\  \hline
-Fall Forward &\textbf{FF} \\ \hline
-Fall Backward &\textbf{FB}  \\ \hline
-Fall Left &\textbf{FL}  \\ \hline
-Fall Right &\textbf{FR}  \\ \hline \hline
-Walk Forward &\textbf{WF} \\ \hline
-Walk Backward &\textbf{WB} \\ \hline
-Walk Left &\textbf{WL} \\ \hline
-Walk Right &\textbf{WR}  \\ \hline
-March &\textbf{MR}  \\ \hline
-Rotate Clockwise &\textbf{RC} \\ \hline
-Rotate Anticlockwise&\textbf{RA}  \\ \hline
+%\textbf{Activity} & \textbf{{Abbreviation}} &\textbf{Activity} & \textbf{{Abbreviation}}\\  \hline
+Activity & Abbreviation&Activity &Abbreviation\\  \hline \hline
+Fall Forward &\textbf{FF}&Fall Backward &\textbf{FB}  \\ \hline
+Fall Left &\textbf{FL}&Fall Right &\textbf{FR}   \\ \hline
+Walk Forward &\textbf{WF}&Walk Backward &\textbf{WB} \\ \hline
+Walk Left &\textbf{WL}& Walk Right &\textbf{WR} \\ \hline
+March &\textbf{MR}&Rotate Clockwise &\textbf{RC} \\ \hline
+&&Rotate Anticlockwise&\textbf{RA}\\ \hline
 \end{tabular}
 }
 \label{Tbl:ListOfActivities}
 \end{table}
+
 
 \subsection{Data Collection and Preprocessing  }
 \label{subsec:preDataCollection}
@@ -984,16 +1003,16 @@ humans. This may lead to injuries, and immediate identification of it can alert
 for a fast response.  There are many inexpensive wireless motion sensing
 devices or one can be assembled using off-the-shelf components. These devices
 can be attached to a human to collect motion data for monitoring activities of
-daily living. However, while performing these activities, an accident such as
-fall may occur.
+daily living. 
+However, while performing these activities, an accident such asfall may occur.
 
 We have developed a generic software platform for embedded devices. The
 software platform has been tested on several combinations of microcontrollers
 and sensing devices. We have used it for creating a wireless sensor network and
 using the network for collecting motion data.
 
-In order to accurately identify these events, it is necessary to extract
-distinguishing features from the motion data. Here, we have proposed a novel
+In order to accurately identify these events, it is necessary to extractdistinguishing features from the motion data. Here, 
+we have proposed a novel
 semi-automatic training example extraction method to identify features and
 automatically annotate the datasets. The proposed method significantly
 expedites the creation of the training set compared to manually extracting
@@ -1009,8 +1028,7 @@ be developed and tested on a wide population. We expect that the software
 platform will require only minimum modifications, if at all.
 
 \section*{Acknowledgement} \label{sec:Acknowledgement} Authors greatly
-appreciate the constructive comments and suggestions of anonymous reviewers and editors. Their
-comments have improved the presentation of the content, especially the abstract, Sections~\ref{sec:Intro}, and \ref{subSec:relatedWork}.
+appreciate the constructive comments and suggestions of anonymous reviewers and editors that have improved the presentation of the content, especially the abstract, Sections~\ref{sec:Intro}, and \ref{subSec:relatedWork}.
 
 \bibliographystyle{plain}
 \bibliography{references,fallRisk}
@@ -1022,7 +1040,9 @@ He joined Cisco Systems, Inc., San Jose, USA, in 2015, and serve as a Software E
 \begin{IEEEbiography}
 [{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{PhotoSarkar}}]
 {Dilip Sarkar} 
-(SM'96) received the B.Tech. (Hons.) degree in Electronics and Electrical Communication Engineering from the Indian Institute of Technology, Kharagpur, India, in May 1983, the M.S. degree in Computer Science from the Indian Institute of Science, Bangalore, India, in December 1984, and the Ph.D. degree in Computer Science from the University of Central Florida, Orlando, in May 1988. From January 1985 to August 1986 he was a Ph.D. student at Washington State University, Pullman. He is currently an Associate Professor of Computer Science at the University of Miami, Coral Gables, Florida. 
+(SM'96) received the B.Tech. (Hons.) degree in Electronics and Electrical Communication Engineering from the Indian Institute of Technology, Kharagpur, India, in May 1983, the M.S. degree in Computer Science from the Indian Institute of Science, Bangalore, India, in December 1984, and the Ph.D. degree in Computer Science from the University of Central Florida, Orlando, in May 1988. 
+%From January 1985 to August 1986 he was a Ph.D. student at Washington State University, Pullman. 
+He is currently an Associate Professor of Computer Science at the University of Miami, Coral Gables, Florida. 
 He served as a Guest Editor of a special issue of the Computer Communications on Concurrent Multipath Transport. He has served on the program committees of ICC, Globecom, ICME, ICCCN, and INFOCOM for many years. His research interests include concurrent transport protocols, parallel and distributed processing, neural networks, wireless sensors networks and their applications, and security of virtual machines. In these areas, he has guided several theses and has authored numerous papers.
 \end{IEEEbiography}
 \begin{IEEEbiography}
@@ -1034,6 +1054,7 @@ in Computer Science from the University of Miami, Florida, USA, in May 2014. He 
 degree in the Computer Science department at the University of Miami. His research interests include parallel and 
 distributed computing, machine learning, sensors networks and their applications, and internet of things.
 \end{IEEEbiography}
+
 \vfill
 %\end{sloppy}
 \end{document}
