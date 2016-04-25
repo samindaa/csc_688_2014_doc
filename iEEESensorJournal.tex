@@ -245,7 +245,7 @@ A fall detection, avoidance, and damage reduction mechanism for biped humanoid
 robots was proposed in {~\cite{Moya2015}}.  The authors
 simulated the real world environment for humanoid robots. These biped robots would
 walk over irregular surfaces, run or play sports where a fall or a collision with
-other robots may occur. Their framework detects instability and executs fall
+other robots may occur. Their framework detects instability and executes fall
 avoidance  procedures or invoked mechanism that would reduce damages in case
 of a fall. %The goal of the study was to show that embedded devices  with add-on
 %sensors provide a flexible platform for many real-world applications. 
@@ -305,7 +305,7 @@ tasks $T = \{ T_1, T_2,\cdots,T_n\}$. A task $T_i$ may depend on another task
 $T_j$.  For satisfying dependence of a task on other tasks, it is necessary to
 create an \emph{execution order} on the set of tasks, if one exists. Denoting
 dependence of $T_i$ on $T_j$ as $D_{ij}$, a directed graph $G(T,D)$ can
-conveniently describe dependance among the tasks. A list of dependencies
+conveniently describe dependence among the tasks. A list of dependencies
 $D_{ij}$ completely describes the graph $G(T,D)$.  \par We have created a
 generic framework for developing applications for \emph{data collection and
 processing}. This framework is described next.
@@ -565,7 +565,7 @@ value that clearly separated the duration of the fall.
 \begin{figure*}[!bht]
 \centering
 \includegraphics[width=.85\textwidth]{figures/viz_all_training_examples_crop2_bw.eps} 
-\caption{Visualization of 11 sets of training examples using Tsne projection.
+\caption{Visualization of 11 sets of training examples using t-SNE projection.
 In this projection, the 4 fall events (numbered 1 through 4) show a clear
 separation from each other and other 7 non-fall events.}
 \label{fig:automatic_annotation3} 
@@ -606,7 +606,7 @@ Each fall-event triggers towards the end of the preceding non-fall data points
 and continues into the beginning of the fall data points; this is the
 transition zone of a fall event.
 
-\par For visualization of 11 sets of training examples, a sample Tsne
+\par For visualization of 11 sets of training examples, a sample t-SNE
 projection  is displayed in Fig.~\ref{fig:automatic_annotation3}. In this
 projection, the 4 fall events (numbered 1 through 4) show a clear separation
 from each other and all 7 non-fall events. Although Fig.~\ref{fig:automatic_annotation3} does show as good separations for non-fall events, the results, reported in Section~\ref{Evaluation}, show that the separations are for good enough for classification of the events with 100\%
@@ -999,19 +999,19 @@ networks correctly classified 100\% of  seven non-fall events.}
 \section{Conclusions and Future Work}
   
 During activities of daily life, an accident such as a fall may occur to
-humans. This may lead to injuries, and immediate identification of it can alert
+humans. This may leads to injuries, and immediate identification of it can alert
 for a fast response.  There are many inexpensive wireless motion sensing
 devices or one can be assembled using off-the-shelf components. These devices
 can be attached to a human to collect motion data for monitoring activities of
 daily living. 
-However, while performing these activities, an accident such asfall may occur.
+However, while performing these activities, an accident such as fall may occur.
 
 We have developed a generic software platform for embedded devices. The
 software platform has been tested on several combinations of microcontrollers
 and sensing devices. We have used it for creating a wireless sensor network and
 using the network for collecting motion data.
 
-In order to accurately identify these events, it is necessary to extractdistinguishing features from the motion data. Here, 
+In order to accurately identify these events, it is necessary to extract distinguishing features from the motion data. Here, 
 we have proposed a novel
 semi-automatic training example extraction method to identify features and
 automatically annotate the datasets. The proposed method significantly
@@ -1052,7 +1052,7 @@ He served as a Guest Editor of a special issue of the Computer Communications on
 University of Dhaka, Bangladesh, in June 2008 and May 2010, respectively. He has received another M. S. degree
 in Computer Science from the University of Miami, Florida, USA, in May 2014. He is currently working towards his PhD 
 degree in the Computer Science department at the University of Miami. His research interests include parallel and 
-distributed computing, machine learning, sensors networks and their applications, and internet of things.
+distributed computing, machine learning, sensors networks and their applications, and Internet of things.
 \end{IEEEbiography}
 
 \vfill
